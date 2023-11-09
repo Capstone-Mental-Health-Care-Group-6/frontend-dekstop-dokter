@@ -5,7 +5,7 @@ const Sidebar = () => {
   return (
     <div className="container-fluid">
       <div className="row">
-        <nav id="sidebar" className="col-sm-3 bg-emphasis d-flex justify-content-center">
+        <nav id="sidebar" className="col-sm-3 bg-emphasis d-flex justify-content-center position-sticky">
           <div className= "sidebarcenter">
             <a className="navbar-brand d-flex align-items-center">
             <svg xmlns="http://www.w3.org/2000/svg" width="58" height="62" viewBox="0 0 51 54" fill="none">
@@ -19,7 +19,6 @@ const Sidebar = () => {
               <span className="emphati">Emphati</span> <span className="care">Care</span>
             </a>
           </div>
-          <div className="position-sticky">
             <ul className="nav flex-column">
               <SidebarItem iconSrc="./src/assets/dashboard-active.png" text="Dashboard" />
               <SidebarItem iconSrc="./src/assets/chat bubble_outline.png" text="Chat" />
@@ -28,7 +27,6 @@ const Sidebar = () => {
               <br /><br /><br /><br /><br /><br /><br /><br /><br />
               <SidebarItem iconSrc="./src/assets/move_item.png" text="Logout" />
             </ul>
-          </div>
         </nav>
       </div>
     </div>

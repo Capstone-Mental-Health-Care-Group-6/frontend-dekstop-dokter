@@ -26,19 +26,19 @@
     height: 48px;
     padding: 12px 82px 12px 12px;
     align-items: center;
-    gap: 10px;
+    gap: 16px;
+    filter: grayscale(100%);
     transition: filter 0.3s;
   }
   
-  .sidebar-item:hover {
+  .sidebar-item:hover {  
+    filter: grayscale(0%);
     display: flex;
     width: 228px;
     padding: 12px;
     align-items: center;
     gap: 16px;
     border-radius: 12px;
-    background: #0085FF;
-    color: #fff;
+    background: #EBF5FF;
   }
-  
     
