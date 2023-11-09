@@ -1,0 +1,29 @@
+.nav-link {
+  transition: all 0.2s;
+}
+
+.nav-link:hover {
+  /* text-decoration: underline; */
+  border-bottom: 3px solid blue;
+}
+
+.nav-link::after {
+  opacity: 0;
+  transition: all 0.2s;
+}
+
+.nav-link:hover::after {
+  content: "";
+  opacity: 1;
+  height: 1;
+  width: 2px;
+  width: 100%;
+  background-color: blue;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.nav-link:hover::after {
+  opacity: 1;
+}
