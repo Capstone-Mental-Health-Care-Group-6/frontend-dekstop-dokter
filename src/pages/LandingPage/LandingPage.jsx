@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./landingPage.css";
 import Navbar from "../../components/fragments/Navbar/Navbar";
 import Footer from "../../components/fragments/Footer/Footer";
@@ -14,20 +14,28 @@ import Wallet from "../../assets/icons/wallet.png";
 import Stethoscope from "../../assets/icons/stethoscope.png";
 import Checkmark from "../../assets/icons/checkmark.png";
 import Peopleoutline from "../../assets/icons/peopleoutline.png";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import "./LandingPage.css";
 
 const LandingPage = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 2000,
+    });
+  }, []);
+
   return (
-    <>
+    <div className="wrap">
       <Navbar />
       <div className="z-n1 position-absolute top-0 rounded-3">
         <img src={Bg1} alt="" />
       </div>
 
-      <div className="section1">
+      <div className="section1" data-aos="fade-up">
         <Layout>
           <div className="position-relative h-auto d-flex align-items-center ">
-            <div>
+            <div className="imgCuate">
               <img src={Cuate} alt="" />
             </div>
             <div className="...">
@@ -63,14 +71,17 @@ const LandingPage = () => {
         </div>
         <Layout>
           <div className="d-flex justify-content-center">
-            <p className="text2 fs-1 fw-bolder">
+            <p className="text2 fs-1 fw-bolder" data-aos="fade-left">
               Yang Anda Dapatkan sebagai Konselor EmpathiCare:
             </p>
           </div>
 
           <div className="d-flex mt-5 justify-content-center">
             {/* Card-1 */}
-            <div className="card w-25 border-0 text-center bg-transparent">
+            <div
+              className="card w-25 border-0 text-center bg-transparent"
+              data-aos="zoom-in"
+            >
               <div className="d-flex justify-content-center">
                 <div className="circle1">
                   <div className="circle2">
@@ -88,7 +99,10 @@ const LandingPage = () => {
             </div>
 
             {/* Card-2 */}
-            <div className="card w-25 border-0 text-center bg-transparent">
+            <div
+              className="card w-25 border-0 text-center bg-transparent"
+              data-aos="zoom-in"
+            >
               <div className="d-flex justify-content-center">
                 <div className="circle1">
                   <div className="circle2">
@@ -106,7 +120,10 @@ const LandingPage = () => {
             </div>
 
             {/* Card-3 */}
-            <div className="card w-25 border-0 text-center bg-transparent">
+            <div
+              className="card w-25 border-0 text-center bg-transparent"
+              data-aos="zoom-in"
+            >
               <div className="d-flex justify-content-center ">
                 <div className="circle1">
                   <div className="circle2">
@@ -126,7 +143,10 @@ const LandingPage = () => {
 
           <div className="d-flex justify-content-center mt-5">
             {/* Card-4 */}
-            <div className="card w-25 border-0 bg-transparent text-center">
+            <div
+              className="card w-25 border-0 bg-transparent text-center"
+              data-aos="zoom-in"
+            >
               <div className="d-flex justify-content-center ">
                 <div className="circle1">
                   <div className="circle2">
@@ -146,7 +166,10 @@ const LandingPage = () => {
             </div>
 
             {/* Card-5 */}
-            <div className="card w-25 border-0 bg-transparent text-center">
+            <div
+              className="card w-25 border-0 bg-transparent text-center"
+              data-aos="zoom-in"
+            >
               <div className="d-flex justify-content-center ">
                 <div className="circle1">
                   <div className="circle2">
@@ -173,7 +196,7 @@ const LandingPage = () => {
 
       <div className="section3 w-100">
         <Layout>
-          <div className="konselorCard bg-white">
+          <div className="konselorCard bg-white" data-aos="zoom-out">
             <div className="mx-5">
               <div className="gap-5 d-flex">
                 <div className="d-flex align-items-center">
@@ -210,11 +233,11 @@ const LandingPage = () => {
           <div className="d-flex">
             <div>
               <div>
-                <p className="text2 fs-1 fw-bold">
+                <p className="text2 fs-1 fw-bold" data-aos="fade-right">
                   Syarat Bergabung di EmpathiCare harus Memiliki:
                 </p>
               </div>
-              <div className="lh-1 mt-5 fs-4 fw-lg">
+              <div className="lh-1 mt-5 fs-4 fw-lg" data-aos="fade-right">
                 <ol type="1">
                   <li>
                     <span className="d-flex gap-2">
@@ -239,13 +262,13 @@ const LandingPage = () => {
                   </li>
                 </ol>
               </div>
-              <div className="mt-5">
+              <div className="mt-5"  data-aos="fade-up">
                 <button className="bg-primary text-white rounded-pill px-5 py-2 border-0 fw-semibold shadow-sm">
                   Daftar Sekarang
                 </button>
               </div>
             </div>
-            <div>
+            <div data-aos="fade-left">
               <img src={Amico} alt="" />
             </div>
           </div>
@@ -253,7 +276,7 @@ const LandingPage = () => {
       </div>
 
       <Footer />
-    </>
+    </div>
   );
 };
 
