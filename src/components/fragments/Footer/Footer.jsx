@@ -5,27 +5,6 @@ import Appstore from "../../../assets/appstore.png";
 import "./Footer.css";
 const Footer = () => {
   return (
-    // <div className="footer">
-    //   <section></section>
-    //   <div>
-    //     <img src="" alt="" />
-    //     <img src="" alt="" />
-    //     <img src="" alt="" />
-    //   </div>
-    //   <div>
-    //     <p>Layanan Kami</p>
-    //     <button className="bg-transparent">Layanan Kami</button>
-    //   </div>
-    //   <div>
-    //     <p>Tentang Kami</p>
-    //     <button className="bg-transparent fw-semibold">Tentang Kami</button>
-    //     <button className="bg-transparent">Blog</button>
-    //     <button className="bg-transparent">Layanan Kami</button>
-    //     <button className="bg-transparent">Kontak</button>
-    //     <button className="bg-transparent">Gabung Sebagai Konselor</button>
-    //   </div>
-    //   <div></div>
-    // </div>
     <div class="footer">
       <div class="container">
         <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-4 py-5 border-top border-black">

@@ -14,6 +14,7 @@ import Wallet from "../../assets/icons/wallet.png";
 import Stethoscope from "../../assets/icons/stethoscope.png";
 import Checkmark from "../../assets/icons/checkmark.png";
 import Peopleoutline from "../../assets/icons/peopleoutline.png";
+import "./LandingPage.css";
 
 const LandingPage = () => {
   return (
@@ -239,7 +240,7 @@ const LandingPage = () => {
                 </ol>
               </div>
               <div className="mt-5">
-                <button className="bg-primary text-white rounded-pill px-5 py-2 border-0 fw-semibold shadow">
+                <button className="bg-primary text-white rounded-pill px-5 py-2 border-0 fw-semibold shadow-sm">
                   Daftar Sekarang
                 </button>
               </div>

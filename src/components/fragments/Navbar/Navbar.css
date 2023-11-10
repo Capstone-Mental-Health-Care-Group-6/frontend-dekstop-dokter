@@ -1,9 +1,20 @@
-.nav-item {
-  transition: all 0.2s;
+.navbar {
+  background: transparent;
+  transition: background-color 0.3s ease;
 }
 
+.navbar.scroll {
+  background: white;
+  padding: 0;
+
+}
+
+/* .nav-item {
+  transition: all 0.2s;
+} */
+
 .nav-item:hover {
-  /* text-decoration: underline; */
+  
   border-bottom: 3px solid blue;
 }
 
@@ -15,7 +26,6 @@
 .nav-item:hover::after {
   content: "";
   opacity: 1;
-  height: 1;
   width: 2px;
   width: 100%;
   background-color: blue;
