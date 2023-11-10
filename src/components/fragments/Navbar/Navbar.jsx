@@ -114,15 +114,19 @@ const Navbar = () => {
                 </a>
               </div>
               <div className="nav-item">
-                <a class="nav-link active">Register</a>
+                <a class="nav-link active" href="#">
+                  Register
+                </a>
               </div>
               <div className="nav-item">
-                <a class="nav-link active">Dropdown</a>
+                <a class="nav-link active" href="">
+                  Dropdown
+                </a>
               </div>
             </div>
 
             <button
-              class="btn btn-transparent border border-primary text-primary rounded-pill my-3 px-4"
+              class="btn btn-transparent fw-bold border border-primary text-primary rounded-pill my-3 px-4"
               type="submit"
             >
               Download Sekarang
