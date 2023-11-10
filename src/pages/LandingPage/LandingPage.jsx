@@ -12,6 +12,8 @@ import Bg3 from "../../assets/background/Rectangle 2710.png";
 import Hourglass from "../../assets/icons/hourglass.png";
 import Wallet from "../../assets/icons/wallet.png";
 import Stethoscope from "../../assets/icons/stethoscope.png";
+import Checkmark from "../../assets/icons/checkmark.png";
+import Peopleoutline from "../../assets/icons/peopleoutline.png";
 
 const LandingPage = () => {
   return (
@@ -44,7 +46,7 @@ const LandingPage = () => {
                   </p>
                 </div>
                 <div className="mt-4">
-                  <button className="btn-daftarKonselor px-3 py-2 border border-0 text-white fw-medium rounded-pill ">
+                  <button className="btn-daftarKonselor px-3 py-2 border border-0 text-white fw-medium rounded-pill shadow ">
                     Daftar Sebagai Konselor
                   </button>
                 </div>
@@ -127,7 +129,7 @@ const LandingPage = () => {
               <div className="d-flex justify-content-center ">
                 <div className="circle1">
                   <div className="circle2">
-                    <img src={Stethoscope} alt="" />
+                    <img src={Checkmark} alt="" />
                   </div>
                 </div>
               </div>
@@ -147,7 +149,7 @@ const LandingPage = () => {
               <div className="d-flex justify-content-center ">
                 <div className="circle1">
                   <div className="circle2">
-                    <img src={Stethoscope} alt="" />
+                    <img src={Peopleoutline} alt="" />
                   </div>
                 </div>
               </div>
@@ -237,7 +239,7 @@ const LandingPage = () => {
                 </ol>
               </div>
               <div className="mt-5">
-                <button className="bg-primary text-white rounded-pill px-5 py-2 border-0 fw-semibold shadow-sm">
+                <button className="bg-primary text-white rounded-pill px-5 py-2 border-0 fw-semibold shadow">
                   Daftar Sekarang
                 </button>
               </div>
