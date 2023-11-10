@@ -32,7 +32,8 @@ const LandingPage = () => {
         <img src={Bg1} alt="" />
       </div>
 
-      <div className="section1" data-aos="fade-up">
+      {/* Section-1 */}
+      <div className="section" data-aos="fade-up">
         <Layout>
           <div className="position-relative h-auto d-flex align-items-center ">
             <div className="imgCuate">
@@ -65,7 +66,8 @@ const LandingPage = () => {
         </Layout>
       </div>
 
-      <div class="section2">
+      {/* Section-2 */}
+      <div class="section">
         <div className="z-n1 position-absolute top-150 end-0 translate-middle-y">
           <img src={Bg2} alt="" />
         </div>
@@ -194,85 +196,93 @@ const LandingPage = () => {
         </div>
       </div>
 
-      <div className="section3 w-100">
-        <Layout>
-          <div className="konselorCard bg-white" data-aos="zoom-out">
-            <div className="mx-5">
-              <div className="gap-5 d-flex">
-                <div className="d-flex align-items-center">
-                  <img src={img1} alt="" />
-                </div>
-                <div className="textWrap">
-                  <div>
-                    <p>
-                      “Riliv membuat layanan psikolog bisa menjangkau banyak
-                      orang tanpa batasan fisik. Riliv menjadi media yang
-                      membantu menghubungkan teman-teman yang membutuhkan dengan
-                      psikolog. Promosi kesehatan mental yang dilakukan
-                      meningkatkan awareness banyak orang untuk tidak takut ke
-                      psikolog dan pelan-pelan mengikis stigma yang ada di
-                      masyarakat.”
-                    </p>
+      {/* Section-3 */}
+      <div className="section">
+        <div className="bg-section">
+          <Layout>
+            <div className="konselorCard bg-white" data-aos="zoom-out">
+              <div className="mx-5">
+                <div className="gap-5 d-flex">
+                  <div className="d-flex align-items-center">
+                    <img src={img1} alt="" />
                   </div>
-                  <div>
-                    <p>Charlie Philips, S.Psi., M.Psi. Psikolog</p>
-                    <p>
-                      Clinical Psychology, Career & Human Resource, Relationsip
-                      Conflict, Self Problem
-                    </p>
+                  <div className="textWrap">
+                    <div>
+                      <p>
+                        “Riliv membuat layanan psikolog bisa menjangkau banyak
+                        orang tanpa batasan fisik. Riliv menjadi media yang
+                        membantu menghubungkan teman-teman yang membutuhkan
+                        dengan psikolog. Promosi kesehatan mental yang dilakukan
+                        meningkatkan awareness banyak orang untuk tidak takut ke
+                        psikolog dan pelan-pelan mengikis stigma yang ada di
+                        masyarakat.”
+                      </p>
+                    </div>
+                    <div>
+                      <p>Charlie Philips, S.Psi., M.Psi. Psikolog</p>
+                      <p>
+                        Clinical Psychology, Career & Human Resource,
+                        Relationsip Conflict, Self Problem
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </Layout>
+          </Layout>
+        </div>
       </div>
 
-      <div className="section4">
-        <Layout>
-          <div className="d-flex">
-            <div>
+      {/* Section-4 */}
+      <div className="section">
+        <div className="bg-section4">
+          <Layout>
+            <div className="d-flex">
               <div>
-                <p className="text2 fs-1 fw-bold" data-aos="fade-right">
-                  Syarat Bergabung di EmpathiCare harus Memiliki:
-                </p>
+                <div>
+                  <p className="text2 fs-1 fw-bold" data-aos="fade-right">
+                    Syarat Bergabung di EmpathiCare harus Memiliki:
+                  </p>
+                </div>
+                <div className="lh-1 mt-5 fs-4 fw-lg" data-aos="fade-right">
+                  <ol type="1">
+                    <li>
+                      <span className="d-flex gap-2">
+                        Surat Izin Praktik Psikolog (SIPP) yang{" "}
+                        <p className="fw-semibold">masih berlaku</p>
+                      </span>
+                    </li>
+                    <li>
+                      <p>Smartphone Android versi 4.4 atau lebih</p>
+                    </li>
+                    <li>
+                      <p>Akun Whatsapp atau Line</p>
+                    </li>
+                    <li>
+                      <p>Koneksi internet yang memadai</p>
+                    </li>
+                    <li>
+                      <span className="d-flex gap-2">
+                        Waktu luang antara{" "}
+                        <p className="fw-semibold">
+                          Senin - jumat 08.00 - 21.00
+                        </p>
+                      </span>
+                    </li>
+                  </ol>
+                </div>
+                <div className="mt-5" data-aos="fade-up">
+                  <button className="bg-primary text-white rounded-pill px-5 py-2 border-0 fw-semibold shadow-sm">
+                    Daftar Sekarang
+                  </button>
+                </div>
               </div>
-              <div className="lh-1 mt-5 fs-4 fw-lg" data-aos="fade-right">
-                <ol type="1">
-                  <li>
-                    <span className="d-flex gap-2">
-                      Surat Izin Praktik Psikolog (SIPP) yang{" "}
-                      <p className="fw-semibold">masih berlaku</p>
-                    </span>
-                  </li>
-                  <li>
-                    <p>Smartphone Android versi 4.4 atau lebih</p>
-                  </li>
-                  <li>
-                    <p>Akun Whatsapp atau Line</p>
-                  </li>
-                  <li>
-                    <p>Koneksi internet yang memadai</p>
-                  </li>
-                  <li>
-                    <span className="d-flex gap-2">
-                      Waktu luang antara{" "}
-                      <p className="fw-semibold">Senin - jumat 08.00 - 21.00</p>
-                    </span>
-                  </li>
-                </ol>
-              </div>
-              <div className="mt-5"  data-aos="fade-up">
-                <button className="bg-primary text-white rounded-pill px-5 py-2 border-0 fw-semibold shadow-sm">
-                  Daftar Sekarang
-                </button>
+              <div data-aos="fade-left">
+                <img src={Amico} alt="" />
               </div>
             </div>
-            <div data-aos="fade-left">
-              <img src={Amico} alt="" />
-            </div>
-          </div>
-        </Layout>
+          </Layout>
+        </div>
       </div>
 
       <Footer />
