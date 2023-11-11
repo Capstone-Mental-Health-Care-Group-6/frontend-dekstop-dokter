@@ -1,0 +1,33 @@
+.card {
+  border: 1px solid #cce7ff !important;
+}
+
+.background-img {
+  z-index: 1;
+}
+
+.icon-container {
+  z-index: 2;
+}
+
+.centered-icon {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.card-subtitle {
+  font-size: 15px !important;
+  color: black !important;
+  font-weight: 500 !important;
+  margin: 12px 0 20px 0 !important;
+}
+
+.card-text {
+  width: 80px;
+  padding: 4px 1px;
+  border: 1px solid #d1d1d1;
+  font-size: 15px;
+  font-weight: 700;
+  border-radius: 8px;
+}
