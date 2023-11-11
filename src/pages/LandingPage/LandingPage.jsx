@@ -267,8 +267,8 @@ const LandingPage = () => {
                       </p>
                     </div>
                     <div>
-                      <p>Charlie Philips, S.Psi., M.Psi. Psikolog</p>
-                      <p>
+                      <p className="fw-semibold">Charlie Philips, S.Psi., M.Psi. Psikolog</p>
+                      <p className="fst-italic">
                         Clinical Psychology, Career & Human Resource,
                         Relationsip Conflict, Self Problem
                       </p>

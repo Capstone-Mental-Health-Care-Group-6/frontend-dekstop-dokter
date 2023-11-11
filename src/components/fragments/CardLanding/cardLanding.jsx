@@ -1,7 +1,5 @@
 import React from "react";
-import Hourglass from "../../../assets/icons/hourglass.png";
-import "./cardLanding.css"
-
+import "./cardLanding.css";
 
 const cardLanding = (props) => {
   console.log(props.data.title);
@@ -21,9 +19,7 @@ const cardLanding = (props) => {
         </div>
         <div className="mt-3">
           <p className="fw-semibold">{props.data.title}</p>
-          <p>
-            {props.data.desc}
-          </p>
+          <p>{props.data.desc}</p>
         </div>
       </div>
     </div>
