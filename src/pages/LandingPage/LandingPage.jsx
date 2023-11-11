@@ -17,8 +17,37 @@ import Peopleoutline from "../../assets/icons/peopleoutline.png";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import "./LandingPage.css";
+import CardLanding from "../../components/fragments/CardLanding/cardLanding";
 
 const LandingPage = () => {
+  const card = [
+    {
+      img: Hourglass,
+      title: "Waktu Yang Fleksibel",
+      desc: "Dapat menentukan sendiri waktu pelayanan terbaik Anda, kapanpun dimanapun.",
+    },
+    {
+      img: Wallet,
+      title: "Pendapatan Terjamin",
+      desc: "Tidak perlu khawatir biaya transportasi dan makan siang, fokus pada layanan konseling Anda.",
+    },
+    {
+      img: Stethoscope,
+      title: "Menjangkau Lebih banyak",
+      desc: "Kesempatan memberikan kebaikan pada lapisan masyarakat yang beragam.",
+    },
+    {
+      img: Checkmark,
+      title: "Penilaian Yang Terpercaya",
+      desc: "Rating dan review dari layanan Anda didapatkan secara cepat dan dapat dibagikan secara online untuk mempromosikan diri Anda secara profesional.",
+    },
+    {
+      img: Peopleoutline,
+      title: "Relasi Psikolog dan Konselor Modern",
+      desc: "Bergabung dengan komunitas psikolog dan konselor online untuk saling berbagi.",
+    },
+  ];
+
   useEffect(() => {
     AOS.init({
       duration: 2000,
@@ -78,118 +107,137 @@ const LandingPage = () => {
             </p>
           </div>
 
-          <div className="d-flex mt-5 justify-content-center">
-            {/* Card-1 */}
-            <div
-              className="card w-25 border-0 text-center bg-transparent"
-              data-aos="zoom-in"
-            >
-              <div className="d-flex justify-content-center">
-                <div className="circle1">
-                  <div className="circle2">
-                    <img src={Hourglass} alt="" />
-                  </div>
+          <div className="d-flex mt-5 justify-content-center ">
+            {card
+              .filter((item, index) => index < 3)
+              .map((item) => (
+                <div className="">
+                  <CardLanding data={item} />
                 </div>
-              </div>
-              <div className="mt-3">
-                <p className="fw-semibold">Waktu Yang Fleksibel</p>
-                <p>
-                  Dapat menentukan sendiri <br /> waktu pelayanan terbaik
-                  <br /> Anda, kapanpun dimanapun.
-                </p>
-              </div>
-            </div>
-
-            {/* Card-2 */}
-            <div
-              className="card w-25 border-0 text-center bg-transparent"
-              data-aos="zoom-in"
-            >
-              <div className="d-flex justify-content-center">
-                <div className="circle1">
-                  <div className="circle2">
-                    <img src={Wallet} alt="" />
-                  </div>
-                </div>
-              </div>
-              <div className="mt-3">
-                <p className="fw-semibold">Pendapatan Terjamin</p>
-                <p>
-                  Tidak perlu khawatir biaya <br /> transportasi dan makan{" "}
-                  <br /> siang, fokus pada layanan <br /> konseling Anda.
-                </p>
-              </div>
-            </div>
-
-            {/* Card-3 */}
-            <div
-              className="card w-25 border-0 text-center bg-transparent"
-              data-aos="zoom-in"
-            >
-              <div className="d-flex justify-content-center ">
-                <div className="circle1">
-                  <div className="circle2">
-                    <img src={Stethoscope} alt="" />
-                  </div>
-                </div>
-              </div>
-              <div className="mt-3">
-                <p className="fw-semibold">Menjangkau Lebih Banyak</p>
-                <p>
-                  Kesempatan memberikan <br />
-                  kebaikan pada lapisan <br /> masyarakat yang beragam.
-                </p>
-              </div>
-            </div>
+              ))}
           </div>
 
-          <div className="d-flex justify-content-center mt-5">
-            {/* Card-4 */}
-            <div
-              className="card w-25 border-0 bg-transparent text-center"
-              data-aos="zoom-in"
-            >
-              <div className="d-flex justify-content-center ">
-                <div className="circle1">
-                  <div className="circle2">
-                    <img src={Checkmark} alt="" />
+          <div className="d-flex mt-5 justify-content-center ">
+            {card
+              .filter((item, index) => index > 2)
+              .map((item) => (
+                <div className="">
+                  <CardLanding data={item} />
+                </div>
+              ))}
+          </div>
+
+          {/* <div>
+            <div className="d-flex mt-5 justify-content-center">
+              Card-1
+              <div
+                className="card w-25 border-0 text-center bg-transparent"
+                data-aos="zoom-in"
+              >
+                <div className="d-flex justify-content-center">
+                  <div className="circle1">
+                    <div className="circle2">
+                      <img src={Hourglass} alt="" />
+                    </div>
                   </div>
                 </div>
+                <div className="mt-3">
+                  <p className="fw-semibold">Waktu Yang Fleksibel</p>
+                  <p>
+                    Dapat menentukan sendiri <br /> waktu pelayanan terbaik
+                    <br /> Anda, kapanpun dimanapun.
+                  </p>
+                </div>
               </div>
-              <div className="mt-3">
-                <p className="fw-semibold">Penilaian yang Terpercaya</p>
-                <p>
-                  Rating dan review dari <br /> layanan Anda didapatkan <br />{" "}
-                  secara cepat dan dapat <br /> dibagikan secara online <br />{" "}
-                  untuk mempromosikan diri <br />
-                  Anda secara profesional.
-                </p>
+              Card-2
+              <div
+                className="card w-25 border-0 text-center bg-transparent"
+                data-aos="zoom-in"
+              >
+                <div className="d-flex justify-content-center">
+                  <div className="circle1">
+                    <div className="circle2">
+                      <img src={Wallet} alt="" />
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-3">
+                  <p className="fw-semibold">Pendapatan Terjamin</p>
+                  <p>
+                    Tidak perlu khawatir biaya <br /> transportasi dan makan{" "}
+                    <br /> siang, fokus pada layanan <br /> konseling Anda.
+                  </p>
+                </div>
+              </div>
+              Card-3
+              <div
+                className="card w-25 border-0 text-center bg-transparent"
+                data-aos="zoom-in"
+              >
+                <div className="d-flex justify-content-center ">
+                  <div className="circle1">
+                    <div className="circle2">
+                      <img src={Stethoscope} alt="" />
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-3">
+                  <p className="fw-semibold">Menjangkau Lebih Banyak</p>
+                  <p>
+                    Kesempatan memberikan <br />
+                    kebaikan pada lapisan <br /> masyarakat yang beragam.
+                  </p>
+                </div>
               </div>
             </div>
 
-            {/* Card-5 */}
-            <div
-              className="card w-25 border-0 bg-transparent text-center"
-              data-aos="zoom-in"
-            >
-              <div className="d-flex justify-content-center ">
-                <div className="circle1">
-                  <div className="circle2">
-                    <img src={Peopleoutline} alt="" />
+            <div className="d-flex justify-content-center mt-5">
+              Card-4
+              <div
+                className="card w-25 border-0 bg-transparent text-center"
+                data-aos="zoom-in"
+              >
+                <div className="d-flex justify-content-center ">
+                  <div className="circle1">
+                    <div className="circle2">
+                      <img src={Checkmark} alt="" />
+                    </div>
                   </div>
                 </div>
+                <div className="mt-3">
+                  <p className="fw-semibold">Penilaian yang Terpercaya</p>
+                  <p>
+                    Rating dan review dari <br /> layanan Anda didapatkan <br />{" "}
+                    secara cepat dan dapat <br /> dibagikan secara online <br />{" "}
+                    untuk mempromosikan diri <br />
+                    Anda secara profesional.
+                  </p>
+                </div>
               </div>
-              <div className="mt-3">
-                <p className="fw-semibold">
-                  Relasi Psikolog dan Konselor <br /> Modern
-                </p>
-                <p>
-                  Bergabung dengan <br /> komunitas psikolog dan <br /> konselor
-                  online untuk saling <br /> berbagi.
-                </p>
+              Card-5
+              <div
+                className="card w-25 border-0 bg-transparent text-center"
+                data-aos="zoom-in"
+              >
+                <div className="d-flex justify-content-center ">
+                  <div className="circle1">
+                    <div className="circle2">
+                      <img src={Peopleoutline} alt="" />
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-3">
+                  <p className="fw-semibold">
+                    Relasi Psikolog dan Konselor <br /> Modern
+                  </p>
+                  <p>
+                    Bergabung dengan <br /> komunitas psikolog dan <br />{" "}
+                    konselor online untuk saling <br /> berbagi.
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </Layout>
         <div className="z-n1 position-absolute top-200 start-0 translate-middle-y">
           <img src={Bg3} alt="" />
