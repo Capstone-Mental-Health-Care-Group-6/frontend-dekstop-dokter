@@ -11,12 +11,6 @@ function App() {
   return (
     <>
       <Sidebar />
-      <Card
-        rectangle={rectangle1}
-        iconCard={icon1}
-        subtitle="Total Pasien"
-        text="18 pasien"
-      />
     </>
   );
 }
