@@ -107,7 +107,7 @@ const LandingPage = () => {
             </p>
           </div>
 
-          <div className="container-card d-flex mt-5 justify-content-center ">
+          <div className="container-card d-flex  justify-content-center ">
             {card
               .filter((item, index) => index < 3)
               .map((item) => (
@@ -117,11 +117,11 @@ const LandingPage = () => {
               ))}
           </div>
 
-          <div className="container-card d-flex mt-5 justify-content-center ">
+          <div className="container-card d-flex  justify-content-center ">
             {card
               .filter((item, index) => index > 2)
               .map((item) => (
-                <div className="">
+                <div className="card-section2">
                   <CardLanding data={item} />
                 </div>
               ))}
