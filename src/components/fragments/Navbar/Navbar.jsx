@@ -25,15 +25,15 @@ const Navbar = () => {
       }
     >
       <div class="container border-bottom border-black ">
-        <a class="navbar-brand d-flex gap-3  align-items-center" href="#">
-          <img src={logoEmpathiCare} alt="" />
+        <a class="wrap-content navbar-brand d-flex align-items-center" href="#">
+          <img className="logo1" src={logoEmpathiCare} alt="" />
           <div class="vr"></div>
-          <div className="fs-6 lh-1 fw-semibold">
+          <div className="text-logo lh-1 fw-semibold">
             Diawasi
             <br />
             oleh
           </div>
-          <img src={logoKemenkes} alt="" />
+          <img className="logo2" src={logoKemenkes} alt="" />
         </a>
 
         <button

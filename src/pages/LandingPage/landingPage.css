@@ -46,13 +46,22 @@
   align-items: center;
 }
 
-.bg-section {
-  margin-top: 250px;
+.bg-section-conselor {
+  margin-top: 150px;
   background: #0059aa;
-  height: 447px;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.card-conselor {
+  width: 1000px;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  margin: 5%;
 }
 
 .bg-section4 {
@@ -63,16 +72,52 @@
   background-size: cover;
 }
 
-.konselorCard {
-  height: 300px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 10px;
-}
+@media screen and (max-width: 550px) {
+  .img-section {
+    display: none;
+  }
 
-.textWrap {
-  width: 700px;
+  .card-section2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .container-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0;
+  }
+
+  .bg-section-conselor {
+    height: 1000px;
+    margin-top: 0;
+  }
+
+  .card-conselor {
+    width: 100%;
+    height: 900px;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .card-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 }
 
 @media screen and (max-width: 1460px) {

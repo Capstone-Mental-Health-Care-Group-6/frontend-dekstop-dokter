@@ -6,7 +6,22 @@
 .navbar.scroll {
   background: white;
   padding: 0;
+}
 
+.wrap-content {
+  gap: 10px;
+}
+
+.logo1 {
+  width: 100%;
+}
+
+.logo2 {
+  width: 100%;
+}
+
+.text-logo {
+  font-size: 14px;
 }
 
 /* .nav-item {
@@ -14,7 +29,6 @@
 } */
 
 .nav-item:hover {
-  
   border-bottom: 3px solid blue;
 }
 
@@ -36,4 +50,22 @@
 
 .nav-item:hover::after {
   opacity: 1;
+}
+
+@media screen and (max-width: 550px) {
+  .wrap-content {
+    gap: 7px;
+  }
+
+  .logo1 {
+    width: 100px;
+  }
+
+  .logo2 {
+    width: 80px;
+  }
+
+  .text-logo {
+    font-size: 10px;
+  }
 }

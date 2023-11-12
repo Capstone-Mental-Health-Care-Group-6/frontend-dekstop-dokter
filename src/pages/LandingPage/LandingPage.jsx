@@ -64,8 +64,8 @@ const LandingPage = () => {
       {/* Section-1 */}
       <div className="section" data-aos="fade-up">
         <Layout>
-          <div className="position-relative h-auto d-flex align-items-center ">
-            <div className="imgCuate">
+          <div className="h-auto d-flex align-items-center ">
+            <div className="img-section">
               <img src={Cuate} alt="" />
             </div>
             <div className="...">
@@ -107,17 +107,17 @@ const LandingPage = () => {
             </p>
           </div>
 
-          <div className="d-flex mt-5 justify-content-center ">
+          <div className="container-card d-flex mt-5 justify-content-center ">
             {card
               .filter((item, index) => index < 3)
               .map((item) => (
-                <div className="">
+                <div className="card-section2">
                   <CardLanding data={item} />
                 </div>
               ))}
           </div>
 
-          <div className="d-flex mt-5 justify-content-center ">
+          <div className="container-card d-flex mt-5 justify-content-center ">
             {card
               .filter((item, index) => index > 2)
               .map((item) => (
@@ -246,33 +246,33 @@ const LandingPage = () => {
 
       {/* Section-3 */}
       <div className="section">
-        <div className="bg-section">
+        <div className="bg-section-conselor">
           <Layout>
-            <div className="konselorCard bg-white" data-aos="zoom-out">
-              <div className="mx-5">
-                <div className="gap-5 d-flex">
-                  <div className="d-flex align-items-center">
-                    <img src={img1} alt="" />
+            <div className="card-conselor bg-white" data-aos="zoom-out">
+              <div className="card-content gap-5 d-flex mx-5">
+                <div className=" d-flex align-items-center">
+                  <img src={img1} alt="" />
+                </div>
+                <div className="grid align-items-center">
+                  <div>
+                    <p>
+                      “Riliv membuat layanan psikolog bisa menjangkau banyak
+                      orang tanpa batasan fisik. Riliv menjadi media yang
+                      membantu menghubungkan teman-teman yang membutuhkan dengan
+                      psikolog. Promosi kesehatan mental yang dilakukan
+                      meningkatkan awareness banyak orang untuk tidak takut ke
+                      psikolog dan pelan-pelan mengikis stigma yang ada di
+                      masyarakat.”
+                    </p>
                   </div>
-                  <div className="textWrap">
-                    <div>
-                      <p>
-                        “Riliv membuat layanan psikolog bisa menjangkau banyak
-                        orang tanpa batasan fisik. Riliv menjadi media yang
-                        membantu menghubungkan teman-teman yang membutuhkan
-                        dengan psikolog. Promosi kesehatan mental yang dilakukan
-                        meningkatkan awareness banyak orang untuk tidak takut ke
-                        psikolog dan pelan-pelan mengikis stigma yang ada di
-                        masyarakat.”
-                      </p>
-                    </div>
-                    <div>
-                      <p className="fw-semibold">Charlie Philips, S.Psi., M.Psi. Psikolog</p>
-                      <p className="fst-italic">
-                        Clinical Psychology, Career & Human Resource,
-                        Relationsip Conflict, Self Problem
-                      </p>
-                    </div>
+                  <div>
+                    <p className="fw-semibold">
+                      Charlie Philips, S.Psi., M.Psi. Psikolog
+                    </p>
+                    <p className="fst-italic">
+                      Clinical Psychology, Career & Human Resource, Relationsip
+                      Conflict, Self Problem
+                    </p>
                   </div>
                 </div>
               </div>
@@ -325,7 +325,7 @@ const LandingPage = () => {
                   </button>
                 </div>
               </div>
-              <div data-aos="fade-left">
+              <div className="img-section" data-aos="fade-left">
                 <img src={Amico} alt="" />
               </div>
             </div>
