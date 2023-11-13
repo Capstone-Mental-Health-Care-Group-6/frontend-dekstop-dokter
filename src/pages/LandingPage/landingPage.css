@@ -15,8 +15,8 @@
 }
 
 .btn-daftarKonselor:hover {
-  background: transparent;
-  color: #0085ff !important;
+  background: #80c2ff;
+  color: white !important;
   transition: all 0.4s ease-in-out;
 }
 
@@ -86,8 +86,9 @@
 }
 
 .btn-daftarSekarang:hover {
-  background: transparent !important;
-  color: #0085ff !important;
+  background: #80c2ff !important;
+  color: white !important;
+  border: none;
   transition: all 0.4s ease-in-out;
 }
 
@@ -141,35 +142,5 @@
 
   .bg-section2 {
     width: 100vw;
-  }
-}
-
-@media screen and (max-width: 1460px) {
-  .section1 {
-    flex-direction: column;
-  }
-}
-
-@media screen and (max-width: 1340px) {
-  .section1 {
-    padding: 0 12%;
-    transition: 0.2s;
-  }
-
-  .imgCuate {
-    width: 100%;
-    height: auto;
-  }
-  .section2 {
-    padding: 0 12%;
-    transition: 0.2s;
-  }
-  .section3 {
-    padding: 0 12%;
-    transition: 0.2s;
-  }
-  .section4 {
-    padding: 0 12%;
-    transition: 0.2s;
   }
 }

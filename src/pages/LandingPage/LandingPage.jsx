@@ -85,7 +85,7 @@ const LandingPage = () => {
                   </p>
                 </div>
                 <div className="mt-4">
-                  <button className="btn-daftarKonselor border border-primary px-3 py-2 text-white fw-medium rounded-pill shadow ">
+                  <button className="btn-daftarKonselor border px-3 py-2 text-white fw-medium rounded-pill shadow ">
                     Daftar Sebagai Konselor
                   </button>
                 </div>
@@ -126,118 +126,6 @@ const LandingPage = () => {
                 </div>
               ))}
           </div>
-
-          {/* <div>
-            <div className="d-flex mt-5 justify-content-center">
-              Card-1
-              <div
-                className="card w-25 border-0 text-center bg-transparent"
-                data-aos="zoom-in"
-              >
-                <div className="d-flex justify-content-center">
-                  <div className="circle1">
-                    <div className="circle2">
-                      <img src={Hourglass} alt="" />
-                    </div>
-                  </div>
-                </div>
-                <div className="mt-3">
-                  <p className="fw-semibold">Waktu Yang Fleksibel</p>
-                  <p>
-                    Dapat menentukan sendiri <br /> waktu pelayanan terbaik
-                    <br /> Anda, kapanpun dimanapun.
-                  </p>
-                </div>
-              </div>
-              Card-2
-              <div
-                className="card w-25 border-0 text-center bg-transparent"
-                data-aos="zoom-in"
-              >
-                <div className="d-flex justify-content-center">
-                  <div className="circle1">
-                    <div className="circle2">
-                      <img src={Wallet} alt="" />
-                    </div>
-                  </div>
-                </div>
-                <div className="mt-3">
-                  <p className="fw-semibold">Pendapatan Terjamin</p>
-                  <p>
-                    Tidak perlu khawatir biaya <br /> transportasi dan makan{" "}
-                    <br /> siang, fokus pada layanan <br /> konseling Anda.
-                  </p>
-                </div>
-              </div>
-              Card-3
-              <div
-                className="card w-25 border-0 text-center bg-transparent"
-                data-aos="zoom-in"
-              >
-                <div className="d-flex justify-content-center ">
-                  <div className="circle1">
-                    <div className="circle2">
-                      <img src={Stethoscope} alt="" />
-                    </div>
-                  </div>
-                </div>
-                <div className="mt-3">
-                  <p className="fw-semibold">Menjangkau Lebih Banyak</p>
-                  <p>
-                    Kesempatan memberikan <br />
-                    kebaikan pada lapisan <br /> masyarakat yang beragam.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="d-flex justify-content-center mt-5">
-              Card-4
-              <div
-                className="card w-25 border-0 bg-transparent text-center"
-                data-aos="zoom-in"
-              >
-                <div className="d-flex justify-content-center ">
-                  <div className="circle1">
-                    <div className="circle2">
-                      <img src={Checkmark} alt="" />
-                    </div>
-                  </div>
-                </div>
-                <div className="mt-3">
-                  <p className="fw-semibold">Penilaian yang Terpercaya</p>
-                  <p>
-                    Rating dan review dari <br /> layanan Anda didapatkan <br />{" "}
-                    secara cepat dan dapat <br /> dibagikan secara online <br />{" "}
-                    untuk mempromosikan diri <br />
-                    Anda secara profesional.
-                  </p>
-                </div>
-              </div>
-              Card-5
-              <div
-                className="card w-25 border-0 bg-transparent text-center"
-                data-aos="zoom-in"
-              >
-                <div className="d-flex justify-content-center ">
-                  <div className="circle1">
-                    <div className="circle2">
-                      <img src={Peopleoutline} alt="" />
-                    </div>
-                  </div>
-                </div>
-                <div className="mt-3">
-                  <p className="fw-semibold">
-                    Relasi Psikolog dan Konselor <br /> Modern
-                  </p>
-                  <p>
-                    Bergabung dengan <br /> komunitas psikolog dan <br />{" "}
-                    konselor online untuk saling <br /> berbagi.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div> */}
         </Layout>
         <div className="bg-section2 overflow-hidden z-n1 position-absolute start-0 translate-middle-y">
           <img src={Bg3} alt="" />
@@ -320,7 +208,7 @@ const LandingPage = () => {
                   </ol>
                 </div>
                 <div className="mt-5" data-aos="fade-up">
-                  <button className="btn-daftarSekarang bg-primary text-white rounded-pill px-5 py-2 border border-primary fw-semibold shadow-sm">
+                  <button className="btn-daftarSekarang bg-primary text-white rounded-pill px-5 py-2 border fw-semibold shadow-sm">
                     Daftar Sekarang
                   </button>
                 </div>

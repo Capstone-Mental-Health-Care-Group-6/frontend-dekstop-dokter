@@ -3,6 +3,7 @@ import logoEmpathiCare from "../../../assets/logoEmpathiCareFooter.png";
 import Googleplay from "../../../assets/googleplay.png";
 import Appstore from "../../../assets/appstore.png";
 import "./Footer.css";
+
 const Footer = () => {
   return (
     <div class="footer">
@@ -27,7 +28,7 @@ const Footer = () => {
           <div class="col mb-3 fw-medium">
             <h5 className="fw-bold">Layanan Kami</h5>
             <ul class="nav flex-column">
-              <li class="nav-item mb-2">
+              <li class="nav-itemFooter mb-2">
                 <a href="#" class="nav-link p-0 text-muted">
                   Konseling
                 </a>
@@ -38,22 +39,22 @@ const Footer = () => {
           <div class="col mb-3 fw-medium">
             <h5 className="fw-bold">Tentang Kami</h5>
             <ul class="nav flex-column">
-              <li class="nav-item mb-2">
+              <li class="nav-itemFooter mb-2">
                 <a href="#" class="nav-link p-0 text-muted">
                   Blog
                 </a>
               </li>
-              <li class="nav-item mb-2">
+              <li class="nav-itemFooter mb-2">
                 <a href="#" class="nav-link p-0 text-muted">
                   Tentang Kami
                 </a>
               </li>
-              <li class="nav-item mb-2">
+              <li class="nav-itemFooter mb-2">
                 <a href="#" class="nav-link p-0 text-muted">
                   Kontak
                 </a>
               </li>
-              <li class="nav-item mb-2">
+              <li class="nav-itemFooter mb-2">
                 <a href="#" class="nav-link p-0 text-muted">
                   Gabung Sebagai Konselor
                 </a>
@@ -64,22 +65,22 @@ const Footer = () => {
           <div class="col mb-3 fw-medium">
             <h5 className="fw-bold">lainnya</h5>
             <ul class="nav flex-column">
-              <li class="nav-item mb-2">
+              <li class="nav-itemFooter mb-2">
                 <a href="#" class="nav-link p-0 text-muted">
                   Harga Konseling
                 </a>
               </li>
-              <li class="nav-item mb-2">
+              <li class="nav-itemFooter mb-2">
                 <a href="#" class="nav-link p-0 text-muted">
                   Kebijakan Privasi
                 </a>
               </li>
-              <li class="nav-item mb-2">
+              <li class="nav-itemFooter mb-2">
                 <a href="#" class="nav-link p-0 text-muted">
                   Syarat dan ketentuan
                 </a>
               </li>
-              <li class="nav-item mb-2">
+              <li class="nav-itemFooter mb-2">
                 <a href="#" class="nav-link p-0 text-muted">
                   FAQs
                 </a>

@@ -1,8 +1,14 @@
 .footer {
   background: #eff9ff;
 }
+
 .copyright {
   background: #cce7ff;
+}
+
+.nav-itemFooter:hover {
+  font-weight: 700;
+  
 }
 
 @media screen and (max-width: 550px) {
