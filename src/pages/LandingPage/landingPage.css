@@ -15,8 +15,8 @@
 }
 
 .btn-daftarKonselor:hover {
-  background: #80c2ff;
-  color: white !important;
+  background: transparent !important;
+  color: #0085ff !important;
   transition: all 0.4s ease-in-out;
 }
 
@@ -86,9 +86,8 @@
 }
 
 .btn-daftarSekarang:hover {
-  background: #80c2ff !important;
-  color: white !important;
-  border: none;
+  background: transparent !important;
+  color: #0085ff !important;
   transition: all 0.4s ease-in-out;
 }
 
