@@ -88,7 +88,11 @@ const Navbar = () => {
             </div>
 
             <button
-              class="btn btn-transparent fw-bold border border-primary text-primary rounded-pill my-3 px-4"
+              class={
+                navbar
+                  ? "btn scroll-hover bg-primary fw-bold border border-primary text-white rounded-pill my-3 px-4"
+                  : "btn no-scroll-hover btn-transparent fw-bold border border-primary text-primary rounded-pill my-3 px-4"
+              }
               type="submit"
             >
               Download Sekarang

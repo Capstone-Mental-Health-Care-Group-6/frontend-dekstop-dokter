@@ -85,7 +85,7 @@ const LandingPage = () => {
                   </p>
                 </div>
                 <div className="mt-4">
-                  <button className="btn-daftarKonselor px-3 py-2 border border-0 text-white fw-medium rounded-pill shadow ">
+                  <button className="btn-daftarKonselor border border-primary px-3 py-2 text-white fw-medium rounded-pill shadow ">
                     Daftar Sebagai Konselor
                   </button>
                 </div>
@@ -320,7 +320,7 @@ const LandingPage = () => {
                   </ol>
                 </div>
                 <div className="mt-5" data-aos="fade-up">
-                  <button className="bg-primary text-white rounded-pill px-5 py-2 border-0 fw-semibold shadow-sm">
+                  <button className="btn-daftarSekarang bg-primary text-white rounded-pill px-5 py-2 border border-primary fw-semibold shadow-sm">
                     Daftar Sekarang
                   </button>
                 </div>
