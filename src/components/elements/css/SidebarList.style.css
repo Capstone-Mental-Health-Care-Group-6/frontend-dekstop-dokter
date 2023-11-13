@@ -3,7 +3,7 @@
   margin-bottom: 96px;
 }
 
-#dashboard-link, #chat-link, #transaksi-link, #artikel-link  {
+#dashboard-link, #chat-link, #transaksi-link, #artikel-link, #logout-link  {
   margin-bottom: 31px;
   padding: 12px 0 12px 12px;
 }
@@ -38,3 +38,19 @@ Link {
   text-decoration: none;
 }
 
+#icon-chat-svg{
+  font-weight: bolder ;
+}
+
+#icon-chat-svg:active{
+  font-weight: bolder ;
+  color: #EBF5FF;
+}
+
+
+.active-icon {
+  fill: #0085ff;
+}
+.active-icon:active {
+  fill: #ffffff;
+}
