@@ -239,7 +239,7 @@ const LandingPage = () => {
             </div>
           </div> */}
         </Layout>
-        <div className="z-n1 position-absolute top-200 start-0 translate-middle-y">
+        <div className="bg-section2 overflow-hidden z-n1 position-absolute start-0 translate-middle-y">
           <img src={Bg3} alt="" />
         </div>
       </div>

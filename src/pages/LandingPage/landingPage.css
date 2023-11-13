@@ -47,7 +47,7 @@
 }
 
 .bg-section-conselor {
-  margin-top: 150px;
+  margin-top: 100px;
   background: #0059aa;
   display: flex;
   justify-content: center;
@@ -55,11 +55,11 @@
 }
 
 .container-card {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin-top: 90px;
-  }
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 90px;
+}
 
 .card-conselor {
   width: 1000px;
@@ -95,7 +95,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-top: 0;
+    margin-top: 20px;
   }
 
   .bg-section-conselor {
@@ -111,6 +111,7 @@
     border-radius: 10px;
     flex-direction: row;
     flex-wrap: wrap;
+    margin: 0;
   }
 
   .card-content {
@@ -124,6 +125,10 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+  }
+
+  .bg-section2 {
+    width: 100vw;
   }
 }
 
