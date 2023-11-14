@@ -10,6 +10,14 @@
   flex-wrap: wrap;
 }
 
+.card-section2:hover {
+  background: transparent !important;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 2px 20px 0 rgba(0, 0, 0, 0.19);
+  color: #0085ff !important;
+  border-radius: 30px;
+  transition: all 0.4s ease-in-out;
+}
+
 .btn-daftarKonselor {
   background: #0085ff;
 }
@@ -52,19 +60,30 @@
   align-items: center;
 }
 
+.card-img {
+  width: 300px;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circle2riliv {
+  background: #aad6ff;
+  height: 240px;
+  width: 240px;
+  border-radius: 5000px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .bg-section-conselor {
   margin-top: 100px;
   background: #0059aa;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.container-card {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin-top: 90px;
 }
 
 .card-conselor {

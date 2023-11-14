@@ -107,21 +107,21 @@ const LandingPage = () => {
             </p>
           </div>
 
-          <div className="container-card d-flex  justify-content-center ">
+          <div className="container-card d-flex grid gap-4 justify-content-center ">
             {card
               .filter((item, index) => index < 3)
               .map((item) => (
-                <div className="card-section2">
+                <div className="card-section2 grid gap-5">
                   <CardLanding data={item} />
                 </div>
               ))}
           </div>
 
-          <div className="container-card d-flex  justify-content-center ">
+          <div className="container-card d-flex grid gap-4 justify-content-center ">
             {card
               .filter((item, index) => index > 2)
               .map((item) => (
-                <div className="card-section2">
+                <div className="card-section2 ">
                   <CardLanding data={item} />
                 </div>
               ))}
@@ -138,8 +138,12 @@ const LandingPage = () => {
           <Layout>
             <div className="card-conselor bg-white" data-aos="zoom-out">
               <div className="card-content gap-5 d-flex mx-5">
-                <div className=" d-flex align-items-center">
-                  <img src={img1} alt="" />
+                <div className="img d-flex justify-content-center align-items-center">
+                  <div className="circle1riliv d-flex justify-content-center">
+                    <div className="circle2riliv">
+                      <img src={img1} alt="" />
+                    </div>
+                  </div>
                 </div>
                 <div className="grid align-items-center">
                   <div>
