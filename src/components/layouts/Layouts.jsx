@@ -1,6 +1,6 @@
 import React from "react";
-import Sidebar from "../fragments/Sidebar";
-import Header from "../fragments/Header";
+import Sidebar from "../fragments/Sidebar/Sidebar";
+import Header from "../fragments/Header/Header";
 
 const Layouts = ({ children }) => {
   return (
@@ -8,7 +8,7 @@ const Layouts = ({ children }) => {
       <div className="d-flex">
           <Sidebar />
           <div className="col bg-light">
-          <Header />
+          <Header/>
             <div className="p-4">
               {children}
             </div>
