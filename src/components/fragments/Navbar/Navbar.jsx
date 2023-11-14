@@ -64,7 +64,7 @@ const Navbar = () => {
             ></button>
           </div>
           <div class="offcanvas-body align-items-center">
-            <div class="navMenu navbar-nav justify-content-center flex-grow-1 pe-3">
+            <div class="navMenu navbar-nav justify-content-center flex-grow-1 pe-3 gap-4">
               <div className="nav-item">
                 <a class="nav-link active py-4" aria-current="page" href="#">
                   Home
@@ -72,17 +72,17 @@ const Navbar = () => {
               </div>
               <div className="nav-item">
                 <a class="nav-link active py-4" href="#">
-                  Link
+                  Service
                 </a>
               </div>
               <div className="nav-item">
                 <a class="nav-link active py-4" href="#">
-                  Register
+                  About Us
                 </a>
               </div>
               <div className="nav-item">
                 <a class="nav-link active py-4" href="">
-                  Dropdown
+                  Register
                 </a>
               </div>
             </div>
