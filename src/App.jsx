@@ -1,18 +1,19 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import Sidebar from "./components/fragments/Sidebar/Sidebar";
-import Card from "./components/fragments/Card/Card";
-// import "./App.css";
-import rectangle1 from "./assets/Rectangle-460.svg";
-import icon1 from "./assets/patient1.svg";
+import { useState } from 'react'
+import './App.css'
+import Layouts from './components/layouts/Layouts'
+import Routing from './Routes/Routing'
 
 function App() {
+  const [count, setCount] = useState(0)
+
   return (
     <>
-      <Sidebar />
+    <Layouts>
+    <Routing/>
+    </Layouts>
     </>
-  );
+  )
 }
 
-export default App;
+export default App
+

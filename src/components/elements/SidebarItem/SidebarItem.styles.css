@@ -1,44 +1,106 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700&display=swap');
 
-.text {
-    color: var(--primary-500, #0085FF);
-    font-feature-settings: 'salt' on;
-    font-family: Montserrat;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 19.5px;
-  }
-  
-  .item-content {
-    display: flex; 
-    align-items: center; 
-    flex-direction: row;
-  }
-  
-  .icon {
-    margin-right: 20px; 
-  }
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600;700&family=Montserrat:wght@100;400;500;600;700&family=Roboto:wght@400;500;700&display=swap");
+#logo {
+  margin-bottom: 96px;
+}
 
-  .sidebar-item {
-    display: flex;
-    width: 280px;
-    height: 48px;
-    padding: 12px 82px 12px 12px;
-    align-items: center;
-    gap: 16px;
-    filter: grayscale(100%);
-    transition: filter 0.3s;
-  }
-  
-  .sidebar-item:hover {  
-    filter: grayscale(0%);
-    display: flex;
-    width: 228px;
-    padding: 12px;
-    align-items: center;
-    gap: 16px;
-    border-radius: 12px;
-    background: #EBF5FF;
-  }
-    
+#dashboard-link, #chat-link, #transaksi-link, #artikel-link, #logout-link  {
+  margin-bottom: 31px;
+  padding: 12px 0 12px 12px;
+}
+
+
+/* #dashboard-link:hover, #chat-link:hover, #transaksi-link:hover, #artikel-link:hover, #logout-link:hover {
+  background-color: #EBF5FF;
+  border-radius: 12px;
+}
+#dashboard-link:active, #chat-link:active, #transaksi-link:active, #artikel-link:active, #logout-link:active {
+  background-color: #0085FF;
+  border-radius: 12px;
+} */
+
+.sidebar-item {
+  display: flex;
+  color: #0085ff;
+  font-weight: 600;
+  font-family: "Montserrat";
+  margin: 0;
+}
+
+.link:hover{
+  background-color: #EBF5FF;
+  border-radius: 12px;
+}
+
+.sidebar-item:active{
+  background-color: #0085FF;
+  color: white;
+  border-radius: 12px;
+}
+
+.sidebar-item.active{
+  background-color: #6d0000;
+  color: white;
+  border-radius: 12px;
+}
+
+.link.active{
+  background-color: #0085FF;
+  color: white;
+  border-radius: 12px;
+}
+
+.link {
+  display: flex;
+  color: #0085ff;
+  font-weight: 600;
+  font-family: "Montserrat";
+  margin: 0;
+    margin-bottom: 31px;
+  padding: 12px 0 12px 12px;
+}
+
+
+
+.link-text{
+  color: #0085ff;
+  font-weight: 600;
+  font-family: "Montserrat";
+  margin: 0;
+}
+
+/* .link-text:active{
+  color: white;
+  font-weight: 600;
+  font-family: "Montserrat";
+  margin: 0;
+} */
+
+
+.link {
+  text-decoration: none;
+  /* background-color: red; */
+}
+
+/* #link:hover {
+  background-color: #EBF5FF;
+  border-radius: 12px;
+} */
+
+#icon-chat-svg{
+  font-weight: bolder ;
+}
+
+#icon-chat-svg:active{
+  font-weight: bolder ;
+  color: #EBF5FF;
+}
+
+
+.active-icon {
+  fill: #0085ff;
+}
+/* .active-icon:active {
+  fill: #ffffff;
+} */
+
