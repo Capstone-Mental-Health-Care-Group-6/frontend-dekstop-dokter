@@ -1,3 +1,4 @@
+
 import { Link, NavLink } from "react-router-dom";
 import "./SidebarItem.styles.css";
 
@@ -11,3 +12,4 @@ const SidebarItem = ({ path, onClick, id, text, svg, style }) => {
 };
 
 export default SidebarItem;
+
