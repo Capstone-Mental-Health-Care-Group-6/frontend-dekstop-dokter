@@ -1,18 +1,14 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import "./App.css";
 
-import LandingPage from "./pages/LandingPage/LandingPage";
+import { useState } from "react";
+import "./App.css";
+import Routing from "./Routes/Routing";
 
 function App() {
+  const [count, setCount] = useState(0);
+
   return (
     <>
-      <div className="App">
-        <Router>
-          <Routes>
-            <Route path="/" element={<LandingPage />} />
-          </Routes>
-        </Router>
-      </div>
+      <Routing />
     </>
   );
 }

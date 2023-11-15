@@ -1,0 +1,8 @@
+.icon {
+  left: 10px; /* Sesuaikan posisi ikon sesuai kebutuhan */
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px; /* Sesuaikan ukuran ikon sesuai kebutuhan */
+  height: auto; /* Biarkan tinggi mengikuti proporsi ikon */
+  z-index: 1;
+}
