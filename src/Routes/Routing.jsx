@@ -1,10 +1,11 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import Dashboard from "../pages/Dashboard";
-import Chat from "../pages/Chat";
-import Transaksi from "../pages/Transaksi";
-import Artikel from "../pages/Artikel";
+
 import LandingPage from "../pages/LandingPage/LandingPage";
+import Dashboard from "../pages/Dashboard/Dashboard";
+import Chat from "../pages/Chat/Chat";
+import Transaksi from "../pages/Transaksi/Transaksi";
+import Artikel from "../pages/Artikel/Artikel";
 
 const Routing = () => {
   return (

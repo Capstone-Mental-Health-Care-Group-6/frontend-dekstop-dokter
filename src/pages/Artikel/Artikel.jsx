@@ -1,5 +1,5 @@
 import React from "react";
-import Layouts from "../components/layouts/Layouts";
+import Layouts from "../../components/layouts/Layouts";
 
 const Artikel = () => {
   return (
