@@ -148,13 +148,13 @@ const LandingPage = () => {
                 <div className="grid align-items-center">
                   <div>
                     <p>
-                      “Riliv membuat layanan psikolog bisa menjangkau banyak
-                      orang tanpa batasan fisik. Riliv menjadi media yang
-                      membantu menghubungkan teman-teman yang membutuhkan dengan
-                      psikolog. Promosi kesehatan mental yang dilakukan
-                      meningkatkan awareness banyak orang untuk tidak takut ke
-                      psikolog dan pelan-pelan mengikis stigma yang ada di
-                      masyarakat.”
+                      “EmpathiCare membuat layanan psikolog bisa menjangkau
+                      banyak orang tanpa batasan fisik. EnpathiCare menjadi
+                      media yang membantu menghubungkan teman-teman yang
+                      membutuhkan dengan psikolog. Promosi kesehatan mental yang
+                      dilakukan meningkatkan awareness banyak orang untuk tidak
+                      takut ke psikolog dan pelan-pelan mengikis stigma yang ada
+                      di masyarakat.”
                     </p>
                   </div>
                   <div>
