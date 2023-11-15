@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import Layouts from "../components/layouts/Layouts";
 
 const Transaksi = () => {
   return (
-    <div>Transaksi</div>
-  )
-}
+    <Layouts>
+      <div>Transaksi</div>
+    </Layouts>
+  );
+};
 
-export default Transaksi
+export default Transaksi;

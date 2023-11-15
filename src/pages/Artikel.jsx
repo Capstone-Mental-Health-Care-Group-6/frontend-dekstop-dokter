@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import Layouts from "../components/layouts/Layouts";
 
 const Artikel = () => {
   return (
-    <div>Artikel</div>
-  )
-}
+    <Layouts>
+      <div>Artikel</div>
+    </Layouts>
+  );
+};
 
-export default Artikel
+export default Artikel;
