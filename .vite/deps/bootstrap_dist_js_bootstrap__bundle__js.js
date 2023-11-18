@@ -2,7 +2,6 @@ import {
   __commonJS
 } from "./chunk-UXIASGQL.js";
 
-
 // node_modules/bootstrap/dist/js/bootstrap.bundle.js
 var require_bootstrap_bundle = __commonJS({
   "node_modules/bootstrap/dist/js/bootstrap.bundle.js"(exports, module) {

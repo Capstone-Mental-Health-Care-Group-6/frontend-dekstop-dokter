@@ -1,15 +1,14 @@
+import { NavLink } from "react-router-dom";
 
-import { Link, NavLink } from "react-router-dom";
-import "./SidebarItem.styles.css";
-
-const SidebarItem = ({ path, onClick, id, text, svg, style }) => {
+const SidebarItem = ({ icon, title, location, condition }) => {
   return (
-    <NavLink className="link" to={path} id={id} onClick={onClick} style={style}>
-      <span className="col-3">{svg}</span>
-      <span className="col-9 d-flex  align-items-end">{text}</span>
-    </NavLink>
+    <li className={`sidebar-item  ${condition}`}>
+      <NavLink to={location} className="sidebar-link">
+        <div className="iconNavbar">{icon} </div>
+        <span>{title}</span>
+      </NavLink>
+    </li>
   );
 };
 
 export default SidebarItem;
-
