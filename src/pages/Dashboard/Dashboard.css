@@ -1,0 +1,58 @@
+.wrapper__dashboard {
+  border-radius: 8px;
+  border: 1px solid #cce7ff;
+  padding: 20px 34px;
+}
+
+.text__title {
+  font-size: 38px;
+}
+
+.text__subtitle {
+  font-size: 24px;
+}
+
+.wrapper__laporan__Mingguan {
+  border-radius: 8px;
+  padding: 10px 20px;
+  border: 1px solid #cce7ff;
+}
+
+.wrapper__laporan__Mingguan .fw-bold {
+  font-size: 20px;
+}
+
+/* card laporan mingguan */
+
+.wrapper__laporan__Mingguan .row .col .card {
+  border: 1px solid #cce7ff !important;
+}
+
+.wrapper__laporan__Mingguan .row .col .card .background-img {
+  z-index: 1;
+}
+
+.wrapper__laporan__Mingguan .row .col .card .icon-container {
+  z-index: 2;
+}
+
+.wrapper__laporan__Mingguan .row .col .card .centered-icon {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.wrapper__laporan__Mingguan .row .col .card .card-subtitle .fw-semibold {
+  font-size: 14px;
+  margin: 12px 0 20px 0;
+}
+
+.wrapper__laporan__Mingguan .row .col .card .card-text {
+  width: 100px;
+  padding: 4px 2px;
+  border: 1px solid #d1d1d1;
+  font-size: 14px;
+  border-radius: 8px;
+}
+
+/* end card laporan mingguan */
