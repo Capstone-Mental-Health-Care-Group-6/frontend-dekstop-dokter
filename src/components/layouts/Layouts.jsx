@@ -61,7 +61,7 @@ const Layouts = ({ children }) => {
         </div>
       </div>
 
-      <main className="main">
+      <main className="main ps-3">
         <nav
           id="navbar"
           className="navbar bg-white d-flex align-items-center justify-content-end"
@@ -79,7 +79,7 @@ const Layouts = ({ children }) => {
             />
           </div>
         </nav>
-        <div className="p-3">{children}</div>
+        <div className="children p-3">{children}</div>
       </main>
     </>
   );

@@ -147,6 +147,14 @@ body {
   background: #dcdcdc;
 }
 
+/* .main #navbar {
+  padding-left: 12px;
+} */
+
+/* .main .children {
+  padding: 12px;
+} */
+
 .offcanvas-header {
   height: 12vh;
 }
