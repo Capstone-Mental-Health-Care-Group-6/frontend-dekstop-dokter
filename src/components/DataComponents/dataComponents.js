@@ -65,4 +65,34 @@ export const dataPasien = [
     keluhan: "Sering Cemas",
     viaLayanan: "Video Call",
   },
+  {
+    nama: "Putri Malu",
+    keluhan: "Stress",
+    viaLayanan: "Video Call",
+  },
+  {
+    nama: "Suwardi",
+    keluhan: "Introvet",
+    viaLayanan: "Chat",
+  },
+  {
+    nama: "Roni",
+    keluhan: "Sering Cemas",
+    viaLayanan: "Video Call",
+  },
+  {
+    nama: "Putri Malu",
+    keluhan: "Stress",
+    viaLayanan: "Video Call",
+  },
+  {
+    nama: "Suwardi",
+    keluhan: "Introvet",
+    viaLayanan: "Chat",
+  },
+  {
+    nama: "Roni",
+    keluhan: "Sering Cemas",
+    viaLayanan: "Video Call",
+  },
 ];

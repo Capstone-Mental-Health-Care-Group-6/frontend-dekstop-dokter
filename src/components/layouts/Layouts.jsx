@@ -11,12 +11,65 @@ import {
   logoEmpathiCareMobile,
   iconNotifNavbar,
   iconProfileNavbar,
+  iconProfilePasien1,
+  iconProfilePasien2,
+  iconProfilePasien3,
 } from "../../../image";
 import SidebarItem from "../elements/SidebarItem/SidebarItem";
 import "./Layout.styles.css";
 import { NavLink } from "react-router-dom";
+import DropdownNotif from "../elements/DropdownNotification/DropdownNotif";
+import Button from "../elements/Button/Button";
 
 const Layouts = ({ children }) => {
+  const dataNotification = [
+    {
+      id: 1,
+      content: (
+        <div className="d-flex align-items-center border-bottom border-secondary-subtle py-3">
+          <img src={iconProfilePasien1} alt="icon-profile-pasien" />
+          <div className="ms-2">
+            <p className=" fw-semibold">
+              Rojak <span>via</span> Chat
+            </p>
+
+            <Button
+              text={"lihat detail"}
+              className={"btn btn-primary text-white px-2 py-1 rounded-3"}
+            />
+          </div>
+        </div>
+      ),
+    },
+    {
+      id: 2,
+      content: (
+        <div className="d-flex align-items-center border-bottom border-secondary-subtle py-3">
+          <img src={iconProfilePasien2} alt="icon-profile-pasien" />
+          <div className="ms-2">
+            <p className="fw-semibold">Mawardi</p>
+            <p className="text__chat">
+              oke dok akan segera saya terapkan metode ini
+            </p>
+          </div>
+        </div>
+      ),
+    },
+    {
+      id: 3,
+      content: (
+        <div className="d-flex align-items-center border-bottom border-secondary-subtle py-3">
+          <img src={iconProfilePasien3} alt="icon-profile-pasien" />
+          <div className="ms-2">
+            <p className="fw-semibold">Putri Malu</p>
+            <p className="text__chat">
+              Sama-sama , saya senang bisa membantu Anda. kita......
+            </p>
+          </div>
+        </div>
+      ),
+    },
+  ];
   return (
     <>
       <div className="sidebar">
@@ -67,10 +120,9 @@ const Layouts = ({ children }) => {
           className="navbar bg-white d-flex align-items-center justify-content-end"
         >
           <div className="d-flex align-items-center gap-2 pe-4">
-            <img
-              src={iconNotifNavbar}
-              alt="icon-notification"
-              className="notif-icon"
+            <DropdownNotif
+              imageSrc={iconNotifNavbar}
+              dropdownContent={dataNotification.map((item) => item)}
             />
             <img
               src={iconProfileNavbar}

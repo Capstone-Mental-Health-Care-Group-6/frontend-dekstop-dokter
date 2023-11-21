@@ -2,8 +2,12 @@ import React from "react";
 import Layouts from "../../components/layouts/Layouts";
 import { dashboardImg } from "../../../image";
 import "./Dashboard.css";
-import { cardLaporanMingguan } from "../../components/DataComponents/dataComponents";
+import {
+  cardLaporanMingguan,
+  dataPasien,
+} from "../../components/DataComponents/dataComponents";
 import Card from "../../components/fragments/Card/Card";
+import TableListPasien from "../../components/fragments/TableListPasien/TableListPasien";
 
 const Dashboard = () => {
   return (
@@ -45,6 +49,8 @@ const Dashboard = () => {
           </div>
 
           <h5 className="fw-bold mt-3">List Pasien</h5>
+
+          <TableListPasien data={dataPasien} />
         </section>
       </Layouts>
     </>

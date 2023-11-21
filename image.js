@@ -11,6 +11,9 @@ import rectangle3 from "./src/assets/Rectangle 460-1.svg";
 import iconChat from "./src/assets/chat1.svg";
 import rectangle4 from "./src/assets/Rectangle 460-2.svg";
 import iconZoom from "./src/assets/zoom1.svg";
+import iconProfilePasien1 from "./src/assets/Ellipse 99.png";
+import iconProfilePasien2 from "./src/assets/iconNotif2.png";
+import iconProfilePasien3 from "./src/assets/Ellipse 102.png";
 
 export {
   logoEmpathiCareMobile,
@@ -26,4 +29,7 @@ export {
   iconClock,
   iconChat,
   iconZoom,
+  iconProfilePasien1,
+  iconProfilePasien2,
+  iconProfilePasien3,
 };

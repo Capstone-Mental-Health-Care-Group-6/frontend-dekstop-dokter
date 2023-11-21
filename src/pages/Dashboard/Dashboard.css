@@ -56,3 +56,20 @@
 }
 
 /* end card laporan mingguan */
+
+/* table list pasien */
+.wrapper__laporan__Mingguan .table-header-border {
+  border-top: 1px solid #dcdcdc;
+  border-bottom: 1px solid #dcdcdc;
+  height: 48px;
+  font-family: Montserrat, sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.wrapper__laporan__Mingguan .table-row-height {
+  height: 48px;
+}
+/* end table list pasien */
