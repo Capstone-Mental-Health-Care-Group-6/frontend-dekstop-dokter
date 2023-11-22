@@ -35,11 +35,11 @@ const Dashboard = () => {
 
         <section className="wrapper__laporan__Mingguan bg-white mt-2">
           <h5 className="fw-bold mb-3">Laporan Mingguan</h5>
-          <div className="row row-cols-1 row-cols-lg-4 row-cols-md-2 ">
+          <div className="row row-cols-1 row-cols-lg-5 row-cols-md-2 g-2">
             {cardLaporanMingguan.map((item, index) => (
               <div className="col" key={index}>
                 <Card
-                  rectangle={item.rectangle}
+                  bgColor={item.bgColor}
                   iconCard={item.iconCard}
                   subtitle={item.subtitle}
                   text={item.text}

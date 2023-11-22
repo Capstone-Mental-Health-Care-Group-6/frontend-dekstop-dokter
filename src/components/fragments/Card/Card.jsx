@@ -1,15 +1,14 @@
 import React from "react";
 
-const Card = ({ subtitle, text, rectangle, iconCard }) => {
+const Card = ({ subtitle, text, iconCard, bgColor }) => {
   return (
     <div className="card rounded-4" style={{ width: "161px", height: "208px" }}>
       <div className="card-body">
         <div className="d-flex justify-content-center position-relative align-items-center w-100 h-50">
-          <img
-            src={rectangle}
-            alt="bg-img"
-            className="position-absolute w-100 h-100 background-img"
-          />
+          <div
+            className={"bgCardDashboard position-absolute"}
+            style={{ backgroundColor: bgColor }}
+          ></div>
           <div className="position-relative icon-container">
             <img
               src={iconCard}
