@@ -28,15 +28,15 @@
   border: 1px solid #cce7ff !important;
 }
 
-.wrapper__laporan__Mingguan .row .col .card .background-img {
+.wrapper__laporan__Mingguan .row .col .card .card-body .d-flex .background-img {
   z-index: 1;
 }
 
-.wrapper__laporan__Mingguan .row .col .card .icon-container {
+.wrapper__laporan__Mingguan .row .col .card .card-body .d-flex .icon-container {
   z-index: 2;
 }
 
-.wrapper__laporan__Mingguan .row .col .card .centered-icon {
+.wrapper__laporan__Mingguan .row .col .card .card-body .d-flex .centered-icon {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);

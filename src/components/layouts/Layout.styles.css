@@ -4,8 +4,6 @@ body {
   margin: 0;
 }
 
-/* sidebar */
-
 .sidebar {
   background-color: #ffffff;
   bottom: 0;
@@ -15,7 +13,6 @@ body {
   top: 0;
   transition: left 0.5s ease-out;
   font-family: "Inter", sans-serif;
-  border-right: 1px solid #cce7ff;
 }
 
 .sidebar .offcanvass .offcanvas-header {
@@ -33,23 +30,10 @@ body {
 .sidebar .menu .sidebar-link {
   align-items: center;
   border-radius: 0.5rem;
-  color: #0085ff;
+  color: #808191;
   display: block;
   display: flex;
-  font-size: 16px;
-  padding: 0.7rem 1rem;
-  text-decoration: none;
-  transition: all 0.5s;
-  font-weight: 500;
-}
-
-.sidebar .menu .sidebar-link-logout {
-  align-items: center;
-  border-radius: 0.5rem;
-  color: #333333;
-  display: block;
-  display: flex;
-  font-size: 16px;
+  font-size: 1rem;
   padding: 0.7rem 1rem;
   text-decoration: none;
   transition: all 0.5s;
@@ -57,11 +41,6 @@ body {
 }
 
 .sidebar .menu .sidebar-link .iconNavbar svg {
-  width: 22px;
-  height: 22px;
-}
-
-.sidebar .menu .sidebar-link-logout .iconNavbar svg {
   width: 22px;
   height: 22px;
 }
@@ -75,27 +54,12 @@ body {
   margin-top: 3px;
 }
 
-.sidebar .menu .sidebar-link-logout span {
-  margin-left: 10px;
-  margin-top: 3px;
-}
-
 .sidebar .menu .sidebar-link:hover {
   color: #0085ff;
   background-color: #ebf5ff;
 }
 
-.sidebar .menu .sidebar-link-logout:hover {
-  background-color: #ebf5ff;
-}
-
 .sidebar .menu .sidebar-link.active {
-  background-color: #0085ff;
-  color: white;
-  border-radius: 12px;
-}
-
-.sidebar .menu .sidebar-link-logout.active {
   background-color: #0085ff;
   color: white;
   border-radius: 12px;
@@ -108,13 +72,7 @@ body {
 
 .sidebar .menu .sidebar-item {
   list-style: none;
-  margin-top: 1rem;
-  position: relative;
-}
-
-.sidebar .menu .sidebar-item-logout {
-  list-style: none;
-  margin-top: 11rem;
+  margin-top: 0.5rem;
   position: relative;
 }
 
@@ -123,10 +81,6 @@ body {
   list-style: none;
   overflow: hidden;
   transition: max-height 2s cubic-bezier(0, 0.55, 0.45, 1);
-}
-
-#navbar {
-  border-bottom: 1px solid #cce7ff;
 }
 
 .notif-icon {
@@ -138,64 +92,116 @@ body {
   border-radius: 100%;
 }
 
-/* end sidebar */
-
-.main {
-  min-height: 100vh;
+main {
+  min-height: 93vh;
   width: 80vw;
   float: right;
   background: #dcdcdc;
+  padding: 0px 50px;
 }
 
-/* .main #navbar {
-  padding-left: 12px;
-} */
-
-/* .main .children {
-  padding: 12px;
-} */
-
 .offcanvas-header {
-  height: 12vh;
+  height: 20vh;
+}
+
+.offcanvass-body .menu {
+  height: 40vh;
+}
+
+.offcanvass-body {
+  height: 60vh;
 }
 
 .offcanvass-body ul a {
   width: 18vw;
 }
 
+.offcanvass .wrapper .logout {
+  height: 20vh;
+  padding: 0.7rem 2rem;
+  width: auto;
+}
+
+.offcanvass .wrapper .logout button {
+  font-size: 16px;
+  font-weight: 600;
+  height: 80px;
+  border: none !important;
+}
+
+.offcanvass .wrapper .logout button svg {
+  width: 22px;
+  height: 22px;
+}
+
 main .navbar .fw-semibold {
   font-family: "Montserrat", sans-serif;
 }
 
+.modal-title {
+  color: #666;
+  font-family: "Montserrat", sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.modal-body p {
+  width: 440px;
+  flex-shrink: 0;
+  color: #666;
+  font-family: "Montserrat", sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
 /* dropdown notification */
-.main .d-flex .dropdown {
+#navbar .d-flex .dropdown {
   color: transparent;
 }
 
-.main .d-flex .dropdown .dropdown-menu {
-  width: 521px;
-  padding: 0 20px;
+#navbar .d-flex .dropdown .dropdown-menu {
+  margin-top: 10px;
+  border: 1px solid #d9d9d9;
 }
 
-.dropdown .dropdown-menu .text-center {
+#navbar .d-flex .dropdown .dropdown-menu p {
   font-size: 20px;
-  border-bottom: 1px solid black;
-  /* width: 50%; */
 }
 
-.dropdown .dropdown-menu li .d-flex .fw-semibold span {
+#navbar .d-flex .dropdown .dropdown-menu::before {
+  content: "";
+  position: absolute;
+  top: -1.1rem;
+  right: 1.3rem;
+  width: 35px;
+  height: 35px;
+  transform: rotate(45deg);
+  background-color: white;
+  border-top-left-radius: 8px;
+  border-left: 1px solid #d9d9d9;
+  border-top: 1px solid #d9d9d9;
+}
+
+#navbar .d-flex .dropdown ul li .d-flex .ms-2 p {
+  font-size: 20px;
+}
+
+#navbar .d-flex .dropdown ul li .d-flex .ms-2 p span {
   color: #676767;
 }
 
-.dropdown .dropdown-menu li .d-flex .ms-2 .btn {
+#navbar .d-flex .dropdown ul li .d-flex .ms-2 .btn {
   font-size: 14px;
 }
 
-.dropdown .dropdown-menu li .d-flex .ms-2 .text__chat {
+#navbar .d-flex .dropdown ul li .d-flex .ms-2 .text__chat {
   font-size: 12px;
   color: #9a9a9a;
 }
-
 /* end dropdown notification */
 
 @media screen and (max-width: 1289px) {
@@ -217,10 +223,6 @@ main .navbar .fw-semibold {
 
   .sidebar .menu .sidebar-link {
     font-size: 15px;
-  }
-
-  .offcanvass-body {
-    height: 80vh;
   }
 }
 
@@ -249,27 +251,41 @@ main .navbar .fw-semibold {
     display: none;
   }
 
-  .sidebar .menu .sidebar-item-logout {
-    margin-top: 14rem;
+  .offcanvass .wrapper .logout button span {
+    display: none;
+  }
+
+  .offcanvass .wrapper .logout button {
+    font-size: 16px;
+    font-weight: 600;
+    border: none !important;
+  }
+
+  .offcanvass .wrapper .logout {
+    justify-content: center !important;
+    padding: 0px;
+  }
+
+  .sidebar .offcanvass .offcanvas-header {
+    padding: 10px 10px;
+    align-items: start;
   }
 }
 
 @media screen and (max-width: 600px) {
   .sidebar {
     width: 14vw;
-    border: none;
   }
 
   main {
     width: 86vw;
-    border: none;
+    padding: 0px 20px;
   }
 }
 
 @media screen and (max-width: 480px) {
   .sidebar {
     width: 16vw;
-    border: none;
   }
 
   main {
@@ -281,10 +297,25 @@ main .navbar .fw-semibold {
   }
 }
 
+@media screen and (max-width: 448px) {
+  .notif-icon {
+    width: 35px;
+    height: 35px;
+  }
+
+  .navbar .iconNavbar {
+    width: 35px;
+    height: 35px;
+  }
+
+  main nav h2 {
+    font-size: 14px;
+  }
+}
+
 @media screen and (max-width: 379px) {
   .sidebar {
     width: 17vw;
-    border: none;
   }
 
   main {
@@ -296,15 +327,6 @@ main .navbar .fw-semibold {
   }
 
   .notif-icon {
-    width: 35px;
-    height: 35px;
-    color: #636363;
-    background-color: #ffffff;
-    padding: 10px;
-    border-radius: 100%;
-  }
-
-  .navbar .iconNavbar {
     width: 35px;
     height: 35px;
   }

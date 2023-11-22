@@ -3,21 +3,11 @@ import "./landingPage.css";
 import Navbar from "../../components/fragments/Navbar/Navbar";
 import Footer from "../../components/fragments/Footer/Footer";
 import Layout from "../../components/layouts/landingLayout";
-import Cuate from "../../assets/cuate.png";
-import Amico from "../../assets/amico.png";
-import img1 from "../../assets/images/profile.png";
-import Bg1 from "../../assets/background/Circle.png";
-import Bg2 from "../../assets/background/Rectangle 2709.png";
-import Bg3 from "../../assets/background/Rectangle 2710.png";
-import Hourglass from "../../assets/icons/hourglass.png";
-import Wallet from "../../assets/icons/wallet.png";
-import Stethoscope from "../../assets/icons/stethoscope.png";
-import Checkmark from "../../assets/icons/checkmark.png";
-import Peopleoutline from "../../assets/icons/peopleoutline.png";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import "./LandingPage.css";
 import CardLanding from "../../components/fragments/CardLanding/cardLanding";
+import { Bg1, Bg2, Bg3, Checkmark, Cuate, Hourglass, Peopleoutline, Stethoscope, Wallet, amico, img1 } from "../../../image";
 
 const LandingPage = () => {
   const card = [
@@ -218,7 +208,7 @@ const LandingPage = () => {
                 </div>
               </div>
               <div className="img-section" data-aos="fade-left">
-                <img src={Amico} alt="" />
+                <img src={amico} alt="" />
               </div>
             </div>
           </Layout>
