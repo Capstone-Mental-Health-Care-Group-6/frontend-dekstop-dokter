@@ -72,11 +72,13 @@ const Layouts = ({ children }) => {
               alt="icon-notification"
               className="notif-icon"
             />
-            <img
-              src={iconProfileNavbar}
-              alt="icon-profile"
-              className="iconNavbar"
-            />
+            <NavLink to={"/dokter-profile"}>
+              <img
+                src={iconProfileNavbar}
+                alt="icon-profile"
+                className="iconNavbar"
+              />
+            </NavLink>
           </div>
         </nav>
         <div className="p-3">{children}</div>
