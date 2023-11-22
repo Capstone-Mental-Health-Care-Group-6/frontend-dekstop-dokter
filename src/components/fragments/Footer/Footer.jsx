@@ -1,8 +1,6 @@
 import React from "react";
-import logoEmpathiCare from "../../../assets/logoEmpathiCareFooter.png";
-import Googleplay from "../../../assets/googleplay.png";
-import Appstore from "../../../assets/appstore.png";
 import "./Footer.css";
+import { Appstore, Googleplay, logoEmpathiCare } from "../../../../image";
 
 const Footer = () => {
   return (

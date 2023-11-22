@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import logoEmpathiCare from "../../../assets/logoEmpathiCare.png";
-import logoKemenkes from "../../../assets/logokemenkes.png";
 import "./Navbar.css";
+import { logoEmpathiCare, logoKemenkes } from "../../../../image";
+
 
 const Navbar = () => {
   const [navbar, setNavbar] = useState(false);
