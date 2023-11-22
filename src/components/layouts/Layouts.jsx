@@ -7,10 +7,10 @@ import {
   BsBoxArrowRight,
 } from "react-icons/bs";
 import {
-  logoEmphatiCare,
   logoEmpathiCareMobile,
   iconNotifNavbar,
   iconProfileNavbar,
+  logoEmpathiCare,
 } from "../../../image";
 import SidebarItem from "../elements/SidebarItem/SidebarItem";
 import "./Layout.styles.css";
@@ -22,7 +22,7 @@ const Layouts = ({ children }) => {
       <div className="sidebar">
         <div className="offcanvass offcanvas-start">
           <div className="offcanvas-header d-flex justify-content-center">
-            <img src={logoEmphatiCare} alt="logo-emphatiCare" />
+            <img src={logoEmpathiCare} alt="logo-emphatiCare" />
             <img src={logoEmpathiCareMobile} alt="logo-emphatiCare" />
           </div>
           <div className="offcanvass-body d-grid  align-items-stretch">
