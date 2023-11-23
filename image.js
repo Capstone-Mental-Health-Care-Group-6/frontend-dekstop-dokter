@@ -24,6 +24,9 @@ import Googleplay from "./src/assets/googleplay.png";
 import Appstore from "./src/assets/appstore.png";
 import logoEmpathiCare from "./src/assets/logoEmpathiCare.svg";
 import logoKemenkes from "./src/assets/logokemenkes.png";
+import profilDetailPasien from "./src/assets/profilDetailPasien.png";
+import iconAlertTolakPasien from "./src/assets/iconAlertTolakPasien.svg";
+import iconAlertTerimaPasien from "./src/assets/iconAlertTerimaPasien.svg";
 
 export {
   logoEmpathiCareMobile,
@@ -52,4 +55,7 @@ export {
   Appstore,
   logoEmpathiCare,
   logoKemenkes,
+  profilDetailPasien,
+  iconAlertTolakPasien,
+  iconAlertTerimaPasien,
 };

@@ -82,3 +82,95 @@
   height: 48px;
 }
 /* end table list pasien */
+
+/* modal detail pasien */
+.wrapper__laporan__Mingguan .modal .modal-dialog .modal-content {
+  border-radius: 24px;
+  border: 3px solid #aad6ff;
+  padding: 30px 20px;
+}
+
+.wrapper__laporan__Mingguan
+  .modal
+  .modal-dialog
+  .modal-content
+  .modal-body
+  .d-flex
+  p {
+  color: #00123a;
+  font-size: 16px;
+}
+
+.wrapper__laporan__Mingguan
+  .modal
+  .modal-dialog
+  .modal-content
+  .modal-body
+  .d-flex
+  p
+  span {
+  color: #0085ff;
+  font-size: 24px;
+}
+/* end modal detail pasien */
+
+/* modal alert pasien */
+.wrapper__laporan__Mingguan #modal-tolak-pasien .modal-dialog .modal-content,
+.wrapper__laporan__Mingguan #modal-terima-pasien .modal-dialog .modal-content {
+  border: none;
+  padding: 10px 20px;
+}
+
+.wrapper__laporan__Mingguan
+  #modal-terima-pasien
+  .modal-dialog
+  .modal-content
+  .modal-body
+  p {
+  font-size: 16px;
+}
+.wrapper__laporan__Mingguan
+  #modal-tolak-pasien
+  .modal-dialog
+  .modal-content
+  .modal-body
+  .text-center
+  p {
+  font-size: 16px;
+  color: #ff5d36;
+}
+
+.wrapper__laporan__Mingguan
+  #modal-tolak-pasien
+  .modal-dialog
+  .modal-content
+  .modal-body
+  .row
+  .changeColorButton {
+  color: #0085ff;
+  background-color: #cce7ff80;
+  border: 1px solid #0085ff;
+  border-radius: 6px;
+  padding: 6px 12px;
+}
+
+.wrapper__laporan__Mingguan
+  #modal-tolak-pasien
+  .modal-dialog
+  .modal-content
+  .modal-body
+  .form-floating
+  .fw-semibold {
+  font-size: 18px;
+}
+
+.wrapper__laporan__Mingguan
+  #modal-tolak-pasien
+  .modal-dialog
+  .modal-content
+  .modal-body
+  .text-center
+  .btn {
+  background-color: #ff5d36;
+}
+/* end modal alert tolak pasien */
