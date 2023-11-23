@@ -1,0 +1,23 @@
+.chat-page .row {
+    min-height: 89vh;
+    width: 100%;
+
+}
+
+.chat-page .chat-box {
+    max-height: 89vh;
+    overflow-y: auto;
+    background-color: #FFFFFF;
+    border-radius: 20px;
+    padding: 25px;
+    border: 1px solid #CCF1FF;
+}
+
+.chat-page .chat-content {
+    max-height: 89vh;
+    overflow-y: auto;
+    background-color: #FFFFFF;
+    border-radius: 20px;
+    padding: 25px;
+    border: 1px solid #CCF1FF;
+}
