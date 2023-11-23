@@ -6,13 +6,13 @@ import { NavLink, useParams } from "react-router-dom";
 import { dataChatUser } from "../../components/DataComponents/DataComponents";
 import ChatBoxList from "../../components/fragments/ChatBoxList/ChatBoxList";
 const Chat = () => {
-  const { userId } = useParams();
+  const { id } = useParams();
   const [conversation, setConversation] = useState(null);
 
   const handleChatClick = async () => {
     try {
-      // Mendapatkan data percakapan berdasarkan userId
-      // const conversationData = await getConversationById(userId);
+      // Mendapatkan data percakapan berdasarkan id
+      // const conversationData = await getConversationById(id);
       // setConversation(conversationData);
 
       setConversation(userId)
@@ -21,17 +21,18 @@ const Chat = () => {
     }
   };
 
+  console.log(id);
 
   useEffect(() => {
     handleChatClick();
-  }, [userId]);
+  }, [id]);
 
   return (
     <Layouts>
       <section className="chat-page" id="chat-page">
         <div className="row d-flex justify-content-between gap-2">
           <div className="col chat-box ">
-            <div className="d-flex gap-4 justify-content-center">
+            <div className="d-flex justify-content-between filtering-session-chat">
               <h5>Pasien aktif</h5>
               <h5>Berakhir</h5>
             </div>
@@ -42,17 +43,8 @@ const Chat = () => {
             </ul>
           </div>
 
-          <div className="col col-lg-7 chat-content d-grid justify-content-center ">
-            {conversation && (
-              <div>
-                <h5>{conversation.user}</h5>
-                <ul>
-                  {conversation.messages.map((message, index) => (
-                    <li key={index}>{message}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
+          <div className="col col-lg-7 chat-content d-grid  ">
+            <p> user {id}</p>
           </div>
         </div>
 
