@@ -21,3 +21,31 @@
     padding: 25px;
     border: 1px solid #CCF1FF;
 }
+
+
+.chat-page .chat-box .chat-box-container a {
+    text-decoration: none;
+}
+
+.chat-page .chat-box ul li {
+    list-style: none;
+}
+
+.chat-page .chat-box .chat-box-container .chat-box-list {
+    border: 1px solid #CCF1FF;
+    transition: all 0.7s;
+}
+
+.chat-page .chat-box .chat-box-container .chat-box-list .text-chat {
+    color: #7C7C7C;
+}
+
+.chat-page .chat-box .chat-box-container .chat-link.active .chat-box-list {
+    background-color: #0085FF;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border: none;
+}
+
+.chat-page .chat-box .chat-box-container .chat-link.active .chat-box-list .text-chat {
+    color: #FFFFFF;
+}

@@ -17,11 +17,13 @@ import Appstore from "./src/assets/appstore.png";
 import logoEmpathiCare from "./src/assets/logoEmpathiCare.svg";
 import logoKemenkes from "./src/assets/logokemenkes.png";
 import personChat from "./src/assets/personChat.svg";
+import personChat2 from "./src/assets/personChat2.svg";
+import personChat3 from "./src/assets/personChat3.svg";
 
 export {
   logoEmpathiCareMobile,
   iconProfileNavbar,
   iconNotifNavbar,
   Cuate, img1, Bg1, Bg2, Bg3, Hourglass, Wallet, Stethoscope, Checkmark, Peopleoutline, amico, Googleplay, Appstore,
-  logoEmpathiCare, logoKemenkes, personChat
+  logoEmpathiCare, logoKemenkes, personChat, personChat2, personChat3
 };
