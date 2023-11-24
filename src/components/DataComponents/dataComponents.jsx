@@ -5,19 +5,36 @@ export const dataChatUser = [
         id: 1000,
         name: 'Rojak',
         text: 'Saya juga punya masalah hubungan...',
-        image: personChat
+        image: personChat,
+        status: 'aktif'
     },
     {
         id: 999,
         name: 'Mawardi',
         text: 'aku di roasting bang alvin',
-        image: personChat2
+        image: personChat2,
+        status: 'aktif'
     },
     {
-        id: 599,
+        id: 598,
         name: 'Putri',
         text: 'bapak saya hamil',
-        image: personChat3
+        image: personChat3,
+        status: 'aktif'
+    },
+    {
+        id: 579,
+        name: 'Putri',
+        text: 'bapak saya hamil',
+        image: personChat3,
+        status: 'berakhir'
+    },
+    {
+        id: 589,
+        name: 'Putri',
+        text: 'bapak saya hamil',
+        image: personChat3,
+        status: 'berakhir'
     },
 ]
 

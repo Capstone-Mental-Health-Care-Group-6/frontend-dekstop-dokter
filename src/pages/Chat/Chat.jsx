@@ -11,6 +11,33 @@ const Chat = () => {
   const { id } = useParams();
   const [conversation, setConversation] = useState(null);
 
+  const [bgTransaction, setBgTransaction] = useState('aktif');
+  const [transaksiManualClicked, setTransaksiManualClicked] = useState(true);
+  const [transaksiOtomatisClicked, setTransaksiOtomatisClicked] = useState(false);
+  const [filteredCustomers, setFilteredCustomers] = useState([]);
+
+
+  useEffect(() => {
+
+    if (transaksiManualClicked) {
+      const filteredData = dataChatUser.filter(
+        (customer) => customer.status === "aktif"
+      );
+      setFilteredCustomers(filteredData);
+
+    } else if (transaksiOtomatisClicked) {
+
+      const filteredData = dataChatUser.filter(
+        (customer) => customer.status === "berakhir"
+      );
+      setFilteredCustomers(filteredData);
+    } else {
+      setFilteredCustomers(dataChatUser);
+    }
+  }, [transaksiManualClicked, transaksiOtomatisClicked]);
+
+
+
   const handleChatClick = async () => {
     try {
       // Mendapatkan data percakapan berdasarkan id
@@ -29,17 +56,40 @@ const Chat = () => {
     handleChatClick();
   }, [id]);
 
+  console.log(bgTransaction);
+  const handleClick = (transactionType) => {
+    setBgTransaction(transactionType);
+  };
+
   return (
     <Layouts>
       <section className="chat-page" id="chat-page">
         <div className="row d-flex justify-content-between gap-2">
           <div className="col chat-box ">
+
             <div className="d-flex justify-content-between filtering-session-chat">
-              <h5>Pasien aktif</h5>
-              <h5>Berakhir</h5>
+
+              <h5 className={`px-2 ${bgTransaction === 'aktif' ? 'active' : ''}`}
+                onClick={() => {
+                  setTransaksiManualClicked(true);
+                  setTransaksiOtomatisClicked(false);
+                  handleClick('aktif')
+                }}
+
+              >Pasien aktif</h5>
+
+              <h5 className={bgTransaction === 'berakhir' ? 'active' : ''}
+                onClick={() => {
+                  setTransaksiOtomatisClicked(true);
+                  setTransaksiManualClicked(false);
+                  handleClick('berakhir')
+                }}
+
+              >Berakhir</h5>
+
             </div>
             <ul className="chat-box-container mt-5">
-              {dataChatUser.map((item, index) => (
+              {filteredCustomers.map((item, index) => (
                 <ChatBoxList key={index} image={item.image} name={item.name} text={item.text} id={item.id} />
               ))}
             </ul>

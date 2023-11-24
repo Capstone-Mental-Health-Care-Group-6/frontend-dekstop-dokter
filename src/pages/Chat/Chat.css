@@ -17,6 +17,12 @@
 
 
 .chat-page .chat-box .filtering-session-chat h5 {
+    padding: 0px 10px 8px 10px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.chat-page .chat-box .filtering-session-chat .active {
     border-bottom: 1px solid #000000;
     padding: 0px 10px 8px 10px;
     font-weight: 600;
