@@ -17,7 +17,7 @@ const Dashboard = () => {
           <div className="col-lg-12 col-md">
             <div className="wrapper__dashboard bg-white">
               <div className="row d-flex align-items-center justify-content-between">
-                <div className="col-9">
+                <div className="col-lg-9 col-md">
                   <h4 className="fw-bold text__title mb-4">
                     Selamat Datang, dr Helen
                   </h4>

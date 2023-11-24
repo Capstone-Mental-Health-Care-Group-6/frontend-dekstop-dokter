@@ -308,6 +308,30 @@ main .navbar .fw-semibold {
     height: 35px;
   }
 
+  #navbar .d-flex .dropdown .dropdown-menu {
+    max-width: 310px;
+  }
+
+  #navbar .d-flex .dropdown ul li .d-flex img {
+    width: 40px;
+    height: 40px;
+  }
+
+  #navbar .d-flex .dropdown ul li .d-flex .ms-2 p {
+    font-size: 16px;
+  }
+
+  #navbar .d-flex .dropdown ul li .d-flex .ms-2 .btn {
+    font-size: 12px;
+  }
+  #navbar .d-flex .dropdown ul li .d-flex .ms-2 {
+    overflow: scroll;
+    word-wrap: break-word;
+  }
+  #navbar .d-flex .dropdown ul li .d-flex .ms-2 .text__chat {
+    font-size: 12px;
+  }
+
   main nav h2 {
     font-size: 14px;
   }

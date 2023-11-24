@@ -174,3 +174,20 @@
   background-color: #ff5d36;
 }
 /* end modal alert pasien */
+
+@media screen and (max-width: 436px) {
+  .row .col-lg-12 .wrapper__dashboard .d-flex .col-3 img {
+    display: none;
+  }
+
+  .row .col-lg-12 .wrapper__dashboard {
+    flex-direction: column;
+    text-align: center;
+  }
+  .row .col-lg-12 .wrapper__dashboard .d-flex .col-lg-9 .text__title {
+    font-size: 32px;
+  }
+  .row .col-lg-12 .wrapper__dashboard .d-flex .col-lg-9 .text__subtitle {
+    font-size: 18px;
+  }
+}
