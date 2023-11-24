@@ -82,10 +82,31 @@
 }
 
 
-/* .input-chat {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-} */
+.chat-text {
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.chat-text-dokter {
+    text-align: right;
+    background-color: #99DEFF;
+    border-radius: 30px;
+    padding: 20px;
+    margin-left: 10%;
+
+}
+
+
+.chat-text-user {
+    text-align: left;
+    background-color: #CCF1FF;
+    border-radius: 30px;
+    padding: 20px;
+    margin-right: 10%;
+}
+
+
+
 
 /* chat-content right end  */

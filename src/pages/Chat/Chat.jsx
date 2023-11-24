@@ -6,6 +6,7 @@ import { NavLink, useParams } from "react-router-dom";
 import { dataChatUser } from "../../components/DataComponents/DataComponents";
 import ChatBoxList from "../../components/fragments/ChatBoxList/ChatBoxList";
 import { BsDot, BsThreeDots } from "react-icons/bs";
+import { dataChat } from "../../components/DataComponents/DataComponents";
 const Chat = () => {
   const { id } = useParams();
   const [conversation, setConversation] = useState(null);
@@ -44,7 +45,7 @@ const Chat = () => {
             </ul>
           </div>
 
-          <div className="col col-lg-7 chat-content  ">
+          <div className="col col-lg-7 chat-content  d-flex flex-column justify-content-between">
 
 
             <div className="profile-and-status">
@@ -73,8 +74,16 @@ const Chat = () => {
             </div>
 
             <div className="chat-text px-2">
-              <p> lorem*30 </p>
+              {dataChat.map((chat, index) => (
+                <div
+                  key={index}
+                  className={`chat-text d-grid align-items-center ${chat.sender === 'dokter' ? 'chat-text-dokter' : 'chat-text-user'}`}
+                >
+                  <span>{chat.content}</span>
+                </div>
+              ))}
             </div>
+
 
             <div className="input-chat mb-3 d-flex ">
               <button className="btn" ><img src={choiseChat} alt="" /></button>
@@ -83,8 +92,6 @@ const Chat = () => {
             </div>
 
           </div>
-
-
         </div>
 
 
