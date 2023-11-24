@@ -11,21 +11,21 @@ export const cardLaporanMingguan = [
   {
     bgColor: "#FFBBBB",
     iconCard: iconClock,
-    subtitle: "jam praktek",
+    subtitle: "Jam Praktek",
     text: "80 jam",
   },
 
   {
     bgColor: "#C1FFEF",
     iconCard: iconChat,
-    subtitle: "layanan chat",
+    subtitle: "Layanan Chat",
     text: "18 chat",
   },
 
   {
     bgColor: "#F0CAFF",
     iconCard: iconZoom,
-    subtitle: "layanan vidio call",
+    subtitle: "Layanan Vidio Call",
     text: "10 Video Call",
   },
 ];

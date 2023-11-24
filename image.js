@@ -27,6 +27,8 @@ import logoKemenkes from "./src/assets/logokemenkes.png";
 import profilDetailPasien from "./src/assets/profilDetailPasien.png";
 import iconAlertTolakPasien from "./src/assets/iconAlertTolakPasien.svg";
 import iconAlertTerimaPasien from "./src/assets/iconAlertTerimaPasien.svg";
+import imgMenerimaPembayaran from "./src/assets/imgMenerimaPembayaran.png";
+import bgBlankWhite from "./src/assets/bgBlankWhite.jpg";
 
 export {
   logoEmpathiCareMobile,
@@ -58,4 +60,6 @@ export {
   profilDetailPasien,
   iconAlertTolakPasien,
   iconAlertTerimaPasien,
+  imgMenerimaPembayaran,
+  bgBlankWhite,
 };

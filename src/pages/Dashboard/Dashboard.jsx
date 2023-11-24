@@ -19,7 +19,7 @@ const Dashboard = () => {
               <div className="row d-flex align-items-center justify-content-between">
                 <div className="col-9">
                   <h4 className="fw-bold text__title mb-4">
-                    selamat datang, dr helen
+                    Selamat Datang, dr Helen
                   </h4>
                   <p className="text__subtitle fw-normal">
                     Have a nice day at work

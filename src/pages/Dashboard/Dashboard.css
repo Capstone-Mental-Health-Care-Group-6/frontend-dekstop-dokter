@@ -52,7 +52,7 @@
 }
 
 .wrapper__laporan__Mingguan .row .col .card .card-subtitle .fw-semibold {
-  font-size: 14px;
+  font-size: 13px;
   margin: 12px 0 20px 0;
 }
 
@@ -173,4 +173,4 @@
   .btn {
   background-color: #ff5d36;
 }
-/* end modal alert tolak pasien */
+/* end modal alert pasien */

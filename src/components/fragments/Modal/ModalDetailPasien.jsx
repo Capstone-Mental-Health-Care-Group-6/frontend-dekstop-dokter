@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { dataPasien } from "../../DataComponents/dataComponents";
 import {
+  bgBlankWhite,
   iconAlertTerimaPasien,
   iconAlertTolakPasien,
+  imgMenerimaPembayaran,
   profilDetailPasien,
 } from "../../../../image";
 import Button from "../../elements/Button/Button";
@@ -12,9 +14,21 @@ const ModalDetailPasien = ({ id, size, selectedPasienId }) => {
   const [selectedButton, setSelectedButton] = useState(null);
   const [modalTextArea, setModalTextArea] = useState("d-none");
 
+  const [loading, setLoading] = useState(false);
+
   const selectedPasien = dataPasien.find(
     (pasien) => pasien.id === selectedPasienId
   );
+
+  const handleTerimaPasien = () => {
+    setLoading(true);
+
+    setTimeout(() => {
+      setLoading(false);
+
+      document.getElementById("modal-terima-pasien").classList.add("show");
+    }, 3000);
+  };
 
   const handleButtonClick = (id) => {
     setSelectedButton(id);
@@ -109,28 +123,44 @@ const ModalDetailPasien = ({ id, size, selectedPasienId }) => {
         </div>
       </ModalAlert>
 
-      <ModalAlert
-        id={"modal-terima-pasien"}
-        size={"modal-lg"}
-        iconAlert={iconAlertTerimaPasien}
-      >
-        <div className="modal-body d-flex justify-content-between flex-column gap-5 mt-5">
-          <div className="d-flex flex-column align-items-center">
-            <p className="text-center text-black">
-              Kami percaya Anda akan memberikan layanan yang luar biasa. Silakan
-              berikan perawatan terbaik, dengan perhatian dan keahlian Anda.
+      {loading ? (
+        <ModalAlert
+          size={"modal-lg"}
+          id={"modal-terima-pasien"}
+          iconAlert={bgBlankWhite}
+        >
+          <div className="modal-body d-flex flex-row align-items-center justify-content-center">
+            <p className="fw-semibold text-black">
+              Menerima Pembayaran Dari Pasien
             </p>
+            <img src={imgMenerimaPembayaran} alt="img-menerima-pembayaran" />
           </div>
-          <div className="text-center">
-            <Button
-              text={"Oke"}
-              className={
-                "btn btn-success w-50 text-white text-center py-2 fw-semibold"
-              }
-            />
+        </ModalAlert>
+      ) : (
+        <ModalAlert
+          id={"modal-terima-pasien"}
+          size={"modal-lg"}
+          iconAlert={iconAlertTerimaPasien}
+        >
+          <div className="modal-body d-flex justify-content-between flex-column gap-5 mt-5">
+            <div className="d-flex flex-column align-items-center">
+              <p className="text-center text-black">
+                Kami percaya Anda akan memberikan layanan yang luar biasa.
+                Silakan berikan perawatan terbaik, dengan perhatian dan keahlian
+                Anda.
+              </p>
+            </div>
+            <div className="text-center">
+              <Button
+                text={"Oke"}
+                className={
+                  "btn btn-success w-50 text-white text-center py-2 fw-semibold"
+                }
+              />
+            </div>
           </div>
-        </div>
-      </ModalAlert>
+        </ModalAlert>
+      )}
 
       <div
         className="modal fade"
@@ -177,11 +207,12 @@ const ModalDetailPasien = ({ id, size, selectedPasienId }) => {
                         }
                         bsTogle={"modal"}
                         bsTarget={"#modal-terima-pasien"}
+                        onClick={handleTerimaPasien}
                       />
                       <Button
                         text={"Tolak"}
                         className={
-                          "btn btn-primary rounded-4 py-2 px-4 fw-semibold"
+                          "btn btn-transparent border-2 text-primary border-primary rounded-4 py-2 px-4 fw-semibold"
                         }
                         bsTogle={"modal"}
                         bsTarget={"#modal-tolak-pasien"}

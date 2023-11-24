@@ -9,10 +9,6 @@ import { dataPasien } from "../../DataComponents/dataComponents";
 const TableListPasien = ({ data }) => {
   const [selectedPasienId, setSelectedPasienId] = useState(null);
 
-  const selectPasien = dataPasien.find(
-    (pasien) => pasien.id === selectedPasienId
-  );
-
   const handleLihatDetail = (rowData) => {
     setSelectedPasienId(rowData.id);
   };
@@ -51,7 +47,7 @@ const TableListPasien = ({ data }) => {
           />
 
           <Column
-            header="keluhan"
+            header="Keluhan"
             field="keluhan"
             headerClassName="table-header-border"
             style={{ fontSize: "14px" }}
