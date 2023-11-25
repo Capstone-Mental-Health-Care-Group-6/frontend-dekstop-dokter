@@ -57,7 +57,7 @@ const ModalDetailPasien = ({ id, size, selectedPasienId }) => {
           </div>
 
           <div className="row row-cols-lg-2 row-cols-1 g-2">
-            <div className="col-12 col-md-8 col-lg-8">
+            <div className="col-12 col-md-6 col-lg-8">
               <Button
                 className={`w-100 ${
                   selectedButton === 1
@@ -68,7 +68,7 @@ const ModalDetailPasien = ({ id, size, selectedPasienId }) => {
                 onClick={() => handleButtonClick(1)}
               />
             </div>
-            <div className="col-md-4 col-lg-4 col-12 ">
+            <div className="col-md-6 col-lg-4 col-12 ">
               <Button
                 className={`w-100 ${
                   selectedButton === 2
@@ -79,18 +79,18 @@ const ModalDetailPasien = ({ id, size, selectedPasienId }) => {
                 onClick={() => handleButtonClick(2)}
               />
             </div>
-            <div className="col-12 col-md-9 col-lg-9">
+            <div className="col-12 col-md-6 col-lg-9">
               <Button
                 className={`w-100 ${
                   selectedButton === 3
-                    ? "changeColorButton  fw-medium"
+                    ? "changeColorButton fw-medium"
                     : "btn border-secondary-subtle text-black fw-medium"
                 }`}
                 text={"Dokter Ada Kegiatan Mendadak"}
                 onClick={() => handleButtonClick(3)}
               />
             </div>
-            <div className="col-md-3 col-lg-3 col-12 ">
+            <div className="col-md-6 col-lg-3 col-12">
               <Button
                 className={`w-100 ${
                   selectedButton === 4
@@ -129,7 +129,7 @@ const ModalDetailPasien = ({ id, size, selectedPasienId }) => {
           id={"modal-terima-pasien"}
           iconAlert={bgBlankWhite}
         >
-          <div className="modal-body d-flex flex-row align-items-center justify-content-center">
+          <div className="modal-body alert__loading d-flex flex-row align-items-center justify-content-center">
             <p className="fw-semibold text-black">
               Menerima Pembayaran Dari Pasien
             </p>
@@ -143,8 +143,8 @@ const ModalDetailPasien = ({ id, size, selectedPasienId }) => {
           iconAlert={iconAlertTerimaPasien}
         >
           <div className="modal-body d-flex justify-content-between flex-column gap-5 mt-5">
-            <div className="d-flex flex-column align-items-center">
-              <p className="text-center text-black">
+            <div className="d-flex justify-content-center text-center">
+              <p className=" text-black">
                 Kami percaya Anda akan memberikan layanan yang luar biasa.
                 Silakan berikan perawatan terbaik, dengan perhatian dan keahlian
                 Anda.
