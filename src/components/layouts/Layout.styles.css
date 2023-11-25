@@ -1,0 +1,305 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap");
+
+body {
+  margin: 0;
+}
+
+.sidebar {
+  background-color: #ffffff;
+  bottom: 0;
+  height: 100vh;
+  width: 20vw;
+  position: fixed;
+  top: 0;
+  transition: left 0.5s ease-out;
+  font-family: "Inter", sans-serif;
+}
+
+.sidebar .offcanvass .offcanvas-header {
+  padding: 0px 30px;
+}
+
+.sidebar .offcanvass .offcanvas-header img:nth-child(2) {
+  display: none;
+}
+
+.sidebar .offcanvass .offcanvas-header img {
+  width: 100%;
+}
+
+.sidebar .menu .sidebar-link {
+  align-items: center;
+  border-radius: 0.5rem;
+  color: #808191;
+  display: block;
+  display: flex;
+  font-size: 1rem;
+  padding: 0.7rem 1rem;
+  text-decoration: none;
+  transition: all 0.5s;
+  font-weight: 500;
+}
+
+.sidebar .menu .sidebar-link .iconNavbar svg {
+  width: 22px;
+  height: 22px;
+}
+
+.sidebar .menu .sidebar-link i:before {
+  vertical-align: top;
+}
+
+.sidebar .menu .sidebar-link span {
+  margin-left: 10px;
+  margin-top: 3px;
+}
+
+.sidebar .menu .sidebar-link:hover {
+  color: #0085ff;
+  background-color: #ebf5ff;
+}
+
+.sidebar .menu .sidebar-link.active {
+  background-color: #0085ff;
+  color: white;
+  border-radius: 12px;
+}
+
+.sidebar .menu .sidebar-item button {
+  background-color: transparent;
+  border: none;
+}
+
+.sidebar .menu .sidebar-item {
+  list-style: none;
+  margin-top: 0.5rem;
+  position: relative;
+}
+
+.sidebar .menu .submenu {
+  display: none;
+  list-style: none;
+  overflow: hidden;
+  transition: max-height 2s cubic-bezier(0, 0.55, 0.45, 1);
+}
+
+.notif-icon {
+  width: 50px;
+  height: 50px;
+  color: #636363;
+  background-color: #ffffff;
+  padding: 10px;
+  border-radius: 100%;
+}
+
+main {
+  min-height: 93vh;
+  width: 80vw;
+  float: right;
+  background: #dcdcdc;
+  padding: 0px 50px;
+}
+
+.offcanvas-header {
+  height: 20vh;
+}
+
+.offcanvass-body .menu {
+  height: 40vh;
+}
+
+.offcanvass-body {
+  height: 60vh;
+}
+
+.offcanvass-body ul a {
+  width: 18vw;
+}
+
+.offcanvass .wrapper .logout {
+  height: 20vh;
+  padding: 0.7rem 2rem;
+  width: auto;
+}
+
+.offcanvass .wrapper .logout button {
+  font-size: 16px;
+  font-weight: 600;
+  height: 80px;
+  border: none !important;
+}
+
+
+
+.offcanvass .wrapper .logout button svg {
+  width: 22px;
+  height: 22px;
+
+}
+
+main .navbar .fw-semibold {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.modal-title {
+  color: #666;
+  font-family: "Montserrat", sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.modal-body p {
+  width: 440px;
+  flex-shrink: 0;
+  color: #666;
+  font-family: "Montserrat", sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.dropdown {
+  color: transparent;
+}
+
+
+
+@media screen and (max-width: 1289px) {
+  .sidebar .offcanvass .offcanvas-header {
+    width: 100%;
+    padding: 50px 10px;
+  }
+
+  .sidebar .offcanvass .offcanvas-header img {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 1034px) {
+  .sidebar .menu .sidebar-link .iconNavbar svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .sidebar .menu .sidebar-link {
+    font-size: 15px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .sidebar {
+    width: 10vw;
+  }
+
+  main {
+    width: 90vw;
+  }
+
+  .sidebar .offcanvass .offcanvass-body ul li span {
+    display: none;
+  }
+
+  .offcanvass-body ul a {
+    width: auto;
+  }
+
+  .sidebar .offcanvass .offcanvas-header img:nth-child(2) {
+    display: block;
+  }
+
+  .sidebar .offcanvass .offcanvas-header img:nth-child(1) {
+    display: none;
+  }
+
+  .offcanvass .wrapper .logout button span {
+    display: none;
+  }
+
+  .offcanvass .wrapper .logout button {
+    font-size: 16px;
+    font-weight: 600;
+    border: none !important;
+  }
+
+  .offcanvass .wrapper .logout {
+    justify-content: center !important;
+    padding: 0px;
+  }
+
+  .sidebar .offcanvass .offcanvas-header {
+    padding: 10px 10px;
+    align-items: start;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .sidebar {
+    width: 14vw;
+  }
+
+  main {
+    width: 86vw;
+    padding: 0px 20px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .sidebar {
+    width: 16vw;
+  }
+
+  main {
+    width: 84vw;
+  }
+
+  main nav h2 {
+    font-size: 19px;
+  }
+}
+
+@media screen and (max-width: 448px) {
+  .notif-icon {
+    width: 35px;
+    height: 35px;
+
+  }
+
+  .navbar .iconNavbar {
+    width: 35px;
+    height: 35px;
+  }
+
+  main nav h2 {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 379px) {
+  .sidebar {
+    width: 17vw;
+  }
+
+  main {
+    width: 83vw;
+  }
+
+  .sidebar .menu .sidebar-link {
+    padding: 10px;
+  }
+
+  .notif-icon {
+    width: 35px;
+    height: 35px;
+  }
+
+
+}
+
+@media screen and (max-width: 259px) {
+  .sidebar .menu .sidebar-link {
+    padding: 8px;
+  }
+}
