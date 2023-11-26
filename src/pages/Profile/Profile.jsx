@@ -1,25 +1,34 @@
 import React from "react";
 import Layouts from "../../components/layouts/Layouts";
-import CardProfile from "../../components/fragments/Card/CardProfile"; 
-import CardList from "../../components/fragments/Card/CardList";
+import "./Profile.styles.css";
+import ProfileList from "../../components/fragments/List/ProfileList";
 
 const Profile = () => {
-  const titleProfile = "Your Card Title";
-  const textProfile = "Your card text goes here.";
 
   return (
     <Layouts>
-      <div className="row">
-        <div className="col md-6">
-          <CardProfile titleProfile={titleProfile} textProfile={textProfile} />
+      <div className="profile-pages">
+      <div className="card mb-3 align-items-start">
+        <div className="row g-0">
+          <div className="col-md-4">
+            <img src="../src/assets/Gambar.png" className="img-fluid" alt="Profile"/>
+          </div>
+          <div className="col-md-8">
+            <div className="card-body">
+              <h6 className="card-title">Helen Dharani Jiffri S.Psi, M.Psi</h6>
+              <p className="card-text">
+                Psikolog              
+              </p>
+              <p className="card-text">
+                Emphati Care
+              </p>
+            </div>
+          </div>
         </div>
-        <div>
-          <h2>Lihat / Edit Profile</h2>
-          <CardList to="/dokter-data-pribadi" iconClass="./src/assets/account circle.png" list="Data Pribadi" />
-          <CardList to="/dokter-data-akademik" iconClass="./src/assets/account balance.png" list="Data Akademik" />
-          <CardList to="/dokter-dokumen" iconClass="./src/assets/archive.png" list="Dokumen" />
-          <CardList to="/dokter-pengalaman" iconClass="./src/assets/local library.png" list="Pengalaman" />
-        </div>  
+      </div>
+      <div className="list mb 3">
+        <ProfileList/>
+      </div>
       </div>
     </Layouts>
   );

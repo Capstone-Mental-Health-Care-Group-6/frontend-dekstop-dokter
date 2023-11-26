@@ -1,65 +1,124 @@
-import React from "react";
+import React, { useState } from "react";
 import Layouts from "../../components/layouts/Layouts";
-import InputForm from "../../components/fragments/InputForm/InputForm";
+import Input from "../../components/elements/Input/Input";
+import Label from "../../components/elements/Input/Label";
+import Button from "../../components/elements/Button/Button";
+import ModalProfile from "../../components/fragments/Modal/ModalProfile";
+import BackButton from "../../components/elements/Button/BackButton";
+import "./DataAkademik.styles.css";
 
 const DataAkademik = () => {
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission logic here
+  const [formData, setFormData] = useState({
+    asalUniversitas: "",
+    jenjangPendidikan: "",
+    tahunMasuk: "",
+    tahunTamat: "",
+  });
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const [showProfileModal, setShowProfileModal] = useState(false);
+
+  const handleSubmitClick = () => {
+    if (
+      formData.asalUniversitas.trim() === "" ||
+      formData.jenjangPendidikan.trim() === "" ||
+      formData.tahunMasuk.trim() === "" ||
+      formData.tahunTamat.trim() === ""
+    ) {
+      alert("Please fill in all the fields before submitting.");
+    } else {
+      setShowProfileModal(true);
+    }
+  };
+
+  const handleSubmitConfirm = () => {
+    setShowProfileModal(false);
+  };
+
+  const handleSubmitCancel = () => {
+    setShowProfileModal(false);
   };
 
   return (
     <Layouts>
-      <div className="container mt-5">
-        <h2>Data Akademik</h2>
-
-        <form onSubmit={handleSubmit}>
-          <div className="row">
+      <div className="container">
+        <BackButton />
+        {/* Form */}
+        <form className="data-akademik-form">
+          <h4 className="data-akademik-title">Data Akademik</h4>
+          <div className="row mb-3">
             <div className="col-md-6">
-              {/* Asal Universitas */}
-              <InputForm
+              <Label htmlFor="asalUniversitas">Asal Universitas</Label>
+              <Input
                 type="text"
-                label="Asal Universitas"
-                name="asalUniversitas"
                 id="asalUniversitas"
+                name="asalUniversitas"
                 placeholder="Masukkan Asal Universitas"
-              />
-
-              {/* Tahun Masuk Universitas */}
-              <InputForm
-                type="text"
-                label="Tahun Masuk Universitas"
-                name="tahunMasukUniversitas"
-                id="tahunMasukUniversitas"
-                placeholder="Masukkan Tahun Masuk Universitas"
+                value={formData.asalUniversitas}
+                onChange={handleInputChange}
               />
             </div>
 
             <div className="col-md-6">
-              {/* Jenjang Pendidikan */}
-              <InputForm
+              <Label htmlFor="jenjangPendidikan">Jenjang Pendidikan</Label>
+              <Input
                 type="text"
-                label="Jenjang Pendidikan"
-                name="jenjangPendidikan"
                 id="jenjangPendidikan"
+                name="jenjangPendidikan"
                 placeholder="Masukkan Jenjang Pendidikan"
-              />
-
-              {/* Tahun Tamat Universitas */}
-              <InputForm
-                type="text"
-                label="Tahun Tamat Universitas"
-                name="tahunTamatUniversitas"
-                id="tahunTamatUniversitas"
-                placeholder="Masukkan Tahun Tamat Universitas"
+                value={formData.jenjangPendidikan}
+                onChange={handleInputChange}
               />
             </div>
           </div>
 
-          <button type="submit" className="btn btn-primary mt-3">
-            Simpan Perubahan
-          </button>
+          <div className="row mb-3">
+            <div className="col-md-6">
+              <Label htmlFor="tahunMasuk">Tahun Masuk Universitas</Label>
+              <Input
+                type="text"
+                id="tahunMasuk"
+                name="tahunMasuk"
+                placeholder="Masukkan Tahun Masuk"
+                value={formData.tahunMasuk}
+                onChange={handleInputChange}
+              />
+            </div>
+
+            <div className="col-md-6">
+              <Label htmlFor="tahunTamat">Tahun Tamat Universitas</Label>
+              <Input
+                type="text"
+                id="tahunTamat"
+                name="tahunTamat"
+                placeholder="Masukkan Tahun Tamat"
+                value={formData.tahunTamat}
+                onChange={handleInputChange}
+              />
+            </div>
+          </div>
+          <br />
         </form>
+        <br />
+        <div className="buttons-container d-flex justify-content-center mb-3">
+          <Button
+            type="submit"
+            className="btn btn-primary"
+            text="Simpan Perubahan"
+            onClick={handleSubmitClick}
+          />
+        </div>
+
+        <ModalProfile
+          show={showProfileModal}
+          title="Profile"
+          onClose={handleSubmitCancel}
+          onSubmit={handleSubmitConfirm}
+        />
       </div>
     </Layouts>
   );

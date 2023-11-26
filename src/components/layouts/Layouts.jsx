@@ -14,6 +14,7 @@ import {
 } from "../../../image";
 import SidebarItem from "../elements/SidebarItem/SidebarItem";
 import "./Layout.styles.css";
+import { NavLink } from "react-router-dom";
 
 const Layouts = ({ children }) => {
   return (
@@ -28,11 +29,13 @@ const Layouts = ({ children }) => {
             alt="icon-notification"
             className="notif-icon"
           />
-          <img
-            src={iconProfileNavbar}
-            alt="icon-profile"
-            className="iconNavbar"
-          />
+          <NavLink to={"/dokter-profile"}>
+            <img
+              src={iconProfileNavbar}
+              alt="icon-profile"
+              className="iconNavbar"
+            />
+          </NavLink>
         </div>
       </nav>
 
@@ -76,25 +79,6 @@ const Layouts = ({ children }) => {
       </div>
 
       <main className="main">
-        <nav
-          id="navbar"
-          className="navbar bg-white d-flex align-items-center justify-content-end"
-        >
-          <div className="d-flex align-items-center gap-2 pe-4">
-            <img
-              src={iconNotifNavbar}
-              alt="icon-notification"
-              className="notif-icon"
-            />
-            <NavLink to={"/dokter-profile"}>
-              <img
-                src={iconProfileNavbar}
-                alt="icon-profile"
-                className="iconNavbar"
-              />
-            </NavLink>
-          </div>
-        </nav>
         <div className="p-3">{children}</div>
       </main>
     </>
