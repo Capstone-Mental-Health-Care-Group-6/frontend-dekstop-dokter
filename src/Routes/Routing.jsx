@@ -1,6 +1,5 @@
 import React from "react"
 import { Route, Routes } from "react-router-dom"
-
 import LandingPage from "../pages/LandingPage/LandingPage"
 import Dashboard from "../pages/Dashboard/Dashboard"
 import Chat from "../pages/Chat/Chat"

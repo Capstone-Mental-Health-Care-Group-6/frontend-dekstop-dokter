@@ -1,7 +1,7 @@
 import "./ForgetPassword.style.css"
 
 import * as React from "react"
-import Button from "../../components/Elements/button/Button"
+import Button from "../../components/elements/Button/Button"
 
 import ModalForgot from "../../components/fragments/modalLogin/modalLogin"
 
@@ -50,9 +50,9 @@ const ForgotPw = () => {
               id="email"
               value={email}
               onChange={handleEmailChange}
-              placeholder=""
+              placeholder="Email"
             />
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email"></label>
             <span className="icon left">
               <MdOutlineEmail />
             </span>

@@ -1,6 +1,6 @@
 import * as React from "react"
 import { useState } from "react"
-import Button from "../../components/Elements/button/Button"
+import Button from "../../components/elements/Button/Button"
 import LogoEmphati from "../../assets/LogoEmphati.png"
 import Welcome from "../../assets/Welcome.png"
 import { BsEye, BsEyeSlash } from "react-icons/bs"
@@ -92,16 +92,16 @@ const Register = () => {
               onChange={handleUsernameChange}
               onFocus={() => handleInputFocus("username")}
               onBlur={handleInputBlur}
-              placeholder=""
+              placeholder="Username"
               className={`bg-transparent ${
                 activeInput === "username" ? "active" : ""
               }`}
             />
             <label htmlFor="username">
-              <div>
+              {/* <div>
                 <div></div>
                 Username
-              </div>
+              </div> */}
             </label>
           </div>
 
@@ -121,16 +121,16 @@ const Register = () => {
               onChange={handleEmailChange}
               onFocus={() => handleInputFocus("email")}
               onBlur={handleInputBlur}
-              placeholder=""
+              placeholder=" Email "
               className={`bg-transparent ${
                 activeInput === "email" ? "active" : ""
               }`}
             />
             <label htmlFor="Email">
-              <div>
+              {/* <div>
                 <div></div>
                 Email
-              </div>
+              </div> */}
             </label>
           </div>
 
@@ -150,14 +150,13 @@ const Register = () => {
               onChange={handlePasswordChange}
               onFocus={() => handleInputFocus("password")}
               onBlur={handleInputBlur}
-              placeholder=""
+              placeholder="Password"
               className={`bg-transparent ${
                 activeInput === "password" ? "active" : ""
               }`}
             />
             <label htmlFor="password">
               <div></div>
-              Password
             </label>
             <span className="icon right">
               {showPassword ? (
@@ -184,14 +183,13 @@ const Register = () => {
               onChange={handleConfirmPasswordChange}
               onFocus={() => handleInputFocus("confirmPassword")}
               onBlur={handleInputBlur}
-              placeholder=""
+              placeholder="Konfirmasi Password"
               className={`bg-transparent ${
                 activeInput === "confirmPassword" ? "active" : ""
               }`}
             />
             <label htmlFor="confirmPassword">
               <div></div>
-              Konfirmasi Password
             </label>
             <span className="icon right">
               {showConfirmPassword ? (

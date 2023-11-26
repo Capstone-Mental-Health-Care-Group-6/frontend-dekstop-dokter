@@ -1,7 +1,7 @@
 import "./AturSandi.style.css"
 
 import * as React from "react"
-import Button from "../../components/Elements/button/Button"
+import Button from "../../components/elements/Button/Button"
 import ModalReset from "../../components/Fragments/modalReset/modalReset"
 import kunci from "../../assets/kunci.png"
 import { BsEye, BsEyeSlash, BsShieldLock } from "react-icons/bs"
@@ -63,9 +63,9 @@ const ResetPassword = () => {
               id="password"
               value={password}
               onChange={handlepasswordChange}
-              placeholder=""
+              placeholder="Password Baru"
             />
-            <label htmlFor="password">Password Baru</label>
+            <label htmlFor="password"></label>
             <span className="icon left">
               <RiLockPasswordLine />
             </span>
@@ -85,9 +85,9 @@ const ResetPassword = () => {
               id="confirmation"
               value={confirmPassword}
               onChange={handleConfirmPasswordChange}
-              placeholder=""
+              placeholder="Konfirmasi Password Baru"
             />
-            <label htmlFor="confirmation">Konfirmasi Password Baru</label>
+            <label htmlFor="confirmation"></label>
             <span className="icon left">
               <RiLockPasswordLine />
             </span>
