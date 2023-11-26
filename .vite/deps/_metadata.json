@@ -1,45 +1,48 @@
 {
-  "hash": "58b04314",
-  "browserHash": "09c77eb4",
+  "hash": "b47cc151",
+  "browserHash": "d02aa677",
   "optimized": {
     "react": {
       "src": "../../node_modules/react/index.js",
       "file": "react.js",
-      "fileHash": "f27cbf7e",
+      "fileHash": "172212fd",
       "needsInterop": true
     },
     "react-dom/client": {
       "src": "../../node_modules/react-dom/client.js",
       "file": "react-dom_client.js",
-      "fileHash": "cd2ce0dd",
+      "fileHash": "9528a5e5",
       "needsInterop": true
     },
     "bootstrap/dist/js/bootstrap.bundle.js": {
       "src": "../../node_modules/bootstrap/dist/js/bootstrap.bundle.js",
       "file": "bootstrap_dist_js_bootstrap__bundle__js.js",
-      "fileHash": "4f394746",
+      "fileHash": "24cb7b0e",
       "needsInterop": true
     },
     "react-router-dom": {
       "src": "../../node_modules/react-router-dom/dist/index.js",
       "file": "react-router-dom.js",
-      "fileHash": "31c67865",
+      "fileHash": "9e4c3260",
       "needsInterop": false
     },
     "aos": {
       "src": "../../node_modules/aos/dist/aos.js",
       "file": "aos.js",
-      "fileHash": "bef4ecb8",
+      "fileHash": "6981f96d",
       "needsInterop": true
     },
     "react-icons/bs": {
       "src": "../../node_modules/react-icons/bs/index.esm.js",
       "file": "react-icons_bs.js",
-      "fileHash": "040b57e4",
+      "fileHash": "e9535d14",
       "needsInterop": false
     }
   },
   "chunks": {
+    "chunk-DZXRV6RW": {
+      "file": "chunk-DZXRV6RW.js"
+    },
     "chunk-ZAUFE7H7": {
       "file": "chunk-ZAUFE7H7.js"
     },

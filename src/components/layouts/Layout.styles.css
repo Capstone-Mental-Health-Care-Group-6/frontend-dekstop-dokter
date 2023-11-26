@@ -129,16 +129,13 @@ main {
   border: none !important;
 }
 
-
-
 .offcanvass .wrapper .logout button svg {
   width: 22px;
   height: 22px;
-
 }
 
 main .navbar .fw-semibold {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 .modal-title {
@@ -161,11 +158,51 @@ main .navbar .fw-semibold {
   line-height: normal;
 }
 
-.dropdown {
+/* dropdown notification */
+#navbar .d-flex .dropdown {
   color: transparent;
 }
 
+#navbar .d-flex .dropdown .dropdown-menu {
+  margin-top: 10px;
+  border: 1px solid #d9d9d9;
+}
 
+#navbar .d-flex .dropdown .dropdown-menu p {
+  font-size: 20px;
+}
+
+#navbar .d-flex .dropdown .dropdown-menu::before {
+  content: "";
+  position: absolute;
+  top: -1.1rem;
+  right: 1.3rem;
+  width: 35px;
+  height: 35px;
+  transform: rotate(45deg);
+  background-color: white;
+  border-top-left-radius: 8px;
+  border-left: 1px solid #d9d9d9;
+  border-top: 1px solid #d9d9d9;
+}
+
+#navbar .d-flex .dropdown ul li .d-flex .ms-2 p {
+  font-size: 20px;
+}
+
+#navbar .d-flex .dropdown ul li .d-flex .ms-2 p span {
+  color: #676767;
+}
+
+#navbar .d-flex .dropdown ul li .d-flex .ms-2 .btn {
+  font-size: 14px;
+}
+
+#navbar .d-flex .dropdown ul li .d-flex .ms-2 .text__chat {
+  font-size: 12px;
+  color: #9a9a9a;
+}
+/* end dropdown notification */
 
 @media screen and (max-width: 1289px) {
   .sidebar .offcanvass .offcanvas-header {
@@ -264,12 +301,35 @@ main .navbar .fw-semibold {
   .notif-icon {
     width: 35px;
     height: 35px;
-
   }
 
   .navbar .iconNavbar {
     width: 35px;
     height: 35px;
+  }
+
+  #navbar .d-flex .dropdown .dropdown-menu {
+    max-width: 310px;
+  }
+
+  #navbar .d-flex .dropdown ul li .d-flex img {
+    width: 40px;
+    height: 40px;
+  }
+
+  #navbar .d-flex .dropdown ul li .d-flex .ms-2 p {
+    font-size: 16px;
+  }
+
+  #navbar .d-flex .dropdown ul li .d-flex .ms-2 .btn {
+    font-size: 12px;
+  }
+  #navbar .d-flex .dropdown ul li .d-flex .ms-2 {
+    overflow: scroll;
+    word-wrap: break-word;
+  }
+  #navbar .d-flex .dropdown ul li .d-flex .ms-2 .text__chat {
+    font-size: 12px;
   }
 
   main nav h2 {
@@ -294,8 +354,6 @@ main .navbar .fw-semibold {
     width: 35px;
     height: 35px;
   }
-
-
 }
 
 @media screen and (max-width: 259px) {
