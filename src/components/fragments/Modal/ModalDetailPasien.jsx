@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { dataPasien } from "../../DataComponents/dataComponents";
 import {
   bgBlankWhite,
@@ -9,10 +9,13 @@ import {
 } from "../../../../image";
 import Button from "../../elements/Button/Button";
 import ModalAlert from "../ModalAlert/ModalAlert";
+import ModalSkeletonLoad from "../ModalSkeletonLoad/ModalSkeletonLoad";
+import Skeleton from "react-loading-skeleton";
 
 const ModalDetailPasien = ({ id, size, selectedPasienId }) => {
   const [selectedButton, setSelectedButton] = useState(null);
   const [modalTextArea, setModalTextArea] = useState("d-none");
+  const [loadingSkeleton, setLoadingSkeleton] = useState(true);
 
   const [loading, setLoading] = useState(false);
 
@@ -38,6 +41,16 @@ const ModalDetailPasien = ({ id, size, selectedPasienId }) => {
       setModalTextArea("d-none");
     }
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      // Simulate API call delay
+      await new Promise((resolve) => setTimeout(resolve, 3000));
+      setLoadingSkeleton(false);
+    };
+
+    fetchData();
+  }, [selectedPasienId]);
 
   return (
     <>
@@ -162,69 +175,75 @@ const ModalDetailPasien = ({ id, size, selectedPasienId }) => {
         </ModalAlert>
       )}
 
-      <div
-        className="modal fade"
-        id={id}
-        tabindex="-1"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
-        <div className={`modal-dialog modal-dialog-centered  ${size}`}>
-          <div className="modal-content">
-            <div className="modal-body">
-              {selectedPasien && (
-                <div className="d-flex justify-content-center ">
-                  <img src={profilDetailPasien} alt="profil-img-pasien" />
+      {loadingSkeleton ? (
+        <ModalSkeletonLoad />
+      ) : (
+        <div
+          className="modal fade"
+          id={id}
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div className={`modal-dialog modal-dialog-centered  ${size}`}>
+            <div className="modal-content">
+              <div className="modal-body">
+                {selectedPasien && (
+                  <div className="d-flex justify-content-center ">
+                    <img src={profilDetailPasien} alt="profil-img-pasien" />
 
-                  <div className="ms-4">
-                    <p className="d-flex flex-column">
-                      Nama{" "}
-                      <span className="fw-semibold">{selectedPasien.nama}</span>
-                    </p>
-                    <p className="d-flex flex-column ">
-                      Jenis Kelamin{" "}
-                      <span className="fw-semibold">
-                        {selectedPasien.jenisKelamin}
-                      </span>
-                    </p>
-                    <p className="d-flex flex-column ">
-                      Keluhan{" "}
-                      <span className="fw-semibold">
-                        {selectedPasien.keluhan}
-                      </span>
-                    </p>
-                    <p className="d-flex flex-column ">
-                      Via Konsul{" "}
-                      <span className="fw-semibold">
-                        {selectedPasien.viaLayanan}
-                      </span>
-                    </p>
-                    <div className="mt-5 d-flex flex-row gap-3">
-                      <Button
-                        text={"Terima"}
-                        className={
-                          "btn btn-primary rounded-4 py-2 px-4 fw-semibold"
-                        }
-                        bsTogle={"modal"}
-                        bsTarget={"#modal-terima-pasien"}
-                        onClick={handleTerimaPasien}
-                      />
-                      <Button
-                        text={"Tolak"}
-                        className={
-                          "btn btn-transparent border-2 text-primary border-primary rounded-4 py-2 px-4 fw-semibold"
-                        }
-                        bsTogle={"modal"}
-                        bsTarget={"#modal-tolak-pasien"}
-                      />
+                    <div className="ms-4">
+                      <p className="d-flex flex-column">
+                        Nama{" "}
+                        <span className="fw-semibold">
+                          {selectedPasien.nama}
+                        </span>
+                      </p>
+                      <p className="d-flex flex-column ">
+                        Jenis Kelamin{" "}
+                        <span className="fw-semibold">
+                          {selectedPasien.jenisKelamin}
+                        </span>
+                      </p>
+                      <p className="d-flex flex-column ">
+                        Keluhan{" "}
+                        <span className="fw-semibold">
+                          {selectedPasien.keluhan}
+                        </span>
+                      </p>
+                      <p className="d-flex flex-column ">
+                        Via Konsul{" "}
+                        <span className="fw-semibold">
+                          {selectedPasien.viaLayanan}
+                        </span>
+                      </p>
+                      <div className="mt-5 d-flex flex-row gap-3">
+                        <Button
+                          text={"Terima"}
+                          className={
+                            "btn btn-primary rounded-4 py-2 px-4 fw-semibold"
+                          }
+                          bsTogle={"modal"}
+                          bsTarget={"#modal-terima-pasien"}
+                          onClick={handleTerimaPasien}
+                        />
+                        <Button
+                          text={"Tolak"}
+                          className={
+                            "btn btn-transparent border-2 text-primary border-primary rounded-4 py-2 px-4 fw-semibold"
+                          }
+                          bsTogle={"modal"}
+                          bsTarget={"#modal-tolak-pasien"}
+                        />
+                      </div>
                     </div>
                   </div>
-                </div>
-              )}
+                )}
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
     </>
   );
 };
