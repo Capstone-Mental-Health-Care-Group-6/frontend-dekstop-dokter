@@ -5,6 +5,7 @@ import {
   BsWallet2,
   BsFileEarmarkText,
   BsBoxArrowRight,
+  BsCoin,
 } from "react-icons/bs";
 import {
   logoEmpathiCareMobile,
@@ -112,6 +113,11 @@ const Layouts = ({ children }) => {
                   icon={<BsWallet2 />}
                   title="Transaksi"
                   location="/dokter-transaksi"
+                />
+                <SidebarItem
+                  icon={<BsCoin />}
+                  title="Pencairan Saldo"
+                  location="/pencairan-saldo-dokter"
                 />
                 <SidebarItem
                   icon={<BsFileEarmarkText />}
