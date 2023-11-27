@@ -12,7 +12,7 @@ export const dataChatUser = [
     {
         id: 999,
         name: 'Mawardi',
-        text: 'aku di roasting bang alvin',
+        text: 'aku selalu cemas',
         image: personChat2,
         status: 'aktif'
     },
