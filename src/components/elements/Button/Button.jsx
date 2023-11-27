@@ -1,6 +1,16 @@
 import React from "react";
 
-const Button = ({type, className, onClick, id, text }) => {
+const Button = ({
+  type,
+  className,
+  onClick,
+  id,
+  text,
+  bsTogle,
+  bsTarget,
+  bsDismiss,
+  ariaLabel,
+}) => {
   return (
     <div>
       <button
@@ -8,6 +18,10 @@ const Button = ({type, className, onClick, id, text }) => {
         className={className}
         onClick={onClick}
         id={id ? id : ""}
+        data-bs-toggle={bsTogle}
+        aria-label={ariaLabel}
+        data-bs-target={bsTarget}
+        data-bs-dismiss={bsDismiss}
       >
         {text}
       </button>
