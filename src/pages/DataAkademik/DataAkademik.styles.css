@@ -4,8 +4,8 @@
 .container .data-akademik-form {
   width: 100%;
   height: 500px;
-  padding-left: 150px;
-  padding-right: 150px;
+  padding-left: 90px;
+  padding-right: 90px;
   padding-top: 80px;
   justify-content: center;
   align-items: center;
@@ -29,7 +29,6 @@
   margin-left: -50px;
 }
 
-/* Label styling */
 .container .data-akademik-form .row .col-md-6 label {
   display: flex;
   height: 34px;
@@ -54,34 +53,21 @@
   align-self: stretch;
 }
 
-/* Add this to your DataAkademik.styles.css file */
-.invalid-input {
-  border: 1px solid red; /* Red border for validation failure */
-}
-
-/* Optional: You can customize the styling further, like adding a red background or changing text color */
-.invalid-input::placeholder {
-  color: red; /* Text color for placeholder in validation failure */
-}
-
-.invalid-input:focus {
-  border: 1px solid red; /* Red border for validation failure when focused */
-}
-
-
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .container .data-akademik-form {
     padding: 20px;
     width: 100%;
+    height: fit-content;
     padding: 10px;
-    padding-left: 10px;
-    padding-right: 0;
+    padding-left: 50px;
+    padding-right: 50px;
   }
 
   .container .data-akademik-form .data-akademik-title {
     font-size: 16px;
     margin-top: 6%; 
-    margin-left: 15%;
+    padding-left: 5%;
+    padding-bottom: 5%;
   }
 
   .container .data-akademik-form .row .col-md-6 label {
@@ -90,6 +76,30 @@
 
   .container .data-akademik-form .row .col-md-6 input {
     height: 36px;
+    width: 90%; 
+  }
+}
+
+@media (max-width: 540px) {
+  .container .data-akademik-form {
+    padding: 20px;
+    width: 100%;
+    height: fit-content;
+    padding: 10px;
+    padding-left: 10px;
+    padding-right: 0;
+  }
+
+  .container .data-akademik-form .data-akademik-title {
+    font-size: 16px;
+    margin-top: 6%; 
+    margin-left: 2%;
+    padding-bottom: 5%;
+  }
+
+  .container .data-akademik-form .row .col-md-6 input {
+    height: 36px;
     width: 95%; 
   }
 }
+

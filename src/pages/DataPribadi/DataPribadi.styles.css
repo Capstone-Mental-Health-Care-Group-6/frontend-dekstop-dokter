@@ -42,8 +42,8 @@
 .data-pribadi .data-pribadi-form {
     width: 100%;
     height: 670px;
-    padding-left: 150px;
-    padding-right: 150px;
+    padding-left: 100px;
+    padding-right: 100px;
     padding-top: 80px;
     justify-content: center;
     align-items: center;
@@ -105,28 +105,30 @@
 
 .input-with-icon .icon {
   position: absolute;
-  left: 10px; /* Sesuaikan dengan jarak ikon dari kiri */
+  left: 10px; 
   top: 50%;
   transform: translateY(-50%);
-  color: #555; /* Sesuaikan dengan warna ikon */
+  color: #555;
 }
 
   
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     .data-pribadi .card {
       width: 100%;
       max-width: 100%;
     }
 
     .data-pribadi .card img {
-     margin-left: -20px; 
+     width: 70%;
+     margin-left: -50px;
+     height: auto;
     }
     
     .data-pribadi .card h5 {
-      font-size: 12px;
-      margin-left: 35%; 
-      margin-top: -50px;
+      font-size: 16px;
       width: fit-content;
+      height: fit-content;
+      margin-left: -50px;
     }
   
     .data-pribadi .data-pribadi-form {
@@ -135,12 +137,14 @@
       padding-right: 0;
       padding-top: 0;
       height: fit-content;
-      width: fit-content;
+      width: 100%;
     }
   
     .data-pribadi .data-pribadi-form .data-pribadi-title {
       font-size: 16px;
       margin-left: 3%;
+      padding-top: 5%;
+      padding-bottom: 5%;
     }
   
     .data-pribadi .data-pribadi-form .row .col-md-6 label {
@@ -150,6 +154,21 @@
     .data-pribadi .data-pribadi-form .row .col-md-6 input,
     .data-pribadi .data-pribadi-form .row .col-md-6 select {
       height: 36px;
-      width: fit-content;
+      width: 90%;
     }
+  }
+
+  @media (max-width: 540px) {
+    .data-pribadi .card img {
+      margin-left: -20px; 
+      width: 40%;
+      height: auto;
+     }
+
+     .data-pribadi .card h5 {
+      font-size: 12px;
+      margin-left: 35%; 
+      margin-top: -50px;
+      width: fit-content;
+    } 
   }
