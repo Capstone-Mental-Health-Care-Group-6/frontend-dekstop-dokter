@@ -81,11 +81,13 @@ const Layouts = ({ children }) => {
             imageSrc={iconNotifNavbar}
             dropdownContent={dataNotification.map((item) => item)}
           />
-          <img
-            src={iconProfileNavbar}
-            alt="icon-profile"
-            className="iconNavbar"
-          />
+          <NavLink to={"/dokter-profile"}>
+            <img
+              src={iconProfileNavbar}
+              alt="icon-profile"
+              className="iconNavbar"
+            />
+          </NavLink>
         </div>
       </nav>
 
