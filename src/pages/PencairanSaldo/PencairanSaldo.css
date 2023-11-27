@@ -1,3 +1,7 @@
+.pencairan__saldo {
+  min-height: 100vh;
+}
+
 .pencairan__saldo h5 {
   font-size: 20px;
 }

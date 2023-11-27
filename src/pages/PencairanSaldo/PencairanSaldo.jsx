@@ -5,11 +5,12 @@ import { iconCardTarikSaldo } from "../../../image";
 import { dataPencairanSaldo } from "../../components/DataComponents/dataComponents";
 import ModalTarikSaldo from "../../components/fragments/Modal/ModalTarikSaldo";
 import CardSaldo from "../../components/fragments/Card/CardSaldo";
+import TablePencairanSaldo from "../../components/fragments/TablePencairanSaldo/TablePencairanSaldo";
 
 const PencairanSaldo = () => {
   return (
     <Layouts>
-      <div className="pencairan__saldo bg-white rounded-2 px-2 py-2">
+      <div className="pencairan__saldo  bg-white rounded-2 px-2 py-2">
         <h5 className="fw-semibold ms-3 mt-2">Pencairan Saldo</h5>
         <div className="row row-cols-1 row-cols-lg-3 g-2">
           <div className="col">
@@ -39,6 +40,8 @@ const PencairanSaldo = () => {
             </div>
           ))}
         </div>
+
+        <TablePencairanSaldo />
       </div>
 
       <ModalTarikSaldo id={"modal-tarik-saldo"} size={"modal-md"} />
