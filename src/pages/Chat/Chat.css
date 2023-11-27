@@ -112,7 +112,9 @@
     margin-right: 10%;
 }
 
-
-
+.chat-page .row .col .input-chat-end {
+    border-top: 1px solid #D9D9D9;
+    padding: 20px 0px;
+}
 
 /* chat-content right end  */

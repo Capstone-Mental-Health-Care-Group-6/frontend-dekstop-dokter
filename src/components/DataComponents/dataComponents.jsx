@@ -6,7 +6,8 @@ export const dataChatUser = [
         name: 'Rojak',
         text: 'Saya juga punya masalah hubungan...',
         image: personChat,
-        status: 'aktif'
+        status: 'aktif',
+        session: 'zoom'
     },
     {
         id: 999,
@@ -24,9 +25,9 @@ export const dataChatUser = [
     },
     {
         id: 579,
-        name: 'Putri',
+        name: 'Joko',
         text: 'bapak saya hamil',
-        image: personChat3,
+        image: personChat,
         status: 'berakhir'
     },
     {

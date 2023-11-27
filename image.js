@@ -21,11 +21,12 @@ import personChat2 from "./src/assets/personChat2.svg";
 import personChat3 from "./src/assets/personChat3.svg";
 import choiseChat from "./src/assets/choiseChat.svg";
 import sendChat from "./src/assets/send-chat.svg";
+import logoZoom from "./src/assets/logo-zoom.svg";
 
 export {
   logoEmpathiCareMobile,
   iconProfileNavbar,
   iconNotifNavbar,
   Cuate, img1, Bg1, Bg2, Bg3, Hourglass, Wallet, Stethoscope, Checkmark, Peopleoutline, amico, Googleplay, Appstore,
-  logoEmpathiCare, logoKemenkes, personChat, personChat2, personChat3, choiseChat, sendChat
+  logoEmpathiCare, logoKemenkes, personChat, personChat2, personChat3, choiseChat, sendChat, logoZoom
 };
