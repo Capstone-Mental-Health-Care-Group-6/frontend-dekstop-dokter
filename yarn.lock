@@ -1769,10 +1769,10 @@ prelude-ls@^1.2.1:
   resolved "https://registry.yarnpkg.com/prelude-ls/-/prelude-ls-1.2.1.tgz#debc6489d7a6e6b0e7611888cec880337d316396"
   integrity sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==
 
-primereact@^10.1.0:
-  version "10.1.0"
-  resolved "https://registry.yarnpkg.com/primereact/-/primereact-10.1.0.tgz#d9c15194ca1b36622ea54a72cfaeb221bfa65652"
-  integrity sha512-ELkLDu9kiFFNMUbC79cUkcpZhw8CFWAzt47220hRu4lq2MQ5V7p8SzDk+2j+sIja9H8ibUJqGFa5ZYIoiXn+wQ==
+primereact@^10.1.1:
+  version "10.1.1"
+  resolved "https://registry.yarnpkg.com/primereact/-/primereact-10.1.1.tgz#8d537978951bf0651dc770b390e1bb70d81a7ac8"
+  integrity sha512-LH8ZfOv5Q26c6htd9IoPDmCNosEUTGB9dHlgShm7KEMZKB4j5nZgOxiA5lfew6tYdiYpRCOSmh7y6EyN+T9sPQ==
   dependencies:
     "@types/react-transition-group" "^4.4.1"
     react-transition-group "^4.4.1"

@@ -30,6 +30,8 @@ import iconAlertTerimaPasien from "./src/assets/iconAlertTerimaPasien.svg";
 import imgMenerimaPembayaran from "./src/assets/imgMenerimaPembayaran.png";
 import bgBlankWhite from "./src/assets/bgBlankWhite.jpg";
 import iconCardTarikSaldo from "./src/assets/iconCardTarikSaldo.svg";
+import iconCardProsesPenarikan from "./src/assets/iconCardProsesPenarikan.svg";
+import iconCardSaldoAktif from "./src/assets/iconCardSaldoAktif.svg";
 
 export {
   logoEmpathiCareMobile,
@@ -64,4 +66,6 @@ export {
   imgMenerimaPembayaran,
   bgBlankWhite,
   iconCardTarikSaldo,
+  iconCardProsesPenarikan,
+  iconCardSaldoAktif,
 };

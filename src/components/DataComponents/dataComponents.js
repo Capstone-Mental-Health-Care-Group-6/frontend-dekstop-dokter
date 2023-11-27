@@ -1,4 +1,12 @@
-import { iconChat, iconClock, iconPasien, iconZoom } from "../../../image";
+import {
+  iconCardTarikSaldo,
+  iconCardSaldoAktif,
+  iconCardProsesPenarikan,
+  iconChat,
+  iconClock,
+  iconPasien,
+  iconZoom,
+} from "../../../image";
 
 export const cardLaporanMingguan = [
   {
@@ -107,5 +115,20 @@ export const dataPasien = [
     jenisKelamin: "Laki-Laki",
     keluhan: "Sering Cemas",
     viaLayanan: "Video Call",
+  },
+];
+
+export const dataPencairanSaldo = [
+  {
+    className: "card__saldo__aktif",
+    imgSrc: iconCardSaldoAktif,
+    title: "Saldo Aktif",
+    subTitle: "Rp 200.000",
+  },
+  {
+    className: "card__proses__penarikan",
+    imgSrc: iconCardProsesPenarikan,
+    title: "Proses Penarikan",
+    subTitle: "Rp 50.000",
   },
 ];

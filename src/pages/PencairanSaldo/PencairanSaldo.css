@@ -2,6 +2,38 @@
   font-size: 20px;
 }
 
-/* .pencairan__saldo .card__tarik__saldo{
-    shad
-} */
+.pencairan__saldo .row .col .card__tarik__saldo {
+  box-shadow: 1px 1px 10px 0px rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: 1px 1px 10px 0px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 1px 1px 10px 0px rgba(0, 0, 0, 0.25);
+  /* width: 325px; */
+  height: 20vh;
+  cursor: pointer;
+}
+
+.pencairan__saldo .row .col .card__tarik__saldo:active {
+  border: 2px solid #0085ff !important;
+}
+
+.pencairan__saldo .row .col .card__tarik__saldo .d-flex p {
+  font-size: 18px;
+  color: #3b78fc;
+}
+
+.pencairan__saldo .row .col .card__saldo__aktif,
+.pencairan__saldo .row .col .card__proses__penarikan {
+  box-shadow: 1px 1px 10px 0px rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: 1px 1px 10px 0px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 1px 1px 10px 0px rgba(0, 0, 0, 0.25);
+  height: 20vh;
+}
+
+.pencairan__saldo .row .col .card__saldo__aktif .d-flex .fw-semibold,
+.pencairan__saldo .row .col .card__saldo__aktif .d-flex .fw-bold {
+  color: #00b932;
+}
+
+.pencairan__saldo .row .col .card__proses__penarikan.d-flex .fw-semibold,
+.pencairan__saldo .row .col .card__proses__penarikan.d-flex .fw-bold {
+  color: #ffd200;
+}
