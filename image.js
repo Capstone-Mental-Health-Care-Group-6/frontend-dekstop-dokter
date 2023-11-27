@@ -29,6 +29,13 @@ import iconAlertTolakPasien from "./src/assets/iconAlertTolakPasien.svg";
 import iconAlertTerimaPasien from "./src/assets/iconAlertTerimaPasien.svg";
 import imgMenerimaPembayaran from "./src/assets/imgMenerimaPembayaran.png";
 import bgBlankWhite from "./src/assets/bgBlankWhite.jpg";
+import avatar1 from "./src/assets/avatar1.svg";
+import avatar2 from "./src/assets/avatar2.svg";
+import avatar3 from "./src/assets/avatar3.svg";
+import avatar4 from "./src/assets/avatar4.svg";
+import avatar5 from "./src/assets/avatar5.svg";
+import searchFailed from "./src/assets/searchFailed.png";
+
 
 export {
   logoEmpathiCareMobile,
@@ -62,4 +69,10 @@ export {
   iconAlertTerimaPasien,
   imgMenerimaPembayaran,
   bgBlankWhite,
+  avatar1,
+  avatar2,
+  avatar3,
+  avatar4,
+  avatar5,
+  searchFailed
 };
