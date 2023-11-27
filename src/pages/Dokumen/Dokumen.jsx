@@ -66,25 +66,27 @@ const Dokumen = () => {
           <div className="row">
             <Label htmlFor="cv">Curriculum Vitae (CV)</Label>
             <div className="input-group mb-3">
-              <Input
-                type="text"
-                className="form-control mb-2"
-                id="cv"
-                name="cv"
-                readOnly
-              />
-              <label className="btn btn-outline-primary mb-2 choose-file-btn">
-                Pilih File
-                <input
-                  type="file"
-                  style={{ display: "none" }}
-                  onChange={(e) =>
-                    handleFileChange(e, setCvFile, (value) =>
-                      document.getElementById("cv").value = value
-                    )
-                  }
+              <div className="form-control-wrapper">
+                <Input
+                  type="text"
+                  className="form-control mb-2"
+                  id="cv"
+                  name="cv"
+                  readOnly
                 />
-              </label>
+                <label className="btn btn-outline-primary mb-2 choose-file-btn">
+                  Pilih File
+                  <input
+                    type="file"
+                    style={{ display: "none" }}
+                    onChange={(e) =>
+                      handleFileChange(e, setCvFile, (value) =>
+                        document.getElementById("cv").value = value
+                      )
+                    }
+                  />
+                </label>
+              </div>
             </div>
           </div>
 
@@ -92,6 +94,7 @@ const Dokumen = () => {
           <div className="row">
             <Label htmlFor="sip">Surat Izin Praktek (SIP)</Label>
             <div className="input-group mb-3">
+              <div className="form-control-wrapper">
               <Input
                 type="text"
                 className="form-control mb-2"
@@ -111,6 +114,7 @@ const Dokumen = () => {
                   }
                 />
               </label>
+              </div>
             </div>
           </div>
 
@@ -118,7 +122,8 @@ const Dokumen = () => {
           <div className="row">
             <Label htmlFor="ijazah">Ijazah Terakhir</Label>
             <div className="input-group mb-3">
-              <Input
+            <div className="form-control-wrapper">
+            <Input
                 type="text"
                 className="form-control mb-2"
                 id="ijazah"
@@ -137,6 +142,7 @@ const Dokumen = () => {
                   }
                 />
               </label>
+            </div>
             </div>
           </div>
         </form>
