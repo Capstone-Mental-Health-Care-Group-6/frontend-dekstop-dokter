@@ -120,7 +120,7 @@ const Chat = () => {
           <div className="col col-lg-7 col-sm-8">
             <div className="chat-content  d-flex flex-column justify-content-between">
               <div className="profile-and-status">
-                <div className="d-flex justify-content-between bg-primary w-100 align-items-center p-3">
+                <div className="d-flex justify-content-between bg-primary  align-items-center p-lg-3 py-3 p-1">
                   <div className="d-flex gap-3 justify-content-start align-items-center ">
                     <img src={personChat} alt="" />
                     <div className="text-profile">
@@ -148,7 +148,8 @@ const Chat = () => {
                 <div className="chat-text px-2 mx-auto">
                   Silakan klik tombol di atas untuk bergabung ke ruang Zoom
                 </div>
-                : <div className="chat-text px-2">
+                :
+                <div className="chat-text px-2 position-relative">
                   {dataChat.map((chat, index) => (
                     <div
                       key={index}
@@ -158,8 +159,15 @@ const Chat = () => {
                     </div>
                   ))}
 
+                  {showEmojiPicker && (
+                    <div className="emoji-picker position-absolute" >
+                      <EmojiPicker onEmojiClick={(event, emojiObject) => console.log(emojiObject)} />
+                    </div>
+                  )}
+
                 </div>
               }
+
 
 
               {zoom ? (
@@ -168,23 +176,23 @@ const Chat = () => {
                 </div>
               ) : (
                 inputChat ? (
-                  <div className="input-chat mb-3 d-flex">
-                    <button className="btn dropdown-toggle border-0" data-bs-toggle="dropdown" aria-expanded="false" >
-                      <img src={choiseChat} alt="" />
-                      <ul className="dropdown-menu ">
-                        <EmojiPicker />
-                      </ul>
-                    </button>
-                    <input
-                      type="text"
-                      className="form-control shadow-none"
-                      placeholder="Ketik Pesan"
-                      aria-label="Username"
-                      aria-describedby="basic-addon1"
-                    />
-                    <button className="btn">
-                      <img src={sendChat} alt="" />
-                    </button>
+                  <div>
+
+                    <div className="input-chat mb-3 d-flex">
+                      <button className="btn dropdown-toggle border-0" data-bs-toggle="dropdown" aria-expanded="false" onClick={toggleEmojiPicker} >
+                        <img src={choiseChat} alt="" />
+                      </button>
+                      <input
+                        type="text"
+                        className="form-control shadow-none"
+                        placeholder="Ketik Pesan"
+                        aria-label="Username"
+                        aria-describedby="basic-addon1"
+                      />
+                      <button className="btn">
+                        <img src={sendChat} alt="" />
+                      </button>
+                    </div>
                   </div>
                 ) : (
                   <div className="input-chat-end d-flex justify-content-center">
