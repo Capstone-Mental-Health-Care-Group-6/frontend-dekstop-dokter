@@ -1,18 +1,20 @@
 import React from "react";
 
-const InputSelect = ({ title, className, name, id, onChange, options }) => {
+const InputSelect = ({ id, name, title, options, value, onChange, className }) => {
   return (
     <div>
       <select
-        name={name}
         id={id}
-        className={`form-select ${className}`}
-        aria-label="Default select example"
+        name={name}
+        value={value} 
         onChange={onChange}
+        className={className}
       >
-        <option selected>{title}</option>
-        {options.map((option, index) => (
-          <option value={option} key={index}>
+        <option value="" disabled>
+          {title}
+        </option>
+        {options.map((option) => (
+          <option key={option} value={option}>
             {option}
           </option>
         ))}
