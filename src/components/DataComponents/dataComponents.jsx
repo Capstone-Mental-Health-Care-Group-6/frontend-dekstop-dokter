@@ -2,11 +2,15 @@ import {
   iconChat,
   iconClock,
   iconPasien,
+  iconProfilePasien1,
+  iconProfilePasien2,
+  iconProfilePasien3,
   iconZoom,
   personChat,
   personChat2,
   personChat3,
 } from "../../../image";
+import Button from "../elements/Button/Button";
 
 export const cardLaporanMingguan = [
   {
@@ -115,6 +119,55 @@ export const dataPasien = [
     jenisKelamin: "Laki-Laki",
     keluhan: "Sering Cemas",
     viaLayanan: "Video Call",
+  },
+];
+
+export const dataNotification = [
+  {
+    id: 1,
+    content: (
+      <div className="d-flex align-items-center border-bottom border-secondary-subtle py-3">
+        <img src={iconProfilePasien1} alt="icon-profile-pasien" />
+        <div className="ms-2">
+          <p className="fw-semibold">
+            Rojak <span>via</span> Chat
+          </p>
+
+          <Button
+            text={"lihat detail"}
+            className={"btn btn-primary text-white px-2 py-1 rounded-3"}
+          />
+        </div>
+      </div>
+    ),
+  },
+  {
+    id: 2,
+    content: (
+      <div className="d-flex align-items-center border-bottom border-secondary-subtle py-3">
+        <img src={iconProfilePasien2} alt="icon-profile-pasien" />
+        <div className="ms-2">
+          <p className="fw-semibold">Mawardi</p>
+          <p className="text__chat">
+            oke dok akan segera saya terapkan metode ini
+          </p>
+        </div>
+      </div>
+    ),
+  },
+  {
+    id: 3,
+    content: (
+      <div className="d-flex align-items-center border-bottom border-secondary-subtle py-3">
+        <img src={iconProfilePasien3} alt="icon-profile-pasien" />
+        <div className="ms-2">
+          <p className="fw-semibold">Putri Malu</p>
+          <p className="text__chat">
+            Sama-sama , saya senang bisa membantu Anda. kita......
+          </p>
+        </div>
+      </div>
+    ),
   },
 ];
 
