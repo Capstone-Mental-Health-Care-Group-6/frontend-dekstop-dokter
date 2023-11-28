@@ -11,10 +11,10 @@ const ModalAlertSaldo = ({ id, size, children }) => {
       aria-hidden="true"
     >
       <div className={`modal-dialog modal-dialog-centered ${size}`}>
-        <div className="modal-content rounded-4 p-4">
-          <div className="border-0 position-relative ">
+        <div className="modal-content rounded-4 p-3">
+          <div className="border-0 position-relative py-2">
             <Button
-              className={"btn-close position-absolute end-0 "}
+              className={"btn-close position-absolute end-0"}
               bsDismiss={"modal"}
               ariaLabel={"Close"}
             />
