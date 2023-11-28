@@ -6,6 +6,10 @@ import {
   iconClock,
   iconPasien,
   iconZoom,
+  avatar1,
+  avatar2,
+  avatar3,
+  avatar4,
 } from "../../../image";
 
 export const cardLaporanMingguan = [
@@ -130,5 +134,53 @@ export const dataPencairanSaldo = [
     imgSrc: iconCardProsesPenarikan,
     title: "Proses Penarikan",
     subTitle: "Rp 50.000",
+  },
+];
+
+export const dataTablePencairanSaldo = [
+  {
+    idTransaksi: "CASDI9823HUAK",
+    avatar: avatar1,
+    namaPasien: "Gwenchana",
+    tanggal: "22 Okt 2023",
+    paketLangganan: "Paket Premium",
+    harga: "Rp 200.000",
+    status: "Sukses",
+  },
+  {
+    idTransaksi: "CASDI9823HUAK",
+    avatar: avatar2,
+    namaPasien: "Gwenchana",
+    tanggal: "22 Okt 2023",
+    paketLangganan: "Paket Premium",
+    harga: "Rp 200.000",
+    status: "Sukses",
+  },
+  {
+    idTransaksi: "CASDI9823HUAK",
+    avatar: avatar3,
+    namaPasien: "Gwenchana",
+    tanggal: "22 Okt 2023",
+    paketLangganan: "Paket Instan",
+    harga: "Rp 200.000",
+    status: "Proses",
+  },
+  {
+    idTransaksi: "CASDI9823HUAK",
+    avatar: avatar4,
+    namaPasien: "Gwenchana",
+    tanggal: "22 Okt 2023",
+    paketLangganan: "Paket Instan",
+    harga: "Rp 200.000",
+    status: "Pending",
+  },
+  {
+    idTransaksi: "CASDI9823HUAK",
+    avatar: avatar4,
+    namaPasien: "Gwenchana",
+    tanggal: "22 Okt 2023",
+    paketLangganan: "Paket Premium",
+    harga: "Rp 200.000",
+    status: "Pending",
   },
 ];

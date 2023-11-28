@@ -6,6 +6,8 @@
   font-size: 20px;
 }
 
+/* card pencairan saldo */
+
 .pencairan__saldo .row .col .card__tarik__saldo {
   box-shadow: 1px 1px 10px 0px rgba(0, 0, 0, 0.25);
   -webkit-box-shadow: 1px 1px 10px 0px rgba(0, 0, 0, 0.25);
@@ -40,4 +42,55 @@
 .pencairan__saldo .row .col .card__proses__penarikan.d-flex .fw-semibold,
 .pencairan__saldo .row .col .card__proses__penarikan.d-flex .fw-bold {
   color: #ffd200;
+}
+
+/* end card pencairan saldo */
+
+.pencairan__saldo .wrapper__table__saldo {
+  padding: 10px;
+  box-shadow: 1px -1px 10px 0px rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: 1px -1px 10px 0px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 1px -1px 10px 0px rgba(0, 0, 0, 0.25);
+}
+
+.pencairan__saldo .wrapper__table__saldo .table-header-border {
+  border-top: 1px solid #dcdcdc;
+  border-bottom: 1px solid #dcdcdc;
+  height: 48px;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.pencairan__saldo .wrapper__table__saldo .success-status,
+.pencairan__saldo .wrapper__table__saldo .insuccess-status,
+.pencairan__saldo .wrapper__table__saldo .process-status {
+  display: inline-block;
+  text-align: center;
+  width: 100px;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  gap: 10px;
+  height: 30px;
+  border-radius: 8px;
+  padding: 4px 12px;
+}
+
+.pencairan__saldo .wrapper__table__saldo .success-status {
+  background-color: #d4f1dd;
+  color: #1b7a37;
+}
+
+.pencairan__saldo .wrapper__table__saldo .insuccess-status {
+  background-color: #ffdfd7;
+  color: #aa3e24;
+}
+
+.pencairan__saldo .wrapper__table__saldo .process-status {
+  background-color: #fff9db;
+  color: #aaa20b;
 }

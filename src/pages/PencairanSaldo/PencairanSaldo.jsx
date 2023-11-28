@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import Layouts from "../../components/layouts/Layouts";
 import "./PencairanSaldo.css";
 import { iconCardTarikSaldo } from "../../../image";
-import { dataPencairanSaldo } from "../../components/DataComponents/dataComponents";
+import {
+  dataPencairanSaldo,
+  dataTablePencairanSaldo,
+} from "../../components/DataComponents/dataComponents";
 import ModalTarikSaldo from "../../components/fragments/Modal/ModalTarikSaldo";
 import CardSaldo from "../../components/fragments/Card/CardSaldo";
 import TablePencairanSaldo from "../../components/fragments/TablePencairanSaldo/TablePencairanSaldo";
@@ -41,7 +44,7 @@ const PencairanSaldo = () => {
           ))}
         </div>
 
-        <TablePencairanSaldo />
+        <TablePencairanSaldo data={dataTablePencairanSaldo} />
       </div>
 
       <ModalTarikSaldo id={"modal-tarik-saldo"} size={"modal-md"} />

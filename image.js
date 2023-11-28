@@ -32,6 +32,10 @@ import bgBlankWhite from "./src/assets/bgBlankWhite.jpg";
 import iconCardTarikSaldo from "./src/assets/iconCardTarikSaldo.svg";
 import iconCardProsesPenarikan from "./src/assets/iconCardProsesPenarikan.svg";
 import iconCardSaldoAktif from "./src/assets/iconCardSaldoAktif.svg";
+import avatar1 from "./src/assets/avatar1.svg";
+import avatar2 from "./src/assets/avatar2.svg";
+import avatar3 from "./src/assets/avatar3.svg";
+import avatar4 from "./src/assets/avatar4.svg";
 
 export {
   logoEmpathiCareMobile,
@@ -68,4 +72,8 @@ export {
   iconCardTarikSaldo,
   iconCardProsesPenarikan,
   iconCardSaldoAktif,
+  avatar1,
+  avatar2,
+  avatar3,
+  avatar4,
 };
