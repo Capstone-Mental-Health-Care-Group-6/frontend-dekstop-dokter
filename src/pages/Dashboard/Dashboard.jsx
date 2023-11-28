@@ -2,12 +2,12 @@ import React from "react";
 import Layouts from "../../components/layouts/Layouts";
 import { dashboardImg } from "../../../image";
 import "./Dashboard.css";
+import Card from "../../components/fragments/Card/Card";
+import TableListPasien from "../../components/fragments/TableListPasien/TableListPasien";
 import {
   cardLaporanMingguan,
   dataPasien,
 } from "../../components/DataComponents/dataComponents";
-import Card from "../../components/fragments/Card/Card";
-import TableListPasien from "../../components/fragments/TableListPasien/TableListPasien";
 
 const Dashboard = () => {
   return (
