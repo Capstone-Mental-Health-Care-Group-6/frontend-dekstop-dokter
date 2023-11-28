@@ -18,6 +18,7 @@ const Routing = () => {
       <Route path="/" element={<LandingPage />} />
       <Route path="/dashboard-dokter" element={<Dashboard />} />
       <Route path="/dokter-chat" element={<Chat />} />
+      <Route path="/dokter-chat/:id" element={<Chat />} />
       <Route path="/dokter-transaksi" element={<Transaksi />} />
       <Route path="/dokter-artikel" element={<Artikel />} />
       <Route path="/dokter-profile" element={<Profile />} />   
