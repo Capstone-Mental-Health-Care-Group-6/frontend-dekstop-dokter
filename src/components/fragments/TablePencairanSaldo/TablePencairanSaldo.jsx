@@ -34,6 +34,9 @@ const TablePencairanSaldo = ({ data }) => {
     <div className="mt-4 bg-white wrapper__table__saldo rounded-1">
       <DataTable
         value={data}
+        paginator
+        rows={5}
+        rowsPerPageOptions={[5, 10, 25, 50]}
         className="p-datatable-sm"
         rowClassName="table-row-height"
       >
