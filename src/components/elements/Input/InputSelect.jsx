@@ -18,9 +18,7 @@ const InputSelect = ({
         onChange={onChange}
         className={`${className} form-select`}
       >
-        <option value="" disabled>
-          {title}
-        </option>
+        <option value="">{title}</option>
         {options.map((option) => (
           <option key={option} value={option}>
             {option}

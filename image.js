@@ -42,6 +42,7 @@ import avatar1 from "./src/assets/avatar1.svg";
 import avatar2 from "./src/assets/avatar2.svg";
 import avatar3 from "./src/assets/avatar3.svg";
 import avatar4 from "./src/assets/avatar4.svg";
+import imgModalSaldoCair from "./src/assets/imgModalSaldoCair.png";
 
 export {
   logoEmpathiCareMobile,
@@ -88,4 +89,5 @@ export {
   choiseChat,
   sendChat,
   logoZoom,
+  imgModalSaldoCair,
 };
