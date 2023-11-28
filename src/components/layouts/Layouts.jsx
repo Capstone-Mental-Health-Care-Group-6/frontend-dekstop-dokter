@@ -14,6 +14,9 @@ import {
 } from "../../../image";
 import SidebarItem from "../elements/SidebarItem/SidebarItem";
 import "./Layout.styles.css";
+import { NavLink } from "react-router-dom";
+import DropdownNotif from "../elements/DropdownNotification/DropdownNotif";
+import { dataNotification } from "../DataComponents/dataComponents";
 
 const Layouts = ({ children }) => {
   return (
@@ -23,16 +26,17 @@ const Layouts = ({ children }) => {
         className="navbar bg-white d-flex align-items-center justify-content-end"
       >
         <div className="d-flex align-items-center gap-2 pe-4">
-          <img
-            src={iconNotifNavbar}
-            alt="icon-notification"
-            className="notif-icon"
+          <DropdownNotif
+            imageSrc={iconNotifNavbar}
+            dropdownContent={dataNotification.map((item) => item)}
           />
-          <img
-            src={iconProfileNavbar}
-            alt="icon-profile"
-            className="iconNavbar"
-          />
+          <NavLink to={"/dokter-profile"}>
+            <img
+              src={iconProfileNavbar}
+              alt="icon-profile"
+              className="iconNavbar"
+            />
+          </NavLink>
         </div>
       </nav>
 
@@ -66,10 +70,12 @@ const Layouts = ({ children }) => {
                   location="/dokter-artikel"
                 />
               </ul>
-
             </div>
-            <div className="d-grid logout justify-content-start" >
-              <button className="btn" > {<BsBoxArrowRight />} <span className="ms-2" >Logout</span> </button>
+            <div className="d-grid logout justify-content-start">
+              <button className="btn">
+                {" "}
+                {<BsBoxArrowRight />} <span className="ms-2">Logout</span>{" "}
+              </button>
             </div>
           </div>
         </div>
