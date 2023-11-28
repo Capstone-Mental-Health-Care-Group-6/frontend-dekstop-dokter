@@ -24,6 +24,12 @@ import Googleplay from "./src/assets/googleplay.png";
 import Appstore from "./src/assets/appstore.png";
 import logoEmpathiCare from "./src/assets/logoEmpathiCare.svg";
 import logoKemenkes from "./src/assets/logokemenkes.png";
+import personChat from "./src/assets/personChat.svg";
+import personChat2 from "./src/assets/personChat2.svg";
+import personChat3 from "./src/assets/personChat3.svg";
+import choiseChat from "./src/assets/choiseChat.svg";
+import sendChat from "./src/assets/send-chat.svg";
+import logoZoom from "./src/assets/logo-zoom.svg";
 import profilDetailPasien from "./src/assets/profilDetailPasien.png";
 import iconAlertTolakPasien from "./src/assets/iconAlertTolakPasien.svg";
 import iconAlertTerimaPasien from "./src/assets/iconAlertTerimaPasien.svg";
@@ -76,4 +82,10 @@ export {
   avatar2,
   avatar3,
   avatar4,
+  personChat,
+  personChat2,
+  personChat3,
+  choiseChat,
+  sendChat,
+  logoZoom,
 };

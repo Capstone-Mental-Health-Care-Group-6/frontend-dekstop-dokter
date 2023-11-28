@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { dataPasien } from "../../DataComponents/dataComponents";
 import {
   bgBlankWhite,
   iconAlertTerimaPasien,
@@ -11,6 +10,7 @@ import Button from "../../elements/Button/Button";
 import ModalAlert from "../ModalAlert/ModalAlert";
 import ModalSkeletonLoad from "../ModalSkeletonLoad/ModalSkeletonLoad";
 import Skeleton from "react-loading-skeleton";
+import { dataPasien } from "../../DataComponents/dataComponents";
 
 const ModalDetailPasien = ({ id, size, selectedPasienId }) => {
   const [selectedButton, setSelectedButton] = useState(null);

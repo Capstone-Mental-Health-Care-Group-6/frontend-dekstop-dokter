@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import Layouts from "../../components/layouts/Layouts";
 import "./PencairanSaldo.css";
 import { iconCardTarikSaldo } from "../../../image";
+import ModalTarikSaldo from "../../components/fragments/Modal/ModalTarikSaldo";
+import CardSaldo from "../../components/fragments/Card/CardSaldo";
+import TablePencairanSaldo from "../../components/fragments/TablePencairanSaldo/TablePencairanSaldo";
 import {
   dataPencairanSaldo,
   dataTablePencairanSaldo,
 } from "../../components/DataComponents/dataComponents";
-import ModalTarikSaldo from "../../components/fragments/Modal/ModalTarikSaldo";
-import CardSaldo from "../../components/fragments/Card/CardSaldo";
-import TablePencairanSaldo from "../../components/fragments/TablePencairanSaldo/TablePencairanSaldo";
 
 const PencairanSaldo = () => {
   return (
