@@ -79,6 +79,11 @@
 
 
 /* chat-content right    */
+.chat-content .profile-and-status {
+    position: sticky;
+    top: 0;
+}
+
 .chat-content .profile-and-status .text-profile .d-flex span:nth-child(1) {
     color: #33FF00;
 }
@@ -123,9 +128,28 @@
     padding: 20px 0px;
 }
 
-.chat-page .col .chat-content .emoji-picker {
-    top: 40%;
+.chat-page .row .col .input-chat {
+    position: sticky;
+    bottom: 0;
+    background-color: #FFFFFF;
+    padding: 7px;
 }
+
+.chat-page .col .chat-content .emoji-picker {
+    left: 0;
+    bottom: 0;
+    margin-bottom: 60px;
+}
+
+.chat-page .col .chat-content .emoji-picker {
+    width: 60%;
+}
+
+.chat-page .col .chat-content .emoji-picker .EmojiPickerReact {
+    width: 50vh;
+}
+
+
 
 @media screen and (max-width: 1276px) {
     main {
@@ -176,6 +200,10 @@
         font-size: 12px;
     }
 
+    .chat-page .col .chat-content .emoji-picker {
+        width: 80%;
+    }
+
 
 }
 
@@ -192,6 +220,11 @@
         width: 50px;
         height: 50px;
     }
+
+    .chat-page .col .chat-content .emoji-picker {
+        width: 100%;
+    }
+
 }
 
 @media screen and (max-width: 674px) {

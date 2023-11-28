@@ -8,6 +8,7 @@ import ChatBoxList from "../../components/fragments/ChatBoxList/ChatBoxList";
 import { BsDot, BsThreeDots } from "react-icons/bs";
 import { dataChat } from "../../components/DataComponents/dataComponents";
 import EmojiPicker from "emoji-picker-react";
+import Input from "../../components/elements/Input/Input";
 const Chat = () => {
 
   // logic di sintak ini tidak 100% final ini hanya perkiraan, untuk mengambil data nya nanti lewat object keys
@@ -23,9 +24,13 @@ const Chat = () => {
   const [zoom, setZoom] = useState(false)
   const [filteredCustomers, setFilteredCustomers] = useState([]);
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
+  const [formMessage, setFormMessage] = useState({
+    message: "",
+  })
+
 
   const filteredZoom = dataChatUser.map((item) => item.session)
-  console.log(filteredZoom);
+  // console.log(filteredZoom);
   useEffect(() => {
 
     if (pasienActive) {
@@ -67,7 +72,7 @@ const Chat = () => {
     }
   };
 
-  console.log(id);
+  // console.log(id);
 
   useEffect(() => {
     handleChatClick();
@@ -80,6 +85,19 @@ const Chat = () => {
   const toggleEmojiPicker = () => {
     setShowEmojiPicker(!showEmojiPicker);
   };
+
+  const handleChangeMessage = (e) => {
+    const { name, value } = e.target
+    setFormMessage({ ...formMessage, [name]: value })
+  }
+
+  const handleEmojiClick = (e) => {
+    setFormMessage((prevFormMessage) => ({
+      ...prevFormMessage, message: prevFormMessage.message + e.emoji,
+    }));
+  };
+
+  console.log(formMessage.message);
 
   return (
     <Layouts>
@@ -149,7 +167,7 @@ const Chat = () => {
                   Silakan klik tombol di atas untuk bergabung ke ruang Zoom
                 </div>
                 :
-                <div className="chat-text px-2 position-relative">
+                <div className="chat-text px-2 ">
                   {dataChat.map((chat, index) => (
                     <div
                       key={index}
@@ -158,12 +176,6 @@ const Chat = () => {
                       <span>{chat.content}</span>
                     </div>
                   ))}
-
-                  {showEmojiPicker && (
-                    <div className="emoji-picker position-absolute" >
-                      <EmojiPicker onEmojiClick={(event, emojiObject) => console.log(emojiObject)} />
-                    </div>
-                  )}
 
                 </div>
               }
@@ -176,24 +188,22 @@ const Chat = () => {
                 </div>
               ) : (
                 inputChat ? (
-                  <div>
 
-                    <div className="input-chat mb-3 d-flex">
-                      <button className="btn dropdown-toggle border-0" data-bs-toggle="dropdown" aria-expanded="false" onClick={toggleEmojiPicker} >
-                        <img src={choiseChat} alt="" />
-                      </button>
-                      <input
-                        type="text"
-                        className="form-control shadow-none"
-                        placeholder="Ketik Pesan"
-                        aria-label="Username"
-                        aria-describedby="basic-addon1"
-                      />
-                      <button className="btn">
-                        <img src={sendChat} alt="" />
-                      </button>
-                    </div>
-                  </div>
+                  <form className="input-chat d-flex ">
+                    {showEmojiPicker && (
+                      <div className="emoji-picker container position-absolute z-3 " >
+                        <EmojiPicker width={'100%'} height={'50vh'} onEmojiClick={handleEmojiClick} />
+                      </div>
+                    )}
+                    <button className="btn dropdown-toggle border-0" data-bs-toggle="dropdown" aria-expanded="false" onClick={toggleEmojiPicker} >
+                      <img src={choiseChat} alt="" />
+                    </button>
+                    <Input placeholder={'Ketik pesan'} className={'shadow-none border-secondary-subtle'} name={'message'} onChange={handleChangeMessage} value={formMessage.message} />
+                    <button className="btn border-0">
+                      <img src={sendChat} alt="" />
+                    </button>
+                  </form>
+
                 ) : (
                   <div className="input-chat-end d-flex justify-content-center">
                     <h6 className="fw-semibold">Sesi Konsultasi Telah Berakhir</h6>
