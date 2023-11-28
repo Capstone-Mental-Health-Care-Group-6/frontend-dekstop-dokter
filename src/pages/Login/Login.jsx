@@ -1,4 +1,3 @@
-import * as React from "react"
 import { useState, useEffect } from "react"
 import Button from "../../components/elements/Button/Button"
 import LogoEmphati from "../../assets/LogoEmphati.png"
@@ -6,23 +5,34 @@ import Welcome from "../../assets/Welcome.png"
 import { BsEye, BsEyeSlash } from "react-icons/bs"
 import { useNavigate, Link } from "react-router-dom"
 import { FaUser, FaLock } from "react-icons/fa"
-import { IoMdMail } from "react-icons/io"
 import "./Login.style.css"
+import {
+  passwordChecker,
+  passwordHandler,
+  usernameChecker,
+  usernameHandler,
+} from "../../utils/handler/input"
 
-const Register = () => {
+const LoginForm = () => {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [showPassword, setShowPassword] = useState(false)
   const [activeInput, setActiveInput] = useState(null)
   const [isSubmitButtonDisabled, setIsSubmitButtonDisabled] = useState(true)
+  const [errorMessages, setErrorMessages] = useState({
+    username: "",
+    password: "",
+  })
   const navigate = useNavigate()
 
   const handleUsernameChange = (e) => {
+    usernameHandler(e.target.value, setErrorMessages)
     setUsername(e.target.value)
     setActiveInput("username")
   }
 
   const handlePasswordChange = (e) => {
+    passwordHandler(e.target.value, setErrorMessages)
     setPassword(e.target.value)
     setActiveInput("password")
   }
@@ -38,12 +48,35 @@ const Register = () => {
     setActiveInput(null)
   }
 
+  const validateInputs = () => {
+    let isValid = true
+
+    if (username.length < 4) {
+      setErrorMessages({
+        ...errorMessages,
+        username: "Username minimal 4 karakter",
+      })
+      isValid = false
+    }
+
+    if (!usernameChecker(username) || !passwordChecker(password)) {
+      passwordHandler(password, setErrorMessages)
+      isValid = false
+    }
+
+    return isValid
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault()
-    navigate("/")
-    console.log("Username:", username)
-    console.log("Password:", password)
+
+    if (validateInputs()) {
+      navigate("/")
+      console.log("Username:", username)
+      console.log("Password:", password)
+    }
   }
+
   const isPlaceholderShown = (inputValue) => inputValue === ""
 
   useEffect(() => {
@@ -57,64 +90,85 @@ const Register = () => {
       <div className="container col-lg-12">
         <form className="login-form-container col-lg">
           <img src={LogoEmphati} alt="Login" className="logo mb-4" />
-          <div className={`floating3`}>
-            <div
-              className={`icon-input ${
-                activeInput === "username" ? "active" : ""
-              } ${!isPlaceholderShown(username) ? "not-empty" : ""}`}
-            >
-              <FaUser width={20} className="me-2" />
-            </div>
-            <input
-              type="username"
-              name="username"
-              id="username"
-              value={username}
-              onChange={handleUsernameChange}
-              onFocus={() => handleInputFocus("username")}
-              onBlur={handleInputBlur}
-              placeholder="Username"
-              className={`bg-transparent ${
-                activeInput === "username" ? "active" : ""
-              }`}
-            />
-            <label htmlFor="username">
-              <div>
-                <div></div>
+          <div className="vstack gap-2">
+            <div className={`floating3`}>
+              <div
+                className={`icon-input 
+                ${activeInput === "username" ? "active" : ""} 
+                ${!isPlaceholderShown(username) ? "not-empty" : ""}
+                ${errorMessages.username !== "" ? "error" : ""}
+              `}
+              >
+                <FaUser width={20} className="me-2" />
               </div>
-            </label>
-          </div>
-          <div className={`floating3`}>
-            <div
-              className={`icon-input ${
-                activeInput === "password" ? "active" : ""
-              } ${!isPlaceholderShown(password) ? "not-empty" : ""}`}
-            >
-              <FaLock width={20} className="me-2" />
+              <input
+                type="username"
+                name="username"
+                id="username"
+                value={username}
+                onChange={handleUsernameChange}
+                onFocus={() => handleInputFocus("username")}
+                onBlur={handleInputBlur}
+                placeholder="Username"
+                className={`bg-transparent 
+                ${activeInput === "username" ? "active" : ""}
+                ${errorMessages.username !== "" ? "error" : ""}
+              `}
+              />
+              <label htmlFor="username">
+                <div>
+                  <div></div>
+                </div>
+              </label>
             </div>
-            <input
-              type={showPassword ? "text" : "password"}
-              name="password"
-              id="password"
-              value={password}
-              onChange={handlePasswordChange}
-              onFocus={() => handleInputFocus("password")}
-              onBlur={handleInputBlur}
-              placeholder="Password"
-              className={`bg-transparent ${
-                activeInput === "password" ? "active" : ""
-              }`}
-            />
-            <label htmlFor="password">
-              <div></div>
-            </label>
-            <span className="icon right">
-              {showPassword ? (
-                <BsEye onClick={handleTogglePassword} />
-              ) : (
-                <BsEyeSlash onClick={handleTogglePassword} />
-              )}
-            </span>
+            {errorMessages.username !== "" && (
+              <span className="text-start text-danger">
+                {errorMessages.username}
+              </span>
+            )}
+          </div>
+
+          <div className="vstack gap-2">
+            <div className={`floating3 pb-0`}>
+              <div
+                className={`icon-input 
+                ${activeInput === "password" ? "active" : ""} 
+                ${!isPlaceholderShown(password) ? "not-empty" : ""}
+                ${errorMessages.password !== "" ? "error" : ""}
+              `}
+              >
+                <FaLock width={20} className="me-2" />
+              </div>
+              <input
+                type={showPassword ? "text" : "password"}
+                name="password"
+                id="password"
+                value={password}
+                onChange={handlePasswordChange}
+                onFocus={() => handleInputFocus("password")}
+                onBlur={handleInputBlur}
+                placeholder="Password"
+                className={`bg-transparent 
+                ${activeInput === "password" ? "active" : ""}
+                ${errorMessages.password !== "" ? "error" : ""}
+              `}
+              />
+              <label htmlFor="password">
+                <div></div>
+              </label>
+              <span className="icon right">
+                {showPassword ? (
+                  <BsEye onClick={handleTogglePassword} />
+                ) : (
+                  <BsEyeSlash onClick={handleTogglePassword} />
+                )}
+              </span>
+            </div>
+            {errorMessages.password !== "" && (
+              <span className="text-start text-danger">
+                {errorMessages.password}
+              </span>
+            )}
           </div>
           <div className="remember d-flex">
             <input type="checkbox" className="checkbox me-2" />
@@ -175,4 +229,4 @@ const Register = () => {
   )
 }
 
-export default Register
+export default LoginForm

@@ -112,7 +112,6 @@
 .floating3 input:focus~label,
 .floating3 input:not(:placeholder-shown) {
   outline: none;
-  /* border: 2px solid #61a1fe; */
 }
 
 .floating3 input:focus,
@@ -122,6 +121,11 @@
   border-left-color: transparent;
   margin-left: 35px;
   width: 93%;
+}
+
+.floating3 input.error {
+  border: 2px solid red;
+  border-left: transparent;
 }
 
 .floating3 .icon.right {
@@ -255,6 +259,11 @@
 .floating3 .icon-input.active {
   border: 2px solid #61a1fe;
   border-right-color: transparent;
+}
+
+.floating3 .icon-input.error {
+  border: 2px solid red !important;
+  border-right-color: transparent !important;
 }
 
 .floating3 .icon-input.not-empty {

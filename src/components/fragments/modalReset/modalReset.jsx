@@ -37,7 +37,7 @@ const ModalReset = ({ onClose }) => {
               textAlign: "center",
             }}
           >
-            Kata sandimu berhasil dirubah. Next time, inget-inget ya, kalo perlu
+            Kata sandimu berhasil diubah. Next time, inget-inget ya, kalo perlu
             dicatet!
           </p>
           <div className="modal-footer-container">

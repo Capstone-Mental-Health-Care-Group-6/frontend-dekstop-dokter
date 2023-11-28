@@ -1,26 +1,37 @@
 import "./AturSandi.style.css"
-
+import { useState } from "react"
 import * as React from "react"
 import Button from "../../components/elements/Button/Button"
 import ModalReset from "../../components/Fragments/modalReset/modalReset"
 import kunci from "../../assets/kunci.png"
 import { BsEye, BsEyeSlash, BsShieldLock } from "react-icons/bs"
 import { RiLockPasswordLine } from "react-icons/ri"
+import {
+  confirmPasswordHandler,
+  passwordChecker,
+  passwordHandler,
+} from "../../utils/handler/input"
 
 const ResetPassword = () => {
-  const [password, setpassword] = React.useState("")
-  const [confirmPassword, setConfirmPassword] = React.useState("")
-  const [showPassNew, setShowPassNew] = React.useState(false)
-  const [showPassConfirm, setShowPassConfirm] = React.useState(false)
-  const [showModal, setShowModal] = React.useState(false)
-  const [isFormFilled, setIsFormFilled] = React.useState(false)
+  const [password, setpassword] = useState("")
+  const [confirmPassword, setConfirmPassword] = useState("")
+  const [showPassNew, setShowPassNew] = useState(false)
+  const [showPassConfirm, setShowPassConfirm] = useState(false)
+  const [showModal, setShowModal] = useState(false)
+  const [isFormFilled, setIsFormFilled] = useState(false)
+  const [errorMessages, setErrorMessages] = useState({
+    password: "",
+    confirmPassword: "",
+  })
 
   const handlepasswordChange = (e) => {
+    passwordHandler(e.target.value, setErrorMessages)
     setpassword(e.target.value)
     setIsFormFilled(e.target.value !== "" && confirmPassword !== "")
   }
 
   const handleConfirmPasswordChange = (e) => {
+    confirmPasswordHandler(e.target.value, setErrorMessages, password)
     setConfirmPassword(e.target.value)
     setIsFormFilled(password !== "" && e.target.value !== "")
   }
@@ -56,48 +67,60 @@ const ResetPassword = () => {
         </p>
 
         <form className="reset-password-form-container" onSubmit={handleSubmit}>
-          <div className="floating">
-            <input
-              type={showPassNew ? "text" : "password"}
-              name="password"
-              id="password"
-              value={password}
-              onChange={handlepasswordChange}
-              placeholder="Password Baru"
-            />
-            <label htmlFor="password"></label>
-            <span className="icon left">
-              <RiLockPasswordLine />
-            </span>
-            <span className="icon right">
-              {showPassNew ? (
-                <BsEyeSlash onClick={handleTogglePasswordNew} />
-              ) : (
-                <BsEye onClick={handleTogglePasswordNew} />
-              )}
-            </span>
+          <div className="vstack gap-1">
+            <div className="floating">
+              <input
+                type={showPassNew ? "text" : "password"}
+                name="password"
+                id="password"
+                value={password}
+                onChange={handlepasswordChange}
+                placeholder="Password Baru"
+              />
+              <label htmlFor="password"></label>
+              <span className="icon left">
+                <RiLockPasswordLine />
+              </span>
+              <span className="icon right">
+                {showPassNew ? (
+                  <BsEyeSlash onClick={handleTogglePasswordNew} />
+                ) : (
+                  <BsEye onClick={handleTogglePasswordNew} />
+                )}
+              </span>
+            </div>
+            {errorMessages.password !== "" && (
+              <p className="text-start text-danger">{errorMessages.password}</p>
+            )}
           </div>
 
-          <div className="floating mt-4">
-            <input
-              type={showPassConfirm ? "text" : "password"}
-              name="confirmation"
-              id="confirmation"
-              value={confirmPassword}
-              onChange={handleConfirmPasswordChange}
-              placeholder="Konfirmasi Password Baru"
-            />
-            <label htmlFor="confirmation"></label>
-            <span className="icon left">
-              <RiLockPasswordLine />
-            </span>
-            <span className="icon right">
-              {showPassConfirm ? (
-                <BsEyeSlash onClick={handleTogglePasswordConfirm} />
-              ) : (
-                <BsEye onClick={handleTogglePasswordConfirm} />
-              )}
-            </span>
+          <div className="vstack gap-1">
+            <div className="floating mt-4">
+              <input
+                type={showPassConfirm ? "text" : "password"}
+                name="confirmation"
+                id="confirmation"
+                value={confirmPassword}
+                onChange={handleConfirmPasswordChange}
+                placeholder="Konfirmasi Password Baru"
+              />
+              <label htmlFor="confirmation"></label>
+              <span className="icon left">
+                <RiLockPasswordLine />
+              </span>
+              <span className="icon right">
+                {showPassConfirm ? (
+                  <BsEyeSlash onClick={handleTogglePasswordConfirm} />
+                ) : (
+                  <BsEye onClick={handleTogglePasswordConfirm} />
+                )}
+              </span>
+            </div>
+            {errorMessages.confirmPassword !== "" && (
+              <p className="text-start text-danger">
+                {errorMessages.confirmPassword}
+              </p>
+            )}
           </div>
 
           <Button

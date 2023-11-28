@@ -1,10 +1,10 @@
 import "./ForgetPassword.style.css"
-
+import { useState } from "react"
 import * as React from "react"
 import Button from "../../components/elements/Button/Button"
 
 import ModalForgot from "../../components/fragments/modalLogin/modalLogin"
-
+import { emailHandler } from "../../utils/handler/input"
 import { MdOutlineEmail } from "react-icons/md"
 import logoEmpathi from "../../assets/LogoEmphati.png"
 import { useNavigate } from "react-router-dom"
@@ -14,9 +14,13 @@ const ForgotPw = () => {
   const [isEmailSent, setIsEmailSent] = React.useState(false)
   const [isEmailVerified, setIsEmailVerified] = React.useState(false)
   const [isModalOpen, setIsModalOpen] = React.useState(false)
+  const [errorMessages, setErrorMessages] = useState({
+    email: "",
+  })
   const navigate = useNavigate()
 
   const handleEmailChange = (e) => {
+    emailHandler(e.target.value, setErrorMessages)
     setEmail(e.target.value)
   }
 
@@ -43,19 +47,24 @@ const ForgotPw = () => {
           baru.
         </p>
         <form className="login-form-container">
-          <div className="floating">
-            <input
-              type="email"
-              name="email"
-              id="email"
-              value={email}
-              onChange={handleEmailChange}
-              placeholder="Email"
-            />
-            <label htmlFor="email"></label>
-            <span className="icon left">
-              <MdOutlineEmail />
-            </span>
+          <div className="vstack gap-1">
+            <div className="floating">
+              <input
+                type="email"
+                name="email"
+                id="email"
+                value={email}
+                onChange={handleEmailChange}
+                placeholder="Email"
+              />
+              <label htmlFor="email"></label>
+              <span className="icon left">
+                <MdOutlineEmail />
+              </span>
+            </div>
+            {errorMessages.email !== "" && (
+              <p className="text-start text-danger">{errorMessages.email}</p>
+            )}
           </div>
           <Button
             type="button"
