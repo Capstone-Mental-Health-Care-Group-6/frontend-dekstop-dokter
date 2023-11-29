@@ -208,7 +208,10 @@ const LoginForm = () => {
 
           <p className="text-center mt-3 fw-bold">
             Belum punya akun?{" "}
-            <Link to="/register" className="text-decoration-none fw-bold">
+            <Link
+              to="/register-dokter"
+              className="text-decoration-none fw-bold"
+            >
               Daftar
             </Link>{" "}
           </p>

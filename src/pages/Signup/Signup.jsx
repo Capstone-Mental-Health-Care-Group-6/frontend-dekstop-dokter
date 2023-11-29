@@ -88,7 +88,7 @@ const Register = () => {
 
     if (isValid) {
       if (username.length >= 4) {
-        navigate("/login")
+        navigate("/login-dokter")
         console.log("Username:", username)
         console.log("Password:", password)
       } else {
@@ -305,7 +305,7 @@ const Register = () => {
 
           <p className="text-center mt-3 fw-bold">
             Sudah punya akun?{" "}
-            <Link to="/login" className="text-decoration-none fw-bold">
+            <Link to="/login-dokter" className="text-decoration-none fw-bold">
               Masuk
             </Link>{" "}
           </p>
