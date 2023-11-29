@@ -1,0 +1,186 @@
+.pencairan__saldo {
+  min-height: 100vh;
+}
+
+.pencairan__saldo h5 {
+  font-size: 20px;
+}
+
+/* card pencairan saldo */
+
+.pencairan__saldo .row .col .card__tarik__saldo {
+  box-shadow: 1px 1px 10px 0px rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: 1px 1px 10px 0px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 1px 1px 10px 0px rgba(0, 0, 0, 0.25);
+  /* width: 325px; */
+  height: 20vh;
+  cursor: pointer;
+}
+
+.pencairan__saldo .row .col .card__tarik__saldo:active {
+  border: 2px solid #0085ff !important;
+}
+
+.pencairan__saldo .row .col .card__tarik__saldo .d-flex p {
+  font-size: 18px;
+  color: #3b78fc;
+}
+
+.pencairan__saldo .row .col .card__saldo__aktif,
+.pencairan__saldo .row .col .card__proses__penarikan {
+  box-shadow: 1px 1px 10px 0px rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: 1px 1px 10px 0px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 1px 1px 10px 0px rgba(0, 0, 0, 0.25);
+  height: 20vh;
+}
+
+.pencairan__saldo .row .col .card__saldo__aktif .d-flex .fw-semibold,
+.pencairan__saldo .row .col .card__saldo__aktif .d-flex .fw-bold {
+  color: #00b932;
+}
+
+.pencairan__saldo .row .col .card__proses__penarikan.d-flex .fw-semibold,
+.pencairan__saldo .row .col .card__proses__penarikan.d-flex .fw-bold {
+  color: #fa3121;
+}
+
+/* end card pencairan saldo */
+
+/* table pencairan saldo */
+.pencairan__saldo .wrapper__table__saldo {
+  padding: 10px;
+  box-shadow: 1px -1px 10px 0px rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: 1px -1px 10px 0px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 1px -1px 10px 0px rgba(0, 0, 0, 0.25);
+}
+
+.pencairan__saldo .wrapper__table__saldo .table-header-border {
+  border-top: 1px solid #dcdcdc;
+  border-bottom: 1px solid #dcdcdc;
+  height: 48px;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.pencairan__saldo .wrapper__table__saldo .success-status,
+.pencairan__saldo .wrapper__table__saldo .insuccess-status,
+.pencairan__saldo .wrapper__table__saldo .process-status {
+  display: inline-block;
+  text-align: center;
+  width: 100px;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  gap: 10px;
+  height: 30px;
+  border-radius: 8px;
+  padding: 4px 12px;
+}
+
+.pencairan__saldo .wrapper__table__saldo .success-status {
+  background-color: #d4f1dd;
+  color: #1b7a37;
+}
+
+.pencairan__saldo .wrapper__table__saldo .insuccess-status {
+  background-color: #ffdfd7;
+  color: #aa3e24;
+}
+
+.pencairan__saldo .wrapper__table__saldo .process-status {
+  background-color: #fff9db;
+  color: #aaa20b;
+}
+
+/* end table pencairan saldo */
+
+/* modal pencairan saldo */
+.modal .modal-dialog .p-5 .fw-bold {
+  font-size: 24px;
+}
+
+.modal .modal-dialog .p-5 .jumlah__Saldo {
+  background-color: #0085ff;
+}
+
+.modal .modal-dialog .p-5 .jumlah__Saldo p {
+  font-size: 12px;
+}
+
+.modal
+  .modal-dialog
+  .modal-content
+  .p-5
+  .select__metode__pembayaran
+  option:nth-child(1) {
+  color: black;
+  font-weight: 600;
+}
+
+.modal
+  .modal-dialog
+  .modal-content
+  .p-5
+  .select__metode__pembayaran
+  option:nth-child(2) {
+  color: black;
+  font-weight: 600;
+}
+
+.modal
+  .modal-dialog
+  .modal-content
+  .p-5
+  .select__metode__pembayaran
+  option:nth-child(3) {
+  color: black;
+  font-weight: 600;
+}
+
+.modal
+  .modal-dialog
+  .modal-content
+  .p-5
+  .select__metode__pembayaran
+  option:nth-child(4) {
+  color: black;
+  font-weight: 600;
+}
+
+.modal
+  .modal-dialog
+  .modal-content
+  .p-5
+  .select__metode__pembayaran
+  option:nth-child(5) {
+  color: black;
+  font-weight: 600;
+}
+
+.modal .modal-dialog .p-5 .jumlah__Saldo p span {
+  color: #fff311;
+  font-size: 30px;
+}
+
+.modal .modal-dialog .p-5 .text-center .btn__cairkan__dana {
+  padding: 12px 24px;
+}
+
+/* end modal pencairan saldo */
+
+/* modal alert saldo diproses */
+.modal__alert__saldo .modal-dialog .modal-content .modal-body p {
+  font-size: 12px;
+  color: #636363;
+}
+/* end modal alert saldo diproses */
+
+@media screen and (max-width: 436px) {
+  .modal__alert__saldo .modal-dialog .modal-content .modal-body span {
+    font-size: 20px;
+  }
+}

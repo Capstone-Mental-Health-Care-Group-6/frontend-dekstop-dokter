@@ -1,4 +1,10 @@
 import {
+  avatar1,
+  avatar2,
+  avatar3,
+  avatar4,
+  iconCardProsesPenarikan,
+  iconCardSaldoAktif,
   iconChat,
   iconClock,
   iconPasien,
@@ -251,5 +257,68 @@ export const dataChat = [
     content:
       "Sebelum saya lanjut untuk menganalisa Anda saya menyarankan untuk membaca  ARTIKEL_GANGGUAN_TIDUR",
     timestamp: "13:49:00",
+  },
+];
+
+export const dataPencairanSaldo = [
+  {
+    className: "card__saldo__aktif",
+    imgSrc: iconCardSaldoAktif,
+    title: "Saldo Aktif",
+    subTitle: "Rp 200.000",
+  },
+  {
+    className: "card__proses__penarikan",
+    imgSrc: iconCardProsesPenarikan,
+    title: "Proses Penarikan",
+    subTitle: "Rp 50.000",
+  },
+];
+
+export const dataTablePencairanSaldo = [
+  {
+    idTransaksi: "CASDI9823HUAK",
+    avatar: avatar1,
+    namaPasien: "Gwenchana",
+    tanggal: "22 Okt 2023",
+    paketLangganan: "Paket Premium",
+    harga: "Rp 200.000",
+    status: "Sukses",
+  },
+  {
+    idTransaksi: "CASDI9823HUAK",
+    avatar: avatar2,
+    namaPasien: "Gwenchana",
+    tanggal: "22 Okt 2023",
+    paketLangganan: "Paket Premium",
+    harga: "Rp 200.000",
+    status: "Sukses",
+  },
+  {
+    idTransaksi: "CASDI9823HUAK",
+    avatar: avatar3,
+    namaPasien: "Gwenchana",
+    tanggal: "22 Okt 2023",
+    paketLangganan: "Paket Instan",
+    harga: "Rp 200.000",
+    status: "Proses",
+  },
+  {
+    idTransaksi: "CASDI9823HUAK",
+    avatar: avatar4,
+    namaPasien: "Gwenchana",
+    tanggal: "22 Okt 2023",
+    paketLangganan: "Paket Instan",
+    harga: "Rp 200.000",
+    status: "Pending",
+  },
+  {
+    idTransaksi: "CASDI9823HUAK",
+    avatar: avatar4,
+    namaPasien: "Gwenchana",
+    tanggal: "22 Okt 2023",
+    paketLangganan: "Paket Premium",
+    harga: "Rp 200.000",
+    status: "Pending",
   },
 ];
