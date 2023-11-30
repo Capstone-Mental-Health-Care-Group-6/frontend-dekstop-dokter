@@ -54,7 +54,7 @@ const LoginForm = () => {
     if (username.length < 4) {
       setErrorMessages({
         ...errorMessages,
-        username: "Username minimal 4 karakter",
+        username: "Username Minimal 4 Karakter",
       })
       isValid = false
     }
@@ -86,7 +86,7 @@ const LoginForm = () => {
   }, [username, password])
 
   return (
-    <div className="content-center">
+    <div className="content">
       <div className="container col-lg-12">
         <form className="login-form-container col-lg">
           <img src={LogoEmphati} alt="Login" className="logo mb-4" />

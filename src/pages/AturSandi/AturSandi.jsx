@@ -35,14 +35,28 @@ const ResetPassword = () => {
     setConfirmPassword(e.target.value)
     setIsFormFilled(password !== "" && e.target.value !== "")
   }
-
   const handleSubmit = (e) => {
     e.preventDefault()
 
+    // Validate password and confirmPassword
+    if (errorMessages.password || errorMessages.confirmPassword) {
+      // Tampilkan pesan kesalahan jika password atau konfirmasi password tidak valid
+      return
+    }
+
+    // Proceed with resetting password if validation is successful
     if (isFormFilled) {
       setShowModal(true)
     }
   }
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault()
+
+  //   if (isFormFilled) {
+  //     setShowModal(true)
+  //   }
+  // }
 
   const handleTogglePasswordNew = () => {
     setShowPassNew(!showPassNew)

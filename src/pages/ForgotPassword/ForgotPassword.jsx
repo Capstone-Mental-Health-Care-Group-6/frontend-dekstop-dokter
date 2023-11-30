@@ -23,18 +23,28 @@ const ForgotPw = () => {
     emailHandler(e.target.value, setErrorMessages)
     setEmail(e.target.value)
   }
-
   const handleForgotPassword = async () => {
     try {
+      if (!email || errorMessages.email) {
+        setErrorMessages((prevState) => ({
+          ...prevState,
+          email: "Email Tidak Valid",
+        }))
+        return
+      }
+
       setIsEmailSent(true)
       setIsEmailVerified(true)
       setTimeout(() => {
         setIsModalOpen(true)
       }, 1000)
-      // navigate('/ModalLogin');
     } catch (error) {
       console.error("Gagal mengirim email reset:", error)
     }
+  }
+
+  const isEmailValid = () => {
+    return !errorMessages.email
   }
 
   return (
@@ -74,7 +84,7 @@ const ForgotPw = () => {
             }`}
             text="Kirim link verifikasi"
             onClick={handleForgotPassword}
-            disabled={!email || !isEmailVerified}
+            disabled={!isEmailValid() || !isEmailVerified}
           />
           <div className="divider d-flex align-items-center my-1">
             <p className="text-center mx-3 mb-0 text-muted">atau</p>
