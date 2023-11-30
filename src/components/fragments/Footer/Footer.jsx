@@ -1,6 +1,7 @@
 import React from "react";
 import "./Footer.css";
 import { Appstore, Googleplay, logoEmpathiCare } from "../../../../image";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -53,9 +54,11 @@ const Footer = () => {
                 </a>
               </li>
               <li class="nav-itemFooter mb-2">
-                <a href="#" class="nav-link p-0 text-muted">
-                  Gabung Sebagai Konselor
-                </a>
+                <Link to={"/login-dokter"} className="text-decoration-none">
+                  <a href="/login-dokter" class="nav-link p-0 text-muted">
+                    Gabung Sebagai Konselor
+                  </a>
+                </Link>
               </li>
             </ul>
           </div>
