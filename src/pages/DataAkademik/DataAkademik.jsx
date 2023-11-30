@@ -47,7 +47,6 @@ const DataAkademik = () => {
     <Layouts>
       <div className="container">
         <BackButton />
-        {/* Form */}
         <form className="data-akademik-form">
           <h4 className="data-akademik-title">Data Akademik</h4>
           <div className="row mb-3">
@@ -125,3 +124,4 @@ const DataAkademik = () => {
 };
 
 export default DataAkademik;
+

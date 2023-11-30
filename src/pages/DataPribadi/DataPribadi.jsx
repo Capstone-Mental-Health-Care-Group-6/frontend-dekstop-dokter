@@ -8,7 +8,7 @@
   import Button from "../../components/elements/Button/Button";
   import BackButton from "../../components/elements/Button/BackButton";
   import "./DataPribadi.styles.css"
-import ModalProfile from "../../components/fragments/Modal/ModalProfile";
+  import ModalProfile from "../../components/fragments/Modal/ModalProfile";
 
   const DataPribadi = () => {
     const [formData, setFormData] = useState({
