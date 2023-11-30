@@ -16,11 +16,12 @@ import Googleplay from "./src/assets/googleplay.png";
 import Appstore from "./src/assets/appstore.png";
 import logoEmpathiCare from "./src/assets/logoEmpathiCare.svg";
 import logoKemenkes from "./src/assets/logokemenkes.png";
+import artikelEmpty from "./src/assets/artikel-empty.png"
 
 export {
   logoEmpathiCareMobile,
   iconProfileNavbar,
   iconNotifNavbar,
   Cuate, img1, Bg1, Bg2, Bg3, Hourglass, Wallet, Stethoscope, Checkmark, Peopleoutline, amico, Googleplay, Appstore,
-  logoEmpathiCare, logoKemenkes,
+  logoEmpathiCare, logoKemenkes, artikelEmpty
 };

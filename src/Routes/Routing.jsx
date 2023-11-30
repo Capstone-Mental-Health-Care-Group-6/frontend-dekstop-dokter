@@ -6,6 +6,7 @@ import Dashboard from "../pages/Dashboard/Dashboard";
 import Chat from "../pages/Chat/Chat";
 import Transaksi from "../pages/Transaksi/Transaksi";
 import Artikel from "../pages/Artikel/Artikel";
+import TambahArtikel from "../pages/tambahArtikel/TambahArtikel";
 
 const Routing = () => {
   return (
@@ -15,6 +16,8 @@ const Routing = () => {
       <Route path="/dokter-chat" element={<Chat />} />
       <Route path="/dokter-transaksi" element={<Transaksi />} />
       <Route path="/dokter-artikel" element={<Artikel />} />
+      <Route path="/dokter-tambah-artikel" element={<TambahArtikel />} />
+
     </Routes>
   );
 };

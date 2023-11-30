@@ -76,7 +76,7 @@ const Layouts = ({ children }) => {
       </div>
 
       <main className="main">
-        <div className="p-3">{children}</div>
+        <div className="py-3">{children}</div>
       </main>
     </>
   );

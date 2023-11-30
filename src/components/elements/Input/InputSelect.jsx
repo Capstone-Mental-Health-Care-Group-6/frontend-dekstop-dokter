@@ -7,7 +7,7 @@ const InputSelect = ({ title, className, name, id, onChange, options }) => {
         name={name}
         id={id}
         className={`form-select ${className}`}
-        aria-label="Default select example"
+        ariaLabel="Default select example"
         onChange={onChange}
       >
         <option selected>{title}</option>
