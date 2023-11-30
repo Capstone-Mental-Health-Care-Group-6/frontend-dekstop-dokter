@@ -2,16 +2,16 @@
 // sintak ini hanya contoh boleh di hapus atau di pakai dan ubah
 // tidak menggunakan url dari env karena sudah di setting di axiosInterceptor jadi tinggal endpoint nya saja
 
-
 import { axiosInterceptor } from "./axiosInterceptors";
-axiosInterceptor.get(`/patients`)
-    .then(response => {
-        console.log('Response:', response.data);
-    })
-    .catch(error => {
-        if (error.code === 'ECONNABORTED') {
-            console.error('Error: Timeout exceeded');
-        } else {
-            console.error('Error:', error);
-        }
-    });
+
+export const getAllDoctors = (callback) => {
+    axiosInterceptor.get(`/doktors`)
+        .then((res) => {
+            callback(res.data);
+            console.log(res.data);
+        })
+        .catch((error) => {
+            console.error("Error fetching courses:", error);
+        });
+}
+
