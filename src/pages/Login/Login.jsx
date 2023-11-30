@@ -1,89 +1,89 @@
-import { useState, useEffect } from "react"
-import Button from "../../components/elements/Button/Button"
-import LogoEmphati from "../../assets/LogoEmphati.png"
-import Welcome from "../../assets/Welcome.png"
-import { BsEye, BsEyeSlash } from "react-icons/bs"
-import { useNavigate, Link } from "react-router-dom"
-import { FaUser, FaLock } from "react-icons/fa"
-import "./Login.style.css"
+import { useState, useEffect } from "react";
+import Button from "../../components/elements/Button/Button";
+import LogoEmphati from "../../assets/LogoEmphati.png";
+import Welcome from "../../assets/Welcome.png";
+import { BsEye, BsEyeSlash } from "react-icons/bs";
+import { useNavigate, Link } from "react-router-dom";
+import { FaUser, FaLock } from "react-icons/fa";
+import "./Login.style.css";
 import {
   passwordChecker,
   passwordHandler,
   usernameChecker,
   usernameHandler,
-} from "../../utils/handler/input"
+} from "../../utils/handler/input";
 
 const LoginForm = () => {
-  const [username, setUsername] = useState("")
-  const [password, setPassword] = useState("")
-  const [showPassword, setShowPassword] = useState(false)
-  const [activeInput, setActiveInput] = useState(null)
-  const [isSubmitButtonDisabled, setIsSubmitButtonDisabled] = useState(true)
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [activeInput, setActiveInput] = useState(null);
+  const [isSubmitButtonDisabled, setIsSubmitButtonDisabled] = useState(true);
   const [errorMessages, setErrorMessages] = useState({
     username: "",
     password: "",
-  })
-  const navigate = useNavigate()
+  });
+  const navigate = useNavigate();
 
   const handleUsernameChange = (e) => {
-    usernameHandler(e.target.value, setErrorMessages)
-    setUsername(e.target.value)
-    setActiveInput("username")
-  }
+    usernameHandler(e.target.value, setErrorMessages);
+    setUsername(e.target.value);
+    setActiveInput("username");
+  };
 
   const handlePasswordChange = (e) => {
-    passwordHandler(e.target.value, setErrorMessages)
-    setPassword(e.target.value)
-    setActiveInput("password")
-  }
+    passwordHandler(e.target.value, setErrorMessages);
+    setPassword(e.target.value);
+    setActiveInput("password");
+  };
 
   const handleTogglePassword = () => {
-    setShowPassword(!showPassword)
-  }
+    setShowPassword(!showPassword);
+  };
   const handleInputFocus = (inputName) => {
-    setActiveInput(inputName)
-  }
+    setActiveInput(inputName);
+  };
 
   const handleInputBlur = () => {
-    setActiveInput(null)
-  }
+    setActiveInput(null);
+  };
 
   const validateInputs = () => {
-    let isValid = true
+    let isValid = true;
 
     if (username.length < 4) {
       setErrorMessages({
         ...errorMessages,
         username: "Username Minimal 4 Karakter",
-      })
-      isValid = false
+      });
+      isValid = false;
     }
 
     if (!usernameChecker(username) || !passwordChecker(password)) {
-      passwordHandler(password, setErrorMessages)
-      isValid = false
+      passwordHandler(password, setErrorMessages);
+      isValid = false;
     }
 
-    return isValid
-  }
+    return isValid;
+  };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     if (validateInputs()) {
-      navigate("/")
-      console.log("Username:", username)
-      console.log("Password:", password)
+      navigate("/dashboard-dokter");
+      console.log("Username:", username);
+      console.log("Password:", password);
     }
-  }
+  };
 
-  const isPlaceholderShown = (inputValue) => inputValue === ""
+  const isPlaceholderShown = (inputValue) => inputValue === "";
 
   useEffect(() => {
     setIsSubmitButtonDisabled(
       !(username.trim() !== "" && password.trim() !== "")
-    )
-  }, [username, password])
+    );
+  }, [username, password]);
 
   return (
     <div className="content">
@@ -229,7 +229,7 @@ const LoginForm = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default LoginForm
+export default LoginForm;

@@ -1,51 +1,51 @@
-import "./ForgetPassword.style.css"
-import { useState } from "react"
-import * as React from "react"
-import Button from "../../components/elements/Button/Button"
+import "./ForgetPassword.style.css";
+import { useState } from "react";
+import * as React from "react";
+import Button from "../../components/elements/Button/Button";
 
-import ModalForgot from "../../components/fragments/modalLogin/modalLogin"
-import { emailHandler } from "../../utils/handler/input"
-import { MdOutlineEmail } from "react-icons/md"
-import logoEmpathi from "../../assets/LogoEmphati.png"
-import { useNavigate } from "react-router-dom"
+import ModalForgot from "../../components/fragments/modalLogin/modalLogin";
+import { emailHandler } from "../../utils/handler/input";
+import { MdOutlineEmail } from "react-icons/md";
+import logoEmpathi from "../../assets/LogoEmphati.png";
+import { Link, useNavigate } from "react-router-dom";
 
 const ForgotPw = () => {
-  const [email, setEmail] = React.useState("")
-  const [isEmailSent, setIsEmailSent] = React.useState(false)
-  const [isEmailVerified, setIsEmailVerified] = React.useState(false)
-  const [isModalOpen, setIsModalOpen] = React.useState(false)
+  const [email, setEmail] = React.useState("");
+  const [isEmailSent, setIsEmailSent] = React.useState(false);
+  const [isEmailVerified, setIsEmailVerified] = React.useState(false);
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
   const [errorMessages, setErrorMessages] = useState({
     email: "",
-  })
-  const navigate = useNavigate()
+  });
+  const navigate = useNavigate();
 
   const handleEmailChange = (e) => {
-    emailHandler(e.target.value, setErrorMessages)
-    setEmail(e.target.value)
-  }
+    emailHandler(e.target.value, setErrorMessages);
+    setEmail(e.target.value);
+  };
   const handleForgotPassword = async () => {
     try {
       if (!email || errorMessages.email) {
         setErrorMessages((prevState) => ({
           ...prevState,
           email: "Email Tidak Valid",
-        }))
-        return
+        }));
+        return;
       }
 
-      setIsEmailSent(true)
-      setIsEmailVerified(true)
+      setIsEmailSent(true);
+      setIsEmailVerified(true);
       setTimeout(() => {
-        setIsModalOpen(true)
-      }, 1000)
+        setIsModalOpen(true);
+      }, 1000);
     } catch (error) {
-      console.error("Gagal mengirim email reset:", error)
+      console.error("Gagal mengirim email reset:", error);
     }
-  }
+  };
 
   const isEmailValid = () => {
-    return !errorMessages.email
-  }
+    return !errorMessages.email;
+  };
 
   return (
     <div className="content-center">
@@ -90,7 +90,9 @@ const ForgotPw = () => {
             <p className="text-center mx-3 mb-0 text-muted">atau</p>
           </div>
           <p className="btn-akun">
-            <b>Buat Akun Baru </b>
+            <Link to={"/register-dokter"} className="text-decoration-none">
+              <b>Buat Akun Baru</b>
+            </Link>
           </p>
         </form>
       </div>
@@ -104,7 +106,7 @@ const ForgotPw = () => {
         />
       )}
     </div>
-  )
-}
+  );
+};
 
-export default ForgotPw
+export default ForgotPw;
