@@ -11,17 +11,23 @@ import Button from "../../components/elements/Button/Button";
 const TambahArtikel = () => {
   const [showTambahKategori, setShowTambahKategori] = useState(false);
   const [listCheckbox, setListCheckbox] = useState([
-    "Kesehatan Mental",
     "Anxiety",
     "Depresi",
+    "Emosi",
+    "Kecemasan",
+    "Stress",
+    "Tips",
+    "Umum",
   ]);
-  const [kategoriBaru, setKategoriBaru] = useState("");
+  const [artikel, setArtikel] = useState("");
+  const [thumbnail, setThumbnail] = useState({
+    gambar: "",
+  });
 
-  const tambahKategori = () => {
-    if (kategoriBaru.trim() !== "") {
-      setListCheckbox([...listCheckbox, kategoriBaru]);
-      setKategoriBaru("");
-    }
+  const [checkedIndex, setCheckedIndex] = useState(null);
+
+  const handleCheckboxChange = (index) => {
+    setCheckedIndex(index === checkedIndex ? null : index);
   };
 
   return (
@@ -31,19 +37,81 @@ const TambahArtikel = () => {
         <div className="row">
           <div className="col-9 px-3">
             <form action="">
-              <Label htmlFor={"judul-artikel"}>
-                <p className="fw-bold m-0">Judul Artikel</p>
-              </Label>
-              <Input
-                id={"judul-artikel"}
-                name={"judul-artikel"}
-                type={"text"}
-                className={"rounded-3 border-solid border-1 border-dark"}
-              />
+              <div className="container-fluid bg-light py-5 rounded-2">
+                <Label htmlFor={"judul-artikel"}>
+                  <p className="fw-bold m-0">Judul Artikel</p>
+                </Label>
+                <Input
+                  id={"judul-artikel"}
+                  name={"judul-artikel"}
+                  type={"text"}
+                  className={"rounded-3 border-solid border-1"}
+                />
+
+                <Label htmlFor={"deskripsi-artikel"}>
+                  <p className="fw-bold mt-4 mb-0">Deskripsi Artikel</p>
+                </Label>
+                <div className="container bg-white mb-3 px-0">
+                  <Reactquill
+                    value={artikel}
+                    id={"deksripsi-artikel"}
+                    onChange={(value) => {
+                      console.log(value);
+                    }}
+                  />
+                </div>
+                <Label htmlFor={"link-video-artikel"}>
+                  <p className="fw-bold mt-3 mb-0">Link Video Youtube</p>
+                </Label>
+                <Input
+                  id={"link-video-artikel"}
+                  name={"link-video-artikel"}
+                  type={"text"}
+                  className={"rounded-3 border-solid border-1"}
+                />
+                <img src={thumbnail.gambar} width={100} className="mt-4" />
+                <Label htmlFor={"thumbnail-artikel"}>
+                  <p className="fw-bold mt-4 mb-0">Thumbnail Artikel</p>
+                </Label>
+                <Input
+                  id={"thumbnail-artikel"}
+                  name={"thumbnail-artikel"}
+                  type={"file"}
+                  className={"rounded-3 border-solid border-1"}
+                  onChange={(e) => {
+                    console.log(e.currentTarget.files);
+                    setThumbnail((old) => {
+                      return {
+                        ...old,
+                        gambar: URL.createObjectURL(e.target.files[0]),
+                      };
+                    });
+                    console.log(thumbnail.gambar);
+                  }}
+                />
+              </div>
+              <div className="d-flex m-3 button-form-artikel">
+                <div>
+                  <Button
+                    type={"submit"}
+                    className={
+                      "btn btn-primary me-3 btn-upload-artikel fw-semibold"
+                    }
+                    id={"button-upload-artikel"}
+                    text={"Unggah Artikel"}
+                  />
+                </div>
+                <div>
+                  <Button
+                    type={"button"}
+                    className={
+                      "btn btn-light me-3 btn-draft-artikel fw-semibold"
+                    }
+                    text={"Simpan sebagai Draft"}
+                  />
+                </div>
+              </div>
             </form>
-            <div className="container bg-white my-3 px-0">
-              <Reactquill />
-            </div>
           </div>
           <div className="col-3">
             <div className="container bg-light rounded-2 py-4 my-4">
@@ -54,7 +122,14 @@ const TambahArtikel = () => {
                 <div className="grid">
                   <div className="row justify-content-center align-items-center g-2 mb-2">
                     <div className="col text-status">Visibilitas</div>
-                    <div className="col text-status text-end"><Button className={"border-0 bg-transparent button-status-artikel p-0"} text={"Publik"}/></div>
+                    <div className="col text-status text-end">
+                      <Button
+                        className={
+                          "border-0 bg-transparent button-status-artikel p-0"
+                        }
+                        text={"Publik"}
+                      />
+                    </div>
                   </div>
                   <div className="row justify-content-center align-items-center g-2 mb-2">
                     <div className="col text-status ">Waktu Terbit</div>
@@ -62,7 +137,9 @@ const TambahArtikel = () => {
                   </div>
                   <div className="row justify-content-center align-items-center g-2">
                     <div className="col text-status">Author</div>
-                    <div className="col text-status text-end pe-2">Dr. Helen</div>
+                    <div className="col text-status text-end pe-2">
+                      Dr. Helen
+                    </div>
                   </div>
                 </div>
               </div>
@@ -77,43 +154,13 @@ const TambahArtikel = () => {
                     index={index}
                     text={id}
                     id={"checkBox-artikel"}
+                    checked={index == checkedIndex}
+                    onChange={() => handleCheckboxChange(index)}
                     value={id}
                     classNameLabel={"fw-semibold label-artikel-text"}
+                    disabled={checkedIndex !== null && index !== checkedIndex}
                   />
                 ))}
-
-                {showTambahKategori ? (
-                  <form className="d-flex my-2">
-                    <Input
-                      type={"text"}
-                      className={"border-solid border-1 py-0 px-1"}
-                      value={kategoriBaru}
-                      onChange={(e) => {
-                        setKategoriBaru(e.target.value);
-                      }}
-                    />
-                    <Button
-                      text={"Tambah"}
-                      className={
-                        "border-0 bg-primary add-kategori mx-1 rounded-3 py-1"
-                      }
-                      onClick={tambahKategori}
-                    />
-                  </form>
-                ) : (
-                  <div></div>
-                )}
-                <Button
-                  type={"button"}
-                  className={
-                    "border-0 bg-transparent button-tambah-kategori mt-4"
-                  }
-                  text={"Tambah Kategori Baru"}
-                  onClick={() => {
-                    setShowTambahKategori(!showTambahKategori);
-                    console.log(showTambahKategori);
-                  }}
-                />
               </div>
             </div>
           </div>

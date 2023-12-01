@@ -1,6 +1,6 @@
 import React from "react";
 
-const Checkbox = ({ classNameLabel, value, id, text, index }) => {
+const Checkbox = ({ classNameLabel, disabled, onChange, value, id, text, index }) => {
   return (
     <div className="py-1">
       <div index={index} className="form-check">
@@ -9,8 +9,10 @@ const Checkbox = ({ classNameLabel, value, id, text, index }) => {
           defaultValue={value}
           id={id}
           className={`form-check-input border-2`}
+          onChange={onChange}
+          disabled={disabled}
         />
-        <label  className={`form-check-label ${classNameLabel}`} htmlFor={id}>
+        <label className={`form-check-label ${classNameLabel}`} htmlFor={id}>
           {text}
         </label>
       </div>

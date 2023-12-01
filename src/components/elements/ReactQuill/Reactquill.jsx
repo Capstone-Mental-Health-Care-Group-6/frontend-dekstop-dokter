@@ -2,7 +2,7 @@ import React from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
-const Reactquill = () => {
+const Reactquill = ({value, onChange, id}) => {
   const modules = {
     toolbar: [
       [{ header: [1, 2, 3, 4, 5, 6, false] }],
@@ -10,7 +10,7 @@ const Reactquill = () => {
       [{ size: [] }],
       [{ align: ["right", "center",  "justify"] }],
       [{ list: "ordered" }, { list: "bullet" }],
-      ["link", "image", "video"],
+      // ["link", "image", "video"],
     ],
   };
 
@@ -23,13 +23,13 @@ const Reactquill = () => {
     "blockquote",
     "list",
     "bullet",
-    "link",
-    "image",
+    // "link",
+    // "image",
+    // "video"
     "align",
     "size",
-    "video"
   ];
-  return <ReactQuill theme="snow" modules={modules} formats={formats} />;
+  return <ReactQuill theme="snow" modules={modules} formats={formats} value={value} onChange={onChange} id={id} />;
 };
 
 export default Reactquill;
