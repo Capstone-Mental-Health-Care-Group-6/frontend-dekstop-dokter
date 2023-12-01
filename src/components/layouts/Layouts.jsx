@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   BsGrid,
   BsChatLeft,
@@ -20,8 +20,23 @@ import "./Layout.styles.css";
 import { NavLink } from "react-router-dom";
 import DropdownNotif from "../elements/DropdownNotification/DropdownNotif";
 import Button from "../elements/Button/Button";
+import ModalLogout from "../fragments/Modal/ModalLogout";
 
 const Layouts = ({ children }) => {
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
+
+  const handleLogoutClick = () => {
+    setShowLogoutModal(true);
+  };
+
+  const handleLogoutConfirm = () => {
+    setShowLogoutModal(false);
+  };
+
+  const handleLogoutCancel = () => {
+    setShowLogoutModal(false);
+  };
+
   const dataNotification = [
     {
       id: 1,
@@ -122,16 +137,26 @@ const Layouts = ({ children }) => {
                 />
               </ul>
             </div>
-            <div className="d-grid logout justify-content-start">
-              <button className="btn">
-                {" "}
-                {<BsBoxArrowRight />} <span className="ms-2">Logout</span>{" "}
+            <div className="d-grid logout justify-content-start" onClick={handleLogoutClick}>
+              <button 
+                className="btn" 
+                > {<BsBoxArrowRight />} 
+                <span 
+                className="ms-2" 
+                >
+                  Logout
+                </span> 
               </button>
             </div>
           </div>
         </div>
       </div>
-
+      <ModalLogout
+          show={showLogoutModal}
+          title="Profile"
+          onClose={handleLogoutCancel}
+          onSubmit={handleLogoutConfirm}
+        />
       <main className="main">
         <div className="p-3">{children}</div>
       </main>

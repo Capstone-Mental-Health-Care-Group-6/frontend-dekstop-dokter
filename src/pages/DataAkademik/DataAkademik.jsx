@@ -103,7 +103,7 @@ const DataAkademik = () => {
           <br />
         </form>
         <br />
-        <div className="buttons-container d-flex justify-content-center mb-3">
+        <div className="button-container d-flex justify-content-center mb-3">
           <Button
             type="submit"
             className="btn btn-primary"

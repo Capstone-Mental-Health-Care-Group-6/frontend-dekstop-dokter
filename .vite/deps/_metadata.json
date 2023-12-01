@@ -1,45 +1,66 @@
 {
-  "hash": "58b04314",
-  "browserHash": "09c77eb4",
+  "hash": "232b224b",
+  "browserHash": "de4e94a3",
   "optimized": {
     "react": {
       "src": "../../node_modules/react/index.js",
       "file": "react.js",
-      "fileHash": "f27cbf7e",
+      "fileHash": "abf92d3a",
       "needsInterop": true
     },
     "react-dom/client": {
       "src": "../../node_modules/react-dom/client.js",
       "file": "react-dom_client.js",
-      "fileHash": "cd2ce0dd",
+      "fileHash": "75f58889",
       "needsInterop": true
     },
     "bootstrap/dist/js/bootstrap.bundle.js": {
       "src": "../../node_modules/bootstrap/dist/js/bootstrap.bundle.js",
       "file": "bootstrap_dist_js_bootstrap__bundle__js.js",
-      "fileHash": "4f394746",
+      "fileHash": "d9eeff27",
       "needsInterop": true
     },
     "react-router-dom": {
       "src": "../../node_modules/react-router-dom/dist/index.js",
       "file": "react-router-dom.js",
-      "fileHash": "31c67865",
+      "fileHash": "60fc602d",
+      "needsInterop": false
+    },
+    "react-loading-skeleton": {
+      "src": "../../node_modules/react-loading-skeleton/dist/index.js",
+      "file": "react-loading-skeleton.js",
+      "fileHash": "6e317068",
       "needsInterop": false
     },
     "aos": {
       "src": "../../node_modules/aos/dist/aos.js",
       "file": "aos.js",
-      "fileHash": "bef4ecb8",
+      "fileHash": "b9f3e82b",
       "needsInterop": true
     },
     "react-icons/bs": {
       "src": "../../node_modules/react-icons/bs/index.esm.js",
       "file": "react-icons_bs.js",
-      "fileHash": "040b57e4",
+      "fileHash": "6e53fe2f",
+      "needsInterop": false
+    },
+    "primereact/datatable": {
+      "src": "../../node_modules/primereact/datatable/datatable.esm.js",
+      "file": "primereact_datatable.js",
+      "fileHash": "f19593d0",
+      "needsInterop": false
+    },
+    "primereact/column": {
+      "src": "../../node_modules/primereact/column/column.esm.js",
+      "file": "primereact_column.js",
+      "fileHash": "f425a9b9",
       "needsInterop": false
     }
   },
   "chunks": {
+    "chunk-DZXRV6RW": {
+      "file": "chunk-DZXRV6RW.js"
+    },
     "chunk-ZAUFE7H7": {
       "file": "chunk-ZAUFE7H7.js"
     },

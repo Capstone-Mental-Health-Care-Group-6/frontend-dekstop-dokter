@@ -147,7 +147,7 @@ const Dokumen = () => {
           </div>
         </form>
         <br />
-        <div className="buttons-container d-flex justify-content-center mb-3">
+        <div className="button-container d-flex justify-content-center mb-3">
           <Button
             type="button"
             className="btn btn-primary"

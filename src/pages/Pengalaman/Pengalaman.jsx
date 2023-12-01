@@ -144,7 +144,7 @@ const Pengalaman = () => {
           />
         </div>
 
-        <div className="buttons-container d-flex justify-content-center mb-3">
+        <div className="button-container d-flex justify-content-center mb-3">
           {/* Save Changes Button */}
           <Button
             type="button"

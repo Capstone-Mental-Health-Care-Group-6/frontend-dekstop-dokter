@@ -108,7 +108,24 @@
 
   .container .dokumen-form .row .input-group .btn:hover {
     color: #FFF;
-    background: var(--primary-500, #0085FF);;
+    background: #0085FF;
+  }
+
+  .container .button-container .btn {
+    width: 400px;
+    height: 60px;
+    padding: 12px 24px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    color: var(--neutral-50, #FFF);
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
   }
 
   @media (max-width: 1024px) {
@@ -147,6 +164,10 @@
       padding: 10px 20px;
       font-size: 14px;
       margin-top: -5px;
+    }
+
+    .container .button-container .btn {
+      width: fit-content;
     }
   }
 
