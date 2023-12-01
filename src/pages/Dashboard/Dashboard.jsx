@@ -1,6 +1,6 @@
 import React from "react";
 import Layouts from "../../components/layouts/Layouts";
-import { dashboardImg } from "../../../image";
+import { dashboardImg, iconChatBot, imgDataPasienKosong } from "../../../image";
 import "./Dashboard.css";
 import Card from "../../components/fragments/Card/Card";
 import TableListPasien from "../../components/fragments/TableListPasien/TableListPasien";
@@ -48,9 +48,23 @@ const Dashboard = () => {
             ))}
           </div>
 
-          <h5 className="fw-bold mt-3">List Pasien</h5>
+          {dataPasien.length === 0 ? (
+            <div className="pasien__kosong d-flex align-items-center justify-content-center flex-column">
+              <img src={imgDataPasienKosong} alt="img-pasien-kosong" />
+              <p className="fw-semibold">Belum Ada Antrian Pasien</p>
+            </div>
+          ) : (
+            <>
+              <h5 className="fw-bold mt-3">List Pasien</h5>
+              <TableListPasien data={dataPasien} />
+            </>
+          )}
 
-          <TableListPasien data={dataPasien} />
+          <div className="toogle__chatbot ">
+            <div className="bg-white px-3 py-3 d-flex align-items-center justify-content-center">
+              <img src={iconChatBot} alt="icon-chat-bot" />
+            </div>
+          </div>
         </section>
       </Layouts>
     </>
