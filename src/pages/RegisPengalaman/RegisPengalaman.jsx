@@ -1,12 +1,10 @@
 import React, { useState } from "react";
-import Layouts from "../../components/layouts/Layouts";
 import Input from "../../components/elements/Input/Input";
 import Label from "../../components/elements/Input/Label";
 import Button from "../../components/elements/Button/Button";
-import "./Pengalaman.styles.css";
-import ModalProfile from "../../components/fragments/Modal/ModalProfile";
+import "./RegisPengalaman.styles.css";
 
-const Pengalaman = () => {
+const RegisPengalaman = () => {
   const [formData, setFormData] = useState([
     {
       namaPerusahaan: "",
@@ -37,31 +35,8 @@ const Pengalaman = () => {
     ]);
   };
 
-  const [showProfileModal, setShowProfileModal] = useState(false);
-
-  const handleSubmitClick = () => {
-    // Validation: Check if any of the input fields are empty
-    const hasEmptyFields = formData.some(
-      (data) => Object.values(data).some((value) => value.trim() === "")
-    );
-
-    if (hasEmptyFields) {
-      alert("Please fill in all the fields before submitting.");
-    } else {
-      setShowProfileModal(true);
-    }
-  };
-
-  const handleSubmitConfirm = () => {
-    setShowProfileModal(false);
-  };
-
-  const handleSubmitCancel = () => {
-    setShowProfileModal(false);
-  };
-
   return (
-    <Layouts>
+    <div className="register-pengalaman">
       <div className="container justify-content-center">
         {formData.map((data, index) => (
           <form className="pengalaman-form" key={index}>
@@ -147,19 +122,13 @@ const Pengalaman = () => {
           <Button
             type="button"
             className="btn btn-primary"
-            text="Simpan Perubahan"
-            onClick={handleSubmitClick}
+            text="Selanjutnya"
+            // onClick={handleSubmitClick}
           />
         </div>
-        <ModalProfile
-          show={showProfileModal}
-          title="Profile"
-          onClose={handleSubmitCancel}
-          onSubmit={handleSubmitConfirm}
-        />
       </div>
-    </Layouts>
+    </div>
   );
 };
 
-export default Pengalaman;
+export default RegisPengalaman;

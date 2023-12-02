@@ -15,6 +15,10 @@ import Register from "../pages/Signup/Signup"
 import ForgotPw from "../pages/ForgotPassword/ForgotPassword"
 import ResetPassword from "../pages/AturSandi/AturSandi"
 import PencairanSaldo from "../pages/PencairanSaldo/PencairanSaldo"
+import RegisDataPribadi from "../pages/RegisDataPribadi/RegisDataPribadi"
+import RegisDataAkademik from "../pages/RegisDataAkademik/RegisDataAkademik"
+import RegisDokumen from "../pages/RegisDokumen/RegisDokumen"
+import RegisPengalaman from "../pages/RegisPengalaman/RegisPengalaman"
 
 const Routing = () => {
   return (
@@ -35,6 +39,10 @@ const Routing = () => {
       <Route path="/dokter-data-akademik" element={<DataAkademik />} />
       <Route path="/dokter-dokumen" element={<Dokumen />} />
       <Route path="/dokter-pengalaman" element={<Pengalaman />} />
+      <Route path="/regis-data-pribadi" element={<RegisDataPribadi />} />
+      <Route path="/regis-data-akademik" element={<RegisDataAkademik />} />
+      <Route path="/regis-dokumen" element={<RegisDokumen />} />
+      <Route path="/regis-pengalaman" element={<RegisPengalaman />} />
     </Routes>
   )
 }
