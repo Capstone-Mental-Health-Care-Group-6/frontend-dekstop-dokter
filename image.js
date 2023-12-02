@@ -35,6 +35,9 @@ import iconAlertTolakPasien from "./src/assets/iconAlertTolakPasien.svg";
 import iconAlertTerimaPasien from "./src/assets/iconAlertTerimaPasien.svg";
 import imgMenerimaPembayaran from "./src/assets/imgMenerimaPembayaran.png";
 import bgBlankWhite from "./src/assets/bgBlankWhite.jpg";
+import iconCardTarikSaldo from "./src/assets/iconCardTarikSaldo.svg";
+import iconCardProsesPenarikan from "./src/assets/iconCardProsesPenarikan.svg";
+import iconCardSaldoAktif from "./src/assets/iconCardSaldoAktif.svg";
 import avatar1 from "./src/assets/avatar1.svg";
 import avatar2 from "./src/assets/avatar2.svg";
 import avatar3 from "./src/assets/avatar3.svg";
@@ -44,6 +47,7 @@ import searchFailed from "./src/assets/searchFailed.png";
 import BuktiTransaksi from "./src/assets/BuktiTransaksi.png";
 
 
+import imgModalSaldoCair from "./src/assets/imgModalSaldoCair.png";
 
 export {
   logoEmpathiCareMobile,
@@ -77,6 +81,9 @@ export {
   iconAlertTerimaPasien,
   imgMenerimaPembayaran,
   bgBlankWhite,
+  iconCardTarikSaldo,
+  iconCardProsesPenarikan,
+  iconCardSaldoAktif,
   avatar1,
   avatar2,
   avatar3,
@@ -84,5 +91,12 @@ export {
   avatar5,
   searchFailed,
   personChat, personChat2, personChat3, choiseChat, sendChat, logoZoom,
-  BuktiTransaksi
+  BuktiTransaksi,
+  personChat,
+  personChat2,
+  personChat3,
+  choiseChat,
+  sendChat,
+  logoZoom,
+  imgModalSaldoCair,
 };
