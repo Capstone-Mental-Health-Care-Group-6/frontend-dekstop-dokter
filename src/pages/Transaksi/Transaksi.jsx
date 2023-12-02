@@ -10,13 +10,12 @@ import { useState } from "react";
 
 
 const Transaksi = () => {
-
   const [searchValue, setSearchValue] = useState('');
 
   const handleSearchChange = (event) => {
     setSearchValue(event.target.value);
-
   }
+
   return (
     <Layouts>
       <section className="section-transaksi">
@@ -30,7 +29,9 @@ const Transaksi = () => {
           <div className="col-sm-12 col-md-6 col-lg-2">
             <Search size={20} placeholder={"Search"} value={searchValue} onChange={handleSearchChange} />
           </div>
-          <div className="col-sm-12 col-md-6 col-lg-4">
+          <div
+            className="col-sm-12 col-md-6 col-lg-4"
+          >
             <Filter size={20} placeholder={"Urut Berdasarakan ID"} />
           </div>
         </div>

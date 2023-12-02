@@ -11,6 +11,8 @@ import DataPribadi from "../pages/DataPribadi/DataPribadi";
 import DataAkademik from "../pages/DataAkademik/DataAkademik";
 import Dokumen from "../pages/Dokumen/Dokumen";
 import Pengalaman from "../pages/Pengalaman/Pengalaman";
+import DetailTransaksiOtomatis from "../pages/DetailTransaksiOtomatis/DetailTransaksiOtomatis";
+import DetailTransaksiManual from "../pages/DetailTransaksiManual/DetailTransaksiManual";
 
 const Routing = () => {
   return (
@@ -18,13 +20,16 @@ const Routing = () => {
       <Route path="/" element={<LandingPage />} />
       <Route path="/dashboard-dokter" element={<Dashboard />} />
       <Route path="/dokter-chat" element={<Chat />} />
+      <Route path="/dokter-chat/:id" element={<Chat />} />
       <Route path="/dokter-transaksi" element={<Transaksi />} />
+      <Route path="/dokter-transaksi/detail-transaksi-otomatis/:id" element={<DetailTransaksiOtomatis />} />
+      <Route path="/dokter-transaksi/detail-transaksi-manual/:id" element={<DetailTransaksiManual />} />
       <Route path="/dokter-artikel" element={<Artikel />} />
-      <Route path="/dokter-profile" element={<Profile />} />   
-      <Route path="/dokter-data-pribadi" element={<DataPribadi />} />   
-      <Route path="/dokter-data-akademik" element={<DataAkademik />} />   
-      <Route path="/dokter-dokumen" element={<Dokumen />} />   
-      <Route path="/dokter-pengalaman" element={<Pengalaman />} /> 
+      <Route path="/dokter-profile" element={<Profile />} />
+      <Route path="/dokter-data-pribadi" element={<DataPribadi />} />
+      <Route path="/dokter-data-akademik" element={<DataAkademik />} />
+      <Route path="/dokter-dokumen" element={<Dokumen />} />
+      <Route path="/dokter-pengalaman" element={<Pengalaman />} />
     </Routes>
   );
 };

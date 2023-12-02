@@ -1,0 +1,72 @@
+.header {
+  font-family: Montserrat;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  color: #000;
+  height: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.detail-transaksi {
+  background-color: #f8f9fe;
+  width: 652px;
+  height: 769px;
+  padding: 20px;
+}
+
+.container {
+  background-color: #fff;
+  border-radius: 12px;
+  border: 1px solid #aee2ff;
+  padding: 20px;
+}
+
+.value-detail {
+  text-align: right;
+}
+
+.container-bawah {
+  margin-top: 42px;
+}
+
+.container-rating {
+  margin-top: 74px;
+}
+
+.feedback-atas {
+  font-family: Montserrat;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  color: #000;
+  margin-bottom: 10px;
+}
+
+.feedback-bawah {
+  font-family: Montserrat;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  color: #000;
+  margin-top: 10px;
+}
+
+/* styles rating bintang */
+.star-rating {
+  font-size: 32px;
+}
+
+.star-rating .filled {
+  color: gold;
+  margin-right: 8px;
+}
+
+.star-rating .empty {
+  color: #ccc;
+  margin-right: 8px;
+}

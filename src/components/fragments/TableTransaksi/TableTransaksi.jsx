@@ -3,6 +3,7 @@ import { DataTable } from "primereact/datatable"
 import "./TableTransaksi.style.css"
 import { useState } from "react"
 import { searchFailed } from "../../../../image"
+import { Link } from "react-router-dom"
 
 const TableTransaksi = ({ data, searchValue }) => {
     const [first, setFirst] = useState(0);
@@ -19,7 +20,6 @@ const TableTransaksi = ({ data, searchValue }) => {
         )
     })
 
-
     const onPageChange = (event) => {
         setFirst(event.first);
         setRows(event.rows);
@@ -33,6 +33,14 @@ const TableTransaksi = ({ data, searchValue }) => {
 
             </div>
         )
+    }
+
+    const redirectToDetailPage = (rowData) => {
+        if (rowData.jenisTransaksi === "manual") {
+            return `/dokter-transaksi/detail-transaksi-manual/${rowData.id}`;
+        } else {
+            return `/dokter-transaksi/detail-transaksi-otomatis/${rowData.id}`;
+        }
     }
     return (
         <>
@@ -78,15 +86,20 @@ const TableTransaksi = ({ data, searchValue }) => {
                         header="Metode Pembayaran"
                         field="metodePembayaran"
                         headerClassName="table-header-border"
+                        body={(rowData) => (
+                            <Link to={redirectToDetailPage(rowData)} className="text-decoration-none text-dark">
+                                {rowData.metodePembayaran}
+                            </Link>
+                        )}
                     />
                 </DataTable>
             ) : (
-                    <div className="text-center mt-4">
-                        <img src={searchFailed} className='img-search-failed' alt="No data found" />
-                        <h2 className='h2-search-failed'>
-                            Tidak dapat menemukan data
-                        </h2>
-                    </div>
+                <div className="text-center mt-4">
+                    <img src={searchFailed} className='img-search-failed' alt="No data found" />
+                    <h2 className='h2-search-failed'>
+                        Tidak dapat menemukan data
+                    </h2>
+                </div>
             )}
 
         </>
