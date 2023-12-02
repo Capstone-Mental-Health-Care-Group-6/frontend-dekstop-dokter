@@ -8,6 +8,7 @@ import {
   cardLaporanMingguan,
   dataPasien,
 } from "../../components/DataComponents/dataComponents";
+import { Link } from "react-router-dom";
 
 const Dashboard = () => {
   return (
@@ -61,9 +62,11 @@ const Dashboard = () => {
           )}
 
           <div className="toogle__chatbot ">
-            <div className="bg-white px-3 py-3 d-flex align-items-center justify-content-center">
-              <img src={iconChatBot} alt="icon-chat-bot" />
-            </div>
+            <Link to={"/chatbot-dokter"}>
+              <div className="bg-white px-3 py-3 d-flex align-items-center justify-content-center">
+                <img src={iconChatBot} alt="icon-chat-bot" />
+              </div>
+            </Link>
           </div>
         </section>
       </Layouts>

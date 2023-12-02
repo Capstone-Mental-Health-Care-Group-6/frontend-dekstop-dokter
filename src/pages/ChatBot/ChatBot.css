@@ -1,0 +1,34 @@
+.navbar__chatbot {
+  border-bottom: 1px solid #cce7ff;
+}
+
+.header__chatbot {
+  border-bottom: 1px solid #cacaca;
+  padding: 12px 25px;
+}
+
+.header__chatbot h6 {
+  font-size: 20px;
+  font-style: inherit;
+  font-weight: 500;
+}
+
+.body__chatbot .wrapper__chatbot {
+  border: 1px solid #aad6ff;
+  border-radius: 24px;
+  width: 80%;
+  padding: 10px;
+}
+
+.body__chatbot .wrapper__chatbot .input__chatbot {
+  position: sticky;
+  bottom: 0;
+}
+
+.body__chatbot .wrapper__chatbot .input__chatbot .dropdown-toggle::after {
+  display: none;
+}
+
+.body__chatbot .wrapper__chatbot .input__chatbot .emoji-picker {
+  margin-bottom: 60px;
+}
