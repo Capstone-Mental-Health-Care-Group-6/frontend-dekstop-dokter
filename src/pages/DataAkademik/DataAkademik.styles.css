@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700&display=swap');
 
-.container .data-akademik-form {
+.data-akademik .container .data-akademik-form {
   width: 100%;
   height: 500px;
   padding-left: 90px;
@@ -18,7 +18,7 @@
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.04), 0px 1px 1px 0px rgba(0, 0, 0, 0.02);
 }
 
-.container .data-akademik-form .data-akademik-title {
+.data-akademik .container .data-akademik-form .data-akademik-title {
   color: var(--neutral-1000, #000);
   font-family: 'Montserrat', sans-serif;
   font-size: 30px;
@@ -29,7 +29,7 @@
   margin-left: -50px;
 }
 
-.container .data-akademik-form .row .col-md-6 label {
+.data-akademik .container .data-akademik-form .row .col-md-6 label {
   display: flex;
   height: 34px;
   flex-direction: column;
@@ -43,7 +43,11 @@
   line-height: normal;
 }
 
-.container .data-akademik-form .row .col-md-6 input {
+.data-akademik .container .data-akademik-form .row .col-md-6 {
+  padding-top: 10px;
+}
+
+.data-akademik .container .data-akademik-form .row .col-md-6 input {
   display: flex;
   height: 40px;
   width: 90%;
@@ -53,8 +57,25 @@
   align-self: stretch;
 }
 
+.data-akademik .button-container .btn {
+  width: 400px;
+  height: 60px;
+  padding: 12px 24px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  color: var(--neutral-50, #FFF);
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
 @media (max-width: 1024px) {
-  .container .data-akademik-form {
+  .data-akademik .container .data-akademik-form {
     padding: 20px;
     width: 100%;
     height: fit-content;
@@ -63,25 +84,29 @@
     padding-right: 50px;
   }
 
-  .container .data-akademik-form .data-akademik-title {
+  .data-akademik .container .data-akademik-form .data-akademik-title {
     font-size: 16px;
     margin-top: 6%; 
     padding-left: 5%;
     padding-bottom: 5%;
   }
 
-  .container .data-akademik-form .row .col-md-6 label {
+  .data-akademik .container .data-akademik-form .row .col-md-6 label {
     font-size: 14px; 
   }
 
-  .container .data-akademik-form .row .col-md-6 input {
+  .data-akademik .container .data-akademik-form .row .col-md-6 input {
     height: 36px;
     width: 90%; 
+  }
+
+  .data-akademik .button-container .btn {
+    width: fit-content;
   }
 }
 
 @media (max-width: 540px) {
-  .container .data-akademik-form {
+  .data-akademik .container .data-akademik-form {
     padding: 20px;
     width: 100%;
     height: fit-content;
@@ -90,14 +115,14 @@
     padding-right: 0;
   }
 
-  .container .data-akademik-form .data-akademik-title {
+  .data-akademik .container .data-akademik-form .data-akademik-title {
     font-size: 16px;
     margin-top: 6%; 
     margin-left: 2%;
     padding-bottom: 5%;
   }
 
-  .container .data-akademik-form .row .col-md-6 input {
+  .data-akademik .container .data-akademik-form .row .col-md-6 input {
     height: 36px;
     width: 95%; 
   }

@@ -15,24 +15,35 @@ const DataAkademik = () => {
     tahunTamat: "",
   });
 
+  const [showProfileModal, setShowProfileModal] = useState(false);
+
+  const [errorMessages, setErrorMessages] = useState({
+    asalUniversitas: "",
+    jenjangPendidikan: "",
+    tahunMasuk: "",
+    tahunTamat: "",
+  });
+
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const [showProfileModal, setShowProfileModal] = useState(false);
-
   const handleSubmitClick = () => {
-    if (
-      formData.asalUniversitas.trim() === "" ||
-      formData.jenjangPendidikan.trim() === "" ||
-      formData.tahunMasuk.trim() === "" ||
-      formData.tahunTamat.trim() === ""
-    ) {
-      alert("Please fill in all the fields before submitting.");
-    } else {
-      setShowProfileModal(true);
+    const newErrorMessages = {
+      asalUniversitas: !formData.asalUniversitas ? "Asal Universitas wajib diisi" : "",
+      jenjangPendidikan: !formData.jenjangPendidikan ? "Jenjang Pendidikan wajib diisi" : "",
+      tahunMasuk: !formData.tahunMasuk ? "Tahun Masuk wajib diisi" : "",
+      tahunTamat: !formData.tahunTamat ? "Tahun Tamat wajib diisi" : "",
+    };
+
+    setErrorMessages(newErrorMessages);
+
+    if (!formData.asalUniversitas || !formData.jenjangPendidikan || !formData.tahunMasuk || !formData.tahunTamat) {
+      return;
     }
+
+    setShowProfileModal(true);
   };
 
   const handleSubmitConfirm = () => {
@@ -45,33 +56,42 @@ const DataAkademik = () => {
 
   return (
     <Layouts>
+      <div className="data-akademik">
       <div className="container">
-        <BackButton />
-        <form className="data-akademik-form">
+        <BackButton location={'/dokter-profile'}/>
+        <form className="data-akademik-form" onSubmit={handleInputChange}> 
           <h4 className="data-akademik-title">Data Akademik</h4>
           <div className="row mb-3">
             <div className="col-md-6">
               <Label htmlFor="asalUniversitas">Asal Universitas</Label>
               <Input
                 type="text"
+                className={`form-control mb-2 ${errorMessages.asalUniversitas ? "is-invalid" : ""}`}                  
                 id="asalUniversitas"
                 name="asalUniversitas"
                 placeholder="Masukkan Asal Universitas"
                 value={formData.asalUniversitas}
                 onChange={handleInputChange}
               />
+              {errorMessages.asalUniversitas && (
+                <div className="invalid-feedback">{errorMessages.asalUniversitas}</div>
+              )} 
             </div>
 
             <div className="col-md-6">
               <Label htmlFor="jenjangPendidikan">Jenjang Pendidikan</Label>
               <Input
                 type="text"
+                className={`form-control mb-2 ${errorMessages.jenjangPendidikan ? "is-invalid" : ""}`}                  
                 id="jenjangPendidikan"
                 name="jenjangPendidikan"
                 placeholder="Masukkan Jenjang Pendidikan"
                 value={formData.jenjangPendidikan}
                 onChange={handleInputChange}
               />
+              {errorMessages.jenjangPendidikan && (
+                <div className="invalid-feedback">{errorMessages.jenjangPendidikan}</div>
+              )} 
             </div>
           </div>
 
@@ -80,24 +100,32 @@ const DataAkademik = () => {
               <Label htmlFor="tahunMasuk">Tahun Masuk Universitas</Label>
               <Input
                 type="text"
+                className={`form-control mb-2 ${errorMessages.tahunMasuk ? "is-invalid" : ""}`}                  
                 id="tahunMasuk"
                 name="tahunMasuk"
                 placeholder="Masukkan Tahun Masuk"
                 value={formData.tahunMasuk}
                 onChange={handleInputChange}
               />
+              {errorMessages.tahunMasuk && (
+                <div className="invalid-feedback">{errorMessages.tahunMasuk}</div>
+              )}              
             </div>
 
             <div className="col-md-6">
               <Label htmlFor="tahunTamat">Tahun Tamat Universitas</Label>
               <Input
                 type="text"
+                className={`form-control mb-2 ${errorMessages.tahunTamat ? "is-invalid" : ""}`}                  
                 id="tahunTamat"
                 name="tahunTamat"
                 placeholder="Masukkan Tahun Tamat"
                 value={formData.tahunTamat}
                 onChange={handleInputChange}
               />
+              {errorMessages.tahunTamat && (
+                <div className="invalid-feedback">{errorMessages.tahunTamat}</div>
+              )} 
             </div>
           </div>
           <br />
@@ -119,9 +147,9 @@ const DataAkademik = () => {
           onSubmit={handleSubmitConfirm}
         />
       </div>
+      </div>
     </Layouts>
   );
 };
 
 export default DataAkademik;
-

@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700&display=swap');
 
-.container .pengalaman-form {
+.pengalaman .container .pengalaman-form {
   width: 100%;
   height: 520px;
   padding-top: 70px;
@@ -17,7 +17,7 @@
   margin-bottom: 20px;
 }
 
-.container .pengalaman-form .pengalaman-title {
+.pengalaman .container .pengalaman-form .pengalaman-title {
   color: var(--neutral-1000, #000);
   font-family: 'Montserrat', sans-serif;
   font-size: 30px;
@@ -27,8 +27,8 @@
   padding-bottom: 20px;
 }
 
-.container .pengalaman-form .row .col-md-6 label,
-.container .pengalaman-form .row label {
+.pengalaman .container .pengalaman-form .row .col-md-6 label,
+.pengalaman .container .pengalaman-form .row label {
   display: flex;
   height: 34px;
   flex-direction: column;
@@ -42,7 +42,7 @@
   line-height: normal;
 }
 
-.container .pengalaman-form .row .col-md-6 input {
+.pengalaman .container .pengalaman-form .row .col-md-6 input {
   display: flex;
   height: 40px;
   width: 90%;
@@ -51,7 +51,11 @@
   align-self: stretch;
 }
 
-.container .pengalaman-form .row input {
+.pengalaman .container .pengalaman-form .row .input-alamat-perusahaan {
+  padding-left: 10px;
+}
+
+.pengalaman .container .pengalaman-form .row input {
   display: flex;
   height: 40px;
   width: 70%;
@@ -60,8 +64,25 @@
   align-self: stretch;
 }
 
+.pengalaman .container .button-container .btn {
+  width: 400px;
+  height: 60px;
+  padding: 12px 24px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  color: var(--neutral-50, #FFF);
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
 @media (max-width: 1024px) {
-  .container .pengalaman-form {
+  .pengalaman .container .pengalaman-form {
     height: fit-content;
     width: 100%;
     padding-top: 5%;
@@ -70,37 +91,41 @@
     padding-bottom: 5%;
   }
 
-  .container .pengalaman-form .pengalaman-title {
+  .pengalaman .container .pengalaman-form .pengalaman-title {
     font-size: 16px;
   }
 
-  .container .pengalaman-form .row .col-md-6 label {
+  .pengalaman .container .pengalaman-form .row .col-md-6 label {
     font-size: 14px;
   }
 
-  .container .pengalaman-form .row label {
+  .pengalaman .container .pengalaman-form .row label {
     font-size: 14px;
   }
 
-  .container .pengalaman-form .row .col-md-6 input {
+  .pengalaman .container .pengalaman-form .row .col-md-6 input {
     height: 36px;
     width: fit-content;
   }
 
-  .container .pengalaman-form .row input {
+  .pengalaman .container .pengalaman-form .row input {
     height: 36px;
     width: 80%;
+  }
+
+  .pengalaman .container .button-container .btn {
+    width: fit-content;
   }
 }
 
 @media (max-width: 540px) {
-  .container .pengalaman-form .row .col-md-6 input {
+  .pengalaman .container .pengalaman-form .row .col-md-6 input {
     height: 36px;
     width: 90%;
     font-size: 12px;
   }
 
-  .container .pengalaman-form .row input {
+  .pengalaman .container .pengalaman-form .row input {
     height: 36px;
     width: 90%;
     font-size: 12px;

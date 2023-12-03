@@ -1,9 +1,9 @@
 import React from "react";
 import { NavLink } from "react-router-dom"; // Import Link from react-router-dom if you're using it for navigation
 
-const BackButton = () => {
+const BackButton = ({ location }) => {
   return (
-    <NavLink to={'/dokter-profile'}>
+    <NavLink to={location}>
       <button className="btn" style={{
         color: 'var(--neutral-1000, #000)',
         fontFamily: 'Montserrat',

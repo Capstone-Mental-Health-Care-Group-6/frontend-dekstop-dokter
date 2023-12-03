@@ -1,65 +1,33 @@
 import React, { useState } from "react";
-import Layouts from "../../components/layouts/Layouts";
 import Label from "../../components/elements/Input/Label";
 import Button from "../../components/elements/Button/Button";
-import BackButton from "../../components/elements/Button/BackButton";
-import './Dokumen.styles.css';
+import './RegisDokumen.styles.css';
 import Input from "../../components/elements/Input/Input";
-import ModalProfile from "../../components/fragments/Modal/ModalProfile";
 
-const Dokumen = () => {
+const RegisDokumen = () => {
   const [cvFile, setCvFile] = useState(null);
   const [sipFile, setSipFile] = useState(null);
   const [ijazahFile, setIjazahFile] = useState(null);
 
-  const [showProfileModal, setShowProfileModal] = useState(false); 
-
-  const [errorMessages, setErrorMessages] = useState({
-    cv: "",
-    sip: "",
-    ijazah: "",
-  });
-
-  const handleFileChange = (event, setFile, setInputValue, inputName) => {
+  const handleFileChange = (event, setFile, setInputValue) => {
     const selectedFile = event.target.files[0];
     setFile(selectedFile);
 
     setInputValue(selectedFile ? selectedFile.name : "");
-
-    const newErrorMessages = { ...errorMessages, [inputName]: "" };
-    setErrorMessages(newErrorMessages);
   };
 
-  const handleSubmitClick = () => {
-    const newErrorMessages = {
-      cv: !cvFile ? "CV file wajib diisi" : "",
-      sip: !sipFile ? "SIP file wajib diisi" : "",
-      ijazah: !ijazahFile ? "Ijazah file wajib diisi" : "",
-    };
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
-    setErrorMessages(newErrorMessages);
-
-    if (!cvFile || !sipFile || !ijazahFile) {
-      return;
-    }
-
-    setShowProfileModal(true);
-  };
-
-  const handleSubmitConfirm = () => {
-    setShowProfileModal(false);
-  };
-
-  const handleSubmitCancel = () => {
-    setShowProfileModal(false);
+    console.log("CV File:", cvFile);
+    console.log("SIP File:", sipFile);
+    console.log("Ijazah File:", ijazahFile);
   };
 
   return (
-    <Layouts>
-      <div className="dokumen">
+    <div className="register-dokumen">
       <div className="container">
-        <BackButton location={'/dokter-profile'} />
-        <form className="dokumen-form" onSubmit={handleFileChange}>
+        <form className="dokumen-form" onSubmit={handleSubmit}>
           <h4 className="dokumen-title">Dokumen</h4>
 
           <div className="row">
@@ -79,14 +47,11 @@ const Dokumen = () => {
               <div className="form-control-wrapper">
                 <Input
                   type="text"
-                  className={`form-control mb-2 ${errorMessages.cv ? "is-invalid" : ""}`}                  
+                  className="form-control mb-2"
                   id="cv"
                   name="cv"
                   readOnly
                 />
-                  {errorMessages.cv && (
-                    <div className="invalid-feedback">{errorMessages.cv}</div>
-                  )}  
                 <label className="btn btn-outline-primary mb-2 choose-file-btn">
                   Pilih File
                   <input
@@ -97,7 +62,7 @@ const Dokumen = () => {
                         document.getElementById("cv").value = value
                       )
                     }
-                  />               
+                  />
                 </label>
               </div>
             </div>
@@ -110,14 +75,11 @@ const Dokumen = () => {
               <div className="form-control-wrapper">
               <Input
                 type="text"
-                className={`form-control mb-2 ${errorMessages.sip ? "is-invalid" : ""}`}                  
+                className="form-control mb-2"
                 id="sip"
                 name="sip"
                 readOnly
               />
-              {errorMessages.sip && (
-                <div className="invalid-feedback">{errorMessages.sip}</div>
-              )}
               <label className="btn btn-outline-primary mb-2 choose-file-btn">
                 Pilih File
                 <input
@@ -141,14 +103,11 @@ const Dokumen = () => {
             <div className="form-control-wrapper">
             <Input
                 type="text"
-                className={`form-control mb-2 ${errorMessages.ijazah ? "is-invalid" : ""}`}                  
+                className="form-control mb-2"
                 id="ijazah"
                 name="ijazah"
                 readOnly
               />
-              {errorMessages.ijazah && (
-                <div className="invalid-feedback">{errorMessages.ijazah}</div>
-              )}
               <label className="btn btn-outline-primary mb-2 choose-file-btn">
                 Pilih File
                 <input
@@ -171,19 +130,12 @@ const Dokumen = () => {
             type="button"
             className="btn btn-primary"
             text="Simpan Perubahan"
-            onClick={handleSubmitClick}
+            // onClick={handleSubmitClick}
           />
         </div>
-        <ModalProfile
-          show={showProfileModal}
-          title="Profile"
-          onClose={handleSubmitCancel}
-          onSubmit={handleSubmitConfirm}
-        />
       </div>
-      </div>
-    </Layouts>
+    </div>
   );
 };
 
-export default Dokumen;
+export default RegisDokumen;

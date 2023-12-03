@@ -22,6 +22,17 @@
       kotaKabupaten: "",
     });
 
+    const [errorMessages, setErrorMessages] = useState({
+      namaLengkap: "",
+      email: "",
+      nik: "",
+      noHandphone: "",
+      tanggalLahir: "",
+      provinsi: "",
+      jenisKelamin: "",
+      kotaKabupaten: "",
+    });
+
     const [selectedImage, setSelectedImage] = useState(null);
 
     const handleInputChange = (event) => {
@@ -40,11 +51,6 @@
       }
     };
 
-    const handleSubmit = (event) => {
-      event.preventDefault();
-      console.log("Form submitted:", formData);
-    };
-
     const openFileInput = () => {
       document.getElementById("imageInput").click();
     };
@@ -52,20 +58,25 @@
     const [showProfileModal, setShowProfileModal] = useState(false);
   
     const handleSubmitClick = () => {
-      if (
-        formData.namaLengkap.trim() === "" ||
-        formData.email.trim() === "" ||
-        formData.nik.trim() === "" ||
-        formData.noHandphone.trim() === "" ||
-        formData.tanggalLahir.trim() === "" ||
-        formData.provinsi.trim() === "" ||
-        formData.jenisKelamin.trim() === "" ||
-        formData.kotaKabupaten.trim() === "" 
-      ) {
-        alert("Please fill in all the fields before submitting.");
-      } else {
-        setShowProfileModal(true);
-      }    };
+      const newErrorMessages = {
+        namaLengkap: !formData.namaLengkap ? "Nama lengkap wajib diisi" : "",
+        email: !formData.email ? "Email wajib diisi" : "",
+        nik: !formData.nik ? "NIK wajib diisi" : "",
+        noHandphone: !formData.noHandphone ? "Nomor handphone wajib diisi" : "",
+        tanggalLahir: !formData.tanggalLahir ? "Tanggal lahir wajib diisi" : "",
+        provinsi: !formData.provinsi ? "Provinsi wajib diisi" : "",
+        jenisKelamin: !formData.jenisKelamin ? "Jenis kelamin wajib dipilih" : "",
+        kotaKabupaten: !formData.kotaKabupaten ? "Kota/Kabupaten wajib diisi" : "",
+      };
+  
+      setErrorMessages(newErrorMessages);
+  
+      if (!formData.namaLengkap || !formData.email || !formData.nik || !formData.noHandphone || !formData.tanggalLahir || !formData.provinsi || !formData.jenisKelamin || !formData.kotaKabupaten) {
+        return;
+      }
+  
+      setShowProfileModal(true);
+    };
   
     const handleSubmitConfirm = () => {
       setShowProfileModal(false);
@@ -80,7 +91,7 @@
     return (
       <Layouts>
       <div className="data-pribadi">
-        <BackButton />
+        <BackButton location={'/dokter-profile'} />
         <div className="card mb-3">
           <label htmlFor="imageInput">
             <div className="card-body" onClick={openFileInput}>
@@ -106,7 +117,7 @@
             style={{ display: "none" }}
           />
           </div>
-            <form className="data-pribadi-form" onSubmit={handleSubmit}>
+            <form className="data-pribadi-form">
             <h4 className="data-pribadi-title">Data Pribadi</h4>
             <div className="row mb-3">
             <div className="col-md-6">
@@ -115,12 +126,16 @@
                   <FontAwesomeIcon className="icon" icon={faUser} />
                   <Input
                     type="text"
+                    className={`form-control mb-2 ${errorMessages.namaLengkap ? "is-invalid" : ""}`}                  
                     id="namaLengkap"
                     name="namaLengkap"
                     placeholder="Masukkan Nama Lengkap"
                     value={formData.namaLengkap}
                     onChange={handleInputChange}
                   />
+                  {errorMessages.namaLengkap && (
+                    <div className="invalid-feedback">{errorMessages.namaLengkap}</div>
+                  )} 
                 </div>
               </div>
 
@@ -130,12 +145,16 @@
                   <FontAwesomeIcon className="icon" icon={faEnvelope} />
                   <Input
                     type="email"
+                    className={`form-control mb-2 ${errorMessages.email ? "is-invalid" : ""}`}                  
                     id="email"
                     name="email"
                     placeholder="Masukkan Email"
                     value={formData.email}
                     onChange={handleInputChange}
                   />
+                  {errorMessages.email && (
+                    <div className="invalid-feedback">{errorMessages.email}</div>
+                  )} 
                 </div>
               </div>
             </div>
@@ -145,12 +164,16 @@
                 <Label htmlFor="nik">NIK</Label>
                 <Input
                   type="text"
+                  className={`form-control mb-2 ${errorMessages.nik ? "is-invalid" : ""}`}                  
                   id="nik"
                   name="nik"
                   placeholder="Masukkan NIK"
                   value={formData.nik}
                   onChange={handleInputChange}
                 />
+                {errorMessages.nik && (
+                  <div className="invalid-feedback">{errorMessages.nik}</div>
+                )} 
               </div>
 
               <div className="col-md-6">
@@ -158,13 +181,17 @@
                 <div className="input-with-icon">
                   <FontAwesomeIcon className="icon" icon={faPhone} />
                   <Input
-                    type="tel"
+                    type="text"
+                    className={`form-control mb-2 ${errorMessages.noHandphone ? "is-invalid" : ""}`}                  
                     id="noHandphone"
                     name="noHandphone"
                     placeholder="Masukkan No Handphone"
                     value={formData.noHandphone}
                     onChange={handleInputChange}
                   />
+                  {errorMessages.noHandphone && (
+                    <div className="invalid-feedback">{errorMessages.noHandphone}</div>
+                  )} 
                 </div>
                 </div>
               </div>
@@ -174,24 +201,32 @@
                   <Label htmlFor="tanggalLahir">Tanggal Lahir</Label>
                   <Input
                     type="date"
+                    className={`form-control mb-2 ${errorMessages.tanggalLahir ? "is-invalid" : ""}`}                  
                     id="tanggalLahir"
                     name="tanggalLahir"
                     placeholder="Pilih Tanggal Lahir"
                     value={formData.tanggalLahir}
                     onChange={handleInputChange}
                   />
+                  {errorMessages.tanggalLahir && (
+                    <div className="invalid-feedback">{errorMessages.tanggalLahir}</div>
+                  )} 
                 </div>
 
                 <div className="col-md-6">
                   <Label htmlFor="provinsi">Provinsi</Label>
                   <Input
                     type="text"
+                    className={`form-control mb-2 ${errorMessages.provinsi ? "is-invalid" : ""}`}                  
                     id="provinsi"
                     name="provinsi"
                     placeholder="Masukkan Provinsi"
                     value={formData.provinsi}
                     onChange={handleInputChange}
                   />
+                  {errorMessages.provinsi && (
+                    <div className="invalid-feedback">{errorMessages.provinsi}</div>
+                  )} 
                 </div>
               </div>
 
@@ -199,7 +234,7 @@
                 <div className="col-md-6">
                   <Label htmlFor="jenisKelamin">Jenis Kelamin</Label>
                   <InputSelect
-                    className="form-select"
+                    className={`form-select ${errorMessages.jenisKelamin ? "is-invalid" : ""}`}
                     id="jenisKelamin"
                     name="jenisKelamin"
                     title="Pilih"
@@ -207,18 +242,25 @@
                     value={formData.jenisKelamin}
                     onChange={handleInputChange}
                   />
+                  {errorMessages.jenisKelamin && (
+                    <div className="invalid-feedback">{errorMessages.jenisKelamin}</div>
+                  )} 
                 </div>
 
                 <div className="col-md-6">
                   <Label htmlFor="kotaKabupaten">Kota/Kabupaten</Label>
                   <Input
                     type="text"
+                    className={`form-control mb-2 ${errorMessages.kotaKabupaten ? "is-invalid" : ""}`}                  
                     id="kotaKabupaten"
                     name="kotaKabupaten"
                     placeholder="Masukkan Kota/Kabupaten"
                     value={formData.kotaKabupaten}
                     onChange={handleInputChange}
                   />
+                  {errorMessages.kotaKabupaten && (
+                    <div className="invalid-feedback">{errorMessages.kotaKabupaten}</div>
+                  )} 
                 </div>
               </div>
             </form>
