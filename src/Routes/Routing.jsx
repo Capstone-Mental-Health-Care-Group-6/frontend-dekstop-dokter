@@ -16,6 +16,7 @@ import ForgotPw from "../pages/ForgotPassword/ForgotPassword";
 import ResetPassword from "../pages/AturSandi/AturSandi";
 import PencairanSaldo from "../pages/PencairanSaldo/PencairanSaldo";
 import ChatBot from "../pages/ChatBot/ChatBot";
+import NotFound404 from "../pages/NotFound404/NotFound404";
 
 const Routing = () => {
   return (
@@ -36,7 +37,11 @@ const Routing = () => {
       <Route path="/dokter-data-akademik" element={<DataAkademik />} />
       <Route path="/dokter-dokumen" element={<Dokumen />} />
       <Route path="/dokter-pengalaman" element={<Pengalaman />} />
+
       <Route path="/chatbot-dokter" element={<ChatBot />} />
+
+      {/* route ketika url tidak sesuai */}
+      <Route element={<NotFound404 />} path="*" />
     </Routes>
   );
 };

@@ -45,6 +45,7 @@ import avatar4 from "./src/assets/avatar4.svg";
 import imgModalSaldoCair from "./src/assets/imgModalSaldoCair.png";
 import iconChatBot from "./src/assets/iconChatBot.svg";
 import imgDataPasienKosong from "./src/assets/imgDataPasienKosong.png";
+import imgNotFound404 from "./src/assets/imgNotFound404.png";
 
 export {
   logoEmpathiCareMobile,
@@ -94,4 +95,5 @@ export {
   imgModalSaldoCair,
   iconChatBot,
   imgDataPasienKosong,
+  imgNotFound404,
 };
