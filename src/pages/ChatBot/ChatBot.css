@@ -16,13 +16,38 @@
 .body__chatbot .wrapper__chatbot {
   border: 1px solid #aad6ff;
   border-radius: 24px;
+  overflow-y: auto;
+  /* max-height: 80vh;
+  min-height: 80vh; */
   width: 80%;
-  padding: 10px;
+}
+
+.body__chatbot .wrapper__chatbot .chat__bot .chat-text-bot {
+  text-align: left;
+  background-color: #ccf1ff;
+  border-radius: 30px;
+  padding: 20px;
+  margin-right: 10%;
+  width: 60%;
+  font-size: 14px;
+}
+
+.body__chatbot .wrapper__chatbot .chat__bot .chat-text-dokter {
+  text-align: right;
+  background-color: #99deff;
+  border-radius: 30px;
+  padding: 20px;
+  margin-left: 10%;
+}
+
+.body__chatbot .wrapper__chatbot .chat__bot .chat-text .btn-outline-primary {
+  font-size: 12px;
 }
 
 .body__chatbot .wrapper__chatbot .input__chatbot {
   position: sticky;
   bottom: 0;
+  border-top: 1px solid #aad6ff;
 }
 
 .body__chatbot .wrapper__chatbot .input__chatbot .dropdown-toggle::after {

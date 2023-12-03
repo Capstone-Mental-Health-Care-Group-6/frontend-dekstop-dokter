@@ -216,6 +216,14 @@ export const dataChatUser = [
   },
 ];
 
+// export const dataChatBot = [
+//   {
+//     sender: "bot",
+//     content:
+//       "Selamat datang di Aplikasi Kesehatan Mental kami! Saya akan dengan senang hati membantu Anda memahami fitur-fitur yang tersedia. Berikut beberapa hal yang dapat Anda lakukan:",
+//   },
+// ];
+
 export const dataChat = [
   {
     sender: "dokter",
