@@ -2,6 +2,27 @@
   border-style: solid;
 }
 
+.table-header-border-id{
+  width: 5%;
+}
+
+.table-header-border-judul{
+  width: 55%;
+  
+}
+
+.table-header-border-author{
+  width: 20%;
+}
+
+.table-header-border-status{
+  width: 15%;
+}
+
+.table-header-border-aksi{
+  width: 5%;
+}
+
 @media screen and (max-width: 480px) {
   /* body {
     background-color: lightgreen;
@@ -14,5 +35,4 @@
     font-size: 10px;
     padding-right: 10px;
   }
-
 }

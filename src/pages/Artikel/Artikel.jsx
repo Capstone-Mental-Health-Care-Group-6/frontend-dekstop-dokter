@@ -6,6 +6,10 @@ import { FaPlus } from "react-icons/fa6";
 import { dataArtikel } from "./dataArtikel";
 import { artikelEmpty } from "../../../image";
 import { NavLink } from "react-router-dom";
+import Table from "../../components/fragments/Table/Table";
+import ColumnTable from "../../components/ColumnTable/ColumnTable";
+import { FilterMatchMode } from "primereact/api";
+import { IoEllipsisVertical } from "react-icons/io5";
 
 const Artikel = () => {
   const [artikel, setArtikel] = useState([]);
@@ -13,6 +17,21 @@ const Artikel = () => {
   useEffect(() => {
     setArtikel(dataArtikel);
   }, []);
+
+  const tanggalBodyTemplate = (rowData) => {
+    return (
+      <div className="d-flex flex-column">
+        <div className="fw-semibold mb-1">{rowData.status}</div>
+        <div style={{fontSize: "12px"}} >{rowData.tanggal}</div>
+      </div>
+    )
+  }
+  
+  const aksiBodyTemplate = (rowData) => {
+    return (
+      <Button className={"bg-transparent border-0 p-0"} svg={<IoEllipsisVertical/>}/>
+    )
+  }
 
   return (
     <Layouts>
@@ -24,24 +43,53 @@ const Artikel = () => {
           </div>
           <div>
             <NavLink to={"/dokter-tambah-artikel"}>
-            <Button
-              type={"button"}
-              id={"create-artikel-btn"}
-              text={"Tambah Artikel"}
-              className={
-                "button-create border-primary bg-light py-2 px-3 rounded-2 border-1 fw-bold"
-              }
-              svg={<FaPlus />}
-              svgClassName={"d-flex flex-row align-items-center svg-button-create"}
+              <Button
+                type={"button"}
+                id={"create-artikel-btn"}
+                text={"Tambah Artikel"}
+                className={
+                  "button-create border-primary bg-light py-2 px-3 rounded-2 border-1 fw-bold"
+                }
+                svg={<FaPlus />}
+                svgClassName={
+                  "d-flex flex-row align-items-center svg-button-create"
+                }
               />
-              </NavLink>
+            </NavLink>
           </div>
         </div>
         <hr />
         {artikel.length > 0 ? (
-          <div>
-            <p>yesh girl</p>
-          </div>
+          <Table
+            value={artikel}
+            selectionMode="single"
+            dataKey="id"
+          >
+            <ColumnTable
+              field="id"
+              header="No"
+              headerClassName="table-header-border-id"
+            />
+            <ColumnTable
+              field="judul"
+              header="Judul"
+              headerClassName="table-header-border-judul"
+            />
+            <ColumnTable
+              field="author"
+              header="Author"
+              headerClassName="table-header-border-author"
+            />
+            <ColumnTable
+              body={tanggalBodyTemplate}
+              header="Status"
+              headerClassName="table-header-border-status"
+            />
+            <ColumnTable
+              body={aksiBodyTemplate} 
+              headerClassName="table-header-border-aksi"
+            />
+          </Table>
         ) : (
           <div className="h-100 d-flex flex-column justify-content-center align-items-center ">
             <img src={artikelEmpty} alt="artikel Empty Image" />
