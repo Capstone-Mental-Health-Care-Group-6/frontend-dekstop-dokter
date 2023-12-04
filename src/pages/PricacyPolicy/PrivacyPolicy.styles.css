@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700&display=swap');
+
+.privacy-policy .navbar .navbar-section{
+    display: flex;
+    width: 100%;
+    margin-top: -15px;
+    align-items: center;
+    height: 80px;
+    background: #0059AA;
+}
+
+.privacy-policy .navbar .navbar-section .logo {
+    padding-left: 2%;
+}
+
+.privacy-policy .navbar .navbar-section .name {
+    padding-left: 1%;
+}
+
+.privacy-policy .title-section {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: fit-content;
+    background: linear-gradient(90deg, #0085FF 1.28%, #99DEFF 97.15%);
+}
+
+.privacy-policy .title-section .title-content h4 {
+    text-align: center;
+    padding-top: 7%;
+    color: var(--neutral-50, #FFF);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.privacy-policy .title-section .title-content img {
+    margin-top: -135px;
+    margin-left: 74%;
+    width: 26%;
+    height: auto;
+    filter: opacity(40%);
+}
+
+.privacy-policy .emphaticare-content {
+    width: 90%;
+    padding-left: 10%;
+    padding-top: 5%;
+}
+
+.privacy-policy .emphaticare-content .privacy-policy-title h4 {
+    color: var(--neutral-1000, #000);
+    text-align: justify;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 160%; /* 41.6px */
+    letter-spacing: 0.5px;
+}
+
+.privacy-policy .emphaticare-content .privacy-policy-title p,
+.privacy-policy .emphaticare-content .privacy-policy-text p {
+    color: var(--neutral-1000, #000);
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 160%;
+    letter-spacing: 0.5px;
+}
+
+.privacy-policy .emphaticare-content .privacy-policy-text {
+    text-align: justify;
+}
+
+@media (max-width: 1024px) {
+    .privacy-policy .title-section .title-content img {
+        margin-top: -100px;
+    }
+}
+
+@media (max-width: 540px) {
+    .privacy-policy .title-section .title-content img {
+        margin-top: -50px;
+    }
+
+    .privacy-policy .emphaticare-content .privacy-policy-title h4 {
+        font-size: 18px;
+    }
+
+    .privacy-policy .emphaticare-content .privacy-policy-title p {
+        font-size: 14px;
+    }
+
+    .privacy-policy .emphaticare-content .privacy-policy-text p {
+        font-size: 14px;
+    }
+}

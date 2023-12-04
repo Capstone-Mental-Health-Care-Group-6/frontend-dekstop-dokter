@@ -6,6 +6,7 @@ import Button from "../../components/elements/Button/Button";
 import "./Pengalaman.styles.css";
 import BackButton from "../../components/elements/Button/BackButton";
 import ModalProfile from "../../components/fragments/Modal/ModalProfile";
+import { NavLink } from "react-router-dom";
 
 const Pengalaman = () => {
   const [formData, setFormData] = useState([
@@ -169,6 +170,17 @@ const Pengalaman = () => {
               </div>
             </form>
           ))}
+          <div className="form-check">
+            <input
+              className="form-check-input"
+              type="checkbox"
+              defaultValue=""
+              id="flexCheckDefault"
+            />
+            <label className="form-check-label" htmlFor="flexCheckDefault">
+              Dengan ini saya menyetujui <NavLink to={'/privacy-policy'} className="privacyPolicy">Kebijakan Privasi</NavLink> dari EmpathiCare
+            </label>
+          </div>
 
           <div className="buttons-container d-flex justify-content-end mb-3">
             {/* Add Data Button */}

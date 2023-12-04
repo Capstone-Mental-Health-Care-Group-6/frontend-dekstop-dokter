@@ -81,6 +81,32 @@
   line-height: normal;
 }
 
+.pengalaman .container .form-check .form-check-input {
+  border-radius: 2px;
+  border-top: 2px solid var(--neutral-50, #FFF);
+  border-right: var(--spc-2, 2px) solid var(--neutral-50, #FFF);
+  border-bottom: var(--spc-2, 2px) solid var(--neutral-50, #FFF);
+  border-left: var(--spc-2, 2px) solid var(--neutral-50, #FFF);
+}
+
+.pengalaman .container .form-check .form-check-label {
+  color: var(--neutral-1000, #000);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px; /* 142.857% */
+}
+
+.pengalaman .container .form-check .form-check-label .privacyPolicy {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px; /* 142.857% */
+  text-decoration: none;
+}
+
 @media (max-width: 1024px) {
   .pengalaman .container .pengalaman-form {
     height: fit-content;

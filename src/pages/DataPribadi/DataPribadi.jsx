@@ -20,6 +20,8 @@
       provinsi: "",
       jenisKelamin: "",
       kotaKabupaten: "",
+      str: "",
+      noSip: "",
     });
 
     const [errorMessages, setErrorMessages] = useState({
@@ -31,6 +33,8 @@
       provinsi: "",
       jenisKelamin: "",
       kotaKabupaten: "",
+      str: "",
+      noSip: "",
     });
 
     const [selectedImage, setSelectedImage] = useState(null);
@@ -67,11 +71,13 @@
         provinsi: !formData.provinsi ? "Provinsi wajib diisi" : "",
         jenisKelamin: !formData.jenisKelamin ? "Jenis kelamin wajib dipilih" : "",
         kotaKabupaten: !formData.kotaKabupaten ? "Kota/Kabupaten wajib diisi" : "",
+        str: !formData.str ? "Nomor STR wajib dipilih" : "",
+        noSip: !formData.noSip ? "Nomor SIP wajib diisi" : "",
       };
   
       setErrorMessages(newErrorMessages);
   
-      if (!formData.namaLengkap || !formData.email || !formData.nik || !formData.noHandphone || !formData.tanggalLahir || !formData.provinsi || !formData.jenisKelamin || !formData.kotaKabupaten) {
+      if (!formData.namaLengkap || !formData.email || !formData.nik || !formData.noHandphone || !formData.tanggalLahir || !formData.provinsi || !formData.jenisKelamin || !formData.kotaKabupaten || !formData.str || !formData.noSip) {
         return;
       }
   
@@ -122,8 +128,6 @@
             <div className="row mb-3">
             <div className="col-md-6">
               <Label htmlFor="namaLengkap">Nama Lengkap</Label>
-                <div className="input-with-icon">
-                  <FontAwesomeIcon className="icon" icon={faUser} />
                   <Input
                     type="text"
                     className={`form-control mb-2 ${errorMessages.namaLengkap ? "is-invalid" : ""}`}                  
@@ -136,13 +140,10 @@
                   {errorMessages.namaLengkap && (
                     <div className="invalid-feedback">{errorMessages.namaLengkap}</div>
                   )} 
-                </div>
               </div>
 
               <div className="col-md-6">
                 <Label htmlFor="email">Email</Label>
-                <div className="input-with-icon">
-                  <FontAwesomeIcon className="icon" icon={faEnvelope} />
                   <Input
                     type="email"
                     className={`form-control mb-2 ${errorMessages.email ? "is-invalid" : ""}`}                  
@@ -155,7 +156,6 @@
                   {errorMessages.email && (
                     <div className="invalid-feedback">{errorMessages.email}</div>
                   )} 
-                </div>
               </div>
             </div>
 
@@ -178,8 +178,6 @@
 
               <div className="col-md-6">
                 <Label htmlFor="noHandphone">No Handphone</Label>
-                <div className="input-with-icon">
-                  <FontAwesomeIcon className="icon" icon={faPhone} />
                   <Input
                     type="text"
                     className={`form-control mb-2 ${errorMessages.noHandphone ? "is-invalid" : ""}`}                  
@@ -192,7 +190,6 @@
                   {errorMessages.noHandphone && (
                     <div className="invalid-feedback">{errorMessages.noHandphone}</div>
                   )} 
-                </div>
                 </div>
               </div>
 
@@ -237,7 +234,7 @@
                     className={`form-select ${errorMessages.jenisKelamin ? "is-invalid" : ""}`}
                     id="jenisKelamin"
                     name="jenisKelamin"
-                    title="Pilih"
+                    title="Jenis Kelamin"
                     options={["Laki-laki", "Perempuan"]}
                     value={formData.jenisKelamin}
                     onChange={handleInputChange}
@@ -260,6 +257,40 @@
                   />
                   {errorMessages.kotaKabupaten && (
                     <div className="invalid-feedback">{errorMessages.kotaKabupaten}</div>
+                  )} 
+                </div>
+              </div>
+
+              <div className="row mb-3">
+              <div className="col-md-6">
+                <Label htmlFor="str">Nomor STR</Label>
+                <Input
+                  type="text"
+                  className={`form-control mb-2 ${errorMessages.str ? "is-invalid" : ""}`}                  
+                  id="str"
+                  name="str"
+                  placeholder="Masukkan Nomor STR"
+                  value={formData.str}
+                  onChange={handleInputChange}
+                />
+                {errorMessages.str && (
+                  <div className="invalid-feedback">{errorMessages.str}</div>
+                )} 
+              </div>
+
+              <div className="col-md-6">
+                <Label htmlFor="noSip">Nomor SIP</Label>
+                  <Input
+                    type="text"
+                    className={`form-control mb-2 ${errorMessages.noSip ? "is-invalid" : ""}`}                  
+                    id="noSip"
+                    name="noSip"
+                    placeholder="Masukkan Nomor SIP"
+                    value={formData.noSip}
+                    onChange={handleInputChange}
+                  />
+                  {errorMessages.noSip && (
+                    <div className="invalid-feedback">{errorMessages.noSip}</div>
                   )} 
                 </div>
               </div>

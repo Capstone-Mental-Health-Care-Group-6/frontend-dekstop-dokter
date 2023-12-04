@@ -12,6 +12,8 @@ import DataPribadi from "../pages/DataPribadi/DataPribadi";
 import DataAkademik from "../pages/DataAkademik/DataAkademik";
 import Dokumen from "../pages/Dokumen/Dokumen";
 import Pengalaman from "../pages/Pengalaman/Pengalaman";
+import ProfilSingkat from "../pages/ProfilSingkat/ProfilSingkat";
+import PrivacyPolicy from "../pages/PricacyPolicy/PrivacyPolicy";
 
 const Routing = () => {
   return (
@@ -28,6 +30,8 @@ const Routing = () => {
       <Route path="/dokter-data-akademik" element={<DataAkademik />} />   
       <Route path="/dokter-dokumen" element={<Dokumen />} />   
       <Route path="/dokter-pengalaman" element={<Pengalaman />} /> 
+      <Route path="/dokter-profil-singkat" element={<ProfilSingkat />} /> 
+      <Route path="/privacy-policy" element={<PrivacyPolicy />} /> 
     </Routes>
   );
 };

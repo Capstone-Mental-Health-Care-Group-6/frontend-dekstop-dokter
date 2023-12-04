@@ -9,15 +9,17 @@ import ModalProfile from "../../components/fragments/Modal/ModalProfile";
 
 const Dokumen = () => {
   const [cvFile, setCvFile] = useState(null);
-  const [sipFile, setSipFile] = useState(null);
+  const [sippkFile, setSippkFile] = useState(null);
   const [ijazahFile, setIjazahFile] = useState(null);
+  const [strpkFile, setStrpkFile] = useState(null);
 
   const [showProfileModal, setShowProfileModal] = useState(false); 
 
   const [errorMessages, setErrorMessages] = useState({
     cv: "",
-    sip: "",
+    sippk: "",
     ijazah: "",
+    strpk: "",
   });
 
   const handleFileChange = (event, setFile, setInputValue, inputName) => {
@@ -33,13 +35,14 @@ const Dokumen = () => {
   const handleSubmitClick = () => {
     const newErrorMessages = {
       cv: !cvFile ? "CV file wajib diisi" : "",
-      sip: !sipFile ? "SIP file wajib diisi" : "",
+      sippk: !sippkFile ? "SIPPK file wajib diisi" : "",
       ijazah: !ijazahFile ? "Ijazah file wajib diisi" : "",
+      strpk: !strpkFile ? "STRPK wajib diisi" : "",
     };
 
     setErrorMessages(newErrorMessages);
 
-    if (!cvFile || !sipFile || !ijazahFile) {
+    if (!cvFile || !sippkFile || !ijazahFile || !strpkFile) {
       return;
     }
 
@@ -105,18 +108,18 @@ const Dokumen = () => {
 
           {/* SIP Section */}
           <div className="row">
-            <Label htmlFor="sip">Surat Izin Praktek (SIP)</Label>
+            <Label htmlFor="sippk">Surat Izin Praktik Psikologi Klinis  (SIPPK)</Label>
             <div className="input-group mb-3">
               <div className="form-control-wrapper">
               <Input
                 type="text"
-                className={`form-control mb-2 ${errorMessages.sip ? "is-invalid" : ""}`}                  
-                id="sip"
-                name="sip"
+                className={`form-control mb-2 ${errorMessages.sippk ? "is-invalid" : ""}`}                  
+                id="sippk"
+                name="sippk"
                 readOnly
               />
-              {errorMessages.sip && (
-                <div className="invalid-feedback">{errorMessages.sip}</div>
+              {errorMessages.sippk && (
+                <div className="invalid-feedback">{errorMessages.sippk}</div>
               )}
               <label className="btn btn-outline-primary mb-2 choose-file-btn">
                 Pilih File
@@ -124,8 +127,8 @@ const Dokumen = () => {
                   type="file"
                   style={{ display: "none" }}
                   onChange={(e) =>
-                    handleFileChange(e, setSipFile, (value) =>
-                      document.getElementById("sip").value = value
+                    handleFileChange(e, setSippkFile, (value) =>
+                      document.getElementById("sippk").value = value
                     )
                   }
                 />
@@ -157,6 +160,36 @@ const Dokumen = () => {
                   onChange={(e) =>
                     handleFileChange(e, setIjazahFile, (value) =>
                       document.getElementById("ijazah").value = value
+                    )
+                  }
+                />
+              </label>
+            </div>
+            </div>
+          </div>
+
+          <div className="row">
+            <Label htmlFor="strpk">Surat Tanda Registrasi Psikologi Klinis (STRPK)</Label>
+            <div className="input-group mb-3">
+            <div className="form-control-wrapper">
+            <Input
+                type="text"
+                className={`form-control mb-2 ${errorMessages.strpk ? "is-invalid" : ""}`}                  
+                id="strpk"
+                name="strpk"
+                readOnly
+              />
+              {errorMessages.strpk && (
+                <div className="invalid-feedback">{errorMessages.strpk}</div>
+              )}
+              <label className="btn btn-outline-primary mb-2 choose-file-btn">
+                Pilih File
+                <input
+                  type="file"
+                  style={{ display: "none" }}
+                  onChange={(e) =>
+                    handleFileChange(e, setStrpkFile, (value) =>
+                      document.getElementById("strpk").value = value
                     )
                   }
                 />

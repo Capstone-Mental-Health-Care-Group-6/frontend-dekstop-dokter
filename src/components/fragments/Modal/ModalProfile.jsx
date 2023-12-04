@@ -1,7 +1,8 @@
 import React from "react";
 import './ModalProfile.styles.css'
+import { NavLink } from "react-router-dom";
 
-const ModalProfile = ({ show, onClose, onSubmit }) => {
+const ModalProfile = ({ show, onClose }) => {
   const overlayStyle = {
     display: show ? "block" : "none",
   };
@@ -34,9 +35,11 @@ const ModalProfile = ({ show, onClose, onSubmit }) => {
               </p>
             </div>
             <div className="modal-footer border-0 d-flex flex-column align-items-center">
-              <button type="button" className="btn btn-primary" onClick={onSubmit}>
-                Simpan Perubahan
-              </button>
+              <NavLink to='/dokter-profile'>
+                <button type="button" className="btn btn-primary">
+                  Simpan Perubahan
+                </button>
+              </NavLink>
               <button
                 type="button"
                 className="btn-batal mt-2"
