@@ -99,6 +99,10 @@
 }
 
 
+.chat-page .col .chat-content::-webkit-scrollbar {
+    display: none !important;
+}
+
 .chat-text {
     margin: 10px;
     padding: 10px;
