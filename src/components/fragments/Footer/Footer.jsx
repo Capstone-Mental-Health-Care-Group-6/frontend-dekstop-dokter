@@ -1,6 +1,10 @@
 import React from "react";
 import "./Footer.css";
 import { Appstore, Googleplay, logoEmpathiCare } from "../../../../image";
+<<<<<<< HEAD
+=======
+import { Link } from "react-router-dom";
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
 
 const Footer = () => {
   return (
@@ -53,9 +57,17 @@ const Footer = () => {
                 </a>
               </li>
               <li class="nav-itemFooter mb-2">
+<<<<<<< HEAD
                 <a href="#" class="nav-link p-0 text-muted">
                   Gabung Sebagai Konselor
                 </a>
+=======
+                <Link to={"/login-dokter"} className="text-decoration-none">
+                  <a href="/login-dokter" class="nav-link p-0 text-muted">
+                    Gabung Sebagai Konselor
+                  </a>
+                </Link>
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
               </li>
             </ul>
           </div>

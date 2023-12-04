@@ -1,10 +1,17 @@
 import {
+<<<<<<< HEAD
   require_react
 } from "./chunk-ZAUFE7H7.js";
+=======
+  require_react_dom
+} from "./chunk-DZXRV6RW.js";
+import "./chunk-ZAUFE7H7.js";
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
 import {
   __commonJS
 } from "./chunk-UXIASGQL.js";
 
+<<<<<<< HEAD
 // node_modules/scheduler/cjs/scheduler.development.js
 var require_scheduler_development = __commonJS({
   "node_modules/scheduler/cjs/scheduler.development.js"(exports) {
@@ -21571,6 +21578,8 @@ var require_react_dom = __commonJS({
   }
 });
 
+=======
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
 // node_modules/react-dom/client.js
 var require_client = __commonJS({
   "node_modules/react-dom/client.js"(exports) {
@@ -21601,6 +21610,7 @@ var require_client = __commonJS({
   }
 });
 export default require_client();
+<<<<<<< HEAD
 /*! Bundled license information:
 
 scheduler/cjs/scheduler.development.js:
@@ -21638,4 +21648,6 @@ react-dom/cjs/react-dom.development.js:
    * @license Modernizr 3.0.0pre (Custom Build) | MIT
    *)
 */
+=======
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
 //# sourceMappingURL=react-dom_client.js.map

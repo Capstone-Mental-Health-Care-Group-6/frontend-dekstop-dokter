@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useEffect, useState } from "react";
 import Layouts from "../../components/layouts/Layouts";
 import Button from "../../components/elements/Button/Button";
@@ -100,6 +101,15 @@ const Artikel = () => {
           </div>
         )}
       </div>
+=======
+import React from "react";
+import Layouts from "../../components/layouts/Layouts";
+
+const Artikel = () => {
+  return (
+    <Layouts>
+      <div>Artikel</div>
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
     </Layouts>
   );
 };

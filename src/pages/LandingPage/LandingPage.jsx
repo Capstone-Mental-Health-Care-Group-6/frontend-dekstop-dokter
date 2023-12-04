@@ -7,7 +7,24 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import "./LandingPage.css";
 import CardLanding from "../../components/fragments/CardLanding/cardLanding";
+<<<<<<< HEAD
 import { Bg1, Bg2, Bg3, Checkmark, Cuate, Hourglass, Peopleoutline, Stethoscope, Wallet, amico, img1 } from "../../../image";
+=======
+import {
+  Bg1,
+  Bg2,
+  Bg3,
+  Checkmark,
+  Cuate,
+  Hourglass,
+  Peopleoutline,
+  Stethoscope,
+  Wallet,
+  amico,
+  img1,
+} from "../../../image";
+import { Link } from "react-router-dom";
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
 
 const LandingPage = () => {
   const card = [
@@ -75,9 +92,17 @@ const LandingPage = () => {
                   </p>
                 </div>
                 <div className="mt-4">
+<<<<<<< HEAD
                   <button className="btn-daftarKonselor border border-primary text-white px-3 py-2 fw-medium rounded-pill shadow ">
                     Daftar Sebagai Konselor
                   </button>
+=======
+                  <Link to={"/register-dokter"}>
+                    <button className="btn-daftarKonselor border border-primary text-white px-3 py-2 fw-medium rounded-pill shadow ">
+                      Daftar Sebagai Konselor
+                    </button>
+                  </Link>
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
                 </div>
               </div>
             </div>
@@ -202,9 +227,17 @@ const LandingPage = () => {
                   </ol>
                 </div>
                 <div className="mt-5" data-aos="fade-up">
+<<<<<<< HEAD
                   <button className="btn-daftarSekarang bg-primary text-white rounded-pill px-5 py-2 border border-primary fw-semibold shadow-sm">
                     Daftar Sekarang
                   </button>
+=======
+                  <Link to={"/register-dokter"}>
+                    <button className="btn-daftarSekarang bg-primary text-white rounded-pill px-5 py-2 border border-primary fw-semibold shadow-sm">
+                      Daftar Sekarang
+                    </button>
+                  </Link>
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
                 </div>
               </div>
               <div className="img-section" data-aos="fade-left">
