@@ -5,16 +5,38 @@ import TableTransaksi from "../../components/fragments/TableTransaksi/TableTrans
 import { transaksiUsers } from "../../components/DataComponents/dataComponents";
 import Search from "../../components/elements/Search/Search";
 import Filter from "../../components/elements/Filter/Filter";
-import { useState } from "react";
-
-
+import { useState, useEffect } from "react";
 
 const Transaksi = () => {
   const [searchValue, setSearchValue] = useState('');
+  const [sortById, setSortById] = useState(false);
+  const [filteredData, setFilteredData] = useState(transaksiUsers);
 
   const handleSearchChange = (event) => {
     setSearchValue(event.target.value);
   }
+
+  const handleFilterClick = () => {
+    setSortById(!sortById);
+  };
+
+  useEffect(() => {
+    let dataToDisplay = transaksiUsers.filter((user) =>
+      Object.values(user).some(
+        (value) =>
+          value &&
+          value.toString().toLowerCase().includes(searchValue.toLowerCase())
+      )
+    );
+
+    if (sortById) {
+      dataToDisplay = dataToDisplay.sort((a, b) =>
+        a.id.localeCompare(b.id, undefined, { numeric: true, sensitivity: 'base' })
+      );
+    }
+
+    setFilteredData(dataToDisplay);
+  }, [searchValue, sortById]);
 
   return (
     <Layouts>
@@ -32,14 +54,17 @@ const Transaksi = () => {
           <div
             className="col-sm-12 col-md-6 col-lg-4"
           >
-            <Filter size={20} placeholder={"Urut Berdasarakan ID"} />
+            <Filter
+              size={20}
+              placeholder={"Urut Berdasarakan ID"}
+              onClick={handleFilterClick} />
           </div>
         </div>
 
         <div className="row table-transaksi">
           <div className="col">
             <TableTransaksi
-              data={transaksiUsers}
+              data={filteredData}
               searchValue={searchValue}
             />
           </div>

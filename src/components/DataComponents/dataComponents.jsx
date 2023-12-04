@@ -1,8 +1,4 @@
 import {
-  avatar1,
-  avatar2,
-  avatar3,
-  avatar4,
   iconCardProsesPenarikan,
   iconCardSaldoAktif,
   iconChat,

@@ -1,6 +1,5 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-
 import LandingPage from "../pages/LandingPage/LandingPage";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import Chat from "../pages/Chat/Chat";
@@ -13,18 +12,6 @@ import Dokumen from "../pages/Dokumen/Dokumen";
 import Pengalaman from "../pages/Pengalaman/Pengalaman";
 import DetailTransaksiOtomatis from "../pages/DetailTransaksiOtomatis/DetailTransaksiOtomatis";
 import DetailTransaksiManual from "../pages/DetailTransaksiManual/DetailTransaksiManual";
-import React from "react"
-import { Route, Routes } from "react-router-dom"
-import LandingPage from "../pages/LandingPage/LandingPage"
-import Dashboard from "../pages/Dashboard/Dashboard"
-import Chat from "../pages/Chat/Chat"
-import Transaksi from "../pages/Transaksi/Transaksi"
-import Artikel from "../pages/Artikel/Artikel"
-import Profile from "../pages/Profile/Profile"
-import DataPribadi from "../pages/DataPribadi/DataPribadi"
-import DataAkademik from "../pages/DataAkademik/DataAkademik"
-import Dokumen from "../pages/Dokumen/Dokumen"
-import Pengalaman from "../pages/Pengalaman/Pengalaman"
 import LoginForm from "../pages/Login/Login"
 import Register from "../pages/Signup/Signup"
 import ForgotPw from "../pages/ForgotPassword/ForgotPassword"

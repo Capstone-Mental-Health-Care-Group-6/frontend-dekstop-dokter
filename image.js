@@ -45,8 +45,6 @@ import avatar4 from "./src/assets/avatar4.svg";
 import avatar5 from "./src/assets/avatar5.svg";
 import searchFailed from "./src/assets/searchFailed.png";
 import BuktiTransaksi from "./src/assets/BuktiTransaksi.png";
-
-
 import imgModalSaldoCair from "./src/assets/imgModalSaldoCair.png";
 
 export {
@@ -90,7 +88,6 @@ export {
   avatar4,
   avatar5,
   searchFailed,
-  personChat, personChat2, personChat3, choiseChat, sendChat, logoZoom,
   BuktiTransaksi,
   personChat,
   personChat2,
