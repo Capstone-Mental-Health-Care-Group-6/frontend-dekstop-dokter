@@ -43,9 +43,12 @@ import avatar2 from "./src/assets/avatar2.svg";
 import avatar3 from "./src/assets/avatar3.svg";
 import avatar4 from "./src/assets/avatar4.svg";
 import imgModalSaldoCair from "./src/assets/imgModalSaldoCair.png";
+import empetyChat from "./src/assets/empetyChat.png";
 import imgNotFound404 from "./src/assets/imgNotFound404.png";
 
+
 export {
+  empetyChat,
   logoEmpathiCareMobile,
   iconProfileNavbar,
   iconNotifNavbar,
