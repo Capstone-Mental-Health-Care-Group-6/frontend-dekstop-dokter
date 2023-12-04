@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Layouts from "../../components/layouts/Layouts";
 import "./Chat.css";
-import { choiseChat, logoZoom, personChat, sendChat, } from "../../../image";
+import { choiseChat, logoZoom, personChat, sendChat, empetyChat } from "../../../image";
 import { useParams } from "react-router-dom";
 import { dataChatUser } from "../../components/DataComponents/dataComponents";
 import ChatBoxList from "../../components/fragments/ChatBoxList/ChatBoxList";
@@ -103,7 +103,12 @@ const Chat = () => {
   return (
     <Layouts>
       {dataChatUser.length < 1 ? (
-        <p>tidak ada chat</p>
+        <>
+          <div className="empety-chat d-flex flex-column justify-content-center align-items-center" id="empety-chat">
+            <img src={empetyChat} alt="" />
+            <p className="fw-medium text-center" >Belum ada chat disini, silahkan buka praktik dan mari mulai berkonsultasi bersama pasien anda </p>
+          </div>
+        </>
       ) : (<section className="chat-page" id="chat-page">
         <div className="row d-flex justify-content-between">
           <div className="col col-lg-5 col-sm-4 ">

@@ -1,3 +1,11 @@
+.empety-chat {
+    min-height: 89vh;
+}
+
+.empety-chat img {
+    width: 500px;
+}
+
 .chat-page .row {
     min-height: 89vh;
     width: 100%;
@@ -244,6 +252,15 @@
         max-height: 50vh;
         min-height: 50vh;
     }
+
+    .empety-chat img {
+        width: 100%;
+    }
+
+    .empety-chat p {
+        font-size: 12px;
+    }
+
 }
 
 @media screen and (max-width: 468px) {

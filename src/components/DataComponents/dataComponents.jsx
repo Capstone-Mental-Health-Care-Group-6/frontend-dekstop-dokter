@@ -178,42 +178,42 @@ export const dataNotification = [
 ];
 
 export const dataChatUser = [
-  {
-    id: 1000,
-    name: "Rojak",
-    text: "Saya juga punya masalah hubungan...",
-    image: personChat,
-    status: "aktif",
-    session: "zoom",
-  },
-  {
-    id: 999,
-    name: "Mawardi",
-    text: "aku selalu cemas",
-    image: personChat2,
-    status: "aktif",
-  },
-  {
-    id: 598,
-    name: "Putri",
-    text: "bapak saya hamil",
-    image: personChat3,
-    status: "aktif",
-  },
-  {
-    id: 579,
-    name: "Joko",
-    text: "bapak saya hamil",
-    image: personChat,
-    status: "berakhir",
-  },
-  {
-    id: 589,
-    name: "Putri",
-    text: "bapak saya hamil",
-    image: personChat3,
-    status: "berakhir",
-  },
+  // {
+  //   id: 1000,
+  //   name: "Rojak",
+  //   text: "Saya juga punya masalah hubungan...",
+  //   image: personChat,
+  //   status: "aktif",
+  //   session: "zoom",
+  // },
+  // {
+  //   id: 999,
+  //   name: "Mawardi",
+  //   text: "aku selalu cemas",
+  //   image: personChat2,
+  //   status: "aktif",
+  // },
+  // {
+  //   id: 598,
+  //   name: "Putri",
+  //   text: "bapak saya hamil",
+  //   image: personChat3,
+  //   status: "aktif",
+  // },
+  // {
+  //   id: 579,
+  //   name: "Joko",
+  //   text: "bapak saya hamil",
+  //   image: personChat,
+  //   status: "berakhir",
+  // },
+  // {
+  //   id: 589,
+  //   name: "Putri",
+  //   text: "bapak saya hamil",
+  //   image: personChat3,
+  //   status: "berakhir",
+  // },
 ];
 
 export const dataChat = [
