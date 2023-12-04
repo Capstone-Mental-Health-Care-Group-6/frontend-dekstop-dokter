@@ -16,18 +16,15 @@ const Chat = () => {
 
   const { id } = useParams();
   const [conversation, setConversation] = useState(null);
-
   const [bgTransaction, setBgTransaction] = useState('aktif');
   const [pasienActive, setPasienActive] = useState(true);
   const [pasienEnd, setPasienEnd] = useState(false);
   const [inputChat, setInputChat] = useState(false);
-  const [zoom, setZoom] = useState(false)
   const [filteredCustomers, setFilteredCustomers] = useState([]);
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const [formMessage, setFormMessage] = useState({
     message: "",
   })
-
 
   const filteredZoom = dataChatUser.map((item) => item.session)
   // console.log(filteredZoom);
@@ -99,9 +96,15 @@ const Chat = () => {
 
   console.log(formMessage.message);
 
+  const sesi1Premium = () => (
+    <div>sesi 1</div>
+  )
+
   return (
     <Layouts>
-      <section className="chat-page" id="chat-page">
+      {dataChatUser.length < 1 ? (
+        <p>tidak ada chat</p>
+      ) : (<section className="chat-page" id="chat-page">
         <div className="row d-flex justify-content-between">
           <div className="col col-lg-5 col-sm-4 ">
             <div className="chat-box">
@@ -162,33 +165,26 @@ const Chat = () => {
                 </div>
               </div>
 
-              {zoom ?
-                <div className="chat-text px-2 mx-auto">
-                  Silakan klik tombol di atas untuk bergabung ke ruang Zoom
-                </div>
-                :
-                <div className="chat-text px-2 ">
-                  {dataChat.map((chat, index) => (
-                    <div
-                      key={index}
-                      className={`chat-text d-grid align-items-center ${chat.sender === 'dokter' ? 'chat-text-dokter' : 'chat-text-user'}`}
-                    >
-                      <span>{chat.content}</span>
-                    </div>
-                  ))}
+              <p className="text-center m-0 p-0 fw-semibold text-success">sesi 1</p>
+              <hr className="m-0" />
+              <div className="chat-text px-2 ">
 
-                </div>
-              }
+                {dataChat.map((chat, index) => (
+                  <div
+                    key={index}
+                    className={`chat-text d-grid align-items-center ${chat.sender === 'dokter' ? 'chat-text-dokter' : 'chat-text-user'}`}
+                  >
+                    <span>{chat.content}</span>
+                  </div>
+
+                ))}
+
+              </div>
 
 
 
-              {zoom ? (
-                <div className="input-chat-zoom d-flex p-2 ">
-                  <button className="btn w-100 border-secondary-subtle rounded-4" ><img src={logoZoom} alt="" /></button>
-                </div>
-              ) : (
+              {
                 inputChat ? (
-
                   <form className="input-chat d-flex ">
                     {showEmojiPicker && (
                       <div className="emoji-picker container position-absolute z-3 " >
@@ -209,14 +205,15 @@ const Chat = () => {
                     <h6 className="fw-semibold">Sesi Konsultasi Telah Berakhir</h6>
                   </div>
                 )
-              )}
+              }
 
             </div>
           </div>
         </div>
 
 
-      </section>
+      </section>)}
+
     </Layouts>
   );
 };
