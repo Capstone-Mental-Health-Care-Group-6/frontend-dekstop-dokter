@@ -96,9 +96,7 @@ const Chat = () => {
 
   console.log(formMessage.message);
 
-  const sesi1Premium = () => (
-    <div>sesi 1</div>
-  )
+
 
   return (
     <Layouts>
