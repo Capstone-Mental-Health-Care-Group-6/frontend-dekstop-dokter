@@ -106,7 +106,7 @@ const Chat = () => {
         <>
           <div className="empety-chat d-flex flex-column justify-content-center align-items-center" id="empety-chat">
             <img src={empetyChat} alt="" />
-            <p className="fw-medium text-center" >Belum ada chat disini, silahkan buka praktik dan mari mulai berkonsultasi bersama pasien anda </p>
+            <p className="fw-medium text-center">Belum ada chat disini, silahkan buka praktik dan mari mulai berkonsultasi bersama pasien anda </p>
           </div>
         </>
       ) : (<section className="chat-page" id="chat-page">
