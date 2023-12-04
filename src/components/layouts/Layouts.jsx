@@ -72,7 +72,7 @@ const Layouts = ({ children }) => {
                 />
                 <SidebarItem
                   icon={<BsFileEarmarkText />}
-                  title="Konten"
+                  title="Article"
                   location="/dokter-artikel"
                 />
               </ul>
