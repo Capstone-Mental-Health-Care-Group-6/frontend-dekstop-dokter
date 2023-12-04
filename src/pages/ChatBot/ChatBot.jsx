@@ -19,6 +19,8 @@ const ChatBot = () => {
   const [formMessage, setFormMessage] = useState({
     message: "",
   });
+  const [selectedPrompt, setSelectedPrompt] = useState("");
+  const [isFinished, setIsFinished] = useState(false);
 
   const [dataChat, setDataChat] = useState([
     {
@@ -61,6 +63,7 @@ const ChatBot = () => {
       content: prompt,
     };
     setDataChat([...dataChat, doctorPrompt]);
+    setSelectedPrompt(prompt.toLowerCase());
     // Check if the prompt is one of the predefined options
     if (
       [
@@ -103,6 +106,19 @@ const ChatBot = () => {
     // Example: Ask clarifying questions or provide resources
     const response = `Terima kasih atas pesan Anda: ${prompt}. Mohon maaf, saya masih dalam pengembangan dan belum bisa memahami semua jenis pertanyaan. Apakah Anda bisa memberikan informasi lebih lanjut tentang masalah Anda?`;
     setDataChat([...dataChat, { sender: "bot", content: response }]);
+  };
+
+  const handleFinishChat = (status) => {
+    setIsFinished(true);
+    if (status === "sudah") {
+      const finishResponse =
+        "Terima kasih! Jika Anda membutuhkan bantuan lebih lanjut, jangan ragu untuk bertanya.";
+      setDataChat([...dataChat, { sender: "bot", content: finishResponse }]);
+    } else {
+      // Handle "belum" case if needed
+      setSelectedPrompt("");
+      setIsFinished(false);
+    }
   };
 
   console.log(formMessage.message);
@@ -152,35 +168,57 @@ const ChatBot = () => {
             ))}
 
             <div className="chat-text d-flex align-items-center flex-row gap-3">
-              <Button
-                text={"Mengatasi Gangguan Kecemasan"}
-                className={
-                  "btn btn-outline-primary text-black fw-semibold rounded-5"
-                }
-              />
+              {isFinished ? null : selectedPrompt ? (
+                <>
+                  <Button
+                    text={"Sudah"}
+                    className={
+                      "btn btn-outline-primary text-black fw-semibold rounded-5"
+                    }
+                    onClick={() => handleFinishChat("sudah")}
+                  />
 
-              <Button
-                onClick={() => handlePromptClick("mengatasi stress")}
-                text={"Mengatasi Stress"}
-                className={
-                  "btn btn-outline-primary text-black fw-semibold rounded-5"
-                }
-              />
+                  <Button
+                    text={"Belum"}
+                    className={
+                      "btn btn-outline-primary text-black fw-semibold rounded-5"
+                    }
+                    onClick={() => handleFinishChat("belum")}
+                  />
+                </>
+              ) : (
+                <>
+                  <Button
+                    text={"Mengatasi Gangguan Kecemasan"}
+                    className={
+                      "btn btn-outline-primary text-black fw-semibold rounded-5"
+                    }
+                  />
 
-              <Button
-                text={"Mengatasi Depresi"}
-                className={
-                  "btn btn-outline-primary text-black fw-semibold rounded-5"
-                }
-              />
+                  <Button
+                    onClick={() => handlePromptClick("mengatasi stress")}
+                    text={"Mengatasi Stress"}
+                    className={
+                      "btn btn-outline-primary text-black fw-semibold rounded-5"
+                    }
+                  />
 
-              <Button
-                text={"Mengatasi Kegilaan"}
-                className={
-                  "btn btn-outline-primary text-black fw-semibold rounded-5"
-                }
-                onClick={() => handlePromptClick("mengatasi kegilaan")}
-              />
+                  <Button
+                    text={"Mengatasi Depresi"}
+                    className={
+                      "btn btn-outline-primary text-black fw-semibold rounded-5"
+                    }
+                  />
+
+                  <Button
+                    text={"Mengatasi Kegilaan"}
+                    className={
+                      "btn btn-outline-primary text-black fw-semibold rounded-5"
+                    }
+                    onClick={() => handlePromptClick("mengatasi kegilaan")}
+                  />
+                </>
+              )}
             </div>
           </div>
           <form
