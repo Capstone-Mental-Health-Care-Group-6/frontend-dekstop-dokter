@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { useEffect, useState } from "react";
 import Layouts from "../../components/layouts/Layouts";
 import Button from "../../components/elements/Button/Button";
@@ -23,16 +22,19 @@ const Artikel = () => {
     return (
       <div className="d-flex flex-column">
         <div className="fw-semibold mb-1">{rowData.status}</div>
-        <div style={{fontSize: "12px"}} >{rowData.tanggal}</div>
+        <div style={{ fontSize: "12px" }}>{rowData.tanggal}</div>
       </div>
-    )
-  }
-  
+    );
+  };
+
   const aksiBodyTemplate = (rowData) => {
     return (
-      <Button className={"bg-transparent border-0 p-0"} svg={<IoEllipsisVertical/>}/>
-    )
-  }
+      <Button
+        className={"bg-transparent border-0 p-0"}
+        svg={<IoEllipsisVertical />}
+      />
+    );
+  };
 
   return (
     <Layouts>
@@ -61,11 +63,7 @@ const Artikel = () => {
         </div>
         <hr />
         {artikel.length > 0 ? (
-          <Table
-            value={artikel}
-            selectionMode="single"
-            dataKey="id"
-          >
+          <Table value={artikel} selectionMode="single" dataKey="id">
             <ColumnTable
               field="id"
               header="No"
@@ -87,7 +85,7 @@ const Artikel = () => {
               headerClassName="table-header-border-status"
             />
             <ColumnTable
-              body={aksiBodyTemplate} 
+              body={aksiBodyTemplate}
               headerClassName="table-header-border-aksi"
             />
           </Table>
@@ -101,15 +99,6 @@ const Artikel = () => {
           </div>
         )}
       </div>
-=======
-import React from "react";
-import Layouts from "../../components/layouts/Layouts";
-
-const Artikel = () => {
-  return (
-    <Layouts>
-      <div>Artikel</div>
->>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
     </Layouts>
   );
 };

@@ -5,10 +5,7 @@ import {
   BsWallet2,
   BsFileEarmarkText,
   BsBoxArrowRight,
-<<<<<<< HEAD
-=======
   BsCoin,
->>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
 } from "react-icons/bs";
 import {
   logoEmpathiCareMobile,
@@ -18,12 +15,9 @@ import {
 } from "../../../image";
 import SidebarItem from "../elements/SidebarItem/SidebarItem";
 import "./Layout.styles.css";
-<<<<<<< HEAD
-=======
 import { NavLink } from "react-router-dom";
 import DropdownNotif from "../elements/DropdownNotification/DropdownNotif";
 import { dataNotification } from "../DataComponents/dataComponents";
->>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
 
 const Layouts = ({ children }) => {
   return (
@@ -33,18 +27,6 @@ const Layouts = ({ children }) => {
         className="navbar bg-white d-flex align-items-center justify-content-end"
       >
         <div className="d-flex align-items-center gap-2 pe-4">
-<<<<<<< HEAD
-          <img
-            src={iconNotifNavbar}
-            alt="icon-notification"
-            className="notif-icon"
-          />
-          <img
-            src={iconProfileNavbar}
-            alt="icon-profile"
-            className="iconNavbar"
-          />
-=======
           <DropdownNotif
             imageSrc={iconNotifNavbar}
             dropdownContent={dataNotification.map((item) => item)}
@@ -56,7 +38,6 @@ const Layouts = ({ children }) => {
               className="iconNavbar"
             />
           </NavLink>
->>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
         </div>
       </nav>
 
@@ -85,43 +66,29 @@ const Layouts = ({ children }) => {
                   location="/dokter-transaksi"
                 />
                 <SidebarItem
-<<<<<<< HEAD
-=======
                   icon={<BsCoin />}
                   title="Pencairan Saldo"
                   location="/pencairan-saldo-dokter"
                 />
                 <SidebarItem
->>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
                   icon={<BsFileEarmarkText />}
                   title="Konten"
                   location="/dokter-artikel"
                 />
               </ul>
-<<<<<<< HEAD
-
-            </div>
-            <div className="d-grid logout justify-content-start" >
-              <button className="btn" > {<BsBoxArrowRight />} <span className="ms-2" >Logout</span> </button>
-=======
             </div>
             <div className="d-grid logout justify-content-start">
               <button className="btn">
                 {" "}
                 {<BsBoxArrowRight />} <span className="ms-2">Logout</span>{" "}
               </button>
->>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
             </div>
           </div>
         </div>
       </div>
 
       <main className="main">
-<<<<<<< HEAD
-        <div className="py-3">{children}</div>
-=======
         <div className="p-3">{children}</div>
->>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
       </main>
     </>
   );

@@ -9,7 +9,7 @@ import { BrowserRouter } from "react-router-dom";
 import "primereact/resources/themes/lara-light-cyan/theme.css";
 // skeleton loading
 import "react-loading-skeleton/dist/skeleton.css";
-import { BrowserRouter } from "react-router-dom";
+// import { BrowserRouter } from "react-router-dom";
 import { SkeletonTheme } from "react-loading-skeleton";
 
 ReactDOM.createRoot(document.getElementById("root")).render(

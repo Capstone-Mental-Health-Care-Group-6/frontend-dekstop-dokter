@@ -30,11 +30,7 @@ body {
 .sidebar .menu .sidebar-link {
   align-items: center;
   border-radius: 0.5rem;
-<<<<<<< HEAD
-  color: #808191;
-=======
   color: #0085ff;
->>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
   display: block;
   display: flex;
   font-size: 1rem;
@@ -100,11 +96,7 @@ main {
   min-height: 93vh;
   width: 80vw;
   float: right;
-<<<<<<< HEAD
-  background: #dcdcdc;
-=======
   background: #f4f5fa;
->>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
   padding: 0px 50px;
 }
 
@@ -135,20 +127,6 @@ main {
   font-weight: 600;
   height: 80px;
   border: none !important;
-<<<<<<< HEAD
-}
-
-
-
-.offcanvass .wrapper .logout button svg {
-  width: 22px;
-  height: 22px;
-
-}
-
-main .navbar .fw-semibold {
-  font-family: 'Montserrat', sans-serif;
-=======
   color: #0085ff;
 }
 
@@ -159,7 +137,6 @@ main .navbar .fw-semibold {
 
 main .navbar .fw-semibold {
   font-family: "Montserrat", sans-serif;
->>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
 }
 
 .modal-title {
@@ -182,13 +159,6 @@ main .navbar .fw-semibold {
   line-height: normal;
 }
 
-<<<<<<< HEAD
-.dropdown {
-  color: transparent;
-}
-
-
-=======
 /* dropdown notification */
 #navbar .d-flex .dropdown {
   color: transparent;
@@ -234,7 +204,6 @@ main .navbar .fw-semibold {
   color: #9a9a9a;
 }
 /* end dropdown notification */
->>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
 
 @media screen and (max-width: 1289px) {
   .sidebar .offcanvass .offcanvas-header {
@@ -333,10 +302,6 @@ main .navbar .fw-semibold {
   .notif-icon {
     width: 35px;
     height: 35px;
-<<<<<<< HEAD
-
-=======
->>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
   }
 
   .navbar .iconNavbar {
@@ -344,8 +309,6 @@ main .navbar .fw-semibold {
     height: 35px;
   }
 
-<<<<<<< HEAD
-=======
   #navbar .d-flex .dropdown .dropdown-menu {
     max-width: 310px;
   }
@@ -370,7 +333,6 @@ main .navbar .fw-semibold {
     font-size: 12px;
   }
 
->>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
   main nav h2 {
     font-size: 14px;
   }
@@ -393,19 +355,10 @@ main .navbar .fw-semibold {
     width: 35px;
     height: 35px;
   }
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
 }
 
 @media screen and (max-width: 259px) {
   .sidebar .menu .sidebar-link {
     padding: 8px;
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
