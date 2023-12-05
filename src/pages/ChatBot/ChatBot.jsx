@@ -21,12 +21,11 @@ const ChatBot = () => {
   });
   const [selectedPrompt, setSelectedPrompt] = useState("");
   const [isFinished, setIsFinished] = useState(false);
-
   const [dataChat, setDataChat] = useState([
     {
       sender: "bot",
       content:
-        "Selamat datang di Aplikasi Kesehatan Mental kami! Saya akan dengan senang hati membantu Anda memahami fitur-fitur yang tersedia. Berikut beberapa hal yang dapat Anda lakukan:",
+        "Selamat datang di Aplikasi Kesehatan Mental kami! Saya akan dengan senang hati membantu Anda memahami fitur-fitur yang tersedia. Berikut beberapa hal yang dapat Anda lakukan: ",
     },
   ]);
 
@@ -46,17 +45,6 @@ const ChatBot = () => {
     setShowEmojiPicker(!showEmojiPicker);
   };
 
-  const handleSendChat = (e) => {
-    e.preventDefault();
-    const userMessage = {
-      sender: "dokter",
-      content: formMessage.message,
-    };
-    setDataChat([...dataChat, userMessage]);
-    handlePromptClick(formMessage.message);
-    setFormMessage({ message: "" });
-  };
-
 
   const handleFinishChat = (status) => {
     setIsFinished(true);
@@ -65,7 +53,6 @@ const ChatBot = () => {
         "Terima kasih! Jika Anda membutuhkan bantuan lebih lanjut, jangan ragu untuk bertanya.";
       setDataChat([...dataChat, { sender: "bot", content: finishResponse }]);
     } else {
-      // Handle "belum" case if needed
       setSelectedPrompt("");
       setIsFinished(false);
     }
@@ -95,30 +82,30 @@ const ChatBot = () => {
       </nav>
 
       <div className="d-flex header__chatbot align-items-center justify-content-between">
-        <Link to={"/dashboard-dokter"} className="text-black">
+        <Link to={"/dokter/dashboard"} className="text-black">
           <BsArrowLeft size={30} />
         </Link>
 
         <h6>Chat Bot</h6>
-        <p></p>
+        <span></span>
       </div>
 
       <div className="body__chatbot d-flex justify-content-center my-5">
-        <div className="wrapper__chatbot ">
+        <div className="wrapper__chatbot d-flex flex-column justify-content-between">
           <div className="chat__bot">
             {dataChat.map((chat, index) => (
               <div
                 key={index}
-                className={`chat-text d-grid align-items-center ${
-                  chat.sender === "bot" ? "chat-text-bot" : "chat-text-dokter"
-                }`}
+                className={`chat-text d-grid align-items-center ${chat.sender === "bot" ? "chat-text-bot" : "chat-text-dokter"
+                  }`}
               >
                 <span>{chat.content}</span>
+
               </div>
             ))}
 
             <div className="chat-text d-flex align-items-center flex-row gap-3">
-              {isFinished ? null : selectedPrompt ? (
+              {isFinished ? true : selectedPrompt ? (
                 <>
                   <Button
                     text={"Sudah"}
@@ -171,10 +158,10 @@ const ChatBot = () => {
               )}
             </div>
           </div>
+
           <form
             action="#"
-            className="input__chatbot d-flex py-2"
-            onSubmit={handleSendChat}
+            className="input__chatbot bg-white d-flex py-2"
           >
             {showEmojiPicker && (
               <div className="emoji-picker bottom-0 left-0 w-50 container position-absolute z-3 ">
