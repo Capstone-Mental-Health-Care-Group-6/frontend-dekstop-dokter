@@ -28,10 +28,10 @@ const Routing = () => {
       <Route path="/reset-password" element={<ResetPassword />} />
       <Route path="/dokter/chat" element={<Chat />} />
       <Route path="/dokter/chat/:id" element={<Chat />} />
-      <Route path="/dokter-transaksi" element={<Transaksi />} />
-      <Route path="/pencairan-saldo-dokter" element={<PencairanSaldo />} />
-      <Route path="/dokter-artikel" element={<Artikel />} />
-      <Route path="/dokter-profile" element={<Profile />} />
+      <Route path="/dokter/transaksi" element={<Transaksi />} />
+      <Route path="/dokter/saldo" element={<PencairanSaldo />} />
+      <Route path="/dokter/artikel" element={<Artikel />} />
+      <Route path="/dokter/dashboard/profile" element={<Profile />} />
       <Route path="/dokter-data-pribadi" element={<DataPribadi />} />
       <Route path="/dokter-data-akademik" element={<DataAkademik />} />
       <Route path="/dokter-dokumen" element={<Dokumen />} />
