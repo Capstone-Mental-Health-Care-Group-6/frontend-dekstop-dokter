@@ -17,7 +17,7 @@ import OpenAI from 'openai';
 import Label from "../../components/elements/Input/Label";
 
 const ChatBot = () => {
-  const [selectedPrompt, setSelectedPrompt] = useState("");
+  const [selectedPrompt, setSelectedPrompt] = useState(true);
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const [comand, setComand] = useState({
     message: "",
@@ -142,24 +142,6 @@ const ChatBot = () => {
               {selectedPrompt ? (
                 <>
                   <Button
-                    text={"Sudah"}
-                    className={
-                      "btn btn-outline-primary text-black fw-semibold rounded-5"
-                    }
-                    onClick={() => handleFinishChat("sudah")}
-                  />
-
-                  <Button
-                    text={"Belum"}
-                    className={
-                      "btn btn-outline-primary text-black fw-semibold rounded-5"
-                    }
-                    onClick={() => handleFinishChat("belum")}
-                  />
-                </>
-              ) : (
-                <>
-                  <Button
                     text={"Mengatasi Gangguan Kecemasan"}
                     className={
                       "btn btn-outline-primary text-black fw-semibold rounded-5"
@@ -187,6 +169,24 @@ const ChatBot = () => {
                       "btn btn-outline-primary text-black fw-semibold rounded-5"
                     }
                     onClick={() => handlePromptClick("mengatasi kegilaan")}
+                  />
+                </>
+              ) : (
+                <>
+                  <Button
+                    text={"Sudah"}
+                    className={
+                      "btn btn-outline-primary text-black fw-semibold rounded-5"
+                    }
+                    onClick={() => handleFinishChat("sudah")}
+                  />
+
+                  <Button
+                    text={"Belum"}
+                    className={
+                      "btn btn-outline-primary text-black fw-semibold rounded-5"
+                    }
+                    onClick={() => handleFinishChat("belum")}
                   />
                 </>
               )}
