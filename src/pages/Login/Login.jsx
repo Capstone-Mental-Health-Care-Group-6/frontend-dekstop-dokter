@@ -71,7 +71,7 @@ const LoginForm = () => {
     e.preventDefault();
 
     if (validateInputs()) {
-      navigate("/dashboard-dokter");
+      navigate("/dokter/dashboard");
       console.log("Username:", username);
       console.log("Password:", password);
     }
