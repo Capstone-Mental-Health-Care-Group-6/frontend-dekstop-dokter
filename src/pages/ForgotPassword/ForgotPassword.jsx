@@ -2,12 +2,13 @@ import "./ForgetPassword.style.css"
 import { useState } from "react"
 import * as React from "react"
 import Button from "../../components/elements/Button/Button"
-
+import { Link } from "react-router-dom"
 import ModalForgot from "../../components/fragments/modalLogin/modalLogin"
 import { emailHandler } from "../../utils/handler/input"
 import { MdOutlineEmail } from "react-icons/md"
 import logoEmpathi from "../../assets/LogoEmphati.png"
 import { useNavigate } from "react-router-dom"
+import { BsExclamationCircle } from "react-icons/bs"
 
 const ForgotPw = () => {
   const [email, setEmail] = React.useState("")
@@ -28,7 +29,7 @@ const ForgotPw = () => {
       if (!email || errorMessages.email) {
         setErrorMessages((prevState) => ({
           ...prevState,
-          email: "Email Tidak Valid",
+          email: "Masukkan Email Anda!",
         }))
         return
       }
@@ -66,20 +67,28 @@ const ForgotPw = () => {
                 value={email}
                 onChange={handleEmailChange}
                 placeholder="Email"
+                className={`${errorMessages.email !== "" ? "error" : ""}`}
               />
+              <span className="icon right">
+                {errorMessages.email !== "" && (
+                  <BsExclamationCircle className="text-danger" />
+                )}
+              </span>
               <label htmlFor="email"></label>
               <span className="icon left">
                 <MdOutlineEmail />
               </span>
             </div>
             {errorMessages.email !== "" && (
-              <p className="text-start text-danger">{errorMessages.email}</p>
+              <span className="text-start text-danger">
+                {errorMessages.email}
+              </span>
             )}
           </div>
           <Button
             type="button"
             id="btn-submit"
-            className={`btn btn-primary w-100 fw-bold ${
+            className={`btn btn-secondary w-100 fw-bold ${
               email ? "" : "disabled"
             }`}
             text="Kirim link verifikasi"
@@ -89,8 +98,10 @@ const ForgotPw = () => {
           <div className="divider d-flex align-items-center my-1">
             <p className="text-center mx-3 mb-0 text-muted">atau</p>
           </div>
-          <p className="btn-akun">
-            <b>Buat Akun Baru </b>
+          <p className="text-center fw-bold mx-3 mb-0 text-muted">
+            <Link className="link-no-underline" to="/register-dokter">
+              Buat Akun Baru
+            </Link>
           </p>
         </form>
       </div>

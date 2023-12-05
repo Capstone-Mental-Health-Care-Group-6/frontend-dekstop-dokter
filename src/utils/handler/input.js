@@ -1,8 +1,8 @@
 export const usernameHandler = (value, errState) => {
-  if (value.length < 4) {
+  if (value.length < 1) {
     errState(prevState => ({
       ...prevState,
-      username: "Username Minimal 4 Karakter"
+      username: "Masukkan username terlebih dahulu"
     }))
   } else if (value.match(/[^a-zA-Z0-9]/g)) {
     errState(prevState => ({
@@ -21,7 +21,7 @@ export const emailHandler = (value, errState) => {
   if (!value.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
     errState(prevState => ({
       ...prevState,
-      email: "Email Tidak Valid"
+      email: "Masukkan Email Anda!"
     }))
   } else {
     errState(prevState => ({
@@ -32,10 +32,12 @@ export const emailHandler = (value, errState) => {
 }
 
 export const passwordHandler = (value, errState) => {
-  if (value.length < 8) {
+  const isValidPassword = /^(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).*$/.test(value);
+
+  if (value.length < 8 || !isValidPassword) {
     errState(prevState => ({
       ...prevState,
-      password: "Password Minimal 8 Karakter"
+      password: "Password Harus Terdiri dari Minimal 8 Karakter dengan Kombinasi Huruf, Angka, dan Tanda Baca"
     }))
   } else {
     errState(prevState => ({
@@ -49,7 +51,7 @@ export const confirmPasswordHandler = (value, errState, password) => {
   if (value !== password) {
     errState(prevState => ({
       ...prevState,
-      confirmPassword: "Password Tidak Sama"
+      confirmPassword: "Kata Sandi Tidak Sesuai"
     }))
   } else {
     errState(prevState => ({

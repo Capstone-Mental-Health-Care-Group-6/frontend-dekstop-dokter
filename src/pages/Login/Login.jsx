@@ -6,6 +6,7 @@ import { BsEye, BsEyeSlash } from "react-icons/bs"
 import { useNavigate, Link } from "react-router-dom"
 import { FaUser, FaLock } from "react-icons/fa"
 import "./Login.style.css"
+import { BsExclamationCircle } from "react-icons/bs"
 import {
   passwordChecker,
   passwordHandler,
@@ -51,10 +52,10 @@ const LoginForm = () => {
   const validateInputs = () => {
     let isValid = true
 
-    if (username.length < 4) {
+    if (username.length < 1) {
       setErrorMessages({
         ...errorMessages,
-        username: "Username Minimal 4 Karakter",
+        username: "Username tidak boleh kosong",
       })
       isValid = false
     }
@@ -115,6 +116,11 @@ const LoginForm = () => {
                 ${errorMessages.username !== "" ? "error" : ""}
               `}
               />
+              <span className="icon right">
+                {errorMessages.username !== "" && (
+                  <BsExclamationCircle className="text-danger" />
+                )}
+              </span>
               <label htmlFor="username">
                 <div>
                   <div></div>
@@ -147,7 +153,7 @@ const LoginForm = () => {
                 onChange={handlePasswordChange}
                 onFocus={() => handleInputFocus("password")}
                 onBlur={handleInputBlur}
-                placeholder="Password"
+                placeholder="Kata Sandi"
                 className={`bg-transparent 
                 ${activeInput === "password" ? "active" : ""}
                 ${errorMessages.password !== "" ? "error" : ""}
@@ -157,6 +163,9 @@ const LoginForm = () => {
                 <div></div>
               </label>
               <span className="icon right">
+                {errorMessages.password !== "" && (
+                  <BsExclamationCircle className="text-danger" />
+                )}
                 {showPassword ? (
                   <BsEye onClick={handleTogglePassword} />
                 ) : (
@@ -182,7 +191,7 @@ const LoginForm = () => {
           <Button
             type="submit"
             id="btn-submit"
-            className={`btn btn-primary w-100 fw-bold ${
+            className={`btn btn-secondary w-100 fw-bold ${
               isSubmitButtonDisabled ? "disabled" : ""
             }`}
             text="Masuk"

@@ -125,14 +125,14 @@
   margin-left: 13px;
   width: 87%;
 } */
-
+/* 
 .floating3 .icon.right {
   position: absolute;
   top: 50%;
   right: 0;
   transform: translateY(-50%);
   margin-right: 2rem;
-}
+} */
 
 .floating3 input:focus+label,
 .floating3 input:not(:placeholder-shown)+label {
