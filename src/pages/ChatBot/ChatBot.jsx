@@ -20,7 +20,7 @@ const ChatBot = () => {
   const [selectedPrompt, setSelectedPrompt] = useState(true);
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const [loading, setLoading] = useState(false)
-  const [dataPrompt, setDataPrompt] = useState('');
+  const [hiddenButton, setHiddenButton] = useState('d-block')
   const [comand, setComand] = useState({
     message: "",
   });
@@ -53,13 +53,19 @@ const ChatBot = () => {
     dangerouslyAllowBrowser: true
   });
 
+  const handleFinishChat = async (e, prompCustom) => {
+    setSelectedPrompt(false)
+    e.preventDefault();
+    await handleSubmit(e, prompCustom);
+    setHiddenButton('d-none')
+  }
+
   const handlePromptClick = async (e, promptCustom) => {
     setSelectedPrompt(false)
     e.preventDefault();
     await handleSubmit(e, promptCustom);
   };
 
-  console.log(dataPrompt);
   const handleSubmit = async (e, promptCustom) => {
     e.preventDefault();
     setComand({ message: '' });
@@ -96,7 +102,6 @@ const ChatBot = () => {
         { role: "assistant", content: responseResult }
 
       ]);
-      setDataPrompt('')
       setLoading(false);
     } catch (error) {
       console.error("Error sending message to OpenAI:", error);
@@ -142,20 +147,18 @@ const ChatBot = () => {
         <div className="wrapper__chatbot d-flex flex-column justify-content-between">
           <div className="chat__bot p-3">
             {
-              loading ? <div className="spinner-border" role="status">
-                <span className="visually-hidden">Loading...</span>
-              </div> :
-                results.map((item, index) => (
-                  <div key={index} className={` ${item.role === 'user' ? 'text-end userQuestion' : 'answerAI'}`} >
-                    <p> {item.content}</p>
-                  </div>
-                ))
+              results.map((item, index) => (
+                <div key={index} className={` ${item.role === 'user' ? 'text-end userQuestion' : 'answerAI'}`} >
+                  <p> {item.content}</p>
+                </div>
+              ))
             }
 
-            <div className="chat-text d-flex align-items-center flex-row gap-3">
+            <div className={`chat-text d-flex align-items-center flex-row gap-2 ${hiddenButton}`} >
               {selectedPrompt ? (
                 <>
                   <Button
+                    onClick={(e) => handlePromptClick(e, "Mengatasi Gangguan Kecemasan")}
                     text={"Mengatasi Gangguan Kecemasan"}
                     className={
                       "btn btn-outline-primary text-black fw-semibold rounded-5"
@@ -171,6 +174,7 @@ const ChatBot = () => {
                   />
 
                   <Button
+                    onClick={(e) => handlePromptClick(e, "mengatasi kegilaan")}
                     text={"Mengatasi Depresi"}
                     className={
                       "btn btn-outline-primary text-black fw-semibold rounded-5"
@@ -182,7 +186,7 @@ const ChatBot = () => {
                     className={
                       "btn btn-outline-primary text-black fw-semibold rounded-5"
                     }
-                    onClick={() => handlePromptClick("mengatasi kegilaan")}
+                    onClick={(e) => handlePromptClick(e, "mengatasi kegilaan")}
                   />
                 </>
               ) : (
@@ -192,7 +196,7 @@ const ChatBot = () => {
                     className={
                       "btn btn-outline-primary text-black fw-semibold rounded-5"
                     }
-                    onClick={() => handleFinishChat("sudah")}
+                    onClick={(e) => handleFinishChat(e, "sudah")}
                   />
 
                   <Button
@@ -200,7 +204,7 @@ const ChatBot = () => {
                     className={
                       "btn btn-outline-primary text-black fw-semibold rounded-5"
                     }
-                    onClick={() => handleFinishChat("belum")}
+                    onClick={(e) => handleFinishChat(e, "belum")}
                   />
                 </>
               )}
