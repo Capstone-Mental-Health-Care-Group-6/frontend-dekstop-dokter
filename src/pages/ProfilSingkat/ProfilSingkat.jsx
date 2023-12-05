@@ -7,20 +7,22 @@ import Button from "../../components/elements/Button/Button";
 import BackButton from "../../components/elements/Button/BackButton";
 import ModalProfile from "../../components/fragments/Modal/ModalProfile";
 import Checkbox from "../../components/elements/Checkbox/Checkbox";
+import RadioButton from "../../components/elements/RadioButton/RadioButton";
 
 const ProfilSingkat = () => {
+    
     const [formData, setFormData] = useState({
-        // keahlian: "",
+        keahlian: [],
         tentangAnda: "",
-        // jadwal: "",
+        jadwal: [],
     })
   
     const [showProfileModal, setShowProfileModal] = useState(false); 
   
     const [errorMessages, setErrorMessages] = useState({
-        // keahlian: "",
+        keahlian: "",
         tentangAnda: "",
-        // jadwal: "",
+        jadwal: "",
     });
 
     const handleInputChange = (event) => {
@@ -33,22 +35,22 @@ const ProfilSingkat = () => {
   
     const handleSubmitClick = () => {
         const newErrorMessages = {
-        //   keahlian: !formData.keahlian ? "Keahlian wajib dipilih" : "",
-          tentangAnda: !formData.tentangAnda ? "Tentang anda wajib diisi" : "",
-        //   jadwal: !formData.jadwal ? "Jadwal wajib dipilih" : "",
+            keahlian: formData.keahlian.length === 0 ? "Keahlian wajib dipilih" : "",
+            tentangAnda: !formData.tentangAnda ? "Tentang anda wajib diisi" : "",
+            jadwal: formData.jadwal.length === 0 ? "Jadwal wajib dipilih" : "",
         };
       
         setErrorMessages(newErrorMessages);
       
-        if (!formData.tentangAnda) {
+        if (!formData.tentangAnda ) {
           return;
         }
       
         setShowProfileModal(true);
       };
   
-    const handleSubmitConfirm = () => {
-      setShowProfileModal(false);
+      const handleSubmitConfirm = () => {
+        console.log("Data yang akan dikirim:", formData);
     };
   
     const handleSubmitCancel = () => {
@@ -68,28 +70,28 @@ const ProfilSingkat = () => {
                                 <Label htmlFor="keahlian">Keahlian</Label>
                                 <div className="form-check-keahlian">
                                     <div className="checkbox-inline">
-                                        <Checkbox text="Pekerjaan" />
+                                        <Checkbox value="Pekerjaan" text="Pekerjaan" />
                                     </div>
                                     <div className="checkbox-inline">
-                                        <Checkbox text="Keluarga" />
+                                        <Checkbox value="Keluarga" text="Keluarga" />
                                     </div>
                                     <div className="checkbox-inline">
-                                        <Checkbox text="Kecanduan" />
+                                        <Checkbox value="Kecanduan" text="Kecanduan" />
                                     </div>
                                     <div className="checkbox-inline">
-                                        <Checkbox text="Sosial" />
+                                        <Checkbox value="Sosial" text="Sosial" />
                                     </div>
                                     <div className="checkbox-inline">
-                                        <Checkbox text="Percintaan" />
+                                        <Checkbox value="Percintaan" text="Percintaan" />
                                     </div>
                                     <div className="checkbox-inline">
-                                        <Checkbox text="Kesepian" />
+                                        <Checkbox value="Kesepian" text="Kesepian" />
                                     </div>
                                     <div className="checkbox-inline">
-                                        <Checkbox text="Pendidikan" />
+                                        <Checkbox value="Pendidikan" text="Pendidikan" />
                                     </div>
                                     <div className="checkbox-inline">
-                                        <Checkbox text="Kendali Emosi" />
+                                        <Checkbox value="Kendali Emosi" text="Kendali Emosi" />
                                     </div>
                                     {errorMessages.keahlian && (
                                         <div className="invalid-feedback">{errorMessages.keahlian}</div>
@@ -120,22 +122,22 @@ const ProfilSingkat = () => {
                                 <Label htmlFor="jadwal">Pilih Jadwal</Label>
                                 <div className="form-check-jadwal">
                                     <div className="checkbox-inline">
-                                        <Checkbox text="Pilihan 1"/>                      
+                                        <RadioButton text="Pilihan 1" deskripsi="Senin, Rabu, Jumat 08.00 WIB - 12.00 WIB"/>                      
                                     </div>
                                     <div className="checkbox-inline">
-                                        <Checkbox text="Pilihan 2"/>
+                                        <RadioButton text="Pilihan 4" deskripsi="Selasa, Kamis, Sabtu 08.00 WIB - 12.00 WIB"/>
                                     </div>
                                     <div className="checkbox-inline">
-                                        <Checkbox text="Pilihan 3"/>
+                                        <RadioButton text="Pilihan 2" deskripsi="Senin, Rabu, Jumat 10.00 WIB - 14.00 WIB"/>
                                     </div>
                                     <div className="checkbox-inline">
-                                        <Checkbox text="Pilihan 4"/>
+                                        <RadioButton text="Pilihan 5" deskripsi="Selasa, Kamis, Sabtu 10.00 WIB - 14.00 WIB"/>
                                     </div>
                                     <div className="checkbox-inline">
-                                        <Checkbox text="Pilihan 5"/>
+                                        <RadioButton text="Pilihan 3" deskripsi="Senin, Rabu, Jumat 14.00 WIB - 18.00 WIB"/>
                                     </div>
                                     <div className="checkbox-inline">
-                                        <Checkbox text="Pilihan 6"/>
+                                        <RadioButton text="Pilihan 6" deskripsi="Selasa, Kamis, Sabtu 14.00 WIB - 18.00 WIB"/>
                                     </div>
                                     {errorMessages.jadwal && (
                                         <div className="invalid-feedback">{errorMessages.jadwal}</div>

@@ -51,6 +51,8 @@ const Dokumen = () => {
 
   const handleSubmitConfirm = () => {
     setShowProfileModal(false);
+
+    console.log("Data yang akan dikirim:", formData);
   };
 
   const handleSubmitCancel = () => {

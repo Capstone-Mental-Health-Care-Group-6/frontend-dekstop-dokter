@@ -1,13 +1,14 @@
 import React from "react";
 
-const Checkbox = ({ text }) => {
+const Checkbox = ({ text, value, onChange }) => {
     return (
         <div className="form-check">
             <input
                 className="form-check-input"
                 type="checkbox"
-                defaultValue=""
+                value={value}
                 id="flexCheckDefault"
+                onChange={onChange} 
             />
             <label className="form-check-label" htmlFor="flexCheckDefault">
                 {text}
