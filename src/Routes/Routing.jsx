@@ -22,21 +22,21 @@ const Routing = () => {
   return (
     <Routes>
       <Route path="/" element={<LandingPage />} />
-      <Route path="/dashboard-dokter" element={<Dashboard />} />
+      <Route path="/dokter/dashboard" element={<Dashboard />} />
       <Route path="/login-dokter" element={<LoginForm />} />
       <Route path="/register-dokter" element={<Register />} />
       <Route path="/forgot-password" element={<ForgotPw />} />
       <Route path="/reset-password" element={<ResetPassword />} />
-      <Route path="/dokter-chat" element={<Chat />} />
-      <Route path="/dokter-chat/:id" element={<Chat />} />
-      <Route path="/dokter-transaksi" element={<Transaksi />} />
-      <Route path="/pencairan-saldo-dokter" element={<PencairanSaldo />} />
-      <Route path="/dokter-artikel" element={<Artikel />} />
-      <Route path="/dokter-profile" element={<Profile />} />
-      <Route path="/dokter-data-pribadi" element={<DataPribadi />} />
-      <Route path="/dokter-data-akademik" element={<DataAkademik />} />
-      <Route path="/dokter-dokumen" element={<Dokumen />} />
-      <Route path="/dokter-pengalaman" element={<Pengalaman />} />
+      <Route path="/dokter/chat" element={<Chat />} />
+      <Route path="/dokter/chat/:id" element={<Chat />} />
+      <Route path="/dokter/transaksi" element={<Transaksi />} />
+      <Route path="/dokter/saldo" element={<PencairanSaldo />} />
+      <Route path="/dokter/artikel" element={<Artikel />} />
+      <Route path="/dokter/profile" element={<Profile />} />
+      <Route path="/dokter/profile/data-pribadi" element={<DataPribadi />} />
+      <Route path="/dokter/profile/data-akademik" element={<DataAkademik />} />
+      <Route path="/dokter/profile/dokumen" element={<Dokumen />} />
+      <Route path="/dokter/profile/pengalaman" element={<Pengalaman />} />
 
       <Route path="/chatbot-dokter" element={<ChatBot />} />
 
