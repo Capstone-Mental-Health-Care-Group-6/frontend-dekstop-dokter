@@ -215,7 +215,44 @@ export const dataChatUser = [
     status: "berakhir",
   },
 ];
-
+const sesi1Premium = () => (
+  <div className="sesi1-premium">
+    <div className="d-flex justify-content-between">
+      <p className="fw-semibold" >Sesi 1</p>
+      <p className="bg-success text-white px-4 py-1 rounded-3">Selesai</p>
+    </div>
+    <div className="text-start">
+      <p className="fw-semibold m-0" >Senin, 27-11-2023</p>
+      <p className="fw-semibold m-0 mb-2" >10.00 Wib 60 Menit</p>
+      <p className="fw-semibold m-0" >Dokter : Helen DJ</p>
+      <p className="fw-semibold m-0" >Pasien : mawardi</p>
+      <p>Siap untuk memulai perjalanan konseling chat sesi 1 Anda? Klik link GMeet di bawah ini, dan mari kita mulai perbincangan yang penuh makna.</p>
+    </div>
+    <hr />
+    <div className="d-flex justify-content-center">
+      <button className="btn text-primary fw-semibold d-flex border-0" >Gabung Gmeet</button>
+    </div>
+  </div>
+)
+const sesi2Premium = () => (
+  <div className="sesi2-premium">
+    <div className="d-flex justify-content-between">
+      <p className="fw-semibold" >Sesi 2</p>
+      <p className="bg-danger text-white px-4 py-1 rounded-3">Belum Selesai</p>
+    </div>
+    <div className="text-start">
+      <p className="fw-semibold m-0" >Selasa, 28-11-2023</p>
+      <p className="fw-semibold m-0 mb-2" >10.00 Wib 60 Menit</p>
+      <p className="fw-semibold m-0" >Dokter : Helen DJ</p>
+      <p className="fw-semibold m-0" >Pasien : mawardi</p>
+      <p>Siap untuk memulai perjalanan konseling chat sesi 1 Anda? Klik link GMeet di bawah ini, dan mari kita mulai perbincangan yang penuh makna.</p>
+    </div>
+    <hr />
+    <div className="d-flex justify-content-center">
+      <button className="btn text-primary fw-semibold d-flex border-0" >Gabung Gmeet</button>
+    </div>
+  </div>
+)
 export const dataChat = [
   {
     sender: "dokter",
@@ -256,6 +293,16 @@ export const dataChat = [
     sender: "dokter",
     content:
       "Sebelum saya lanjut untuk menganalisa Anda saya menyarankan untuk membaca  ARTIKEL_GANGGUAN_TIDUR",
+    timestamp: "13:49:00",
+  },
+  {
+    sender: "dokter",
+    content: sesi1Premium(),
+    timestamp: "13:49:00",
+  },
+  {
+    sender: "dokter",
+    content: sesi2Premium(),
     timestamp: "13:49:00",
   },
 ];

@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { accountBalance, acountCircle, archive, localLibrary } from '../../../../image';
 
 const ProfileList = () => {
   return (
@@ -8,13 +9,13 @@ const ProfileList = () => {
         <div className=" title d-flex align-items-center">
           <h4>Lihat / Edit Profile</h4>
         </div>
-        <hr className="styled-hr"/>
+        <hr className="styled-hr" />
         <NavLink
-          to="/dokter-data-pribadi"
+          to="/dokter/profile/data-pribadi"
           className="list-group-item list-group-item-action"
         >
           <img
-            src="../src/assets/account circle.png"
+            src={acountCircle}
             alt="Data Pribadi"
             className="mr-2"
             style={{ width: '32px', height: '32px', margin: '10px' }}
@@ -22,38 +23,38 @@ const ProfileList = () => {
           Data Pribadi
         </NavLink>
         <NavLink
-          to="/dokter-data-akademik"
+          to="/dokter/profile/data-akademik"
           className="list-group-item list-group-item-action"
         >
           <img
-            src="../src/assets/account balance.png"
+            src={accountBalance}
             alt="Data Akademik"
             className="mr-2"
-            style={{ width: '32px', height: '32px', margin: '10px'}}
+            style={{ width: '32px', height: '32px', margin: '10px' }}
           />
           Data Akademik
         </NavLink>
         <NavLink
-          to="/dokter-dokumen"
+          to="/dokter/profile/dokumen"
           className="list-group-item list-group-item-action"
         >
           <img
-            src="../src/assets/archive.png"
+            src={archive}
             alt="Dokumen"
             className="mr-2"
-            style={{ width: '32px', height: '32px', margin: '10px'}}
+            style={{ width: '32px', height: '32px', margin: '10px' }}
           />
           Dokumen
         </NavLink>
         <NavLink
-          to="/dokter-pengalaman"
+          to="/dokter/profile/pengalaman"
           className="list-group-item list-group-item-action"
         >
           <img
-            src="../src/assets/local library.png"
+            src={localLibrary}
             alt="Pengalaman"
             className="mr-2"
-            style={{ width: '32px', height: '32px', margin: '10px'}}
+            style={{ width: '32px', height: '32px', margin: '10px' }}
           />
           Pengalaman
         </NavLink>
