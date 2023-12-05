@@ -22,3 +22,13 @@ export const getChat = (callback) => {
             console.log(err);
         })
 }
+
+export const deleteChat = (id, callback) => {
+    axios.delete(`${url}/chat/${id}`)
+        .then((res) => {
+            callback(res.data)
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+}
