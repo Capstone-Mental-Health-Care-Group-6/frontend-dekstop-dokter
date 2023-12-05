@@ -43,8 +43,28 @@ import avatar2 from "./src/assets/avatar2.svg";
 import avatar3 from "./src/assets/avatar3.svg";
 import avatar4 from "./src/assets/avatar4.svg";
 import imgModalSaldoCair from "./src/assets/imgModalSaldoCair.png";
+import empetyChat from "./src/assets/empetyChat.png";
+import imgNotFound404 from "./src/assets/imgNotFound404.png";
+import gambar from "./src/assets/gambar.png";
+import accountBalance from "./src/assets/account-balance.png";
+import acountCircle from "./src/assets/account-circle.png";
+import localLibrary from "./src/assets/local-ibrary.png";
+import archive from "./src/assets/archive.png";
+import exclamation from "./src/assets/exclamation.png"
+import logoNatural from "./src/assets/Logo natural.png"
+import imacExit from "./src/assets/iMac Exit.png"
+import logoWhite from "./src/assets/Group 124.png"
+import businessCenter from "./src/assets/business center.png"
+import empathiName from "./src/assets/EmpathiCare.png"
+import logoEmpathi from "./src/assets/logoEmphati.png"
 
 export {
+  archive,
+  accountBalance,
+  acountCircle,
+  localLibrary,
+  gambar,
+  empetyChat,
   logoEmpathiCareMobile,
   iconProfileNavbar,
   iconNotifNavbar,
@@ -90,4 +110,12 @@ export {
   sendChat,
   logoZoom,
   imgModalSaldoCair,
+  imgNotFound404,
+  exclamation,
+  logoNatural,
+  imacExit,
+  logoWhite,
+  businessCenter,
+  empathiName,
+  logoEmpathi,
 };

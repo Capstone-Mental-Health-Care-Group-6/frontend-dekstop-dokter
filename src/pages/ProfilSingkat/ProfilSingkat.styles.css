@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700&display=swap');
+
+.profil-singkat .container .profil-singkat-form {
+    width: 100%;
+    height: 907px;
+    padding-top: 70px;
+    padding-left: 90px;
+    padding-right: 60px;
+    align-items: center;
+    align-content: center;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    border-radius: 20px;
+    background: #FFF;
+    box-shadow: 4px 4px 7px 0px rgba(0, 0, 0, 0.25);
+    margin-bottom: 20px;
+  }
+
+  .profil-singkat .container .profil-singkat-form .profil-singkat-title {
+    color: var(--neutral-1000, #000);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    padding-bottom: 20px;
+  }
+
+  .profil-singkat .container .profil-singkat-form .row .col-md-6 .form-label{ 
+    display: flex;
+    height: 34px;
+    flex-direction: column;
+    justify-content: center;
+    align-self: stretch;
+    color: var(--neutral-1000, #000);
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-top: 7%;
+    margin-bottom: 5%;
+}
+
+.profil-singkat .container .profil-singkat-form .row .col-md-6 .form-check-keahlian,
+.profil-singkat .container .profil-singkat-form .row .col-md-6 .form-check-jadwal {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.profil-singkat .container .profil-singkat-form .row .col-md-6 .form-check-keahlian .checkbox-inline,
+.profil-singkat .container .profil-singkat-form .row .col-md-6 .form-check-jadwal .checkbox-inline {
+    width: 50%;
+    box-sizing: border-box;
+    flex: 0 0 50%;
+}
+
+.profil-singkat .container .profil-singkat-form .row .col-md-6 .form-check-keahlian .checkbox-inline .form-check,
+.profil-singkat .container .profil-singkat-form .row .col-md-6 .form-check-jadwal .checkbox-inline .form-check {
+    padding-bottom: 5%; 
+    padding-left: 15%;
+}
+
+.profil-singkat .container .profil-singkat-form .row .col-md-6 .form-check-keahlian .checkbox-inline .form-check .form-check-input,
+.profil-singkat .container .profil-singkat-form .row .col-md-6 .form-check-jadwal .checkbox-inline .form-check .form-check-input { 
+    display: flex;
+    width: 20px;
+    height: 20px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2px;
+    border-top: 2px solid var(--neutral-100, #DCDCDC);
+    border-right: var(--spc-2, 2px) solid var(--neutral-100, #DCDCDC);
+    border-bottom: var(--spc-2, 2px) solid var(--neutral-100, #DCDCDC);
+    border-left: var(--spc-2, 2px) solid var(--neutral-100, #DCDCDC);
+}
+
+.profil-singkat .container .profil-singkat-form .row .col-md-6 .form-check-keahlian .checkbox-inline .form-check .form-check-label,
+.profil-singkat .container .profil-singkat-form .row .col-md-6 .form-check-jadwal .checkbox-inline .form-check .form-check-label {
+    padding-left: 5px;
+    color: var(--neutral-1000, #000);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px; /* 142.857% */
+}
+
+.profil-singkat .container .profil-singkat-form .row .col-md-6 .form-control { 
+    display: flex;
+    width: 790px;
+    height: 108px;
+    margin-left: 2%;
+    gap: 10px;
+    border-radius: 4px;
+    border: 1px solid var(--neutral-500, #959595);
+    background: #FFF;
+}

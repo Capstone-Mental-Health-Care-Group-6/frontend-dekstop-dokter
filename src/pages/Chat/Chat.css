@@ -1,3 +1,11 @@
+.empety-chat {
+    min-height: 89vh;
+}
+
+.empety-chat img {
+    width: 500px;
+}
+
 .chat-page .row {
     min-height: 89vh;
     width: 100%;
@@ -82,6 +90,7 @@
 .chat-content .profile-and-status {
     position: sticky;
     top: 0;
+    z-index: 10;
 }
 
 .chat-content .profile-and-status .text-profile .d-flex span:nth-child(1) {
@@ -99,9 +108,13 @@
 }
 
 
+.chat-page .col .chat-content::-webkit-scrollbar {
+    display: none !important;
+}
+
 .chat-text {
-    margin: 10px;
-    padding: 10px;
+    margin: 5px 10px;
+    padding: 0px 10px;
     border-radius: 5px;
 }
 
@@ -239,6 +252,15 @@
         max-height: 50vh;
         min-height: 50vh;
     }
+
+    .empety-chat img {
+        width: 100%;
+    }
+
+    .empety-chat p {
+        font-size: 12px;
+    }
+
 }
 
 @media screen and (max-width: 468px) {

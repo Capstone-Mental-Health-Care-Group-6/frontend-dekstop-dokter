@@ -67,6 +67,7 @@
 
   .dokumen .container .dokumen-form .row .input-group {
     width: 100%;
+    border: 0;
   }
   
   .dokumen .container .dokumen-form .row .input-group .form-control-wrapper {

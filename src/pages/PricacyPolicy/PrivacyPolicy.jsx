@@ -1,18 +1,19 @@
 import React from "react";
 import './PrivacyPolicy.styles.css'
+import { logoNatural, logoWhite, empathiName, logoEmpathiCare, logoEmpathi } from "../../../image";
 
 const PrivacyPolicy = () => {
     return (
         <div className="privacy-policy">
             <nav className="navbar">
             <div className="navbar-section sticky-top">
-                <img className="logo" src="./src/assets/Group 124.png" alt="logo-emphatiCare" />
-                <img className="name" src="./src/assets/EmpathiCare.png" alt="name" />
+                <img className="logo" src={logoEmpathi} alt="logo-emphatiCare" />
+                {/* <img className="name" src={empathiName} alt="name" /> */}
             </div>
             <div className="title-section">
                 <div className="title-content">
                     <h4>Privacy Policy</h4>
-                    <img src="./src/assets/Logo natural.png" alt="logo" />
+                    <img src={logoNatural} alt="logo" />
                 </div>
             </div>
             <div className="emphaticare-content">

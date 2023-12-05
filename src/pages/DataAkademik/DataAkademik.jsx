@@ -74,7 +74,7 @@ const DataAkademik = () => {
     <Layouts>
       <div className="data-akademik">
         <div className="container">
-          <BackButton location={'/dokter-profile'}/>
+          <BackButton location={'/dokter/profile'}/>
           {formData.map((data, index) => (
             <form className="data-akademik-form" key={index}>
               <h4 className="data-akademik-title">Data Akademik</h4>

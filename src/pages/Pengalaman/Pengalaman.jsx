@@ -79,7 +79,7 @@ const Pengalaman = () => {
     <Layouts>
       <div className="pengalaman">
         <div className="container justify-content-center">
-          <BackButton location={"/dokter-profile"} />
+          <BackButton location={"/dokter/profile"} />
           {formData.map((data, index) => (
             <form className="pengalaman-form" key={index}>
               <h4 className="pengalaman-title">Pengalaman Kerja</h4>
@@ -178,7 +178,7 @@ const Pengalaman = () => {
               id="flexCheckDefault"
             />
             <label className="form-check-label" htmlFor="flexCheckDefault">
-              Dengan ini saya menyetujui <NavLink to={'/privacy-policy'} className="privacyPolicy">Kebijakan Privasi</NavLink> dari EmpathiCare
+              Dengan ini saya menyetujui <NavLink to={'/privacy/policy'} className="privacyPolicy">Kebijakan Privasi</NavLink> dari EmpathiCare
             </label>
           </div>
 

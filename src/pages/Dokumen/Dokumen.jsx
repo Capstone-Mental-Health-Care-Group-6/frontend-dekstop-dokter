@@ -61,7 +61,7 @@ const Dokumen = () => {
     <Layouts>
       <div className="dokumen">
       <div className="container">
-        <BackButton location={'/dokter-profile'} />
+        <BackButton location={'/dokter/profile'} />
         <form className="dokumen-form" onSubmit={handleFileChange}>
           <h4 className="dokumen-title">Dokumen</h4>
 

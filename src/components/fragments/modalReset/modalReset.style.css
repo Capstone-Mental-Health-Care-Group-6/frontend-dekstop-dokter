@@ -1,0 +1,29 @@
+.custom-modal-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px;
+  text-align: center;
+}
+
+.modal-content-container {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.modal-header-container {
+  margin-bottom: 16px;
+}
+
+.modal-footer-container {
+  margin-top: 24px;
+}
+
+.btn-success {
+  background-color: #28a745;
+  /* Bootstrap success color */
+  border-color: #28a745;
+  /* Bootstrap success color */
+}

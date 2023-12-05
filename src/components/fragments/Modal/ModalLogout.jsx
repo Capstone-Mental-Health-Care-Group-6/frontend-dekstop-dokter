@@ -1,5 +1,6 @@
 import React from "react";
 import "./ModalLogout.css";
+import { imacExit } from "../../../../image";
 
 const ModalLogout = ({ show, onClose, onSubmit }) => {
   const overlayStyle = {
@@ -31,7 +32,7 @@ const ModalLogout = ({ show, onClose, onSubmit }) => {
             <div className="modal-body">
               <div className="d-flex flex-column align-items-center justify-content-center">
                 <img
-                  src="../src/assets/iMac Exit.png"
+                  src={imacExit}
                   alt="Logo"
                   className="img_logout"
                   style={{

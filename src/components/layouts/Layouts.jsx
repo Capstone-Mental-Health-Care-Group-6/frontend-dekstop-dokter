@@ -5,6 +5,7 @@ import {
   BsWallet2,
   BsFileEarmarkText,
   BsBoxArrowRight,
+  BsCoin,
 } from "react-icons/bs";
 import {
   logoEmpathiCareMobile,
@@ -96,7 +97,7 @@ const Layouts = ({ children }) => {
             imageSrc={iconNotifNavbar}
             dropdownContent={dataNotification.map((item) => item)}
           />
-          <NavLink to={"/dokter-profile"}>
+          <NavLink to={"/dokter/profile"}>
             <img
               src={iconProfileNavbar}
               alt="icon-profile"
@@ -118,22 +119,27 @@ const Layouts = ({ children }) => {
                 <SidebarItem
                   icon={<BsGrid />}
                   title="Dashboard"
-                  location="/dashboard-dokter"
+                  location="/dokter/dashboard"
                 />
                 <SidebarItem
                   icon={<BsChatLeft />}
                   title="Chat"
-                  location="/dokter-chat"
+                  location="/dokter/chat"
                 />
                 <SidebarItem
                   icon={<BsWallet2 />}
                   title="Transaksi"
-                  location="/dokter-transaksi"
+                  location="/dokter/transaksi"
+                />
+                <SidebarItem
+                  icon={<BsCoin />}
+                  title="Pencairan Saldo"
+                  location="/dokter/saldo"
                 />
                 <SidebarItem
                   icon={<BsFileEarmarkText />}
                   title="Konten"
-                  location="/dokter-artikel"
+                  location="/dokter/artikel"
                 />
               </ul>
             </div>
