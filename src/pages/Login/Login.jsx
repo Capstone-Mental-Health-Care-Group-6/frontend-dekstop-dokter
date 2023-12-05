@@ -1,3 +1,4 @@
+import { BsExclamationCircle } from "react-icons/bs"
 import { useState, useEffect } from "react"
 import Button from "../../components/elements/Button/Button"
 import LogoEmphati from "../../assets/LogoEmphati.png"
@@ -6,7 +7,6 @@ import { BsEye, BsEyeSlash } from "react-icons/bs"
 import { useNavigate, Link } from "react-router-dom"
 import { FaUser, FaLock } from "react-icons/fa"
 import "./Login.style.css"
-import { BsExclamationCircle } from "react-icons/bs"
 import {
   passwordChecker,
   passwordHandler,
@@ -72,7 +72,7 @@ const LoginForm = () => {
     e.preventDefault()
 
     if (validateInputs()) {
-      navigate("/")
+      navigate("/dokter/dashboard")
       console.log("Username:", username)
       console.log("Password:", password)
     }
