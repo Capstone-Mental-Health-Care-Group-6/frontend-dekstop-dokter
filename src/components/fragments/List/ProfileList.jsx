@@ -11,7 +11,7 @@ const ProfileList = () => {
         </div>
         <hr className="styled-hr" />
         <NavLink
-          to="/dokter-data-pribadi"
+          to="/dokter/dashboard/data-pribadi"
           className="list-group-item list-group-item-action"
         >
           <img
