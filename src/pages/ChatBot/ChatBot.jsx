@@ -14,12 +14,14 @@ import Input from "../../components/elements/Input/Input";
 import EmojiPicker from "emoji-picker-react";
 import Button from "../../components/elements/Button/Button";
 import OpenAI from 'openai';
+import Label from "../../components/elements/Input/Label";
 
 const ChatBot = () => {
-
-  const [showEmojiPicker, setShowEmojiPicker] = useState(false);
-  const [comand, setComand] = useState("");
   const [selectedPrompt, setSelectedPrompt] = useState("");
+  const [showEmojiPicker, setShowEmojiPicker] = useState(false);
+  const [comand, setComand] = useState({
+    message: "",
+  });
   const [dataChat, setDataChat] = useState([
     {
       sender: "bot",
@@ -29,14 +31,13 @@ const ChatBot = () => {
   ]);
 
   const handleChangeMessage = (e) => {
-    const { name, value } = e.target;
-    setComand({ ...setComand, [name]: value });
-  };
+    const { name, value } = e.target
+    setComand({ ...comand, [name]: value })
+  }
 
   const handleEmojiClick = (e) => {
-    setFormMessage((prevFormMessage) => ({
-      ...prevFormMessage,
-      message: prevFormMessage.message + e.emoji,
+    setComand((prevFormComand) => ({
+      ...prevFormComand, message: prevFormComand.message + e.emoji,
     }));
   };
 
@@ -213,13 +214,7 @@ const ChatBot = () => {
             >
               <img src={choiseChat} alt="" />
             </button>
-            <Input
-              placeholder={"Ketik Pesan"}
-              className={"shadow-none border-secondary-subtle"}
-              name={"message"}
-              onChange={handleChangeMessage}
-              value={formMessage.message}
-            />
+            <Input placeholder={'Ketik pesan'} className={'shadow-none border-secondary-subtle'} name={'message'} onChange={handleChangeMessage} value={comand.message} />
             <button className="btn border-0">
               <img src={sendChat} alt="icon-send-chtbot" />
             </button>
