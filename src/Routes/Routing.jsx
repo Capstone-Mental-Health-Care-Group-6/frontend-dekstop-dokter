@@ -21,13 +21,13 @@ const Routing = () => {
   return (
     <Routes>
       <Route path="/" element={<LandingPage />} />
-      <Route path="/dashboard-dokter" element={<Dashboard />} />
+      <Route path="/dokter/dashboard" element={<Dashboard />} />
       <Route path="/login-dokter" element={<LoginForm />} />
       <Route path="/register-dokter" element={<Register />} />
       <Route path="/forgot-password" element={<ForgotPw />} />
       <Route path="/reset-password" element={<ResetPassword />} />
-      <Route path="/dokter-chat" element={<Chat />} />
-      <Route path="/dokter-chat/:id" element={<Chat />} />
+      <Route path="/dokter/chat" element={<Chat />} />
+      <Route path="/dokter/chat/:id" element={<Chat />} />
       <Route path="/dokter-transaksi" element={<Transaksi />} />
       <Route path="/pencairan-saldo-dokter" element={<PencairanSaldo />} />
       <Route path="/dokter-artikel" element={<Artikel />} />

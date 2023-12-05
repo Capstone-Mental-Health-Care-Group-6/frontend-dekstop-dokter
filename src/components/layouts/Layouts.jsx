@@ -53,12 +53,12 @@ const Layouts = ({ children }) => {
                 <SidebarItem
                   icon={<BsGrid />}
                   title="Dashboard"
-                  location="/dashboard-dokter"
+                  location="/dokter/dashboard"
                 />
                 <SidebarItem
                   icon={<BsChatLeft />}
                   title="Chat"
-                  location="/dokter-chat"
+                  location="/dokter/chat"
                 />
                 <SidebarItem
                   icon={<BsWallet2 />}
