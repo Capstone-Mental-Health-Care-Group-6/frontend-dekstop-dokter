@@ -20,6 +20,7 @@ const ChatBot = () => {
   const [selectedPrompt, setSelectedPrompt] = useState(true);
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const [loading, setLoading] = useState(false)
+  const [dataPrompt, setDataPrompt] = useState('');
   const [comand, setComand] = useState({
     message: "",
   });
@@ -56,15 +57,13 @@ const ChatBot = () => {
     setSelectedPrompt(false)
     e.preventDefault();
     await handleSubmit(e, promptCustom);
-    console.log(promptCustom);
   };
 
-
+  console.log(dataPrompt);
   const handleSubmit = async (e, promptCustom) => {
     e.preventDefault();
     setComand({ message: '' });
     setLoading(true);
-    console.log(promptCustom);
 
     try {
       const res = await openai.chat.completions.create({
@@ -93,13 +92,12 @@ const ChatBot = () => {
 
       setResult([
         ...results,
-        { role: "user", content: comand.message + promptCustom },
+        { role: "user", content: comand.message + (promptCustom ? promptCustom : '') },
         { role: "assistant", content: responseResult }
 
       ]);
-
+      setDataPrompt('')
       setLoading(false);
-      promptCustom('')
     } catch (error) {
       console.error("Error sending message to OpenAI:", error);
       setLoading(false);
