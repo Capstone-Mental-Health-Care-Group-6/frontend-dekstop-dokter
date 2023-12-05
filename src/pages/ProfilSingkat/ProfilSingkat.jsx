@@ -99,11 +99,11 @@ const ProfilSingkat = () => {
                         </div>
 
                         <div className="row">
-                            <div className="col-md-6">
+                            <div className="col-md-10">
                                 <Label htmlFor="tentangAnda">Tentang Anda</Label>
                                 <Input
                                     type="text"
-                                    className={`form-control mb-2 ${errorMessages.tentangAnda ? "is-invalid" : ""}`}
+                                    className={`form-control ${errorMessages.tentangAnda ? "is-invalid" : ""}`}
                                     id="tentangAnda"
                                     name="tentangAnda"
                                     value={formData.tentangAnda}
