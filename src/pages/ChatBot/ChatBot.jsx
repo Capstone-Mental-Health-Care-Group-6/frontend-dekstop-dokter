@@ -134,7 +134,7 @@ const ChatBot = () => {
             imageSrc={iconNotifNavbar}
             dropdownContent={dataNotification.map((item) => item)}
           />
-          <NavLink to={"/dokter-profile"}>
+          <NavLink to={"/dokter/profile"}>
             <img
               src={iconProfileNavbar}
               alt="icon-profile"
@@ -145,7 +145,7 @@ const ChatBot = () => {
       </nav>
 
       <div className="d-flex header__chatbot align-items-center justify-content-between">
-        <Link to={"/dashboard-dokter"} className="text-black">
+        <Link to={"/dokter/dashboard"} className="text-black">
           <BsArrowLeft size={30} />
         </Link>
 
