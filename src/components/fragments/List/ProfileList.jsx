@@ -11,7 +11,7 @@ const ProfileList = () => {
         </div>
         <hr className="styled-hr" />
         <NavLink
-          to="/dokter/dashboard/data-pribadi"
+          to="/dokter/profile/data-pribadi"
           className="list-group-item list-group-item-action"
         >
           <img
@@ -23,7 +23,7 @@ const ProfileList = () => {
           Data Pribadi
         </NavLink>
         <NavLink
-          to="/dokter/dashboard/data-akademik"
+          to="/dokter/profile/data-akademik"
           className="list-group-item list-group-item-action"
         >
           <img
@@ -35,7 +35,7 @@ const ProfileList = () => {
           Data Akademik
         </NavLink>
         <NavLink
-          to="/dokter/dashboard/dokumen"
+          to="/dokter/profile/dokumen"
           className="list-group-item list-group-item-action"
         >
           <img
@@ -47,7 +47,7 @@ const ProfileList = () => {
           Dokumen
         </NavLink>
         <NavLink
-          to="/dokter/dashboard/pengalaman"
+          to="/dokter/profile/pengalaman"
           className="list-group-item list-group-item-action"
         >
           <img

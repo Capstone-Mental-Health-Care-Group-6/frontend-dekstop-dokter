@@ -31,11 +31,11 @@ const Routing = () => {
       <Route path="/dokter/transaksi" element={<Transaksi />} />
       <Route path="/dokter/saldo" element={<PencairanSaldo />} />
       <Route path="/dokter/artikel" element={<Artikel />} />
-      <Route path="/dokter/dashboard/profile" element={<Profile />} />
-      <Route path="/dokter/dashboard/data-pribadi" element={<DataPribadi />} />
-      <Route path="/dokter/dashboard/data-akademik" element={<DataAkademik />} />
-      <Route path="/dokter/dashboard/dokumen" element={<Dokumen />} />
-      <Route path="/dokter/dashboard/pengalaman" element={<Pengalaman />} />
+      <Route path="/dokter/profile" element={<Profile />} />
+      <Route path="/dokter/profile/data-pribadi" element={<DataPribadi />} />
+      <Route path="/dokter/profile/data-akademik" element={<DataAkademik />} />
+      <Route path="/dokter/profile/dokumen" element={<Dokumen />} />
+      <Route path="/dokter/profile/pengalaman" element={<Pengalaman />} />
 
       {/* route ketika url tidak sesuai */}
       <Route element={<NotFound404 />} path="*" />

@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom"; // Import Link from react-router-dom
 
 const BackButton = () => {
   return (
-    <NavLink to={'/dokter/dashboard/profile'}>
+    <NavLink to={'/dokter/profile'}>
       <button className="btn border-0" style={{
         color: 'var(--neutral-1000, #000)',
         fontFamily: 'Montserrat',

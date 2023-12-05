@@ -31,7 +31,7 @@ const Layouts = ({ children }) => {
             imageSrc={iconNotifNavbar}
             dropdownContent={dataNotification.map((item) => item)}
           />
-          <NavLink to={"/dokter/dashboard/profile"}>
+          <NavLink to={"/dokter/profile"}>
             <img
               src={iconProfileNavbar}
               alt="icon-profile"
