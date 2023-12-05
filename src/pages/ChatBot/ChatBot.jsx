@@ -20,7 +20,6 @@ const ChatBot = () => {
     message: "",
   });
   const [selectedPrompt, setSelectedPrompt] = useState("");
-  const [isFinished, setIsFinished] = useState(false);
   const [dataChat, setDataChat] = useState([
     {
       sender: "bot",
@@ -46,19 +45,7 @@ const ChatBot = () => {
   };
 
 
-  const handleFinishChat = (status) => {
-    setIsFinished(true);
-    if (status === "sudah") {
-      const finishResponse =
-        "Terima kasih! Jika Anda membutuhkan bantuan lebih lanjut, jangan ragu untuk bertanya.";
-      setDataChat([...dataChat, { sender: "bot", content: finishResponse }]);
-    } else {
-      setSelectedPrompt("");
-      setIsFinished(false);
-    }
-  };
 
-  console.log(formMessage.message);
 
   return (
     <>
@@ -105,7 +92,7 @@ const ChatBot = () => {
             ))}
 
             <div className="chat-text d-flex align-items-center flex-row gap-3">
-              {isFinished ? true : selectedPrompt ? (
+              {selectedPrompt ? (
                 <>
                   <Button
                     text={"Sudah"}
