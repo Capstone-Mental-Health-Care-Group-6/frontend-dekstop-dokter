@@ -23,7 +23,7 @@ const ProfileList = () => {
           Data Pribadi
         </NavLink>
         <NavLink
-          to="/dokter-data-akademik"
+          to="/dokter/dashboard/data-akademik"
           className="list-group-item list-group-item-action"
         >
           <img
@@ -35,7 +35,7 @@ const ProfileList = () => {
           Data Akademik
         </NavLink>
         <NavLink
-          to="/dokter-dokumen"
+          to="/dokter/dashboard/dokumen"
           className="list-group-item list-group-item-action"
         >
           <img
@@ -47,7 +47,7 @@ const ProfileList = () => {
           Dokumen
         </NavLink>
         <NavLink
-          to="/dokter-pengalaman"
+          to="/dokter/dashboard/pengalaman"
           className="list-group-item list-group-item-action"
         >
           <img

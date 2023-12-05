@@ -33,9 +33,9 @@ const Routing = () => {
       <Route path="/dokter/artikel" element={<Artikel />} />
       <Route path="/dokter/dashboard/profile" element={<Profile />} />
       <Route path="/dokter/dashboard/data-pribadi" element={<DataPribadi />} />
-      <Route path="/dokter-data-akademik" element={<DataAkademik />} />
-      <Route path="/dokter-dokumen" element={<Dokumen />} />
-      <Route path="/dokter-pengalaman" element={<Pengalaman />} />
+      <Route path="/dokter/dashboard/data-akademik" element={<DataAkademik />} />
+      <Route path="/dokter/dashboard/dokumen" element={<Dokumen />} />
+      <Route path="/dokter/dashboard/pengalaman" element={<Pengalaman />} />
 
       {/* route ketika url tidak sesuai */}
       <Route element={<NotFound404 />} path="*" />
