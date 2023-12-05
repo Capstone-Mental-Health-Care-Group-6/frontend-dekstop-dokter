@@ -19,16 +19,18 @@ import Label from "../../components/elements/Input/Label";
 const ChatBot = () => {
   const [selectedPrompt, setSelectedPrompt] = useState(true);
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
+  const [loading, setLoading] = useState(false)
   const [comand, setComand] = useState({
     message: "",
   });
-  const [dataChat, setDataChat] = useState([
-    {
-      sender: "bot",
-      content:
-        "Selamat datang di Aplikasi Kesehatan Mental kami! Saya akan dengan senang hati membantu Anda memahami fitur-fitur yang tersedia. Berikut beberapa hal yang dapat Anda lakukan: ",
-    },
-  ]);
+
+  const [results, setResult] = useState([{
+    role: "assistant",
+    content:
+      "Selamat datang di Aplikasi Kesehatan Mental kami! Saya akan dengan senang hati membantu Anda memahami fitur-fitur yang tersedia. Berikut beberapa hal yang dapat Anda lakukan: ",
+  }]);
+
+
 
   const handleChangeMessage = (e) => {
     const { name, value } = e.target
@@ -45,6 +47,10 @@ const ChatBot = () => {
     setShowEmojiPicker(!showEmojiPicker);
   };
 
+  const handlePromptClick = (id) => {
+    console.log(id);
+  }
+
   const openai = new OpenAI({
     apiKey: process.env.OPEN_AI_KEY,
     dangerouslyAllowBrowser: true
@@ -52,7 +58,7 @@ const ChatBot = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setComand('');
+    setComand({ message: '' });
     setLoading(true);
 
     try {
@@ -68,11 +74,11 @@ const ChatBot = () => {
                     3. CSA Learning Merupakan e-learning yang bisa di akses oleh semua orang dan memberikan pembelajaran yang terbaru berbentuk vidio
                     4. Website Ini bernama CSA Learning
                     5. jika ada pertanyaan yang di luar programing dan di luar CSA Learning tolong katakan maaf ini di luar percakapan 
-                    6. jika user meminta materi apa saja yang ada sekarang dalam CSA learning berikan data ini ${dataCourses}`,
+                    6. jika user meminta materi apa saja yang ada sekarang dalam CSA learning berikan data ini `,
           },
           {
             role: "user",
-            content: comand
+            content: comand.message,
           }
         ],
         model: "gpt-3.5-turbo",
@@ -82,8 +88,8 @@ const ChatBot = () => {
 
       setResult([
         ...results,
-        { role: "user", content: 'Me : ' + comand },
-        { role: "assistant", content: 'CSA AI : ' + responseResult }
+        { role: "user", content: comand.message },
+        { role: "assistant", content: responseResult }
 
       ]);
 
@@ -126,17 +132,17 @@ const ChatBot = () => {
 
       <div className="body__chatbot d-flex justify-content-center my-5">
         <div className="wrapper__chatbot d-flex flex-column justify-content-between">
-          <div className="chat__bot">
-            {dataChat.map((chat, index) => (
-              <div
-                key={index}
-                className={`chat-text d-grid align-items-center ${chat.sender === "bot" ? "chat-text-bot" : "chat-text-dokter"
-                  }`}
-              >
-                <span>{chat.content}</span>
-
-              </div>
-            ))}
+          <div className="chat__bot p-3">
+            {
+              loading ? <div className="spinner-border" role="status">
+                <span className="visually-hidden">Loading...</span>
+              </div> :
+                results.map((item, index) => (
+                  <div key={index} className={` ${item.role === 'user' ? 'text-end userQuestion' : 'answerAI'}`} >
+                    <p> {item.content}</p>
+                  </div>
+                ))
+            }
 
             <div className="chat-text d-flex align-items-center flex-row gap-3">
               {selectedPrompt ? (
@@ -193,7 +199,7 @@ const ChatBot = () => {
             </div>
           </div>
 
-          <form
+          <form onSubmit={handleSubmit}
             action="#"
             className="input__chatbot bg-white d-flex py-2"
           >
@@ -215,7 +221,7 @@ const ChatBot = () => {
               <img src={choiseChat} alt="" />
             </button>
             <Input placeholder={'Ketik pesan'} className={'shadow-none border-secondary-subtle'} name={'message'} onChange={handleChangeMessage} value={comand.message} />
-            <button className="btn border-0">
+            <button className="btn border-0" >
               <img src={sendChat} alt="icon-send-chtbot" />
             </button>
           </form>
