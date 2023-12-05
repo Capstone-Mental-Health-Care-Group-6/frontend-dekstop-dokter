@@ -13,12 +13,12 @@ import { Link, NavLink } from "react-router-dom";
 import Input from "../../components/elements/Input/Input";
 import EmojiPicker from "emoji-picker-react";
 import Button from "../../components/elements/Button/Button";
+import OpenAI from 'openai';
 
 const ChatBot = () => {
+
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
-  const [formMessage, setFormMessage] = useState({
-    message: "",
-  });
+  const [comand, setComand] = useState("");
   const [selectedPrompt, setSelectedPrompt] = useState("");
   const [dataChat, setDataChat] = useState([
     {
@@ -30,7 +30,7 @@ const ChatBot = () => {
 
   const handleChangeMessage = (e) => {
     const { name, value } = e.target;
-    setFormMessage({ ...formMessage, [name]: value });
+    setComand({ ...setComand, [name]: value });
   };
 
   const handleEmojiClick = (e) => {
@@ -44,8 +44,54 @@ const ChatBot = () => {
     setShowEmojiPicker(!showEmojiPicker);
   };
 
+  const openai = new OpenAI({
+    apiKey: process.env.OPEN_AI_KEY,
+    dangerouslyAllowBrowser: true
+  });
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setComand('');
+    setLoading(true);
 
+    try {
+      const res = await openai.chat.completions.create({
+        messages: [
+          ...results,
+          {
+            role: "assistant",
+            content: `anda adalah asisten 
+                    Rule Format Response :
+                    1. anda adalah seorang pelayan yang hanya menjawab pertanyaan seputar perograming
+                    2. Jangan menjawab pertanyaan di luar programing dan di luar CSA Learning
+                    3. CSA Learning Merupakan e-learning yang bisa di akses oleh semua orang dan memberikan pembelajaran yang terbaru berbentuk vidio
+                    4. Website Ini bernama CSA Learning
+                    5. jika ada pertanyaan yang di luar programing dan di luar CSA Learning tolong katakan maaf ini di luar percakapan 
+                    6. jika user meminta materi apa saja yang ada sekarang dalam CSA learning berikan data ini ${dataCourses}`,
+          },
+          {
+            role: "user",
+            content: comand
+          }
+        ],
+        model: "gpt-3.5-turbo",
+      });
+
+      const responseResult = res.choices[0].message.content;
+
+      setResult([
+        ...results,
+        { role: "user", content: 'Me : ' + comand },
+        { role: "assistant", content: 'CSA AI : ' + responseResult }
+
+      ]);
+
+      setLoading(false);
+    } catch (error) {
+      console.error("Error sending message to OpenAI:", error);
+      setLoading(false);
+    }
+  };
 
   return (
     <>
