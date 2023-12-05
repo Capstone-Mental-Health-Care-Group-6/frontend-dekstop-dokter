@@ -7,7 +7,7 @@ import ModalForgot from "../../components/fragments/modalLogin/modalLogin"
 import { emailHandler } from "../../utils/handler/input"
 import { MdOutlineEmail } from "react-icons/md"
 import logoEmpathi from "../../assets/LogoEmphati.png"
-import { Link, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { BsExclamationCircle } from "react-icons/bs"
 
 const ForgotPw = () => {
@@ -29,7 +29,7 @@ const ForgotPw = () => {
       if (!email || errorMessages.email) {
         setErrorMessages((prevState) => ({
           ...prevState,
-          email: "Email Tidak Valid",
+          email: "Masukkan Email Anda!",
         }))
         return
       }
@@ -98,8 +98,10 @@ const ForgotPw = () => {
           <div className="divider d-flex align-items-center my-1">
             <p className="text-center mx-3 mb-0 text-muted">atau</p>
           </div>
-          <p className="btn-akun">
-            <b>Buat Akun Baru </b>
+          <p className="text-center fw-bold mx-3 mb-0 text-muted">
+            <Link className="link-no-underline" to="/register-dokter">
+              Buat Akun Baru
+            </Link>
           </p>
         </form>
       </div>
