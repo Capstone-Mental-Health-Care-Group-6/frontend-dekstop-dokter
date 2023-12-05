@@ -47,19 +47,24 @@ const ChatBot = () => {
     setShowEmojiPicker(!showEmojiPicker);
   };
 
-  const handlePromptClick = (id) => {
-    console.log(id);
-  }
-
   const openai = new OpenAI({
     apiKey: process.env.OPEN_AI_KEY,
     dangerouslyAllowBrowser: true
   });
 
-  const handleSubmit = async (e) => {
+  const handlePromptClick = async (e, promptCustom) => {
+    setSelectedPrompt(false)
+    e.preventDefault();
+    await handleSubmit(e, promptCustom);
+    console.log(promptCustom);
+  };
+
+
+  const handleSubmit = async (e, promptCustom) => {
     e.preventDefault();
     setComand({ message: '' });
     setLoading(true);
+    console.log(promptCustom);
 
     try {
       const res = await openai.chat.completions.create({
@@ -88,17 +93,22 @@ const ChatBot = () => {
 
       setResult([
         ...results,
-        { role: "user", content: comand.message },
+        { role: "user", content: comand.message + promptCustom },
         { role: "assistant", content: responseResult }
 
       ]);
 
       setLoading(false);
+      promptCustom('')
     } catch (error) {
       console.error("Error sending message to OpenAI:", error);
       setLoading(false);
     }
+
+
   };
+
+
 
   return (
     <>
@@ -155,7 +165,7 @@ const ChatBot = () => {
                   />
 
                   <Button
-                    onClick={() => handlePromptClick("mengatasi stress")}
+                    onClick={(e) => handlePromptClick(e, "mengatasi stress")}
                     text={"Mengatasi Stress"}
                     className={
                       "btn btn-outline-primary text-black fw-semibold rounded-5"
