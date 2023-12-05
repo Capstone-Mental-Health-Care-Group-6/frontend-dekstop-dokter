@@ -23,6 +23,26 @@
   width: 5%;
 }
 
+.btn-hapus-artikel {
+color: #D44E2D;
+}
+
+.btn-lihat-artikel, .btn-edit-artikel{
+  color: #636363;
+}
+
+.menu-aksi-artikel{
+  width: 240px;
+}
+
+.btn-lihat-artikel:hover, .btn-edit-artikel:hover {
+  color: #a0a0a0;
+}
+
+.btn-hapus-artikel:hover{
+color: #eba18f;
+}
+
 @media screen and (max-width: 480px) {
   /* body {
     background-color: lightgreen;
@@ -34,5 +54,9 @@
   .data-artikel-text{
     font-size: 10px;
     padding-right: 10px;
+  }
+
+  .btn-lihat-artikel, .btn-edit-artikel, .btn-hapus-artikel{
+    font-size: 12px;
   }
 }

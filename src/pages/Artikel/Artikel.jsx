@@ -10,6 +10,7 @@ import Table from "../../components/fragments/Table/Table";
 import ColumnTable from "../../components/ColumnTable/ColumnTable";
 import { FilterMatchMode } from "primereact/api";
 import { IoEllipsisVertical } from "react-icons/io5";
+import ButtonSvg from "../../components/elements/Button/ButtonSvg";
 
 const Artikel = () => {
   const [artikel, setArtikel] = useState([]);
@@ -27,12 +28,24 @@ const Artikel = () => {
     );
   };
 
-  const aksiBodyTemplate = (rowData) => {
+  const aksiBodyTemplate = () => {
     return (
-      <Button
-        className={"bg-transparent border-0 p-0"}
-        svg={<IoEllipsisVertical />}
-      />
+      <div className="btn">
+      <button className="nav-link " data-bs-toggle="dropdown" role="button" aria-expanded="false">
+        <IoEllipsisVertical/>
+      </button>
+      <div className="dropdown-menu dropdown-menu-end px-3 menu-aksi-artikel">    
+          <div className="bg-light rounded-3 my-2  dropdown-item div-lihat-artikel ">
+          <Button text={"Lihat Artikel"} className={"bg-transparent border-0 fw-semibold btn-lihat-artikel"}/>
+          </div>
+          <div className="bg-light rounded-3 my-2  dropdown-item">
+          <Button text={"Edit Artikel"} className={"bg-transparent border-0 fw-semibold btn-edit-artikel"}/>
+          </div>
+          <div className="bg-light rounded-3 my-2  dropdown-item">
+          <Button text={"Hapus Artikel"} className={"bg-transparent border-0 fw-semibold btn-hapus-artikel"}/>
+        </div>       
+      </div>
+    </div>
     );
   };
 
@@ -45,8 +58,8 @@ const Artikel = () => {
             <p className="m-0 data-artikel-text">Data Artikel</p>
           </div>
           <div>
-            <NavLink to={"/dokter-tambah-artikel"}>
-              <Button
+            <NavLink to={"/dokter/artikel/tambah"}>
+              <ButtonSvg
                 type={"button"}
                 id={"create-artikel-btn"}
                 text={"Tambah Artikel"}

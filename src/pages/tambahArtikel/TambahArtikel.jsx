@@ -10,6 +10,7 @@ import Button from "../../components/elements/Button/Button";
 
 const TambahArtikel = () => {
   const [showTambahKategori, setShowTambahKategori] = useState(false);
+  const [statusChecked, setStatusChecked] = useState("Publik");
   const [listCheckbox, setListCheckbox] = useState([
     "Anxiety",
     "Depresi",
@@ -19,7 +20,12 @@ const TambahArtikel = () => {
     "Tips",
     "Umum",
   ]);
-  const [artikel, setArtikel] = useState("");
+  const [artikel, setArtikel] = useState({
+    judul: "",
+    deskripsi: "",
+    linkVideo: "",
+    thumbnail: ""
+  });
   const [thumbnail, setThumbnail] = useState({
     gambar: "",
   });
@@ -30,6 +36,8 @@ const TambahArtikel = () => {
     setCheckedIndex(index === checkedIndex ? null : index);
   };
 
+
+
   return (
     <Layouts>
       <h2 className="py-3 fw-bold">Tambah Artikel</h2>
@@ -37,7 +45,10 @@ const TambahArtikel = () => {
         <div className="row">
           <div className="col-9 px-3">
             <form action="">
-              <div className="container-fluid bg-light py-5 rounded-2">
+              <div
+                className="container-fluid py-5 rounded-2"
+                style={{ backgroundColor: "white" }}
+              >
                 <Label htmlFor={"judul-artikel"}>
                   <p className="fw-bold m-0">Judul Artikel</p>
                 </Label>
@@ -53,7 +64,7 @@ const TambahArtikel = () => {
                 </Label>
                 <div className="container bg-white mb-3 px-0">
                   <Reactquill
-                    value={artikel}
+                    // value={artikel}
                     id={"deksripsi-artikel"}
                     onChange={(value) => {
                       console.log(value);
@@ -89,6 +100,10 @@ const TambahArtikel = () => {
                     console.log(thumbnail.gambar);
                   }}
                 />
+                <p className="text-deskripsi-thumbnail">
+                  Rekomendasi ukuran gambar: 300 x 450. Format gambar: jpg, png,
+                  jpeg
+                </p>
               </div>
               <div className="d-flex m-3 button-form-artikel">
                 <div>
@@ -104,9 +119,8 @@ const TambahArtikel = () => {
                 <div>
                   <Button
                     type={"button"}
-                    className={
-                      "btn btn-light me-3 btn-draft-artikel fw-semibold"
-                    }
+                    style={{ backgroundColor: "white" }}
+                    className={"btn me-3 btn-draft-artikel fw-semibold"}
                     text={"Simpan sebagai Draft"}
                   />
                 </div>
@@ -114,7 +128,10 @@ const TambahArtikel = () => {
             </form>
           </div>
           <div className="col-3">
-            <div className="container bg-light rounded-2 py-4 my-4">
+            <div
+              className="container  rounded-2 py-4 my-4"
+              style={{ backgroundColor: "white" }}
+            >
               <p className="fw-semibold pb-2 border-bottom border-2">
                 Status & Visibilitas
               </p>
@@ -122,13 +139,80 @@ const TambahArtikel = () => {
                 <div className="grid">
                   <div className="row justify-content-center align-items-center g-2 mb-2">
                     <div className="col text-status">Visibilitas</div>
-                    <div className="col text-status text-end">
-                      <Button
-                        className={
-                          "border-0 bg-transparent button-status-artikel p-0"
-                        }
-                        text={"Publik"}
-                      />
+                    <div className="col text-status text-end text-end pe-2">
+                      <div className="btn m-0 p-0">
+                        <button
+                          className="nav-link "
+                          data-bs-toggle="dropdown"
+                          role="button"
+                          aria-expanded="false"
+                        >
+                          <span
+                            className="m-0 text-primary"
+                            style={{ fontSize: "12px" }}
+                          >
+                            {statusChecked}
+                          </span>
+                        </button>
+                        <div className="dropdown-menu dropdown-menu-end px-3 menu-aksi-artikel">
+                          <div className="d-flex justify-content-between">
+                            <p className="fw-semibold">Visibilitas</p>
+                            <button
+                              type="button"
+                              class="btn-close"
+                              aria-label="Close"
+                            ></button>
+                          </div>
+                          <div>
+                            <p className="text-status">
+                              Kontrol bagaimana postingan ini dilihat.
+                            </p>
+                          </div>
+                          <div className=" rounded-3 my-2  dropdown-item div-lihat-artikel ">
+                            <div className="form-check">
+                              <input
+                                className="form-check-input"
+                                type="radio"
+                                name="visibilitas-artikel"
+                                id="visibilitas-publik"
+                                value="Publik"
+                                onChange={(e)=> {
+                                  setStatusChecked(e.target.value)
+                                }}
+                              />
+                              <label
+                                className="form-check-label fw-bold"
+                                for="visibilitas-publik"
+                              >
+                               Publik
+                              </label>
+                              <p style={{fontSize: "12px"}} className="text-wrap">Dapat dilihat oleh semua orang</p>
+                            </div>
+                          </div>
+                          <div className=" rounded-3 my-2  dropdown-item div-lihat-artikel ">
+                            <div className="form-check">
+                              <input
+                                className="form-check-input"
+                                type="radio"
+                                name="visibilitas-artikel"
+                                id="visibilitas-privat"
+                                value="Privat"
+                                onChange={(e)=> {
+                                  setStatusChecked(e.target.value)
+                                }}
+                              />
+                              <label
+                                className="form-check-label fw-bold"
+                                for="visibilitas-privat"
+                              >
+                               Privat
+                              </label>
+                              <p style={{fontSize: "12px"}} className="text-wrap">Hanya dapat dilihat oleh admin dan editor situs</p>
+                            </div>
+                          </div>
+                      
+                        </div>
+                      </div>
                     </div>
                   </div>
                   <div className="row justify-content-center align-items-center g-2 mb-2">
@@ -144,7 +228,10 @@ const TambahArtikel = () => {
                 </div>
               </div>
             </div>
-            <div className="container bg-light rounded-2 py-4 ">
+            <div
+              className="container rounded-2 py-4 "
+              style={{ backgroundColor: "white" }}
+            >
               <p className="fw-semibold pb-2 border-bottom border-2">
                 Kategori
               </p>
@@ -162,6 +249,7 @@ const TambahArtikel = () => {
                   />
                 ))}
               </div>
+              <p style={{fontSize: "10px"}} className="text-muted" ><span className="text-danger">*</span>Kategori hanya dapat dipilih salah satu</p>
             </div>
           </div>
         </div>

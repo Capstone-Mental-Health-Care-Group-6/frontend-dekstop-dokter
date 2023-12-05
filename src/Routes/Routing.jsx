@@ -32,6 +32,7 @@ const Routing = () => {
       <Route path="/dokter/transaksi" element={<Transaksi />} />
       <Route path="/dokter/saldo" element={<PencairanSaldo />} />
       <Route path="/dokter/artikel" element={<Artikel />} />
+      <Route path="/dokter/artikel/tambah" element={<TambahArtikel />} />
       <Route path="/dokter/profile" element={<Profile />} />
       <Route path="/dokter/profile/data-pribadi" element={<DataPribadi />} />
       <Route path="/dokter/profile/data-akademik" element={<DataAkademik />} />
