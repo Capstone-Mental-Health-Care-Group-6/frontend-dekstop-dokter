@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./ChatBot.css";
 import DropdownNotif from "../../components/elements/DropdownNotification/DropdownNotif";
 import { BsArrowLeft } from "react-icons/bs";
-import { dataNotification } from "../../components/DataComponents/dataComponents";
+import { buttonChatBot1, dataNotification, buttonChatBot2 } from "../../components/DataComponents/dataComponents";
 import {
   choiseChat,
   iconNotifNavbar,
@@ -15,6 +15,7 @@ import EmojiPicker from "emoji-picker-react";
 import Button from "../../components/elements/Button/Button";
 import OpenAI from 'openai';
 import Aos from "aos";
+import { ThreeDots } from 'react-loader-spinner'
 
 const ChatBot = () => {
   const [selectedPrompt, setSelectedPrompt] = useState(true);
@@ -168,61 +169,40 @@ const ChatBot = () => {
               </div>
             ))}
 
-            {loading && <p>Loading...</p>}
+            {loading &&
+              <div data-aos="fade-up">
+                <ThreeDots
+                  height="50"
+                  width="50"
+                  radius="9"
+                  color="#707070"
+                  ariaLabel="three-dots-loading"
+                  visible={true}
+
+                />
+              </div>}
 
             <div className={`chat-text d-flex align-items-center m-0 p-0 flex-row gap-2 ${hiddenButton}`} data-aos="fade-up" >
               {selectedPrompt ? (
-                <>
-                  <Button
-                    onClick={(e) => handlePromptClick(e, " mengatasi gangguan kecemasan")}
-                    text={"Mengatasi Gangguan Kecemasan"}
+                buttonChatBot1.map((item, index) => (
+                  <Button key={index}
+                    onClick={(e) => handlePromptClick(e, item.content)}
+                    text={item.text}
                     className={
                       "btn btn-outline-primary text-black fw-semibold rounded-5"
                     }
                   />
-
-                  <Button
-                    onClick={(e) => handlePromptClick(e, " mengatasi stress")}
-                    text={"Mengatasi Stress"}
-                    className={
-                      "btn btn-outline-primary text-black fw-semibold rounded-5"
-                    }
-                  />
-
-                  <Button
-                    onClick={(e) => handlePromptClick(e, " mengatasi kegilaan")}
-                    text={"Mengatasi Depresi"}
-                    className={
-                      "btn btn-outline-primary text-black fw-semibold rounded-5"
-                    }
-                  />
-
-                  <Button
-                    text={"Mengatasi Kegilaan"}
-                    className={
-                      "btn btn-outline-primary text-black fw-semibold rounded-5"
-                    }
-                    onClick={(e) => handlePromptClick(e, " mengatasi kegilaan")}
-                  />
-                </>
+                ))
               ) : (
-                <>
-                  <Button
-                    text={"Sudah"}
+                buttonChatBot2.map((item, index) => (
+                  < Button key={index}
+                    text={item.text}
                     className={
                       "btn btn-outline-primary text-black fw-semibold rounded-5"
                     }
-                    onClick={(e) => handleFinishChat(e, "sudah")}
+                    onClick={(e) => handleFinishChat(e, item.content)}
                   />
-
-                  <Button
-                    text={"Belum"}
-                    className={
-                      "btn btn-outline-primary text-black fw-semibold rounded-5"
-                    }
-                    onClick={(e) => handleFinishChat(e, "belum")}
-                  />
-                </>
+                ))
               )}
             </div>
           </div>

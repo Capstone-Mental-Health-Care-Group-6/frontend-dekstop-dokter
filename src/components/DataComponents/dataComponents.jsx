@@ -381,3 +381,33 @@ export const dataTablePencairanSaldo = [
     status: "Pending",
   },
 ];
+
+export const buttonChatBot1 = [
+  {
+    text: "Mengatasi Gangguan Kecemasan",
+    content: 'mengatasi gangguan kecemasan',
+  },
+  {
+    text: "Mengatasi Stress",
+    content: 'mengatasi stress',
+  },
+  {
+    text: "Mengatasi Depresi",
+    content: 'mengatasi depresi',
+  },
+  {
+    text: "Mengatasi Kegilaan",
+    content: 'mengatasi kegilaan',
+  },
+]
+
+export const buttonChatBot2 = [
+  {
+    text: "Sudah",
+    content: 'sudah',
+  },
+  {
+    text: "Belum",
+    content: 'belum',
+  }
+]

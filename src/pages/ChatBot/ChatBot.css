@@ -49,7 +49,6 @@
   padding: 20px;
   margin-right: 10%;
   width: 60%;
-  font-size: 14px;
 }
 
 .body__chatbot .wrapper__chatbot .chat__bot .chat-text-dokter {
@@ -76,4 +75,44 @@
 
 .body__chatbot .wrapper__chatbot .input__chatbot .emoji-picker {
   margin-bottom: 60px;
+}
+
+@media screen and (max-width: 556px) {
+  .body__chatbot .wrapper__chatbot .chat__bot .d-flex p {
+    font-size: 13px;
+  }
+
+  .body__chatbot .wrapper__chatbot .chat__bot .user-question {
+    padding: 10px 25px;
+    background-color: #99DEFF;
+    margin-left: 10%;
+    border-radius: 16px;
+  }
+
+  .body__chatbot .wrapper__chatbot .chat__bot .answer-ai {
+    padding: 13px 20px;
+    background-color: #CCF1FF;
+    margin-right: 10%;
+    border-radius: 16px;
+
+  }
+}
+
+@media screen and (max-width: 436px) {
+  .body__chatbot .wrapper__chatbot .chat__bot .d-flex p {
+    font-size: 13px;
+  }
+
+  .body__chatbot .wrapper__chatbot .chat__bot .user-question {
+    padding: 10px;
+    background-color: #99DEFF;
+    margin-left: 10%;
+    border-radius: 16px;
+  }
+
+  .body__chatbot .wrapper__chatbot .chat__bot .answer-ai {
+    padding: 13px;
+
+
+  }
 }
