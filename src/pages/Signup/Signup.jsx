@@ -304,7 +304,7 @@ const Register = () => {
           <Button
             type="submit"
             id="btn-submit"
-            className={`btn btn-secondary w-100 fw-bold 
+            className={`bttn btn-secondary w-100 fw-bold 
               ${isSubmitButtonDisabled ? "disabled" : ""}
             `}
             text="Daftar"

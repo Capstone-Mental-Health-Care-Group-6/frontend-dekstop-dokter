@@ -88,7 +88,7 @@ const ForgotPw = () => {
           <Button
             type="button"
             id="btn-submit"
-            className={`btn btn-secondary w-100 fw-bold ${
+            className={`bttn btn-secondary w-100 fw-bold ${
               email ? "" : "disabled"
             }`}
             text="Kirim link verifikasi"

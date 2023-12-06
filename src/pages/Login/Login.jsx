@@ -55,13 +55,13 @@ const LoginForm = () => {
     if (username.length < 1) {
       setErrorMessages({
         ...errorMessages,
-        username: "Kata sandi tidak boleh kosong",
+        username: "Username tidak boleh kosong",
       })
       isValid = false
     }
 
     if (!usernameChecker(username) || !passwordChecker(password)) {
-      passwordHandler(password, setErrorMessages)
+      passworLogindHandler(password, setErrorMessages)
       isValid = false
     }
 
@@ -191,7 +191,7 @@ const LoginForm = () => {
           <Button
             type="submit"
             id="btn-submit"
-            className={`btn btn-secondary w-100 fw-bold ${
+            className={`bttn btn-secondary w-100 fw-bold ${
               isSubmitButtonDisabled ? "disabled" : ""
             }`}
             text="Masuk"

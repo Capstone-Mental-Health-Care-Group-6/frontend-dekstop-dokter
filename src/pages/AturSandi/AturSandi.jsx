@@ -2,7 +2,7 @@ import "./AturSandi.style.css"
 import { useState } from "react"
 import * as React from "react"
 import Button from "../../components/elements/Button/Button"
-import ModalReset from "../../components/Fragments/modalReset/modalReset"
+import ModalReset from "../../components/fragments/modalReset/modalReset"
 import kunci from "../../assets/kunci.png"
 import {
   BsExclamationCircle,
@@ -149,7 +149,7 @@ const ResetPassword = () => {
           <Button
             type="submit"
             id="btn-submit"
-            className={`mt-4 btn btn-secondary w-100 fw-bold ${
+            className={`mt-4 bttn btn-secondary w-100 fw-bold ${
               !isFormFilled ? "disabled" : ""
             }`}
             text="Atur ulang kata sandi"
