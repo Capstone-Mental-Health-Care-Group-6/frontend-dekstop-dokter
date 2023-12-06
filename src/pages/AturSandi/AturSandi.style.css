@@ -19,7 +19,7 @@
   max-width: 500px;
   /* max-height: 450px; */
   text-align: center;
-  background-color: rgba(226, 232, 253, 1);
+  background-color: #fff;
   border-radius: 18px;
   margin: 0 1.5em;
   padding: 1.5em 2em 1.25em;
@@ -118,7 +118,7 @@
   padding: 1rem 2.5rem;
   border: 2px solid #878787;
   border-radius: 10px;
-  background-color: rgba(226, 232, 253, 1);
+  /* background-color: rgba(226, 232, 253, 1); */
 }
 
 .floating input:focus,
@@ -153,12 +153,13 @@
   transform: translateY(-50%);
 }
 
-/* input.error,
+input.error,
+input.error:focus,
 .floating input.error:not(:placeholder-shown),
 .floating .icon-error {
   border-color: #f08080;
   color: #f08080;
-} */
+}
 
 .btn-secondary {
   background-color: #007bff;

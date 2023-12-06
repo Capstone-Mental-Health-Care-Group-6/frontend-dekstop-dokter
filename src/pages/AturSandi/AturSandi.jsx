@@ -73,8 +73,8 @@ const ResetPassword = () => {
         <img src={kunci} alt="Login" className="kunci" />
         <h5 className="textSandi">Buat Kata Sandi Baru</h5>
         <p>
-          kata sandi anda minimal harus enam karakter dan berisi kombinasi
-          angka, huruf, dan karakter khusus (!$@%).
+          Pastikan kata sandi baru Anda terdiri dari 8 Karakter atau lebih. Coba
+          sertakan angka, huruf, dan tanda baca untuk kata sandi yang kuat.
         </p>
 
         <form className="reset-password-form-container" onSubmit={handleSubmit}>

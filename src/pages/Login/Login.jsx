@@ -1,4 +1,3 @@
-import { BsExclamationCircle } from "react-icons/bs"
 import { useState, useEffect } from "react"
 import Button from "../../components/elements/Button/Button"
 import LogoEmphati from "../../assets/LogoEmphati.png"
@@ -7,11 +6,12 @@ import { BsEye, BsEyeSlash } from "react-icons/bs"
 import { useNavigate, Link } from "react-router-dom"
 import { FaUser, FaLock } from "react-icons/fa"
 import "./Login.style.css"
+import { BsExclamationCircle } from "react-icons/bs"
 import {
   passwordChecker,
-  passwordHandler,
+  passworLogindHandler,
   usernameChecker,
-  usernameHandler,
+  usernameLoginHandler,
 } from "../../utils/handler/input"
 
 const LoginForm = () => {
@@ -27,13 +27,13 @@ const LoginForm = () => {
   const navigate = useNavigate()
 
   const handleUsernameChange = (e) => {
-    usernameHandler(e.target.value, setErrorMessages)
+    usernameLoginHandler(e.target.value, setErrorMessages)
     setUsername(e.target.value)
     setActiveInput("username")
   }
 
   const handlePasswordChange = (e) => {
-    passwordHandler(e.target.value, setErrorMessages)
+    passworLogindHandler(e.target.value, setErrorMessages)
     setPassword(e.target.value)
     setActiveInput("password")
   }
@@ -55,7 +55,7 @@ const LoginForm = () => {
     if (username.length < 1) {
       setErrorMessages({
         ...errorMessages,
-        username: "Username tidak boleh kosong",
+        username: "Kata sandi tidak boleh kosong",
       })
       isValid = false
     }
@@ -72,7 +72,7 @@ const LoginForm = () => {
     e.preventDefault()
 
     if (validateInputs()) {
-      navigate("/dokter/dashboard")
+      navigate("/")
       console.log("Username:", username)
       console.log("Password:", password)
     }

@@ -54,8 +54,8 @@ const ForgotPw = () => {
         <img src={logoEmpathi} alt="Login" className="center-image" />
         <h2 className="textAdmin"> Atur Ulang Kata Sandi Anda </h2>
         <p className="textEmail">
-          Masukkan email yang terkait dengan akun Anda untuk mengubah kata sandi
-          baru.
+          Masukkan alamat email yang terkait dengan akun anda untuk mengubah
+          kata sandi.
         </p>
         <form className="login-form-container">
           <div className="vstack gap-1">
