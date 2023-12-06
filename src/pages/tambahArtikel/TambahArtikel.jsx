@@ -9,7 +9,8 @@ import Checkbox from "../../components/elements/Input/Checkbox";
 import Button from "../../components/elements/Button/Button";
 
 const TambahArtikel = () => {
-  const [showTambahKategori, setShowTambahKategori] = useState(false);
+  const dataArtikel = []
+
   const [statusChecked, setStatusChecked] = useState("Publik");
   const [listCheckbox, setListCheckbox] = useState([
     "Anxiety",
@@ -20,23 +21,39 @@ const TambahArtikel = () => {
     "Tips",
     "Umum",
   ]);
+
+  console.log(dataArtikel)
+  
+  const [checkedIndex, setCheckedIndex] = useState(null);
+  
+  const handleCheckboxChange = (id) => {
+    setCheckedIndex(id === checkedIndex ? null : id);
+    setArtikel((old) => {
+      return {
+        ...old, 
+        kategori: id
+      }
+    })
+  };
+  
+  const [errorMsg, setErrorMsg] = useState({
+    judul: "",
+    deskripsi: "",
+    linkVideo: "",
+    thumbnail: "",
+  });
   const [artikel, setArtikel] = useState({
     judul: "",
     deskripsi: "",
     linkVideo: "",
-    thumbnail: ""
+    thumbnail: "",
+    kategori: "",
+    visibilitas: "Publik"
   });
+
   const [thumbnail, setThumbnail] = useState({
     gambar: "",
   });
-
-  const [checkedIndex, setCheckedIndex] = useState(null);
-
-  const handleCheckboxChange = (index) => {
-    setCheckedIndex(index === checkedIndex ? null : index);
-  };
-
-
 
   return (
     <Layouts>
@@ -44,7 +61,9 @@ const TambahArtikel = () => {
       <div className="container">
         <div className="row">
           <div className="col-9 px-3">
-            <form action="">
+            <form action="" id="form" className="needs-validation"
+              
+            >
               <div
                 className="container-fluid py-5 rounded-2"
                 style={{ backgroundColor: "white" }}
@@ -57,6 +76,16 @@ const TambahArtikel = () => {
                   name={"judul-artikel"}
                   type={"text"}
                   className={"rounded-3 border-solid border-1"}
+                  onChange={(e) => {
+                    setArtikel((old) => {
+                      return {
+                        ...old, 
+                        judul: e.target.value 
+                      }
+                    })
+                    // console.log(artikel)
+                  }
+              }
                 />
 
                 <Label htmlFor={"deskripsi-artikel"}>
@@ -66,8 +95,15 @@ const TambahArtikel = () => {
                   <Reactquill
                     // value={artikel}
                     id={"deksripsi-artikel"}
+                    value={artikel.deskripsi}
                     onChange={(value) => {
-                      console.log(value);
+                      setArtikel((old) => {
+                        return {
+                          ...old,
+                          deskripsi: value
+                        }
+                      })
+                      // console.log(artikel)
                     }}
                   />
                 </div>
@@ -78,7 +114,16 @@ const TambahArtikel = () => {
                   id={"link-video-artikel"}
                   name={"link-video-artikel"}
                   type={"text"}
+                  value={artikel.linkVideo}
                   className={"rounded-3 border-solid border-1"}
+                  onChange={(e) => {
+                    setArtikel((old) => {
+                      return {
+                        ...old,
+                        linkVideo: e.target.value
+                      }
+                    })
+                  }}
                 />
                 <img src={thumbnail.gambar} width={100} className="mt-4" />
                 <Label htmlFor={"thumbnail-artikel"}>
@@ -88,27 +133,65 @@ const TambahArtikel = () => {
                   id={"thumbnail-artikel"}
                   name={"thumbnail-artikel"}
                   type={"file"}
+                  accept={".jpg, .jpeg, .png"}
                   className={"rounded-3 border-solid border-1"}
                   onChange={(e) => {
-                    console.log(e.currentTarget.files);
-                    setThumbnail((old) => {
-                      return {
-                        ...old,
-                        gambar: URL.createObjectURL(e.target.files[0]),
-                      };
-                    });
-                    console.log(thumbnail.gambar);
+                    const allowedFormats = ["jpg", "jpeg", "png"];
+                    const selectedFile = e.target.files[0];
+
+                    // Mendapatkan ekstensi file
+                    const fileExtension = selectedFile.name
+                      .split(".")
+                      .pop()
+                      .toLowerCase();
+
+                    if (allowedFormats.includes(fileExtension)) {
+                      setErrorMsg((old) => {
+                        return {
+                          ...old,
+                          thumbnail: "",
+                        };
+                      });
+                      setArtikel((old) => {
+                        return {
+                          ...old, 
+                          thumbnail: URL.createObjectURL(selectedFile)
+                        }
+                      })
+                      setThumbnail((old) => {
+                        return {
+                          ...old,
+                          gambar: URL.createObjectURL(selectedFile),
+                        };
+                      });
+                    } else {
+                      setErrorMsg((old) => {
+                        return {
+                          ...old,
+                          thumbnail:
+                            "Format file tidak diizinkan. Pilih file dengan format jpg, jpeg, atau png",
+                        };
+                      });
+                      // Menampilkan pesan kesalahan jika format tidak diizinkan
+                      console.error(
+                        "Format file tidak diizinkan. Pilih file dengan format jpg, jpeg, atau png"
+                      );
+                    }
                   }}
                 />
                 <p className="text-deskripsi-thumbnail">
                   Rekomendasi ukuran gambar: 300 x 450. Format gambar: jpg, png,
                   jpeg
                 </p>
+                <p className="text-danger">{errorMsg.thumbnail}</p>
               </div>
               <div className="d-flex m-3 button-form-artikel">
                 <div>
                   <Button
-                    type={"submit"}
+                    type={"button"}
+                    onClick={()=> {
+                      dataArtikel.push(artikel)
+                    }}
                     className={
                       "btn btn-primary me-3 btn-upload-artikel fw-semibold"
                     }
@@ -159,7 +242,7 @@ const TambahArtikel = () => {
                             <p className="fw-semibold">Visibilitas</p>
                             <button
                               type="button"
-                              class="btn-close"
+                              className="btn-close"
                               aria-label="Close"
                             ></button>
                           </div>
@@ -176,17 +259,28 @@ const TambahArtikel = () => {
                                 name="visibilitas-artikel"
                                 id="visibilitas-publik"
                                 value="Publik"
-                                onChange={(e)=> {
-                                  setStatusChecked(e.target.value)
+                                onChange={(e) => {
+                                  setStatusChecked(e.target.value);
+                                  setArtikel((old) => {
+                                    return {
+                                      ...old,
+                                      visibilitas: "Publik"
+                                    }
+                                  })
                                 }}
                               />
                               <label
                                 className="form-check-label fw-bold"
-                                for="visibilitas-publik"
+                                htmlFor="visibilitas-publik"
                               >
-                               Publik
+                                Publik
                               </label>
-                              <p style={{fontSize: "12px"}} className="text-wrap">Dapat dilihat oleh semua orang</p>
+                              <p
+                                style={{ fontSize: "12px" }}
+                                className="text-wrap"
+                              >
+                                Dapat dilihat oleh semua orang
+                              </p>
                             </div>
                           </div>
                           <div className=" rounded-3 my-2  dropdown-item div-lihat-artikel ">
@@ -197,20 +291,30 @@ const TambahArtikel = () => {
                                 name="visibilitas-artikel"
                                 id="visibilitas-privat"
                                 value="Privat"
-                                onChange={(e)=> {
-                                  setStatusChecked(e.target.value)
+                                onChange={(e) => {
+                                  setStatusChecked(e.target.value);
+                                  setArtikel((old) => {
+                                    return {
+                                      ...old,
+                                      visibilitas: "Privat"
+                                    }
+                                  })
                                 }}
                               />
                               <label
                                 className="form-check-label fw-bold"
-                                for="visibilitas-privat"
+                                htmlFor="visibilitas-privat"
                               >
-                               Privat
+                                Privat
                               </label>
-                              <p style={{fontSize: "12px"}} className="text-wrap">Hanya dapat dilihat oleh admin dan editor situs</p>
+                              <p
+                                style={{ fontSize: "12px" }}
+                                className="text-wrap"
+                              >
+                                Hanya dapat dilihat oleh admin dan editor situs
+                              </p>
                             </div>
                           </div>
-                      
                         </div>
                       </div>
                     </div>
@@ -241,15 +345,18 @@ const TambahArtikel = () => {
                     index={index}
                     text={id}
                     id={"checkBox-artikel"}
-                    checked={index == checkedIndex}
-                    onChange={() => handleCheckboxChange(index)}
+                    checked={id == checkedIndex}
+                    onChange={() => handleCheckboxChange(id)}
                     value={id}
                     classNameLabel={"fw-semibold label-artikel-text"}
-                    disabled={checkedIndex !== null && index !== checkedIndex}
+                    disabled={checkedIndex !== null && id !== checkedIndex}
                   />
                 ))}
               </div>
-              <p style={{fontSize: "10px"}} className="text-muted" ><span className="text-danger">*</span>Kategori hanya dapat dipilih salah satu</p>
+              <p style={{ fontSize: "10px" }} className="text-muted">
+                <span className="text-danger">*</span>Kategori hanya dapat
+                dipilih salah satu
+              </p>
             </div>
           </div>
         </div>
