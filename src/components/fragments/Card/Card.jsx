@@ -1,5 +1,5 @@
 import React from "react";
-import "./Card.css";
+
 const Card = ({ subtitle, text, iconCard, bgColor }) => {
   return (
     <div className="card rounded-4" style={{ width: "161px", height: "208px" }}>
