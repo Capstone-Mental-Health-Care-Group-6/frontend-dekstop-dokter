@@ -111,7 +111,7 @@ const LoginForm = () => {
                 onFocus={() => handleInputFocus("username")}
                 onBlur={handleInputBlur}
                 placeholder="Username"
-                className={`bg-transparent 
+                className={`bg-transparent  
                 ${activeInput === "username" ? "active" : ""}
                 ${errorMessages.username !== "" ? "error" : ""}
               `}
