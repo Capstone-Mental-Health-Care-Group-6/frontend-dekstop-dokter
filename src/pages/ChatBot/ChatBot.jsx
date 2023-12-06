@@ -14,7 +14,6 @@ import Input from "../../components/elements/Input/Input";
 import EmojiPicker from "emoji-picker-react";
 import Button from "../../components/elements/Button/Button";
 import OpenAI from 'openai';
-import Label from "../../components/elements/Input/Label";
 
 const ChatBot = () => {
   const [selectedPrompt, setSelectedPrompt] = useState(true);
@@ -57,7 +56,7 @@ const ChatBot = () => {
     setSelectedPrompt(false)
     e.preventDefault();
     await handleSubmit(e, prompCustom);
-    setHiddenButton('d-none')
+
   }
 
   const handlePromptClick = async (e, promptCustom) => {
@@ -70,6 +69,9 @@ const ChatBot = () => {
     e.preventDefault();
     setComand({ message: '' });
     setLoading(true);
+    if (promptCustom === 'sudah' || promptCustom === 'belum') {
+      setHiddenButton('d-none')
+    }
 
     try {
       const res = await openai.chat.completions.create({
@@ -79,16 +81,18 @@ const ChatBot = () => {
             role: "assistant",
             content: `anda adalah asisten 
                     Rule Format Response :
-                    1. anda adalah seorang pelayan yang hanya menjawab pertanyaan seputar perograming
-                    2. Jangan menjawab pertanyaan di luar programing dan di luar CSA Learning
-                    3. CSA Learning Merupakan e-learning yang bisa di akses oleh semua orang dan memberikan pembelajaran yang terbaru berbentuk vidio
-                    4. Website Ini bernama CSA Learning
-                    5. jika ada pertanyaan yang di luar programing dan di luar CSA Learning tolong katakan maaf ini di luar percakapan 
-                    6. jika user meminta materi apa saja yang ada sekarang dalam CSA learning berikan data ini `,
+                    1. anda adalah seorang pelayan di Emphaticare yang hanya menjawab pertanyaan seputar kesehatan mental berikan jawaban seperti apa yang di minta oleh user terkait kesehatan
+                    2. jika user tiba tiba bertanya seperti Mengatasi Gangguan kecemasan, Mengatasi Stress, Mengatasi Depresi, Mengatasi kegilaan, langsung saja berikan penjelasan cara untuk mengatasi hal tersebut jangan anda tanya hal lain user nya
+                    3. tolong setelah anda memberikan penjelasan, katakan Apakah masalah anda sudah terselesaikan?, di akhir kalimat
+                    4. Jangan menjawab pertanyaan di luar kesehatan
+                    5. Emphaticare Merupakan layanan kesehatan mental modern yang bisa di akses oleh semua orang dan memberikan service terbaik untuk siapapun
+                    6. Website Ini bernama Emphaticare
+                    7. jika ada pertanyaan yang di luar kesehatan tolong katakan maaf ini di luar percakapan 
+                  `,
           },
           {
             role: "user",
-            content: comand.message,
+            content: comand.message + (promptCustom ? promptCustom : ''),
           }
         ],
         model: "gpt-3.5-turbo",
@@ -101,8 +105,11 @@ const ChatBot = () => {
         { role: "user", content: comand.message + (promptCustom ? promptCustom : '') },
         { role: "assistant", content: responseResult }
 
+
       ]);
+
       setLoading(false);
+      console.log('data terkirim', promptCustom);
     } catch (error) {
       console.error("Error sending message to OpenAI:", error);
       setLoading(false);
@@ -158,7 +165,7 @@ const ChatBot = () => {
               {selectedPrompt ? (
                 <>
                   <Button
-                    onClick={(e) => handlePromptClick(e, "Mengatasi Gangguan Kecemasan")}
+                    onClick={(e) => handlePromptClick(e, " mengatasi gangguan kecemasan")}
                     text={"Mengatasi Gangguan Kecemasan"}
                     className={
                       "btn btn-outline-primary text-black fw-semibold rounded-5"
@@ -166,7 +173,7 @@ const ChatBot = () => {
                   />
 
                   <Button
-                    onClick={(e) => handlePromptClick(e, "mengatasi stress")}
+                    onClick={(e) => handlePromptClick(e, " mengatasi stress")}
                     text={"Mengatasi Stress"}
                     className={
                       "btn btn-outline-primary text-black fw-semibold rounded-5"
@@ -174,7 +181,7 @@ const ChatBot = () => {
                   />
 
                   <Button
-                    onClick={(e) => handlePromptClick(e, "mengatasi kegilaan")}
+                    onClick={(e) => handlePromptClick(e, " mengatasi kegilaan")}
                     text={"Mengatasi Depresi"}
                     className={
                       "btn btn-outline-primary text-black fw-semibold rounded-5"
@@ -186,7 +193,7 @@ const ChatBot = () => {
                     className={
                       "btn btn-outline-primary text-black fw-semibold rounded-5"
                     }
-                    onClick={(e) => handlePromptClick(e, "mengatasi kegilaan")}
+                    onClick={(e) => handlePromptClick(e, " mengatasi kegilaan")}
                   />
                 </>
               ) : (
