@@ -56,6 +56,7 @@ import accountBalance from "./src/assets/account-balance.png";
 import acountCircle from "./src/assets/account-circle.png";
 import localLibrary from "./src/assets/local-ibrary.png";
 import archive from "./src/assets/archive.png";
+import arrowLeft from "./src/assets/arrowLeft.svg";
 
 export {
   archive,
@@ -116,4 +117,5 @@ export {
   iconChatBot,
   imgDataPasienKosong,
   imgNotFound404,
+  arrowLeft,
 };

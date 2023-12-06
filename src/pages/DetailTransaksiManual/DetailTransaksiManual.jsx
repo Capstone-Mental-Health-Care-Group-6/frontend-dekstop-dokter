@@ -2,7 +2,7 @@ import Layouts from "../../components/layouts/Layouts";
 import "./DetailTransaksiManual.style.css";
 import { transaksiUsers } from "../../components/DataComponents/dataComponents";
 import { useParams } from "react-router-dom";
-import { BuktiTransaksi } from "../../../image";
+import { BuktiTransaksi, arrowLeft } from "../../../image";
 import { Link } from "react-router-dom";
 
 const DetailTransaksiManual = () => {
@@ -13,8 +13,12 @@ const DetailTransaksiManual = () => {
   return (
     <Layouts>
       <section className="header">
-        <Link to={"/dokter/transaksi"} className="text-decoration-none">
-          <h2 className="header"> {"<"} Detail Transaksi </h2>
+        <Link
+          to={"/dokter/transaksi"}
+          className="text-decoration-none d-flex align-items-center gap-3"
+        >
+          <img src={arrowLeft} alt="" />
+          <h2 className="header"> Detail Transaksi </h2>
         </Link>
       </section>
 

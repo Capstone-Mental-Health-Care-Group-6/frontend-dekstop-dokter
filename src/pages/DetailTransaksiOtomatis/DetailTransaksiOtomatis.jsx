@@ -3,6 +3,7 @@ import Layouts from "../../components/layouts/Layouts";
 import "./DetailTransaksiOtomatis.style.css";
 import { transaksiUsers } from "../../components/DataComponents/dataComponents";
 import { Link } from "react-router-dom";
+import { arrowLeft } from "../../../image";
 
 const DetailTransaksiOtomatis = () => {
   const { id } = useParams();
@@ -12,8 +13,12 @@ const DetailTransaksiOtomatis = () => {
   return (
     <Layouts>
       <section className="header">
-        <Link to={"/dokter/transaksi"} className="text-decoration-none">
-          <h2 className="header"> {"<"} Detail Transaksi </h2>
+        <Link
+          to={"/dokter/transaksi"}
+          className="text-decoration-none d-flex align-items-center gap-3"
+        >
+          <img src={arrowLeft} alt="" />
+          <h2 className="header"> Detail Transaksi </h2>
         </Link>
       </section>
       <section className="detail-transaksi">
