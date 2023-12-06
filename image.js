@@ -46,7 +46,7 @@ import avatar4 from "./src/assets/avatar4.svg";
 import imgModalSaldoCair from "./src/assets/imgModalSaldoCair.png";
 import empetyChat from "./src/assets/empetyChat.png";
 import imgNotFound404 from "./src/assets/imgNotFound404.png";
-import gambar from "./src/assets/gambar.png";
+import gambar from "./src/assets/Gambar.png";
 import accountBalance from "./src/assets/account-balance.png";
 import acountCircle from "./src/assets/account-circle.png";
 import localLibrary from "./src/assets/local-ibrary.png";
