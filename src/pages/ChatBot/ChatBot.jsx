@@ -157,13 +157,14 @@ const ChatBot = () => {
           <div className="chat__bot p-3">
 
             {results.map((item, index) => (
-              <div key={index} className={` ${item.role === 'user' ? 'text-end userQuestion' : 'answerAI'}`} >
-                <p>{item.content}</p>
+              <div key={index} className={` ${item.role === 'user' ? 'd-flex justify-content-end ' : 'd-flex justify-content-start'}`} >
+                <p className={` ${item.role === 'user' ? 'user-question' : 'answer-ai'}`} >{item.content}</p>
               </div>
             ))}
+
             {loading && <p>Loading...</p>}
 
-            <div className={`chat-text d-flex align-items-center flex-row gap-2 ${hiddenButton}`} >
+            <div className={`chat-text d-flex align-items-center m-0 p-0 flex-row gap-2 ${hiddenButton}`} >
               {selectedPrompt ? (
                 <>
                   <Button
