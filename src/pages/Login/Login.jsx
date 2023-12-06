@@ -72,7 +72,7 @@ const LoginForm = () => {
     e.preventDefault()
 
     if (validateInputs()) {
-      navigate("/")
+      navigate("/dokter/dashboard")
       console.log("Username:", username)
       console.log("Password:", password)
     }
