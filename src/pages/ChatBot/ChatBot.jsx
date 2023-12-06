@@ -69,9 +69,8 @@ const ChatBot = () => {
     setComand({ message: '' });
     setLoading(true);
     setSelectedPrompt(false)
-    if (promptCustom === 'sudah' || promptCustom === 'belum') {
-      setHiddenButton('d-none')
-    }
+    setHiddenButton('d-none')
+
 
     setResult([
       ...results,
@@ -111,7 +110,10 @@ const ChatBot = () => {
       ]);
 
       setLoading(false);
-      console.log('data terkirim', promptCustom);
+      setHiddenButton('d-block')
+      if (promptCustom === 'sudah' || promptCustom === 'belum') {
+        setHiddenButton('d-none')
+      }
     } catch (error) {
       console.error("Error sending message to OpenAI:", error);
       setLoading(false);

@@ -24,14 +24,14 @@
 }
 
 .body__chatbot .wrapper__chatbot .chat__bot .user-question {
-  padding: 20px;
+  padding: 10px 44px;
   background-color: #99DEFF;
   margin-left: 10%;
   border-radius: 27px;
 }
 
 .body__chatbot .wrapper__chatbot .chat__bot .answer-ai {
-  padding: 24px;
+  padding: 13px 30px;
   background-color: #CCF1FF;
   margin-right: 10%;
   border-radius: 27px;
