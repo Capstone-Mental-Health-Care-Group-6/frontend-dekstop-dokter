@@ -14,7 +14,7 @@ export default defineConfig(({ command, mode }) => {
     },
     define: {
       'process.env.BASE_API': JSON.stringify(env.BASE_API),
-      // case jika tidak ada boolean value di env
+      'process.env.OPEN_AI_KEY': JSON.stringify(env.OPEN_AI_KEY)
       // 'process.env': JSON.stringify(env)
     }
   }
