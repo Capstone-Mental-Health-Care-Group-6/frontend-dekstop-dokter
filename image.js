@@ -43,6 +43,9 @@ import avatar1 from "./src/assets/avatar1.svg";
 import avatar2 from "./src/assets/avatar2.svg";
 import avatar3 from "./src/assets/avatar3.svg";
 import avatar4 from "./src/assets/avatar4.svg";
+import avatar5 from "./src/assets/avatar5.svg";
+import searchFailed from "./src/assets/searchFailed.png";
+import BuktiTransaksi from "./src/assets/BuktiTransaksi.png";
 import imgModalSaldoCair from "./src/assets/imgModalSaldoCair.png";
 import iconChatBot from "./src/assets/iconChatBot.svg";
 import imgDataPasienKosong from "./src/assets/imgDataPasienKosong.png";
@@ -100,6 +103,9 @@ export {
   avatar2,
   avatar3,
   avatar4,
+  avatar5,
+  searchFailed,
+  BuktiTransaksi,
   personChat,
   personChat2,
   personChat3,

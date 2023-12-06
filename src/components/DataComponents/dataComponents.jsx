@@ -1,8 +1,4 @@
 import {
-  avatar1,
-  avatar2,
-  avatar3,
-  avatar4,
   iconCardProsesPenarikan,
   iconCardSaldoAktif,
   iconChat,
@@ -15,6 +11,12 @@ import {
   personChat,
   personChat2,
   personChat3,
+  avatar1, 
+  avatar2, 
+  avatar3, 
+  avatar4, 
+  avatar5,
+  BuktiTransaksi
 } from "../../../image";
 import Button from "../elements/Button/Button";
 
@@ -318,6 +320,85 @@ export const dataChat = [
     timestamp: "13:49:00",
   },
 ];
+
+export const transaksiUsers = [
+  {
+    id: "SMBN76448KKHJ",
+    avatar: avatar1,
+    namaPasien: "Gwenchana",
+    tanggal: "22 Okt 2023",
+    paketPelanggan: "Paket Premium",
+    harga: "Rp 200.000",
+    metodePembayaran: "OVO",
+    namaDokter: "Lika Angelina S.Psi, M.Psi. Psikolog",
+    durasi: "120 Menit",
+    statusPembayaran: "Sudah Bayar",
+    detailWaktu: "18:06, Min 22 Okt 2023",
+    jenisTransaksi : "manual",
+    buktiTransaksi : BuktiTransaksi
+  },
+  {
+    id: "TLFY0399HJIU",
+    avatar: avatar2,
+    namaPasien: "Gwenchanayo",
+    tanggal: "15 Okt 2023",
+    paketPelanggan: "Paket Instan",
+    harga: "Rp 100.000",
+    metodePembayaran: "GOPAY",
+    namaDokter: "Lika Angelina S.Psi, M.Psi. Psikolog",
+    durasi: "120 Menit",
+    statusPembayaran: "Sudah Bayar",
+    detailWaktu: "18:06, Min 22 Okt 2023",
+    jenisTransaksi : "otomatis",
+    buktiTransaksi : BuktiTransaksi
+  },
+  {
+    id: "EPTG2226LOGK",
+    avatar: avatar3,
+    namaPasien: "Gwenchanaaa",
+    tanggal: "30 Sep 2023",
+    paketPelanggan: "Paket Instan",
+    harga: "Rp 120.000",
+    metodePembayaran: "BCA",
+    namaDokter: "Lika Angelina S.Psi, M.Psi. Psikolog",
+    durasi: "120 Menit",
+    statusPembayaran: "Sudah Bayar",
+    detailWaktu: "18:06, Min 22 Okt 2023",
+    jenisTransaksi : "manual",
+    buktiTransaksi : BuktiTransaksi
+  },
+  {
+    id: "CASX6737BJEU",
+    avatar: avatar4,
+    namaPasien: "Popo aja",
+    tanggal: "25 Sep 2023",
+    paketPelanggan: "Paket Premium",
+    harga: "Rp 220.000",
+    metodePembayaran: "OVO",
+    namaDokter: "Lika Angelina S.Psi, M.Psi. Psikolog",
+    durasi: "120 Menit",
+    statusPembayaran: "Sudah Bayar",
+    detailWaktu: "18:06, Min 22 Okt 2023",
+    jenisTransaksi : "otomatis",
+    buktiTransaksi : BuktiTransaksi
+  },
+  {
+    id: "CASDI9823HUAK",
+    avatar: avatar5,
+    namaPasien: "Orang Lain",
+    tanggal: "10 Sep 2023",
+    paketPelanggan: "Paket Premium",
+    harga: "Rp 220.000",
+    metodePembayaran: "BCA",
+    namaDokter: "Lika Angelina S.Psi, M.Psi. Psikolog",
+    durasi: "120 Menit",
+    statusPembayaran: "Sudah Bayar",
+    detailWaktu: "18:06, Min 22 Okt 2023",
+    jenisTransaksi : "manual",
+    buktiTransaksi : BuktiTransaksi
+  },
+
+]
 
 export const dataPencairanSaldo = [
   {
