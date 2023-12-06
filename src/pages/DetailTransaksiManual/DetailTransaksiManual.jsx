@@ -3,6 +3,7 @@ import "./DetailTransaksiManual.style.css";
 import { transaksiUsers } from "../../components/DataComponents/dataComponents";
 import { useParams } from "react-router-dom";
 import { BuktiTransaksi } from "../../../image";
+import { Link } from "react-router-dom";
 
 const DetailTransaksiManual = () => {
     const { id } = useParams();
@@ -13,7 +14,9 @@ const DetailTransaksiManual = () => {
     return (
         <Layouts>
             <section className="header">
-                <h2 className="header"> {"<"} Detail Transaksi </h2>
+                <Link to={'/dokter-transaksi'} className="text-decoration-none">
+                    <h2 className="header"> {"<"} Detail Transaksi </h2>
+                </Link>
             </section>
 
             <section className="container-fluid">

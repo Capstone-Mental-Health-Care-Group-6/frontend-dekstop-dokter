@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import Layouts from "../../components/layouts/Layouts";
 import "./DetailTransaksiOtomatis.style.css";
 import { transaksiUsers } from "../../components/DataComponents/dataComponents";
+import { Link } from "react-router-dom";
 
 const DetailTransaksiOtomatis = () => {
     
@@ -12,7 +13,9 @@ const DetailTransaksiOtomatis = () => {
     return (
         <Layouts>
             <section className="header">
-                <h2 className="header"> {"<"} Detail Transaksi </h2>
+                <Link to={'/dokter-transaksi'} className="text-decoration-none">
+                    <h2 className="header"> {"<"} Detail Transaksi </h2>
+                </Link>
             </section>
             <section className="detail-transaksi">
                 <div className="container container-atas">

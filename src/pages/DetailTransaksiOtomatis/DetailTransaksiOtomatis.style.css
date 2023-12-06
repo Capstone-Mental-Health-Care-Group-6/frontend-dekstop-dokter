@@ -17,7 +17,7 @@
   padding: 20px;
 }
 
-.container {
+.container-atas, .container-bawah, .container-rating {
   background-color: #fff;
   border-radius: 12px;
   border: 1px solid #aee2ff;

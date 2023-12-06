@@ -20,9 +20,9 @@ const TableTransaksi = ({ data, searchValue }) => {
         )
     })
 
-    const onPageChange = (event) => {
-        setFirst(event.first);
-        setRows(event.rows);
+    const onPageChange = (e) => {
+        setFirst(e.first);
+        setRows(e.rows);
     };
 
     const userBodyTemplate = (rowData) => {
