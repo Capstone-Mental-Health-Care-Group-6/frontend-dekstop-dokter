@@ -53,7 +53,6 @@ const ChatBot = () => {
   });
 
   const handleFinishChat = async (e, prompCustom) => {
-    setSelectedPrompt(false)
     e.preventDefault();
     await handleSubmit(e, prompCustom);
 
@@ -69,9 +68,15 @@ const ChatBot = () => {
     e.preventDefault();
     setComand({ message: '' });
     setLoading(true);
+    setSelectedPrompt(false)
     if (promptCustom === 'sudah' || promptCustom === 'belum') {
       setHiddenButton('d-none')
     }
+
+    setResult([
+      ...results,
+      { role: "user", content: comand.message + (promptCustom ? promptCustom : '') },
+    ]);
 
     try {
       const res = await openai.chat.completions.create({
@@ -100,12 +105,9 @@ const ChatBot = () => {
 
       const responseResult = res.choices[0].message.content;
 
-      setResult([
-        ...results,
-        { role: "user", content: comand.message + (promptCustom ? promptCustom : '') },
-        { role: "assistant", content: responseResult }
-
-
+      setResult((prevResults) => [
+        ...prevResults,
+        { role: "assistant", content: responseResult },
       ]);
 
       setLoading(false);
@@ -153,13 +155,13 @@ const ChatBot = () => {
       <div className="body__chatbot d-flex justify-content-center my-5">
         <div className="wrapper__chatbot d-flex flex-column justify-content-between">
           <div className="chat__bot p-3">
-            {
-              results.map((item, index) => (
-                <div key={index} className={` ${item.role === 'user' ? 'text-end userQuestion' : 'answerAI'}`} >
-                  <p> {item.content}</p>
-                </div>
-              ))
-            }
+
+            {results.map((item, index) => (
+              <div key={index} className={` ${item.role === 'user' ? 'text-end userQuestion' : 'answerAI'}`} >
+                <p>{item.content}</p>
+              </div>
+            ))}
+            {loading && <p>Loading...</p>}
 
             <div className={`chat-text d-flex align-items-center flex-row gap-2 ${hiddenButton}`} >
               {selectedPrompt ? (
@@ -240,7 +242,7 @@ const ChatBot = () => {
               <img src={choiseChat} alt="" />
             </button>
             <Input placeholder={'Ketik pesan'} className={'shadow-none border-secondary-subtle'} name={'message'} onChange={handleChangeMessage} value={comand.message} />
-            <button className="btn border-0" >
+            <button className="btn border-0">
               <img src={sendChat} alt="icon-send-chtbot" />
             </button>
           </form>
