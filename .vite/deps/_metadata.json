@@ -1,28 +1,48 @@
 {
+<<<<<<< HEAD
+  "hash": "58b04314",
+  "browserHash": "09c77eb4",
+=======
   "hash": "232b224b",
   "browserHash": "de4e94a3",
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
   "optimized": {
     "react": {
       "src": "../../node_modules/react/index.js",
       "file": "react.js",
+<<<<<<< HEAD
+      "fileHash": "f27cbf7e",
+=======
       "fileHash": "abf92d3a",
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
       "needsInterop": true
     },
     "react-dom/client": {
       "src": "../../node_modules/react-dom/client.js",
       "file": "react-dom_client.js",
+<<<<<<< HEAD
+      "fileHash": "cd2ce0dd",
+=======
       "fileHash": "75f58889",
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
       "needsInterop": true
     },
     "bootstrap/dist/js/bootstrap.bundle.js": {
       "src": "../../node_modules/bootstrap/dist/js/bootstrap.bundle.js",
       "file": "bootstrap_dist_js_bootstrap__bundle__js.js",
+<<<<<<< HEAD
+      "fileHash": "4f394746",
+=======
       "fileHash": "d9eeff27",
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
       "needsInterop": true
     },
     "react-router-dom": {
       "src": "../../node_modules/react-router-dom/dist/index.js",
       "file": "react-router-dom.js",
+<<<<<<< HEAD
+      "fileHash": "31c67865",
+=======
       "fileHash": "60fc602d",
       "needsInterop": false
     },
@@ -30,17 +50,25 @@
       "src": "../../node_modules/react-loading-skeleton/dist/index.js",
       "file": "react-loading-skeleton.js",
       "fileHash": "6e317068",
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
       "needsInterop": false
     },
     "aos": {
       "src": "../../node_modules/aos/dist/aos.js",
       "file": "aos.js",
+<<<<<<< HEAD
+      "fileHash": "bef4ecb8",
+=======
       "fileHash": "b9f3e82b",
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
       "needsInterop": true
     },
     "react-icons/bs": {
       "src": "../../node_modules/react-icons/bs/index.esm.js",
       "file": "react-icons_bs.js",
+<<<<<<< HEAD
+      "fileHash": "040b57e4",
+=======
       "fileHash": "6e53fe2f",
       "needsInterop": false
     },
@@ -54,13 +82,17 @@
       "src": "../../node_modules/primereact/column/column.esm.js",
       "file": "primereact_column.js",
       "fileHash": "f425a9b9",
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
       "needsInterop": false
     }
   },
   "chunks": {
+<<<<<<< HEAD
+=======
     "chunk-DZXRV6RW": {
       "file": "chunk-DZXRV6RW.js"
     },
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
     "chunk-ZAUFE7H7": {
       "file": "chunk-ZAUFE7H7.js"
     },

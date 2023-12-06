@@ -2,7 +2,6 @@ import React from "react";
 
 const Input = ({ type, className, id, onChange, name, placeholder, value }) => {
   return (
-
     <input
       type={type ? type : "text"}
       className={`form-control ${className}`}
@@ -12,7 +11,6 @@ const Input = ({ type, className, id, onChange, name, placeholder, value }) => {
       onChange={onChange}
       value={value}
     />
-
   );
 };
 
