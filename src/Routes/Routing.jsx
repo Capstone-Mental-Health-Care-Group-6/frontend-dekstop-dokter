@@ -21,7 +21,6 @@ import PencairanSaldo from "../pages/PencairanSaldo/PencairanSaldo";
 import ChatBot from "../pages/ChatBot/ChatBot";
 import NotFound404 from "../pages/NotFound404/NotFound404";
 
-
 const Routing = () => {
   return (
     <Routes>
@@ -31,11 +30,17 @@ const Routing = () => {
       <Route path="/register-dokter" element={<Register />} />
       <Route path="/forgot-password" element={<ForgotPw />} />
       <Route path="/reset-password" element={<ResetPassword />} />
-      <Route path="/dokter-transaksi/detail-transaksi-otomatis/:id" element={<DetailTransaksiOtomatis />} />
-      <Route path="/dokter-transaksi/detail-transaksi-manual/:id" element={<DetailTransaksiManual />} />
       <Route path="/dokter/chat" element={<Chat />} />
       <Route path="/dokter/chat/:id" element={<Chat />} />
       <Route path="/dokter/transaksi" element={<Transaksi />} />
+      <Route
+        path="/dokter/transaksi/transaksi/otomatis/:id"
+        element={<DetailTransaksiOtomatis />}
+      />
+      <Route
+        path="/dokter/transaksi/transaksi/manual/:id"
+        element={<DetailTransaksiManual />}
+      />
       <Route path="/dokter/saldo" element={<PencairanSaldo />} />
       <Route path="/dokter/artikel" element={<Artikel />} />
       <Route path="/dokter/artikel/tambah" element={<TambahArtikel />} />
