@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./ChatBot.css";
 import DropdownNotif from "../../components/elements/DropdownNotification/DropdownNotif";
 import { BsArrowLeft } from "react-icons/bs";
@@ -14,6 +14,7 @@ import Input from "../../components/elements/Input/Input";
 import EmojiPicker from "emoji-picker-react";
 import Button from "../../components/elements/Button/Button";
 import OpenAI from 'openai';
+import Aos from "aos";
 
 const ChatBot = () => {
   const [selectedPrompt, setSelectedPrompt] = useState(true);
@@ -23,14 +24,17 @@ const ChatBot = () => {
   const [comand, setComand] = useState({
     message: "",
   });
-
   const [results, setResult] = useState([{
     role: "assistant",
     content:
       "Selamat datang di Aplikasi Kesehatan Mental kami! Saya akan dengan senang hati membantu Anda memahami fitur-fitur yang tersedia. Berikut beberapa hal yang dapat Anda lakukan: ",
   }]);
 
-
+  useEffect(() => {
+    Aos.init({
+      duration: 1000,
+    });
+  }, []);
 
   const handleChangeMessage = (e) => {
     const { name, value } = e.target
@@ -160,13 +164,13 @@ const ChatBot = () => {
 
             {results.map((item, index) => (
               <div key={index} className={` ${item.role === 'user' ? 'd-flex justify-content-end ' : 'd-flex justify-content-start'}`} >
-                <p className={` ${item.role === 'user' ? 'user-question' : 'answer-ai'}`} >{item.content}</p>
+                <p className={` ${item.role === 'user' ? 'user-question' : 'answer-ai'}`} data-aos="fade-up">{item.content}</p>
               </div>
             ))}
 
             {loading && <p>Loading...</p>}
 
-            <div className={`chat-text d-flex align-items-center m-0 p-0 flex-row gap-2 ${hiddenButton}`} >
+            <div className={`chat-text d-flex align-items-center m-0 p-0 flex-row gap-2 ${hiddenButton}`} data-aos="fade-up" >
               {selectedPrompt ? (
                 <>
                   <Button
