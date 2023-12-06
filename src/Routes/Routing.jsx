@@ -37,8 +37,7 @@ const Routing = () => {
       <Route path="/dokter/profile/data-akademik" element={<DataAkademik />} />
       <Route path="/dokter/profile/dokumen" element={<Dokumen />} />
       <Route path="/dokter/profile/pengalaman" element={<Pengalaman />} />
-
-      <Route path="/chatbot-dokter" element={<ChatBot />} />
+      <Route path="/dokter/chatbot" element={<ChatBot />} />
 
       {/* route ketika url tidak sesuai */}
       <Route element={<NotFound404 />} path="*" />

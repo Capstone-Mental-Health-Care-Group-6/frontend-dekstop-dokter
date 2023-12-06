@@ -170,7 +170,7 @@ const ChatBot = () => {
             ))}
 
             {loading &&
-              <div data-aos="fade-up">
+              <div >
                 <ThreeDots
                   height="50"
                   width="50"
@@ -225,11 +225,12 @@ const ChatBot = () => {
               data-bs-toggle="dropdown"
               aria-expanded="false"
               onClick={toggleEmojiPicker}
+              type="button"
             >
               <img src={choiseChat} alt="" />
             </button>
             <Input placeholder={'Ketik pesan'} className={'shadow-none border-secondary-subtle'} name={'message'} onChange={handleChangeMessage} value={comand.message} />
-            <button className="btn border-0">
+            <button className="btn border-0" type="submit">
               <img src={sendChat} alt="icon-send-chtbot" />
             </button>
           </form>

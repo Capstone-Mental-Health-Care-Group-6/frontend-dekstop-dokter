@@ -62,7 +62,7 @@ const Dashboard = () => {
           )}
 
           <div className="toogle__chatbot ">
-            <Link to={"/chatbot-dokter"}>
+            <Link to={"/dokter/chatbot"}>
               <div className="bg-white px-3 py-3 d-flex align-items-center justify-content-center">
                 <img src={iconChatBot} alt="icon-chat-bot" />
               </div>
