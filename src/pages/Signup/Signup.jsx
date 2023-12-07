@@ -89,14 +89,15 @@ const Register = () => {
       doPasswordMatch(password, confirmPassword)
 
     if (isValid) {
+
       if (username.length >= 4) {
-        // navigate("/login-dokter")
         const formRegister = {
           name: username,
           email,
           password,
           role: "Doctor",
         }
+        console.log(formRegister);
         register(formRegister, (status, res) => {
           if (status) {
             navigate("/login-dokter")
