@@ -117,5 +117,5 @@ export {
   logoWhite,
   businessCenter,
   empathiName,
-  logoEmpathi,
+  logoEmpathi, 
 };
