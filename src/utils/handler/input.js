@@ -50,6 +50,7 @@ export const emailHandler = (value, errState) => {
   }
 }
 
+
 export const passworLogindHandler = (value, errState) => {
   if (value.length < 8) {
     errState(prevState => ({
