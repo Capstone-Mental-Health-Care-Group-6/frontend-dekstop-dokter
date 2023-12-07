@@ -7,29 +7,32 @@ import { useNavigate, Link } from "react-router-dom"
 import { FaUser, FaLock } from "react-icons/fa"
 import "./Login.style.css"
 import { BsExclamationCircle } from "react-icons/bs"
+import { IoMdMail } from "react-icons/io"
 import {
   passwordChecker,
   passworLogindHandler,
-  usernameChecker,
-  usernameLoginHandler,
+  emailHandler,
+  emailChecker,
 } from "../../utils/handler/input"
+import { login } from "../../service/authentication"
 
 const LoginForm = () => {
-  const [username, setUsername] = useState("")
+  const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [showPassword, setShowPassword] = useState(false)
   const [activeInput, setActiveInput] = useState(null)
   const [isSubmitButtonDisabled, setIsSubmitButtonDisabled] = useState(true)
+  const [alertLogin, setAlertLogin] = useState("d-none")
   const [errorMessages, setErrorMessages] = useState({
-    username: "",
+    email: "",
     password: "",
   })
   const navigate = useNavigate()
 
-  const handleUsernameChange = (e) => {
-    usernameLoginHandler(e.target.value, setErrorMessages)
-    setUsername(e.target.value)
-    setActiveInput("username")
+  const handleEmailChange = (e) => {
+    emailHandler(e.target.value, setErrorMessages)
+    setEmail(e.target.value)
+    setActiveInput("email")
   }
 
   const handlePasswordChange = (e) => {
@@ -52,15 +55,8 @@ const LoginForm = () => {
   const validateInputs = () => {
     let isValid = true
 
-    if (username.length < 1) {
-      setErrorMessages({
-        ...errorMessages,
-        username: "Username tidak boleh kosong",
-      })
-      isValid = false
-    }
-
-    if (!usernameChecker(username) || !passwordChecker(password)) {
+    if (!emailChecker(email) || !passwordChecker(password)) {
+      emailHandler(email, setErrorMessages)
       passworLogindHandler(password, setErrorMessages)
       isValid = false
     }
@@ -70,21 +66,29 @@ const LoginForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    const formLogin = {
+      email,
+      password,
+    }
 
     if (validateInputs()) {
-      navigate("/dokter/dashboard")
-      console.log("Username:", username)
-      console.log("Password:", password)
+      login(formLogin, (status, res) => {
+        if (status) {
+          navigate("/dokter/dashboard")
+          console.log("berhasil login", res)
+        } else {
+          setAlertLogin("d-block")
+          console.log(res)
+        }
+      })
     }
   }
 
   const isPlaceholderShown = (inputValue) => inputValue === ""
 
   useEffect(() => {
-    setIsSubmitButtonDisabled(
-      !(username.trim() !== "" && password.trim() !== "")
-    )
-  }, [username, password])
+    setIsSubmitButtonDisabled(!(email.trim() !== "" && password.trim() !== ""))
+  }, [email, password])
 
   return (
     <div className="content">
@@ -95,41 +99,36 @@ const LoginForm = () => {
             <div className={`floating3`}>
               <div
                 className={`icon-input 
-                ${activeInput === "username" ? "active" : ""} 
-                ${!isPlaceholderShown(username) ? "not-empty" : ""}
-                ${errorMessages.username !== "" ? "error" : ""}
-              `}
+                  ${activeInput === "email" ? "active" : ""} 
+                  ${!isPlaceholderShown(email) ? "not-empty" : ""}
+                  ${errorMessages.email !== "" ? "error" : ""}
+                `}
               >
-                <FaUser width={20} className="me-2" />
+                <IoMdMail width={20} className="me-2" />
               </div>
               <input
-                type="username"
-                name="username"
-                id="username"
-                value={username}
-                onChange={handleUsernameChange}
-                onFocus={() => handleInputFocus("username")}
+                type="email"
+                name="email"
+                id="emaildoc"
+                value={email}
+                onChange={handleEmailChange}
+                onFocus={() => handleInputFocus("email")}
                 onBlur={handleInputBlur}
-                placeholder="Username"
-                className={`bg-transparent  
-                ${activeInput === "username" ? "active" : ""}
-                ${errorMessages.username !== "" ? "error" : ""}
-              `}
+                placeholder=" Email "
+                className={`bg-transparent 
+                  ${activeInput === "email" ? "active" : ""}
+                  ${errorMessages.email !== "" ? "error" : ""}
+                `}
               />
               <span className="icon right">
-                {errorMessages.username !== "" && (
+                {errorMessages.email !== "" && (
                   <BsExclamationCircle className="text-danger" />
                 )}
               </span>
-              <label htmlFor="username">
-                <div>
-                  <div></div>
-                </div>
-              </label>
             </div>
-            {errorMessages.username !== "" && (
+            {errorMessages.email !== "" && (
               <span className="text-start text-danger">
-                {errorMessages.username}
+                {errorMessages.email}
               </span>
             )}
           </div>
@@ -179,15 +178,16 @@ const LoginForm = () => {
               </span>
             )}
           </div>
+
           <div className="remember d-flex">
             <input type="checkbox" className="checkbox me-2" />
-            <Link
-              to="/forgot-password"
-              className="text-start mt-1 text-decoration-none text-black mb-1"
-            >
+            <p className="text-start mt-1 text-decoration-none text-black mb-1">
               Ingat saya?
-            </Link>
+            </p>
           </div>
+          <p className={`text-start text-danger m-0 ${alertLogin}`}>
+            Email dan Password tidak valid{" "}
+          </p>
           <Button
             type="submit"
             id="btn-submit"
@@ -225,6 +225,7 @@ const LoginForm = () => {
             </Link>{" "}
           </p>
         </form>
+
         <div className="col-lg-1 d-flex justify-content-end pe-2">
           <div className="dividerLogin"></div>
         </div>
