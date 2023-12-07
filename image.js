@@ -23,7 +23,7 @@ import amico from "./src/assets/amico.png";
 import Googleplay from "./src/assets/googleplay.png";
 import Appstore from "./src/assets/appstore.png";
 import logoEmpathiCare from "./src/assets/logoEmpathiCare.svg";
-import logoKemenkes from "./src/assets/logokemenkes.png";
+import logoKemenkes from "./src/assets/logoKemenkes.png";
 import artikelEmpty from "./src/assets/artikel-empty.png";
 import personChat from "./src/assets/personChat.svg";
 import personChat2 from "./src/assets/personChat2.svg";
