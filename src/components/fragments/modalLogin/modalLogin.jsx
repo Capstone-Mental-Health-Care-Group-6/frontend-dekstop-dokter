@@ -1,10 +1,10 @@
 // import Modal from "react-bootstrap/Modal"
-import { Modal } from "react-bootstrap"
-import { Button } from "react-bootstrap"
+import { Modal } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
 // import Button from "react-bootstrap/Button"
-import "./ModalLogin.style.css"
-import { FaCheckCircle } from "react-icons/fa"
+import "./modalLogin.style.css";
+import { FaCheckCircle } from "react-icons/fa";
 
 const ModalForgot = ({ title, email, btnSuccess, onClose }) => {
   return (
@@ -57,7 +57,7 @@ const ModalForgot = ({ title, email, btnSuccess, onClose }) => {
         </div>
       </Modal.Body>
     </Modal>
-  )
-}
+  );
+};
 
-export default ModalForgot
+export default ModalForgot;
