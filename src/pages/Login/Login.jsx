@@ -14,6 +14,7 @@ import {
   emailHandler,
   emailChecker,
 } from "../../utils/handler/input"
+import { login } from "../../service/authentication"
 
 const LoginForm = () => {
   const [email, setEmail] = useState("")
@@ -21,6 +22,7 @@ const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false)
   const [activeInput, setActiveInput] = useState(null)
   const [isSubmitButtonDisabled, setIsSubmitButtonDisabled] = useState(true)
+  const [alertLogin, setAlertLogin] = useState('d-none')
   const [errorMessages, setErrorMessages] = useState({
     email: "",
     password: "",
@@ -64,11 +66,21 @@ const LoginForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    const formLogin = {
+      email,
+      password,
+    }
 
     if (validateInputs()) {
-      navigate("/dokter/dashboard")
-      console.log("Username:", username)
-      console.log("Password:", password)
+      login(formLogin, (status, res) => {
+        if (status) {
+          navigate("/dokter/dashboard")
+          console.log('berhasil login', res)
+        } else {
+          setAlertLogin('d-block')
+          console.log(res)
+        }
+      })
     }
   }
 
@@ -77,6 +89,7 @@ const LoginForm = () => {
   useEffect(() => {
     setIsSubmitButtonDisabled(!(email.trim() !== "" && password.trim() !== ""))
   }, [email, password])
+
 
   return (
     <div className="content">
@@ -165,7 +178,10 @@ const LoginForm = () => {
                 {errorMessages.password}
               </span>
             )}
+
+
           </div>
+
           <div className="remember d-flex">
             <input type="checkbox" className="checkbox me-2" />
             <Link
@@ -175,12 +191,12 @@ const LoginForm = () => {
               Ingat saya?
             </Link>
           </div>
+          <p className={`text-start text-danger m-0 ${alertLogin}`}>Email dan Password tidak valid </p>
           <Button
             type="submit"
             id="btn-submit"
-            className={`bttn btn-secondary w-100 fw-bold ${
-              isSubmitButtonDisabled ? "disabled" : ""
-            }`}
+            className={`bttn btn-secondary w-100 fw-bold ${isSubmitButtonDisabled ? "disabled" : ""
+              }`}
             text="Masuk"
             onClick={handleSubmit}
             disabled={isSubmitButtonDisabled}
