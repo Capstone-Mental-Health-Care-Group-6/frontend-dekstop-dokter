@@ -24,6 +24,7 @@ import Googleplay from "./src/assets/googleplay.png";
 import Appstore from "./src/assets/appstore.png";
 import logoEmpathiCare from "./src/assets/logoEmpathiCare.svg";
 import logoKemenkes from "./src/assets/logokemenkes.png";
+import artikelEmpty from "./src/assets/artikel-empty.png";
 import personChat from "./src/assets/personChat.svg";
 import personChat2 from "./src/assets/personChat2.svg";
 import personChat3 from "./src/assets/personChat3.svg";
@@ -42,16 +43,20 @@ import avatar1 from "./src/assets/avatar1.svg";
 import avatar2 from "./src/assets/avatar2.svg";
 import avatar3 from "./src/assets/avatar3.svg";
 import avatar4 from "./src/assets/avatar4.svg";
+import avatar5 from "./src/assets/avatar5.svg";
+import searchFailed from "./src/assets/searchFailed.png";
+import BuktiTransaksi from "./src/assets/BuktiTransaksi.png";
 import imgModalSaldoCair from "./src/assets/imgModalSaldoCair.png";
 import iconChatBot from "./src/assets/iconChatBot.svg";
 import imgDataPasienKosong from "./src/assets/imgDataPasienKosong.png";
 import empetyChat from "./src/assets/empetyChat.png";
 import imgNotFound404 from "./src/assets/imgNotFound404.png";
-import gambar from "./src/assets/gambar.png";
+import gambar from "./src/assets/Gambar.png";
 import accountBalance from "./src/assets/account-balance.png";
 import acountCircle from "./src/assets/account-circle.png";
 import localLibrary from "./src/assets/local-ibrary.png";
 import archive from "./src/assets/archive.png";
+import arrowLeft from "./src/assets/arrowLeft.svg";
 
 export {
   archive,
@@ -63,14 +68,6 @@ export {
   logoEmpathiCareMobile,
   iconProfileNavbar,
   iconNotifNavbar,
-  dashboardImg,
-  iconPasien,
-  iconClock,
-  iconChat,
-  iconZoom,
-  iconProfilePasien1,
-  iconProfilePasien2,
-  iconProfilePasien3,
   Cuate,
   img1,
   Bg1,
@@ -86,6 +83,15 @@ export {
   Appstore,
   logoEmpathiCare,
   logoKemenkes,
+  artikelEmpty,
+  dashboardImg,
+  iconPasien,
+  iconClock,
+  iconChat,
+  iconZoom,
+  iconProfilePasien1,
+  iconProfilePasien2,
+  iconProfilePasien3,
   profilDetailPasien,
   iconAlertTolakPasien,
   iconAlertTerimaPasien,
@@ -98,6 +104,9 @@ export {
   avatar2,
   avatar3,
   avatar4,
+  avatar5,
+  searchFailed,
+  BuktiTransaksi,
   personChat,
   personChat2,
   personChat3,
@@ -108,4 +117,5 @@ export {
   iconChatBot,
   imgDataPasienKosong,
   imgNotFound404,
+  arrowLeft,
 };

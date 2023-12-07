@@ -10,10 +10,13 @@ const Button = ({
   bsTarget,
   bsDismiss,
   ariaLabel,
+  style
 }) => {
   return (
     <div>
       <button
+        style={style}
+
         type={type ? type : "button"}
         className={className}
         onClick={onClick}

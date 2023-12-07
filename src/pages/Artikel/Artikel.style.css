@@ -1,0 +1,62 @@
+.button-create {
+  border-style: solid;
+}
+
+.table-header-border-id{
+  width: 5%;
+}
+
+.table-header-border-judul{
+  width: 55%;
+  
+}
+
+.table-header-border-author{
+  width: 20%;
+}
+
+.table-header-border-status{
+  width: 15%;
+}
+
+.table-header-border-aksi{
+  width: 5%;
+}
+
+.btn-hapus-artikel {
+color: #D44E2D;
+}
+
+.btn-lihat-artikel, .btn-edit-artikel{
+  color: #636363;
+}
+
+.menu-aksi-artikel{
+  width: 240px;
+}
+
+.btn-lihat-artikel:hover, .btn-edit-artikel:hover {
+  color: #a0a0a0;
+}
+
+.btn-hapus-artikel:hover{
+color: #eba18f;
+}
+
+@media screen and (max-width: 480px) {
+  /* body {
+    background-color: lightgreen;
+  } */
+  .button-create .px-2{
+    font-size: 9px;
+  }
+
+  .data-artikel-text{
+    font-size: 10px;
+    padding-right: 10px;
+  }
+
+  .btn-lihat-artikel, .btn-edit-artikel, .btn-hapus-artikel{
+    font-size: 12px;
+  }
+}

@@ -1,0 +1,20 @@
+.table-header-border {
+  border-top: 2px solid #dcdde3;
+  border-bottom: 2px solid #dcdde3;
+  height: 48px;
+}
+
+/* search failed */
+.img-search-failed {
+  width: 150px;
+  height: 150px;
+}
+
+.h2-search-failed {
+  font-family: Montserrat, sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  color: #A7A7A7;
+  margin-top: 18px;
+}
