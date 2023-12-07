@@ -5,7 +5,6 @@ import Footer from "../../components/fragments/Footer/Footer";
 import Layout from "../../components/layouts/landingLayout";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import "./LandingPage.css";
 import CardLanding from "../../components/fragments/CardLanding/cardLanding";
 import {
   Bg1,
