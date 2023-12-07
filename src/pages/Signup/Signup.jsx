@@ -16,6 +16,8 @@ import {
   usernameChecker,
   usernameHandler,
 } from "../../utils/handler/input"
+import { register } from "../../service/authentication"
+
 
 const Register = () => {
   const [username, setUsername] = useState("")
@@ -87,10 +89,23 @@ const Register = () => {
       doPasswordMatch(password, confirmPassword)
 
     if (isValid) {
-      if (username.length >= 1) {
-        navigate("/login-dokter")
-        console.log("Username:", username)
-        console.log("Password:", password)
+
+      if (username.length >= 4) {
+        const formRegister = {
+          name: username,
+          email,
+          password,
+          role: "Doctor",
+        }
+        console.log(formRegister);
+        register(formRegister, (status, res) => {
+          if (status) {
+            navigate("/login-dokter")
+            console.log('berhasil resgister', res);
+          } else {
+            console.log(res);
+          }
+        })
       } else {
         setErrorMessages({
           ...errorMessages,
