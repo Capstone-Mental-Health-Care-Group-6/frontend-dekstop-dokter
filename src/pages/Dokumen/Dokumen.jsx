@@ -84,9 +84,11 @@ const Dokumen = () => {
               <div className="form-control-wrapper">
                 <Input
                   type="text"
-                  className={`form-control mb-2 ${errorMessages.cv ? "is-invalid" : ""}`}                  
+                  className={`form-control mb-2 ${errorMessages.cv ? "is-invalid" : ""}`}
                   id="cv"
                   name="cv"
+                  value={cvFile ? cvFile.name : ""}
+                  placeholder="CV Dr.Helen.pdf"
                   readOnly
                 />
                   {errorMessages.cv && (
@@ -118,6 +120,8 @@ const Dokumen = () => {
                 className={`form-control mb-2 ${errorMessages.sippk ? "is-invalid" : ""}`}                  
                 id="sippk"
                 name="sippk"
+                value={sippkFile ? sippkFile.name : ""}
+                placeholder="Surat Izin Praktek.pdf"
                 readOnly
               />
               {errorMessages.sippk && (
@@ -149,6 +153,8 @@ const Dokumen = () => {
                 className={`form-control mb-2 ${errorMessages.ijazah ? "is-invalid" : ""}`}                  
                 id="ijazah"
                 name="ijazah"
+                value={ijazahFile ? ijazahFile.name : ""}
+                placeholder="Ijazah.pdf"
                 readOnly
               />
               {errorMessages.ijazah && (
@@ -179,6 +185,8 @@ const Dokumen = () => {
                 className={`form-control mb-2 ${errorMessages.strpk ? "is-invalid" : ""}`}                  
                 id="strpk"
                 name="strpk"
+                value={strpkFile ? strpkFile.name : ""}
+                placeholder="Surat Tanda Registrasi.pdf"
                 readOnly
               />
               {errorMessages.strpk && (

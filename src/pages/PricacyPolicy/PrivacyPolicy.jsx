@@ -1,6 +1,6 @@
 import React from "react";
 import './PrivacyPolicy.styles.css'
-import { logoNatural, logoWhite, empathiName, logoEmpathiCare, logoEmpathi } from "../../../image";
+import { logoNatural, logoEmpathi } from "../../../image";
 
 const PrivacyPolicy = () => {
     return (
@@ -8,7 +8,6 @@ const PrivacyPolicy = () => {
             <nav className="navbar">
             <div className="navbar-section sticky-top">
                 <img className="logo" src={logoEmpathi} alt="logo-emphatiCare" />
-                {/* <img className="name" src={empathiName} alt="name" /> */}
             </div>
             <div className="title-section">
                 <div className="title-content">

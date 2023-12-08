@@ -21,11 +21,20 @@ const Pengalaman = () => {
 
   const handleInputChange = (index, event) => {
     const { name, value } = event.target;
+  
+    if (name === 'awalBekerja') {
+      const isNumeric = /^\d+$/.test(value);
+  
+      setErrorMessages((prevErrors) => ({
+        ...prevErrors,
+        [name]: isNumeric ? '' : `${name === 'awalBekerja' ? 'Awal Bekerja' : 'Awal Bekerja'} harus berupa angka`,
+      }));
+    }
+  
     const updatedFormData = [...formData];
     updatedFormData[index][name] = value;
     setFormData(updatedFormData);
   };
-
   const handleAddData = () => {
     setFormData([
       ...formData,
@@ -91,7 +100,7 @@ const Pengalaman = () => {
                     className={`form-control mb-2 ${errorMessages.namaPerusahaan ? "is-invalid" : ""}`}
                     id={`namaPerusahaan${index}`}
                     name="namaPerusahaan"
-                    placeholder="Masukkan Nama Perusahaan"
+                    placeholder="Nama Perusahaan"
                     value={data.namaPerusahaan}
                     onChange={(e) => handleInputChange(index, e)}
                   />
@@ -107,7 +116,7 @@ const Pengalaman = () => {
                     className={`form-control mb-2 ${errorMessages.jabatan ? "is-invalid" : ""}`}
                     id={`jabatan${index}`}
                     name="jabatan"
-                    placeholder="Masukkan Jabatan di Perusahaan"
+                    placeholder="Jabatan"
                     value={data.jabatan}
                     onChange={(e) => handleInputChange(index, e)}
                   />
@@ -125,7 +134,7 @@ const Pengalaman = () => {
                     className={`form-control mb-2 ${errorMessages.awalBekerja ? "is-invalid" : ""}`}
                     id={`awalBekerja${index}`}
                     name="awalBekerja"
-                    placeholder="Masukkan Awal Bekerja"
+                    placeholder="Tahun Masuk"
                     value={data.awalBekerja}
                     onChange={(e) => handleInputChange(index, e)}
                   />
@@ -141,7 +150,7 @@ const Pengalaman = () => {
                     className={`form-control mb-2 ${errorMessages.akhirBekerja ? "is-invalid" : ""}`}
                     id={`akhirBekerja${index}`}
                     name="akhirBekerja"
-                    placeholder="Masukkan Akhir Bekerja"
+                    placeholder="Tahun Keluar"
                     value={data.akhirBekerja}
                     onChange={(e) => handleInputChange(index, e)}
                   />
@@ -159,7 +168,7 @@ const Pengalaman = () => {
                     className={`form-control mb-2 ${errorMessages.alamatPerusahaan ? "is-invalid" : ""}`}
                     id={`alamatPerusahaan${index}`}
                     name="alamatPerusahaan"
-                    placeholder="Masukkan Alamat Perusahaan"
+                    placeholder="Alamat"
                     value={data.alamatPerusahaan}
                     onChange={(e) => handleInputChange(index, e)}
                   />

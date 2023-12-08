@@ -19,10 +19,22 @@ const DataAkademik = () => {
 
   const handleInputChange = (index, event) => {
     const { name, value } = event.target;
+  
+    if (name === 'tahunMasuk' || name === 'tahunTamat') {
+      const isNumeric = /^\d+$/.test(value);
+  
+      setErrorMessages((prevErrors) => ({
+        ...prevErrors,
+        [name]: isNumeric ? '' : `Tahun ${name === 'tahunMasuk' ? 'Masuk' : 'Tamat'} harus berupa angka`,
+      }));
+    }
+  
     const updatedFormData = [...formData];
     updatedFormData[index][name] = value;
     setFormData(updatedFormData);
   };
+  
+
 
   const handleAddData = () => {
     setFormData([
@@ -65,6 +77,7 @@ const DataAkademik = () => {
   const handleSubmitConfirm = () => {
     setShowProfileModal(false);
   };
+  
 
   const handleSubmitCancel = () => {
     setShowProfileModal(false);
@@ -86,7 +99,7 @@ const DataAkademik = () => {
                     className={`form-control mb-2 ${errorMessages.asalUniversitas ? "is-invalid" : ""}`}
                     id={`asalUniversitas${index}`}
                     name="asalUniversitas"
-                    placeholder="Masukkan Asal Universitas"
+                    placeholder="Universitas"
                     value={data.asalUniversitas}
                     onChange={(e) => handleInputChange(index, e)}
                   />
@@ -102,7 +115,7 @@ const DataAkademik = () => {
                     className={`form-control mb-2 ${errorMessages.jenjangPendidikan ? "is-invalid" : ""}`}
                     id={`jenjangPendidikan${index}`}
                     name="jenjangPendidikan"
-                    placeholder="Masukkan Jenjang Pendidikan"
+                    placeholder="Jenjang"
                     value={data.jenjangPendidikan}
                     onChange={(e) => handleInputChange(index, e)}
                   />
@@ -120,7 +133,7 @@ const DataAkademik = () => {
                     className={`form-control mb-2 ${errorMessages.tahunMasuk ? "is-invalid" : ""}`}
                     id={`tahunMasuk${index}`}
                     name="tahunMasuk"
-                    placeholder="Masukkan Tahun Masuk"
+                    placeholder="Tahun Masuk"
                     value={data.tahunMasuk}
                     onChange={(e) => handleInputChange(index, e)}
                   />
@@ -136,7 +149,7 @@ const DataAkademik = () => {
                     className={`form-control mb-2 ${errorMessages.tahunTamat ? "is-invalid" : ""}`}
                     id={`tahunTamat${index}`}
                     name="tahunTamat"
-                    placeholder="Masukkan Tahun Tamat"
+                    placeholder="Tahun Tamat"
                     value={data.tahunTamat}
                     onChange={(e) => handleInputChange(index, e)}
                   />

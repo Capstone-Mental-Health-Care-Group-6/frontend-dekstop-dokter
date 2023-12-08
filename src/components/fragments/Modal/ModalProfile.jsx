@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
 import './ModalProfile.styles.css'
-import { NavLink } from "react-router-dom";
 import { exclamation } from "../../../../image";
 
 const ModalProfile = ({ show, onClose }) => {
@@ -12,10 +11,15 @@ const ModalProfile = ({ show, onClose }) => {
     display: show ? "block" : "none",
   };
 
+  const handleConfirm = () => {
+    window.location.href = '/dokter/profile?dataSaved=true';
+  };
+  
+
   return (
     <div className="modal-profile">
       <div className="overlay" style={overlayStyle} onClick={onClose}></div>
-        <div className={`modal${show ? " show" : ""}`} tabIndex="-1" style={modalStyle} role="dialog">
+      <div className={`modal${show ? " show" : ""}`} tabIndex="-1" style={modalStyle} role="dialog">
         <div className="modal-dialog">
           <div className="modal-content border-0">
             <div className="modal-header border-0">
@@ -30,16 +34,12 @@ const ModalProfile = ({ show, onClose }) => {
               </div>
             </div>
             <div className="modal-body border-0">
-              <p>
-                Yakin ingin menyimpan perubahan?
-              </p>
+              <p>Yakin ingin menyimpan perubahan?</p>
             </div>
             <div className="modal-footer border-0 d-flex flex-column align-items-center">
-              <NavLink to='/dokter-profile'>
-                <button type="button" className="btn btn-primary">
-                  Simpan Perubahan
-                </button>
-              </NavLink>
+              <button type="button" className="btn btn-primary" onClick={handleConfirm}>
+                Simpan Perubahan
+              </button>
               <button
                 type="button"
                 className="btn-batal mt-2"

@@ -23,6 +23,9 @@ const DataPribadi = () => {
     noSip: "",
   });
 
+
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
   const [errorMessages, setErrorMessages] = useState({
     namaLengkap: "",
     email: "",
@@ -40,6 +43,33 @@ const DataPribadi = () => {
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
+
+    if (name === 'nik' || name === 'noHandphone' || name === 'str') {
+      const isNumeric = /^\d+$/.test(value);
+      
+      setErrorMessages((prevErrors) => ({
+        ...prevErrors,
+        [name]: isNumeric ? '' : `${name === 'nik' ? 'NIK' : name === 'noHandphone' ? 'Nomor handphone' : 'Nomor STR'} harus berupa angka`,
+      }));
+    }
+
+    if (name === 'namaLengkap' || name === 'provinsi' || name === 'kotaKabupaten') {
+      const isAlphabetic = /^[A-Za-z ]+$/.test(value);
+      
+      setErrorMessages((prevErrors) => ({
+        ...prevErrors,
+        [name]: isAlphabetic ? '' : `${name === 'namaLengkap' ? 'Nama Lengkap' : name === 'provinsi' ? 'Provinsi' : 'Kota/Kabupaten'} hanya boleh berisi huruf dan spasi`,
+      }));
+    }
+
+    if (name === 'email') {
+      const isValidEmail = emailRegex.test(value);
+      setErrorMessages((prevErrors) => ({
+        ...prevErrors,
+        email: isValidEmail ? '' : 'Email tidak valid',
+      }));
+    }
+
     setFormData({ ...formData, [name]: value });
   };
 
@@ -70,7 +100,7 @@ const DataPribadi = () => {
       provinsi: !formData.provinsi ? "Provinsi wajib diisi" : "",
       jenisKelamin: !formData.jenisKelamin ? "Jenis kelamin wajib dipilih" : "",
       kotaKabupaten: !formData.kotaKabupaten ? "Kota/Kabupaten wajib diisi" : "",
-      str: !formData.str ? "Nomor STR wajib dipilih" : "",
+      str: !formData.str ? "Nomor STR wajib diisi" : "",
       noSip: !formData.noSip ? "Nomor SIP wajib diisi" : "",
     };
 
@@ -130,7 +160,7 @@ const DataPribadi = () => {
                   className={`form-control mb-2 ${errorMessages.namaLengkap ? "is-invalid" : ""}`}                  
                   id="namaLengkap"
                   name="namaLengkap"
-                  placeholder="Masukkan Nama Lengkap"
+                  placeholder="Nama Lengkap"
                   value={formData.namaLengkap}
                   onChange={handleInputChange}
                 />
@@ -146,7 +176,7 @@ const DataPribadi = () => {
                   className={`form-control mb-2 ${errorMessages.email ? "is-invalid" : ""}`}                  
                   id="email"
                   name="email"
-                  placeholder="Masukkan Email"
+                  placeholder="Email"
                   value={formData.email}
                   onChange={handleInputChange}
                 />
@@ -164,7 +194,7 @@ const DataPribadi = () => {
                 className={`form-control mb-2 ${errorMessages.nik ? "is-invalid" : ""}`}                  
                 id="nik"
                 name="nik"
-                placeholder="Masukkan NIK"
+                placeholder="Nomor Induk Kependudukan"
                 value={formData.nik}
                 onChange={handleInputChange}
               />
@@ -180,7 +210,7 @@ const DataPribadi = () => {
                   className={`form-control mb-2 ${errorMessages.noHandphone ? "is-invalid" : ""}`}                  
                   id="noHandphone"
                   name="noHandphone"
-                  placeholder="Masukkan No Handphone"
+                  placeholder="Nomor Ponsel"
                   value={formData.noHandphone}
                   onChange={handleInputChange}
                 />
@@ -198,7 +228,7 @@ const DataPribadi = () => {
                   className={`form-control mb-2 ${errorMessages.tanggalLahir ? "is-invalid" : ""}`}                  
                   id="tanggalLahir"
                   name="tanggalLahir"
-                  placeholder="Pilih Tanggal Lahir"
+                  placeholder="Jenis Kelamin"
                   value={formData.tanggalLahir}
                   onChange={handleInputChange}
                 />
@@ -248,7 +278,7 @@ const DataPribadi = () => {
                   className={`form-control mb-2 ${errorMessages.kotaKabupaten ? "is-invalid" : ""}`}                  
                   id="kotaKabupaten"
                   name="kotaKabupaten"
-                  placeholder="Masukkan Kota/Kabupaten"
+                  placeholder="Kota/Kabupaten"
                   value={formData.kotaKabupaten}
                   onChange={handleInputChange}
                 />
@@ -266,7 +296,7 @@ const DataPribadi = () => {
                 className={`form-control mb-2 ${errorMessages.str ? "is-invalid" : ""}`}                  
                 id="str"
                 name="str"
-                placeholder="Masukkan Nomor STR"
+                placeholder="Nomor Surat Tanda Registrasi"
                 value={formData.str}
                 onChange={handleInputChange}
               />
@@ -282,7 +312,7 @@ const DataPribadi = () => {
                   className={`form-control mb-2 ${errorMessages.noSip ? "is-invalid" : ""}`}                  
                   id="noSip"
                   name="noSip"
-                  placeholder="Masukkan Nomor SIP"
+                  placeholder="Nomor Surat Izin Praktik"
                   value={formData.noSip}
                   onChange={handleInputChange}
                 />

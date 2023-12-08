@@ -1,89 +1,90 @@
-import { useState, useEffect } from "react";
-import Button from "../../components/elements/Button/Button";
-import LogoEmphati from "../../assets/LogoEmphati.png";
-import Welcome from "../../assets/Welcome.png";
-import { BsEye, BsEyeSlash } from "react-icons/bs";
-import { useNavigate, Link } from "react-router-dom";
-import { FaUser, FaLock } from "react-icons/fa";
-import "./Login.style.css";
+import { useState, useEffect } from "react"
+import Button from "../../components/elements/Button/Button"
+import LogoEmphati from "../../assets/LogoEmphati.png"
+import Welcome from "../../assets/Welcome.png"
+import { BsEye, BsEyeSlash } from "react-icons/bs"
+import { useNavigate, Link } from "react-router-dom"
+import { FaUser, FaLock } from "react-icons/fa"
+import "./Login.style.css"
+import { BsExclamationCircle } from "react-icons/bs"
 import {
   passwordChecker,
-  passwordHandler,
+  passworLogindHandler,
   usernameChecker,
-  usernameHandler,
-} from "../../utils/handler/input";
+  usernameLoginHandler,
+} from "../../utils/handler/input"
 
 const LoginForm = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  const [activeInput, setActiveInput] = useState(null);
-  const [isSubmitButtonDisabled, setIsSubmitButtonDisabled] = useState(true);
+  const [username, setUsername] = useState("")
+  const [password, setPassword] = useState("")
+  const [showPassword, setShowPassword] = useState(false)
+  const [activeInput, setActiveInput] = useState(null)
+  const [isSubmitButtonDisabled, setIsSubmitButtonDisabled] = useState(true)
   const [errorMessages, setErrorMessages] = useState({
     username: "",
     password: "",
-  });
-  const navigate = useNavigate();
+  })
+  const navigate = useNavigate()
 
   const handleUsernameChange = (e) => {
-    usernameHandler(e.target.value, setErrorMessages);
-    setUsername(e.target.value);
-    setActiveInput("username");
-  };
+    usernameLoginHandler(e.target.value, setErrorMessages)
+    setUsername(e.target.value)
+    setActiveInput("username")
+  }
 
   const handlePasswordChange = (e) => {
-    passwordHandler(e.target.value, setErrorMessages);
-    setPassword(e.target.value);
-    setActiveInput("password");
-  };
+    passworLogindHandler(e.target.value, setErrorMessages)
+    setPassword(e.target.value)
+    setActiveInput("password")
+  }
 
   const handleTogglePassword = () => {
-    setShowPassword(!showPassword);
-  };
+    setShowPassword(!showPassword)
+  }
   const handleInputFocus = (inputName) => {
-    setActiveInput(inputName);
-  };
+    setActiveInput(inputName)
+  }
 
   const handleInputBlur = () => {
-    setActiveInput(null);
-  };
+    setActiveInput(null)
+  }
 
   const validateInputs = () => {
-    let isValid = true;
+    let isValid = true
 
-    if (username.length < 4) {
+    if (username.length < 1) {
       setErrorMessages({
         ...errorMessages,
-        username: "Username Minimal 4 Karakter",
-      });
-      isValid = false;
+        username: "Username tidak boleh kosong",
+      })
+      isValid = false
     }
 
     if (!usernameChecker(username) || !passwordChecker(password)) {
-      passwordHandler(password, setErrorMessages);
-      isValid = false;
+      passworLogindHandler(password, setErrorMessages)
+      isValid = false
     }
 
-    return isValid;
-  };
+    return isValid
+  }
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
     if (validateInputs()) {
-      navigate("/dashboard-dokter");
-      console.log("Username:", username);
-      console.log("Password:", password);
+      navigate("/dokter/dashboard")
+      console.log("Username:", username)
+      console.log("Password:", password)
     }
-  };
+  }
 
-  const isPlaceholderShown = (inputValue) => inputValue === "";
+  const isPlaceholderShown = (inputValue) => inputValue === ""
 
   useEffect(() => {
     setIsSubmitButtonDisabled(
       !(username.trim() !== "" && password.trim() !== "")
-    );
-  }, [username, password]);
+    )
+  }, [username, password])
 
   return (
     <div className="content">
@@ -110,11 +111,16 @@ const LoginForm = () => {
                 onFocus={() => handleInputFocus("username")}
                 onBlur={handleInputBlur}
                 placeholder="Username"
-                className={`bg-transparent 
+                className={`bg-transparent  
                 ${activeInput === "username" ? "active" : ""}
                 ${errorMessages.username !== "" ? "error" : ""}
               `}
               />
+              <span className="icon right">
+                {errorMessages.username !== "" && (
+                  <BsExclamationCircle className="text-danger" />
+                )}
+              </span>
               <label htmlFor="username">
                 <div>
                   <div></div>
@@ -147,7 +153,7 @@ const LoginForm = () => {
                 onChange={handlePasswordChange}
                 onFocus={() => handleInputFocus("password")}
                 onBlur={handleInputBlur}
-                placeholder="Password"
+                placeholder="Kata Sandi"
                 className={`bg-transparent 
                 ${activeInput === "password" ? "active" : ""}
                 ${errorMessages.password !== "" ? "error" : ""}
@@ -157,6 +163,9 @@ const LoginForm = () => {
                 <div></div>
               </label>
               <span className="icon right">
+                {errorMessages.password !== "" && (
+                  <BsExclamationCircle className="text-danger" />
+                )}
                 {showPassword ? (
                   <BsEye onClick={handleTogglePassword} />
                 ) : (
@@ -182,7 +191,7 @@ const LoginForm = () => {
           <Button
             type="submit"
             id="btn-submit"
-            className={`btn btn-primary w-100 fw-bold ${
+            className={`bttn btn-secondary w-100 fw-bold ${
               isSubmitButtonDisabled ? "disabled" : ""
             }`}
             text="Masuk"
@@ -229,7 +238,7 @@ const LoginForm = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default LoginForm;
+export default LoginForm

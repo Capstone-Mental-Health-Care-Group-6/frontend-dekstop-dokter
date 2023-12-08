@@ -1,0 +1,118 @@
+.navbar__chatbot {
+  border-bottom: 1px solid #cce7ff;
+}
+
+.header__chatbot {
+  border-bottom: 1px solid #cacaca;
+  padding: 12px 25px;
+}
+
+.header__chatbot h6 {
+  font-size: 20px;
+  font-style: inherit;
+  font-weight: 500;
+}
+
+.body__chatbot .wrapper__chatbot {
+  border: 1px solid #aad6ff;
+  border-radius: 24px;
+  overflow-y: auto;
+  min-height: 75vh;
+  max-height: 75vh;
+  width: 80%;
+
+}
+
+.body__chatbot .wrapper__chatbot .chat__bot .user-question {
+  padding: 10px 44px;
+  background-color: #99DEFF;
+  margin-left: 10%;
+  border-radius: 27px;
+}
+
+.body__chatbot .wrapper__chatbot .chat__bot .answer-ai {
+  padding: 13px 30px;
+  background-color: #CCF1FF;
+  margin-right: 10%;
+  border-radius: 27px;
+
+}
+
+.body__chatbot .wrapper__chatbot::-webkit-scrollbar {
+  display: none !important;
+}
+
+.body__chatbot .wrapper__chatbot .chat__bot .chat-text-bot {
+  text-align: left;
+  background-color: #ccf1ff;
+  border-radius: 30px;
+  padding: 20px;
+  margin-right: 10%;
+  width: 60%;
+}
+
+.body__chatbot .wrapper__chatbot .chat__bot .chat-text-dokter {
+  text-align: right;
+  background-color: #99deff;
+  border-radius: 30px;
+  padding: 20px;
+  margin-left: 10%;
+}
+
+.body__chatbot .wrapper__chatbot .chat__bot .chat-text .btn-outline-primary {
+  font-size: 12px;
+}
+
+.body__chatbot .wrapper__chatbot .input__chatbot {
+  position: sticky;
+  bottom: 0;
+  border-top: 1px solid #aad6ff;
+}
+
+.body__chatbot .wrapper__chatbot .input__chatbot .dropdown-toggle::after {
+  display: none;
+}
+
+.body__chatbot .wrapper__chatbot .input__chatbot .emoji-picker {
+  margin-bottom: 60px;
+}
+
+@media screen and (max-width: 556px) {
+  .body__chatbot .wrapper__chatbot .chat__bot .d-flex p {
+    font-size: 13px;
+  }
+
+  .body__chatbot .wrapper__chatbot .chat__bot .user-question {
+    padding: 10px 25px;
+    background-color: #99DEFF;
+    margin-left: 10%;
+    border-radius: 16px;
+  }
+
+  .body__chatbot .wrapper__chatbot .chat__bot .answer-ai {
+    padding: 13px 20px;
+    background-color: #CCF1FF;
+    margin-right: 10%;
+    border-radius: 16px;
+
+  }
+}
+
+@media screen and (max-width: 436px) {
+  .body__chatbot .wrapper__chatbot .chat__bot .d-flex p {
+    font-size: 13px;
+  }
+
+  .body__chatbot .wrapper__chatbot .chat__bot .user-question {
+    padding: 10px;
+    background-color: #99DEFF;
+    margin-left: 10%;
+    border-radius: 16px;
+  }
+
+  .body__chatbot .wrapper__chatbot .chat__bot .answer-ai {
+    padding: 13px;
+
+
+  }
+}

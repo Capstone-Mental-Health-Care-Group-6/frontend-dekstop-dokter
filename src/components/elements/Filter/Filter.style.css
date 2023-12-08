@@ -1,0 +1,31 @@
+/* Style for the filter container */
+.filter-container {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+  
+  /* Style for the filter button */
+  .filter__button {
+    background-color: #fff; 
+    border: 3px solid #888; 
+    border: 1px solid #0085FF;
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Style for the filter icon */
+  .filter__icon {
+    color: #888;
+    margin-right: 5px;
+  }
+  
+  /* Style for the filter text */
+  .filter__text {
+    font-size: 16px;
+  }
+  

@@ -1,6 +1,6 @@
 import React from "react";
 
-const RadioButton = ({ text, value, deskripsi }) => {
+const RadioButton = ({ text, value, deskripsi, onChange }) => {
     return (
         <div className="form-check-radio">
             <input
@@ -9,6 +9,7 @@ const RadioButton = ({ text, value, deskripsi }) => {
                 name="flexRadioDefault"
                 id="flexRadioDefault1"
                 value={value}
+                onChange={onChange}
             />
             <label className="form-check-label" htmlFor="flexRadioDefault1">
                 {text}

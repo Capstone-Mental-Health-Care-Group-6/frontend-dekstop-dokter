@@ -1,7 +1,10 @@
 import {
+<<<<<<< HEAD
+=======
   require_react_dom
 } from "./chunk-DZXRV6RW.js";
 import {
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
   require_react
 } from "./chunk-ZAUFE7H7.js";
 import {
@@ -10,7 +13,10 @@ import {
 
 // node_modules/react-router-dom/dist/index.js
 var React2 = __toESM(require_react());
+<<<<<<< HEAD
+=======
 var ReactDOM = __toESM(require_react_dom());
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
 
 // node_modules/react-router/dist/index.js
 var React = __toESM(require_react());
@@ -782,9 +788,12 @@ function getInvalidPathError(char, field, dest, path) {
 function getPathContributingMatches(matches) {
   return matches.filter((match, index) => index === 0 || match.route.path && match.route.path.length > 0);
 }
+<<<<<<< HEAD
+=======
 function getResolveToMatches(matches) {
   return getPathContributingMatches(matches).map((match, idx) => idx === matches.length - 1 ? match.pathname : match.pathnameBase);
 }
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
 function resolveTo(toArg, routePathnames, locationPathname, isPathRelative) {
   if (isPathRelative === void 0) {
     isPathRelative = false;
@@ -801,6 +810,10 @@ function resolveTo(toArg, routePathnames, locationPathname, isPathRelative) {
   let isEmptyPath = toArg === "" || to.pathname === "";
   let toPathname = isEmptyPath ? "/" : to.pathname;
   let from;
+<<<<<<< HEAD
+  if (isPathRelative || toPathname == null) {
+    from = locationPathname;
+=======
   if (toPathname == null) {
     from = locationPathname;
   } else if (isPathRelative) {
@@ -814,6 +827,7 @@ function resolveTo(toArg, routePathnames, locationPathname, isPathRelative) {
       to.pathname = toSegments.join("/");
     }
     from = "/" + fromSegments.join("/");
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
   } else {
     let routePathnameIndex = routePathnames.length - 1;
     if (toPathname.startsWith("..")) {
@@ -1230,10 +1244,14 @@ function createRouter(init) {
     subscribers.add(fn);
     return () => subscribers.delete(fn);
   }
+<<<<<<< HEAD
+  function updateState(newState, viewTransitionOpts) {
+=======
   function updateState(newState, opts) {
     if (opts === void 0) {
       opts = {};
     }
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
     state = _extends({}, state, newState);
     let completedFetchers = [];
     let deletedFetchersKeys = [];
@@ -1248,21 +1266,32 @@ function createRouter(init) {
         }
       });
     }
+<<<<<<< HEAD
+    subscribers.forEach((subscriber) => subscriber(state, {
+      deletedFetchers: deletedFetchersKeys,
+      unstable_viewTransitionOpts: viewTransitionOpts
+=======
     [...subscribers].forEach((subscriber) => subscriber(state, {
       deletedFetchers: deletedFetchersKeys,
       unstable_viewTransitionOpts: opts.viewTransitionOpts,
       unstable_flushSync: opts.flushSync === true
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
     }));
     if (future.v7_fetcherPersist) {
       completedFetchers.forEach((key) => state.fetchers.delete(key));
       deletedFetchersKeys.forEach((key) => deleteFetcher(key));
     }
   }
+<<<<<<< HEAD
+  function completeNavigation(location, newState) {
+    var _location$state, _location$state2;
+=======
   function completeNavigation(location, newState, _temp) {
     var _location$state, _location$state2;
     let {
       flushSync
     } = _temp === void 0 ? {} : _temp;
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
     let isActionReload = state.actionData != null && state.navigation.formMethod != null && isMutationMethod(state.navigation.formMethod) && state.navigation.state === "loading" && ((_location$state = location.state) == null ? void 0 : _location$state._isRedirect) !== true;
     let actionData;
     if (newState.actionData) {
@@ -1334,10 +1363,14 @@ function createRouter(init) {
       restoreScrollPosition: getSavedScrollPosition(location, newState.matches || state.matches),
       preventScrollReset,
       blockers
+<<<<<<< HEAD
+    }), viewTransitionOpts);
+=======
     }), {
       viewTransitionOpts,
       flushSync: flushSync === true
     });
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
     pendingAction = Action.Pop;
     pendingPreventScrollReset = false;
     pendingViewTransitionEnabled = false;
@@ -1370,7 +1403,10 @@ function createRouter(init) {
       historyAction = Action.Replace;
     }
     let preventScrollReset = opts && "preventScrollReset" in opts ? opts.preventScrollReset === true : void 0;
+<<<<<<< HEAD
+=======
     let flushSync = (opts && opts.unstable_flushSync) === true;
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
     let blockerKey = shouldBlockNavigation({
       currentLocation,
       nextLocation,
@@ -1406,8 +1442,12 @@ function createRouter(init) {
       pendingError: error,
       preventScrollReset,
       replace: opts && opts.replace,
+<<<<<<< HEAD
+      enableViewTransition: opts && opts.unstable_viewTransition
+=======
       enableViewTransition: opts && opts.unstable_viewTransition,
       flushSync
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
     });
   }
   function revalidate() {
@@ -1439,7 +1479,10 @@ function createRouter(init) {
     let routesToUse = inFlightDataRoutes || dataRoutes;
     let loadingNavigation = opts && opts.overrideNavigation;
     let matches = matchRoutes(routesToUse, location, basename);
+<<<<<<< HEAD
+=======
     let flushSync = (opts && opts.flushSync) === true;
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
     if (!matches) {
       let error = getInternalRouterError(404, {
         pathname: location.pathname
@@ -1455,16 +1498,22 @@ function createRouter(init) {
         errors: {
           [route.id]: error
         }
+<<<<<<< HEAD
+=======
       }, {
         flushSync
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
       });
       return;
     }
     if (state.initialized && !isRevalidationRequired && isHashChangeOnly(state.location, location) && !(opts && opts.submission && isMutationMethod(opts.submission.formMethod))) {
       completeNavigation(location, {
         matches
+<<<<<<< HEAD
+=======
       }, {
         flushSync
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
       });
       return;
     }
@@ -1478,8 +1527,12 @@ function createRouter(init) {
       };
     } else if (opts && opts.submission && isMutationMethod(opts.submission.formMethod)) {
       let actionOutput = await handleAction(request, location, opts.submission, matches, {
+<<<<<<< HEAD
+        replace: opts.replace
+=======
         replace: opts.replace,
         flushSync
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
       });
       if (actionOutput.shortCircuited) {
         return;
@@ -1487,7 +1540,10 @@ function createRouter(init) {
       pendingActionData = actionOutput.pendingActionData;
       pendingError = actionOutput.pendingActionError;
       loadingNavigation = getLoadingNavigation(location, opts.submission);
+<<<<<<< HEAD
+=======
       flushSync = false;
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
       request = new Request(request.url, {
         signal: request.signal
       });
@@ -1496,7 +1552,11 @@ function createRouter(init) {
       shortCircuited,
       loaderData,
       errors
+<<<<<<< HEAD
+    } = await handleLoaders(request, location, matches, loadingNavigation, opts && opts.submission, opts && opts.fetcherSubmission, opts && opts.replace, pendingActionData, pendingError);
+=======
     } = await handleLoaders(request, location, matches, loadingNavigation, opts && opts.submission, opts && opts.fetcherSubmission, opts && opts.replace, flushSync, pendingActionData, pendingError);
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
     if (shortCircuited) {
       return;
     }
@@ -1518,8 +1578,11 @@ function createRouter(init) {
     let navigation = getSubmittingNavigation(location, submission);
     updateState({
       navigation
+<<<<<<< HEAD
+=======
     }, {
       flushSync: opts.flushSync === true
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
     });
     let result;
     let actionMatch = getTargetMatch(matches, location);
@@ -1579,11 +1642,19 @@ function createRouter(init) {
       }
     };
   }
+<<<<<<< HEAD
+  async function handleLoaders(request, location, matches, overrideNavigation, submission, fetcherSubmission, replace, pendingActionData, pendingError) {
+    let loadingNavigation = overrideNavigation || getLoadingNavigation(location, submission);
+    let activeSubmission = submission || fetcherSubmission || getSubmissionFromNavigation(loadingNavigation);
+    let routesToUse = inFlightDataRoutes || dataRoutes;
+    let [matchesToLoad, revalidatingFetchers] = getMatchesToLoad(init.history, state, matches, activeSubmission, location, isRevalidationRequired, cancelledDeferredRoutes, cancelledFetcherLoads, fetchLoadMatches, fetchRedirectIds, routesToUse, basename, pendingActionData, pendingError);
+=======
   async function handleLoaders(request, location, matches, overrideNavigation, submission, fetcherSubmission, replace, flushSync, pendingActionData, pendingError) {
     let loadingNavigation = overrideNavigation || getLoadingNavigation(location, submission);
     let activeSubmission = submission || fetcherSubmission || getSubmissionFromNavigation(loadingNavigation);
     let routesToUse = inFlightDataRoutes || dataRoutes;
     let [matchesToLoad, revalidatingFetchers] = getMatchesToLoad(init.history, state, matches, activeSubmission, location, isRevalidationRequired, cancelledDeferredRoutes, cancelledFetcherLoads, deletedFetchers, fetchLoadMatches, fetchRedirectIds, routesToUse, basename, pendingActionData, pendingError);
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
     cancelActiveDeferreds((routeId) => !(matches && matches.some((m) => m.route.id === routeId)) || matchesToLoad && matchesToLoad.some((m) => m.route.id === routeId));
     pendingNavigationLoadId = ++incrementingLoadId;
     if (matchesToLoad.length === 0 && revalidatingFetchers.length === 0) {
@@ -1597,9 +1668,13 @@ function createRouter(init) {
         actionData: pendingActionData
       } : {}, updatedFetchers2 ? {
         fetchers: new Map(state.fetchers)
+<<<<<<< HEAD
+      } : {}));
+=======
       } : {}), {
         flushSync
       });
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
       return {
         shortCircuited: true
       };
@@ -1619,9 +1694,13 @@ function createRouter(init) {
         actionData
       } : {}, revalidatingFetchers.length > 0 ? {
         fetchers: new Map(state.fetchers)
+<<<<<<< HEAD
+      } : {}));
+=======
       } : {}), {
         flushSync
       });
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
     }
     revalidatingFetchers.forEach((rf) => {
       if (fetchControllers.has(rf.key)) {
@@ -1683,22 +1762,41 @@ function createRouter(init) {
       fetchers: new Map(state.fetchers)
     } : {});
   }
+<<<<<<< HEAD
+  function getFetcher(key) {
+    if (future.v7_fetcherPersist) {
+      activeFetchers.set(key, (activeFetchers.get(key) || 0) + 1);
+      if (deletedFetchers.has(key)) {
+        deletedFetchers.delete(key);
+      }
+    }
+    return state.fetchers.get(key) || IDLE_FETCHER;
+  }
+=======
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
   function fetch(key, routeId, href, opts) {
     if (isServer) {
       throw new Error("router.fetch() was called during the server render, but it shouldn't be. You are likely calling a useFetcher() method in the body of your component. Try moving it to a useEffect or a callback.");
     }
     if (fetchControllers.has(key))
       abortFetcher(key);
+<<<<<<< HEAD
+=======
     let flushSync = (opts && opts.unstable_flushSync) === true;
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
     let routesToUse = inFlightDataRoutes || dataRoutes;
     let normalizedPath = normalizeTo(state.location, state.matches, basename, future.v7_prependBasename, href, routeId, opts == null ? void 0 : opts.relative);
     let matches = matchRoutes(routesToUse, normalizedPath, basename);
     if (!matches) {
       setFetcherError(key, routeId, getInternalRouterError(404, {
         pathname: normalizedPath
+<<<<<<< HEAD
+      }));
+=======
       }), {
         flushSync
       });
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
       return;
     }
     let {
@@ -1707,24 +1805,38 @@ function createRouter(init) {
       error
     } = normalizeNavigateOptions(future.v7_normalizeFormMethod, true, normalizedPath, opts);
     if (error) {
+<<<<<<< HEAD
+      setFetcherError(key, routeId, error);
+=======
       setFetcherError(key, routeId, error, {
         flushSync
       });
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
       return;
     }
     let match = getTargetMatch(matches, path);
     pendingPreventScrollReset = (opts && opts.preventScrollReset) === true;
     if (submission && isMutationMethod(submission.formMethod)) {
+<<<<<<< HEAD
+      handleFetcherAction(key, routeId, path, match, matches, submission);
+=======
       handleFetcherAction(key, routeId, path, match, matches, flushSync, submission);
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
       return;
     }
     fetchLoadMatches.set(key, {
       routeId,
       path
     });
+<<<<<<< HEAD
+    handleFetcherLoader(key, routeId, path, match, matches, submission);
+  }
+  async function handleFetcherAction(key, routeId, path, match, requestMatches, submission) {
+=======
     handleFetcherLoader(key, routeId, path, match, matches, flushSync, submission);
   }
   async function handleFetcherAction(key, routeId, path, match, requestMatches, flushSync, submission) {
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
     interruptActiveLoads();
     fetchLoadMatches.delete(key);
     if (!match.route.action && !match.route.lazy) {
@@ -1733,6 +1845,16 @@ function createRouter(init) {
         pathname: path,
         routeId
       });
+<<<<<<< HEAD
+      setFetcherError(key, routeId, error);
+      return;
+    }
+    let existingFetcher = state.fetchers.get(key);
+    let fetcher = getSubmittingFetcher(submission, existingFetcher);
+    state.fetchers.set(key, fetcher);
+    updateState({
+      fetchers: new Map(state.fetchers)
+=======
       setFetcherError(key, routeId, error, {
         flushSync
       });
@@ -1741,6 +1863,7 @@ function createRouter(init) {
     let existingFetcher = state.fetchers.get(key);
     updateFetcherState(key, getSubmittingFetcher(submission, existingFetcher), {
       flushSync
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
     });
     let abortController = new AbortController();
     let fetchRequest = createClientSideRequest(init.history, path, abortController.signal, submission);
@@ -1754,17 +1877,40 @@ function createRouter(init) {
       return;
     }
     if (deletedFetchers.has(key)) {
+<<<<<<< HEAD
+      state.fetchers.set(key, getDoneFetcher(void 0));
+      updateState({
+        fetchers: new Map(state.fetchers)
+      });
+=======
       updateFetcherState(key, getDoneFetcher(void 0));
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
       return;
     }
     if (isRedirectResult(actionResult)) {
       fetchControllers.delete(key);
       if (pendingNavigationLoadId > originatingLoadId) {
+<<<<<<< HEAD
+        let doneFetcher = getDoneFetcher(void 0);
+        state.fetchers.set(key, doneFetcher);
+        updateState({
+          fetchers: new Map(state.fetchers)
+        });
+        return;
+      } else {
+        fetchRedirectIds.add(key);
+        let loadingFetcher = getLoadingFetcher(submission);
+        state.fetchers.set(key, loadingFetcher);
+        updateState({
+          fetchers: new Map(state.fetchers)
+        });
+=======
         updateFetcherState(key, getDoneFetcher(void 0));
         return;
       } else {
         fetchRedirectIds.add(key);
         updateFetcherState(key, getLoadingFetcher(submission));
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
         return startRedirectNavigation(state, actionResult, {
           fetcherSubmission: submission
         });
@@ -1797,7 +1943,10 @@ function createRouter(init) {
       isRevalidationRequired,
       cancelledDeferredRoutes,
       cancelledFetcherLoads,
+<<<<<<< HEAD
+=======
       deletedFetchers,
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
       fetchLoadMatches,
       fetchRedirectIds,
       routesToUse,
@@ -1872,10 +2021,19 @@ function createRouter(init) {
       isRevalidationRequired = false;
     }
   }
+<<<<<<< HEAD
+  async function handleFetcherLoader(key, routeId, path, match, matches, submission) {
+    let existingFetcher = state.fetchers.get(key);
+    let loadingFetcher = getLoadingFetcher(submission, existingFetcher ? existingFetcher.data : void 0);
+    state.fetchers.set(key, loadingFetcher);
+    updateState({
+      fetchers: new Map(state.fetchers)
+=======
   async function handleFetcherLoader(key, routeId, path, match, matches, flushSync, submission) {
     let existingFetcher = state.fetchers.get(key);
     updateFetcherState(key, getLoadingFetcher(submission, existingFetcher ? existingFetcher.data : void 0), {
       flushSync
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
     });
     let abortController = new AbortController();
     let fetchRequest = createClientSideRequest(init.history, path, abortController.signal);
@@ -1892,12 +2050,27 @@ function createRouter(init) {
       return;
     }
     if (deletedFetchers.has(key)) {
+<<<<<<< HEAD
+      state.fetchers.set(key, getDoneFetcher(void 0));
+      updateState({
+        fetchers: new Map(state.fetchers)
+      });
+=======
       updateFetcherState(key, getDoneFetcher(void 0));
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
       return;
     }
     if (isRedirectResult(result)) {
       if (pendingNavigationLoadId > originatingLoadId) {
+<<<<<<< HEAD
+        let doneFetcher2 = getDoneFetcher(void 0);
+        state.fetchers.set(key, doneFetcher2);
+        updateState({
+          fetchers: new Map(state.fetchers)
+        });
+=======
         updateFetcherState(key, getDoneFetcher(void 0));
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
         return;
       } else {
         fetchRedirectIds.add(key);
@@ -1910,14 +2083,28 @@ function createRouter(init) {
       return;
     }
     invariant(!isDeferredResult(result), "Unhandled fetcher deferred data");
+<<<<<<< HEAD
+    let doneFetcher = getDoneFetcher(result.data);
+    state.fetchers.set(key, doneFetcher);
+    updateState({
+      fetchers: new Map(state.fetchers)
+    });
+  }
+  async function startRedirectNavigation(state2, redirect3, _temp) {
+=======
     updateFetcherState(key, getDoneFetcher(result.data));
   }
   async function startRedirectNavigation(state2, redirect3, _temp2) {
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
     let {
       submission,
       fetcherSubmission,
       replace
+<<<<<<< HEAD
+    } = _temp === void 0 ? {} : _temp;
+=======
     } = _temp2 === void 0 ? {} : _temp2;
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
     if (redirect3.revalidate) {
       isRevalidationRequired = true;
     }
@@ -2007,6 +2194,9 @@ function createRouter(init) {
       }
     });
   }
+<<<<<<< HEAD
+  function setFetcherError(key, routeId, error) {
+=======
   function updateFetcherState(key, fetcher, opts) {
     if (opts === void 0) {
       opts = {};
@@ -2022,6 +2212,7 @@ function createRouter(init) {
     if (opts === void 0) {
       opts = {};
     }
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
     let boundaryMatch = findNearestBoundary(state.matches, routeId);
     deleteFetcher(key);
     updateState({
@@ -2029,6 +2220,10 @@ function createRouter(init) {
         [boundaryMatch.route.id]: error
       },
       fetchers: new Map(state.fetchers)
+<<<<<<< HEAD
+    });
+  }
+=======
     }, {
       flushSync: (opts && opts.flushSync) === true
     });
@@ -2042,6 +2237,7 @@ function createRouter(init) {
     }
     return state.fetchers.get(key) || IDLE_FETCHER;
   }
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
   function deleteFetcher(key) {
     let fetcher = state.fetchers.get(key);
     if (fetchControllers.has(key) && !(fetcher && fetcher.state === "loading" && fetchReloadIds.has(key))) {
@@ -2259,7 +2455,11 @@ function isSubmissionNavigation(opts) {
 function normalizeTo(location, matches, basename, prependBasename, to, fromRouteId, relative) {
   let contextualMatches;
   let activeRouteMatch;
+<<<<<<< HEAD
+  if (fromRouteId != null && relative !== "path") {
+=======
   if (fromRouteId) {
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
     contextualMatches = [];
     for (let match of matches) {
       contextualMatches.push(match);
@@ -2272,7 +2472,11 @@ function normalizeTo(location, matches, basename, prependBasename, to, fromRoute
     contextualMatches = matches;
     activeRouteMatch = matches[matches.length - 1];
   }
+<<<<<<< HEAD
+  let path = resolveTo(to ? to : ".", getPathContributingMatches(contextualMatches).map((m) => m.pathnameBase), stripBasename(location.pathname, basename) || location.pathname, relative === "path");
+=======
   let path = resolveTo(to ? to : ".", getResolveToMatches(contextualMatches), stripBasename(location.pathname, basename) || location.pathname, relative === "path");
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
   if (to == null) {
     path.search = location.search;
     path.hash = location.hash;
@@ -2410,7 +2614,11 @@ function getLoaderMatchesUntilBoundary(matches, boundaryId) {
   }
   return boundaryMatches;
 }
+<<<<<<< HEAD
+function getMatchesToLoad(history, state, matches, submission, location, isRevalidationRequired, cancelledDeferredRoutes, cancelledFetcherLoads, fetchLoadMatches, fetchRedirectIds, routesToUse, basename, pendingActionData, pendingError) {
+=======
 function getMatchesToLoad(history, state, matches, submission, location, isRevalidationRequired, cancelledDeferredRoutes, cancelledFetcherLoads, deletedFetchers, fetchLoadMatches, fetchRedirectIds, routesToUse, basename, pendingActionData, pendingError) {
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
   let actionResult = pendingError ? Object.values(pendingError)[0] : pendingActionData ? Object.values(pendingActionData)[0] : void 0;
   let currentUrl = history.createURL(state.location);
   let nextUrl = history.createURL(location);
@@ -2445,7 +2653,11 @@ function getMatchesToLoad(history, state, matches, submission, location, isReval
   });
   let revalidatingFetchers = [];
   fetchLoadMatches.forEach((f, key) => {
+<<<<<<< HEAD
+    if (!matches.some((m) => m.route.id === f.routeId)) {
+=======
     if (!matches.some((m) => m.route.id === f.routeId) || deletedFetchers.has(key)) {
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
       return;
     }
     let fetcherMatches = matchRoutes(routesToUse, f.path, basename);
@@ -2861,13 +3073,21 @@ function getShortCircuitMatches(routes) {
     route
   };
 }
+<<<<<<< HEAD
+function getInternalRouterError(status, _temp4) {
+=======
 function getInternalRouterError(status, _temp5) {
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
   let {
     pathname,
     routeId,
     method,
     type
+<<<<<<< HEAD
+  } = _temp4 === void 0 ? {} : _temp4;
+=======
   } = _temp5 === void 0 ? {} : _temp5;
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
   let statusText = "Unknown Server Error";
   let errorMessage = "Unknown @remix-run/router error";
   if (status === 400) {
@@ -3302,7 +3522,11 @@ function useNavigateUnstable() {
   let {
     pathname: locationPathname
   } = useLocation();
+<<<<<<< HEAD
+  let routePathnamesJson = JSON.stringify(getPathContributingMatches(matches).map((match) => match.pathnameBase));
+=======
   let routePathnamesJson = JSON.stringify(getResolveToMatches(matches));
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
   let activeRef = React.useRef(false);
   useIsomorphicLayoutEffect(() => {
     activeRef.current = true;
@@ -3356,7 +3580,11 @@ function useResolvedPath(to, _temp2) {
   let {
     pathname: locationPathname
   } = useLocation();
+<<<<<<< HEAD
+  let routePathnamesJson = JSON.stringify(getPathContributingMatches(matches).map((match) => match.pathnameBase));
+=======
   let routePathnamesJson = JSON.stringify(getResolveToMatches(matches));
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
   return React.useMemo(() => resolveTo(to, JSON.parse(routePathnamesJson), locationPathname, relative === "path"), [to, routePathnamesJson, locationPathname, relative]);
 }
 function useRoutes(routes, locationArg) {
@@ -3664,8 +3892,14 @@ function useRouteLoaderData(routeId) {
 }
 function useActionData() {
   let state = useDataRouterState(DataRouterStateHook.UseActionData);
+<<<<<<< HEAD
+  let route = React.useContext(RouteContext);
+  !route ? true ? invariant(false, "useActionData must be used inside a RouteContext") : invariant(false) : void 0;
+  return Object.values((state == null ? void 0 : state.actionData) || {})[0];
+=======
   let routeId = useCurrentRouteId(DataRouterStateHook.UseLoaderData);
   return state.actionData ? state.actionData[routeId] : void 0;
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
 }
 function useRouteError() {
   var _state$errors;
@@ -3819,7 +4053,11 @@ function Navigate(_ref4) {
     pathname: locationPathname
   } = useLocation();
   let navigate = useNavigate();
+<<<<<<< HEAD
+  let path = resolveTo(to, getPathContributingMatches(matches).map((match) => match.pathnameBase), locationPathname, relative === "path");
+=======
   let path = resolveTo(to, getResolveToMatches(matches), locationPathname, relative === "path");
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
   let jsonPath = JSON.stringify(path);
   React.useEffect(() => navigate(JSON.parse(jsonPath), {
     replace,
@@ -4326,8 +4564,11 @@ if (true) {
 }
 var START_TRANSITION2 = "startTransition";
 var startTransitionImpl2 = React2[START_TRANSITION2];
+<<<<<<< HEAD
+=======
 var FLUSH_SYNC = "flushSync";
 var flushSyncImpl = ReactDOM[FLUSH_SYNC];
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
 function startTransitionSafe(cb) {
   if (startTransitionImpl2) {
     startTransitionImpl2(cb);
@@ -4335,6 +4576,8 @@ function startTransitionSafe(cb) {
     cb();
   }
 }
+<<<<<<< HEAD
+=======
 function flushSyncSafe(cb) {
   if (flushSyncImpl) {
     flushSyncImpl(cb);
@@ -4342,6 +4585,7 @@ function flushSyncSafe(cb) {
     cb();
   }
 }
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
 var Deferred = class {
   constructor() {
     this.status = "pending";
@@ -4389,7 +4633,10 @@ function RouterProvider(_ref) {
   let setState = React2.useCallback((newState, _ref2) => {
     let {
       deletedFetchers,
+<<<<<<< HEAD
+=======
       unstable_flushSync: flushSync,
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
       unstable_viewTransitionOpts: viewTransitionOpts
     } = _ref2;
     deletedFetchers.forEach((key) => fetcherData.current.delete(key));
@@ -4398,6 +4645,12 @@ function RouterProvider(_ref) {
         fetcherData.current.set(key, fetcher.data);
       }
     });
+<<<<<<< HEAD
+    if (!viewTransitionOpts || router.window == null || typeof router.window.document.startViewTransition !== "function") {
+      optInStartTransition(() => setStateImpl(newState));
+    } else if (transition && renderDfd) {
+      renderDfd.resolve();
+=======
     let isViewTransitionUnavailable = router.window == null || typeof router.window.document.startViewTransition !== "function";
     if (!viewTransitionOpts || isViewTransitionUnavailable) {
       if (flushSync) {
@@ -4438,6 +4691,7 @@ function RouterProvider(_ref) {
     }
     if (transition) {
       renderDfd && renderDfd.resolve();
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
       transition.skipTransition();
       setInterruption({
         state: newState,
@@ -4448,7 +4702,10 @@ function RouterProvider(_ref) {
       setPendingState(newState);
       setVtContext({
         isTransitioning: true,
+<<<<<<< HEAD
+=======
         flushSync: false,
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
         currentLocation: viewTransitionOpts.currentLocation,
         nextLocation: viewTransitionOpts.nextLocation
       });
@@ -4456,10 +4713,17 @@ function RouterProvider(_ref) {
   }, [router.window, transition, renderDfd, fetcherData, optInStartTransition]);
   React2.useLayoutEffect(() => router.subscribe(setState), [router, setState]);
   React2.useEffect(() => {
+<<<<<<< HEAD
+    if (vtContext.isTransitioning) {
+      setRenderDfd(new Deferred());
+    }
+  }, [vtContext.isTransitioning]);
+=======
     if (vtContext.isTransitioning && !vtContext.flushSync) {
       setRenderDfd(new Deferred());
     }
   }, [vtContext]);
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
   React2.useEffect(() => {
     if (renderDfd && pendingState && router.window) {
       let newState = pendingState;
@@ -4489,7 +4753,10 @@ function RouterProvider(_ref) {
       setPendingState(interruption.state);
       setVtContext({
         isTransitioning: true,
+<<<<<<< HEAD
+=======
         flushSync: false,
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
         currentLocation: interruption.currentLocation,
         nextLocation: interruption.nextLocation
       });
@@ -4738,8 +5005,12 @@ var NavLink = React2.forwardRef(function NavLinkWithRef(_ref8, ref) {
     nextLocationPathname = nextLocationPathname ? nextLocationPathname.toLowerCase() : null;
     toPathname = toPathname.toLowerCase();
   }
+<<<<<<< HEAD
+  let isActive = locationPathname === toPathname || !end && locationPathname.startsWith(toPathname) && locationPathname.charAt(toPathname.length) === "/";
+=======
   const endSlashPosition = toPathname !== "/" && toPathname.endsWith("/") ? toPathname.length - 1 : toPathname.length;
   let isActive = locationPathname === toPathname || !end && locationPathname.startsWith(toPathname) && locationPathname.charAt(endSlashPosition) === "/";
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
   let isPending = nextLocationPathname != null && (nextLocationPathname === toPathname || !end && nextLocationPathname.startsWith(toPathname) && nextLocationPathname.charAt(toPathname.length) === "/");
   let renderProps = {
     isActive,
@@ -4935,8 +5206,12 @@ function useSubmit() {
         formData,
         body,
         formMethod: options.method || method,
+<<<<<<< HEAD
+        formEncType: options.encType || encType
+=======
         formEncType: options.encType || encType,
         unstable_flushSync: options.unstable_flushSync
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
       });
     } else {
       router.navigate(options.action || action, {
@@ -4948,7 +5223,10 @@ function useSubmit() {
         replace: options.replace,
         state: options.state,
         fromRouteId: currentRouteId,
+<<<<<<< HEAD
+=======
         unstable_flushSync: options.unstable_flushSync,
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
         unstable_viewTransition: options.unstable_viewTransition
       });
     }
@@ -4970,8 +5248,13 @@ function useFormAction(action, _temp2) {
   let location = useLocation();
   if (action == null) {
     path.search = location.search;
+<<<<<<< HEAD
+    if (match.route.index) {
+      let params = new URLSearchParams(path.search);
+=======
     let params = new URLSearchParams(path.search);
     if (params.has("index") && params.get("index") === "") {
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
       params.delete("index");
       path.search = params.toString() ? "?" + params.toString() : "";
     }
@@ -5000,9 +5283,13 @@ function useFetcher(_temp3) {
   !route ? true ? invariant(false, "useFetcher must be used inside a RouteContext") : invariant(false) : void 0;
   !(routeId != null) ? true ? invariant(false, 'useFetcher can only be used on routes that contain a unique "id"') : invariant(false) : void 0;
   let [fetcherKey, setFetcherKey] = React2.useState(key || "");
+<<<<<<< HEAD
+  if (!fetcherKey) {
+=======
   if (key && key !== fetcherKey) {
     setFetcherKey(key);
   } else if (!fetcherKey) {
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
     setFetcherKey(getUniqueFetcherId());
   }
   React2.useEffect(() => {
@@ -5011,9 +5298,15 @@ function useFetcher(_temp3) {
       router.deleteFetcher(fetcherKey);
     };
   }, [router, fetcherKey]);
+<<<<<<< HEAD
+  let load = React2.useCallback((href) => {
+    !routeId ? true ? invariant(false, "No routeId available for fetcher.load()") : invariant(false) : void 0;
+    router.fetch(fetcherKey, routeId, href);
+=======
   let load = React2.useCallback((href, opts) => {
     !routeId ? true ? invariant(false, "No routeId available for fetcher.load()") : invariant(false) : void 0;
     router.fetch(fetcherKey, routeId, href, opts);
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
   }, [fetcherKey, routeId, router]);
   let submitImpl = useSubmit();
   let submit = React2.useCallback((target, opts) => {
@@ -5250,13 +5543,20 @@ export {
   renderMatches,
   resolvePath,
   HistoryRouter as unstable_HistoryRouter,
+<<<<<<< HEAD
+  useBlocker as unstable_useBlocker,
+=======
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
   usePrompt as unstable_usePrompt,
   useViewTransitionState as unstable_useViewTransitionState,
   useActionData,
   useAsyncError,
   useAsyncValue,
   useBeforeUnload,
+<<<<<<< HEAD
+=======
   useBlocker,
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
   useFetcher,
   useFetchers,
   useFormAction,
@@ -5285,7 +5585,11 @@ export {
 
 @remix-run/router/dist/router.js:
   (**
+<<<<<<< HEAD
+   * @remix-run/router v1.11.0
+=======
    * @remix-run/router v1.13.0
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
    *
    * Copyright (c) Remix Software Inc.
    *
@@ -5297,7 +5601,11 @@ export {
 
 react-router/dist/index.js:
   (**
+<<<<<<< HEAD
+   * React Router v6.18.0
+=======
    * React Router v6.20.0
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
    *
    * Copyright (c) Remix Software Inc.
    *
@@ -5309,7 +5617,11 @@ react-router/dist/index.js:
 
 react-router-dom/dist/index.js:
   (**
+<<<<<<< HEAD
+   * React Router DOM v6.18.0
+=======
    * React Router DOM v6.20.0
+>>>>>>> 3cba41a7cb42a5eb8aade4b59bdbbf5782514cc7
    *
    * Copyright (c) Remix Software Inc.
    *
