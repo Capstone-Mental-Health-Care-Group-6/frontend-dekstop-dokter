@@ -9,36 +9,50 @@ import ModalProfile from "../../components/fragments/Modal/ModalProfile";
 
 const Dokumen = () => {
   const [cvFile, setCvFile] = useState(null);
-  const [sipFile, setSipFile] = useState(null);
+  const [sippkFile, setSippkFile] = useState(null);
   const [ijazahFile, setIjazahFile] = useState(null);
+  const [strpkFile, setStrpkFile] = useState(null);
 
-  const handleFileChange = (event, setFile, setInputValue) => {
+  const [showProfileModal, setShowProfileModal] = useState(false); 
+
+  const [errorMessages, setErrorMessages] = useState({
+    cv: "",
+    sippk: "",
+    ijazah: "",
+    strpk: "",
+  });
+
+  const handleFileChange = (event, setFile, setInputValue, inputName) => {
     const selectedFile = event.target.files[0];
     setFile(selectedFile);
 
     setInputValue(selectedFile ? selectedFile.name : "");
+
+    const newErrorMessages = { ...errorMessages, [inputName]: "" };
+    setErrorMessages(newErrorMessages);
   };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    console.log("CV File:", cvFile);
-    console.log("SIP File:", sipFile);
-    console.log("Ijazah File:", ijazahFile);
-  };
-
-  const [showProfileModal, setShowProfileModal] = useState(false);
 
   const handleSubmitClick = () => {
-    if (!cvFile || !sipFile || !ijazahFile) {
-      alert("Please select a file for each document before submitting.");
-    } else {
-      setShowProfileModal(true);
+    const newErrorMessages = {
+      cv: !cvFile ? "CV file wajib diisi" : "",
+      sippk: !sippkFile ? "SIPPK file wajib diisi" : "",
+      ijazah: !ijazahFile ? "Ijazah file wajib diisi" : "",
+      strpk: !strpkFile ? "STRPK wajib diisi" : "",
+    };
+
+    setErrorMessages(newErrorMessages);
+
+    if (!cvFile || !sippkFile || !ijazahFile || !strpkFile) {
+      return;
     }
+
+    setShowProfileModal(true);
   };
 
   const handleSubmitConfirm = () => {
     setShowProfileModal(false);
+
+    console.log("Data yang akan dikirim:", formData);
   };
 
   const handleSubmitCancel = () => {
@@ -47,9 +61,10 @@ const Dokumen = () => {
 
   return (
     <Layouts>
+      <div className="dokumen">
       <div className="container">
-        <BackButton />
-        <form className="dokumen-form" onSubmit={handleSubmit}>
+        <BackButton location={'/dokter/profile'} />
+        <form className="dokumen-form" onSubmit={handleFileChange}>
           <h4 className="dokumen-title">Dokumen</h4>
 
           <div className="row">
@@ -69,11 +84,16 @@ const Dokumen = () => {
               <div className="form-control-wrapper">
                 <Input
                   type="text"
-                  className="form-control mb-2"
+                  className={`form-control mb-2 ${errorMessages.cv ? "is-invalid" : ""}`}
                   id="cv"
                   name="cv"
+                  value={cvFile ? cvFile.name : ""}
+                  placeholder="CV Dr.Helen.pdf"
                   readOnly
                 />
+                  {errorMessages.cv && (
+                    <div className="invalid-feedback">{errorMessages.cv}</div>
+                  )}  
                 <label className="btn btn-outline-primary mb-2 choose-file-btn">
                   Pilih File
                   <input
@@ -84,7 +104,7 @@ const Dokumen = () => {
                         document.getElementById("cv").value = value
                       )
                     }
-                  />
+                  />               
                 </label>
               </div>
             </div>
@@ -92,24 +112,29 @@ const Dokumen = () => {
 
           {/* SIP Section */}
           <div className="row">
-            <Label htmlFor="sip">Surat Izin Praktek (SIP)</Label>
+            <Label htmlFor="sippk">Surat Izin Praktik Psikologi Klinis  (SIPPK)</Label>
             <div className="input-group mb-3">
               <div className="form-control-wrapper">
               <Input
                 type="text"
-                className="form-control mb-2"
-                id="sip"
-                name="sip"
+                className={`form-control mb-2 ${errorMessages.sippk ? "is-invalid" : ""}`}                  
+                id="sippk"
+                name="sippk"
+                value={sippkFile ? sippkFile.name : ""}
+                placeholder="Surat Izin Praktek.pdf"
                 readOnly
               />
+              {errorMessages.sippk && (
+                <div className="invalid-feedback">{errorMessages.sippk}</div>
+              )}
               <label className="btn btn-outline-primary mb-2 choose-file-btn">
                 Pilih File
                 <input
                   type="file"
                   style={{ display: "none" }}
                   onChange={(e) =>
-                    handleFileChange(e, setSipFile, (value) =>
-                      document.getElementById("sip").value = value
+                    handleFileChange(e, setSippkFile, (value) =>
+                      document.getElementById("sippk").value = value
                     )
                   }
                 />
@@ -125,11 +150,16 @@ const Dokumen = () => {
             <div className="form-control-wrapper">
             <Input
                 type="text"
-                className="form-control mb-2"
+                className={`form-control mb-2 ${errorMessages.ijazah ? "is-invalid" : ""}`}                  
                 id="ijazah"
                 name="ijazah"
+                value={ijazahFile ? ijazahFile.name : ""}
+                placeholder="Ijazah.pdf"
                 readOnly
               />
+              {errorMessages.ijazah && (
+                <div className="invalid-feedback">{errorMessages.ijazah}</div>
+              )}
               <label className="btn btn-outline-primary mb-2 choose-file-btn">
                 Pilih File
                 <input
@@ -145,9 +175,41 @@ const Dokumen = () => {
             </div>
             </div>
           </div>
+
+          <div className="row">
+            <Label htmlFor="strpk">Surat Tanda Registrasi Psikologi Klinis (STRPK)</Label>
+            <div className="input-group mb-3">
+            <div className="form-control-wrapper">
+            <Input
+                type="text"
+                className={`form-control mb-2 ${errorMessages.strpk ? "is-invalid" : ""}`}                  
+                id="strpk"
+                name="strpk"
+                value={strpkFile ? strpkFile.name : ""}
+                placeholder="Surat Tanda Registrasi.pdf"
+                readOnly
+              />
+              {errorMessages.strpk && (
+                <div className="invalid-feedback">{errorMessages.strpk}</div>
+              )}
+              <label className="btn btn-outline-primary mb-2 choose-file-btn">
+                Pilih File
+                <input
+                  type="file"
+                  style={{ display: "none" }}
+                  onChange={(e) =>
+                    handleFileChange(e, setStrpkFile, (value) =>
+                      document.getElementById("strpk").value = value
+                    )
+                  }
+                />
+              </label>
+            </div>
+            </div>
+          </div>
         </form>
         <br />
-        <div className="buttons-container d-flex justify-content-center mb-3">
+        <div className="button-container d-flex justify-content-center mb-3">
           <Button
             type="button"
             className="btn btn-primary"
@@ -161,6 +223,7 @@ const Dokumen = () => {
           onClose={handleSubmitCancel}
           onSubmit={handleSubmitConfirm}
         />
+      </div>
       </div>
     </Layouts>
   );

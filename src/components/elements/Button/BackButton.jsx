@@ -1,10 +1,10 @@
 import React from "react";
 import { NavLink } from "react-router-dom"; // Import Link from react-router-dom if you're using it for navigation
 
-const BackButton = () => {
+const BackButton = ({ location }) => {
   return (
-    <NavLink to={'/dokter/profile'}>
-      <button className="btn border-0" style={{
+    <NavLink to={location}>
+      <button className="btn" style={{
         color: 'var(--neutral-1000, #000)',
         fontFamily: 'Montserrat',
         fontSize: '30px',
@@ -13,6 +13,7 @@ const BackButton = () => {
         paddingBottom: '20px',
         lineHeight: 'normal',
         marginLeft: '-40px',
+        border: '0px',
       }}
       >
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
