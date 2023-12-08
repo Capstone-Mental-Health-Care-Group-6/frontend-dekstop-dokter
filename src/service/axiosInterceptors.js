@@ -5,8 +5,7 @@ export const axiosInterceptor = axios.create({
     baseURL: url,
     timeout: 5000,
     headers: {
-        'Content-Type': 'application/json',
-        'Authorization': token,
+        'Authorization': `bearer ${token}`,
     },
 });
 
