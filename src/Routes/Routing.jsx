@@ -28,6 +28,7 @@ const Routing = () => {
     <Routes>
       <Route path="/" element={<LandingPage />} />
       <Route path="/dokter/dashboard" element={<Dashboard />} />
+      <Route path="/dokter/chatbot" element={<ChatBot />} />
       <Route path="/login-dokter" element={<LoginForm />} />
       <Route path="/register-dokter" element={<Register />} />
       <Route path="/forgot-password" element={<ForgotPw />} />
@@ -51,8 +52,8 @@ const Routing = () => {
       <Route path="/dokter/profile/data-akademik" element={<DataAkademik />} />
       <Route path="/dokter/profile/dokumen" element={<Dokumen />} />
       <Route path="/dokter/profile/pengalaman" element={<Pengalaman />} />
-      <Route path="/dokter/profil-singkat" element={<ProfilSingkat />} /> 
-      <Route path="/privacy/policy" element={<PrivacyPolicy />} /> 
+      <Route path="/dokter/profil-singkat" element={<ProfilSingkat />} />
+      <Route path="/privacy/policy" element={<PrivacyPolicy />} />
 
       {/* route ketika url tidak sesuai */}
       <Route element={<NotFound404 />} path="*" />
