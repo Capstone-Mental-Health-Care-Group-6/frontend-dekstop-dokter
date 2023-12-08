@@ -2,9 +2,14 @@ import "./AturSandi.style.css"
 import { useState } from "react"
 import * as React from "react"
 import Button from "../../components/elements/Button/Button"
-import ModalReset from "../../components/Fragments/modalReset/modalReset"
+import ModalReset from "../../components/fragments/modalReset/modalReset"
 import kunci from "../../assets/kunci.png"
-import { BsEye, BsEyeSlash, BsShieldLock } from "react-icons/bs"
+import {
+  BsExclamationCircle,
+  BsEye,
+  BsEyeSlash,
+  BsShieldLock,
+} from "react-icons/bs"
 import { RiLockPasswordLine } from "react-icons/ri"
 import {
   confirmPasswordHandler,
@@ -50,14 +55,6 @@ const ResetPassword = () => {
     }
   }
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault()
-
-  //   if (isFormFilled) {
-  //     setShowModal(true)
-  //   }
-  // }
-
   const handleTogglePasswordNew = () => {
     setShowPassNew(!showPassNew)
   }
@@ -76,12 +73,12 @@ const ResetPassword = () => {
         <img src={kunci} alt="Login" className="kunci" />
         <h5 className="textSandi">Buat Kata Sandi Baru</h5>
         <p>
-          kata sandi anda minimal harus enam karakter dan berisi kombinasi
-          angka, huruf, dan karakter khusus (!$@%).
+          Pastikan kata sandi baru Anda terdiri dari 8 Karakter atau lebih. Coba
+          sertakan angka, huruf, dan tanda baca untuk kata sandi yang kuat.
         </p>
 
         <form className="reset-password-form-container" onSubmit={handleSubmit}>
-          <div className="vstack gap-1">
+          <div className="vstack gap-2">
             <div className="floating">
               <input
                 type={showPassNew ? "text" : "password"}
@@ -90,12 +87,16 @@ const ResetPassword = () => {
                 value={password}
                 onChange={handlepasswordChange}
                 placeholder="Password Baru"
+                className={`${errorMessages.password !== "" ? "error" : ""}`}
               />
               <label htmlFor="password"></label>
               <span className="icon left">
                 <RiLockPasswordLine />
               </span>
               <span className="icon right">
+                {errorMessages.password !== "" && (
+                  <BsExclamationCircle className="text-danger" />
+                )}
                 {showPassNew ? (
                   <BsEyeSlash onClick={handleTogglePasswordNew} />
                 ) : (
@@ -104,7 +105,9 @@ const ResetPassword = () => {
               </span>
             </div>
             {errorMessages.password !== "" && (
-              <p className="text-start text-danger">{errorMessages.password}</p>
+              <span className="text-start text-danger">
+                {errorMessages.password}
+              </span>
             )}
           </div>
 
@@ -117,12 +120,18 @@ const ResetPassword = () => {
                 value={confirmPassword}
                 onChange={handleConfirmPasswordChange}
                 placeholder="Konfirmasi Password Baru"
+                className={`${
+                  errorMessages.confirmPassword !== "" ? "error" : ""
+                }`}
               />
               <label htmlFor="confirmation"></label>
               <span className="icon left">
                 <RiLockPasswordLine />
               </span>
               <span className="icon right">
+                {errorMessages.confirmPassword !== "" && (
+                  <BsExclamationCircle className="text-danger" />
+                )}
                 {showPassConfirm ? (
                   <BsEyeSlash onClick={handleTogglePasswordConfirm} />
                 ) : (
@@ -131,16 +140,16 @@ const ResetPassword = () => {
               </span>
             </div>
             {errorMessages.confirmPassword !== "" && (
-              <p className="text-start text-danger">
+              <span className="text-start text-danger">
                 {errorMessages.confirmPassword}
-              </p>
+              </span>
             )}
           </div>
 
           <Button
             type="submit"
             id="btn-submit"
-            className={`mt-4 btn btn-primary w-100 fw-bold ${
+            className={`mt-4 bttn btn-secondary w-100 fw-bold ${
               !isFormFilled ? "disabled" : ""
             }`}
             text="Atur ulang kata sandi"

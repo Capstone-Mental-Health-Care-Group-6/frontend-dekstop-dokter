@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import Button from "../../components/elements/Button/Button"
 import LogoEmphati from "../../assets/LogoEmphati.png"
 import Welcome from "../../assets/Welcome.png"
-import { BsEye, BsEyeSlash } from "react-icons/bs"
+import { BsExclamationCircle, BsEye, BsEyeSlash } from "react-icons/bs"
 import { useNavigate, Link } from "react-router-dom"
 import { FaUser, FaLock } from "react-icons/fa"
 import { IoMdMail } from "react-icons/io"
@@ -16,6 +16,8 @@ import {
   usernameChecker,
   usernameHandler,
 } from "../../utils/handler/input"
+import { register } from "../../service/authentication"
+
 
 const Register = () => {
   const [username, setUsername] = useState("")
@@ -87,14 +89,27 @@ const Register = () => {
       doPasswordMatch(password, confirmPassword)
 
     if (isValid) {
+
       if (username.length >= 4) {
-        navigate("/login-dokter")
-        console.log("Username:", username)
-        console.log("Password:", password)
+        const formRegister = {
+          name: username,
+          email,
+          password,
+          role: "Doctor",
+        }
+        console.log(formRegister);
+        register(formRegister, (status, res) => {
+          if (status) {
+            navigate("/login-dokter")
+            console.log('berhasil resgister', res);
+          } else {
+            console.log(res);
+          }
+        })
       } else {
         setErrorMessages({
           ...errorMessages,
-          username: "Username minimal 4 karakter",
+          username: "Masukan username terlebih dahul",
         })
       }
     } else {
@@ -123,7 +138,7 @@ const Register = () => {
       <div className="container col-lg-12">
         <form className="login-form-container col-lg">
           <img src={LogoEmphati} alt="Login" className="logo mb-4" />
-          <div className="vstack gap-1">
+          <div className="vstack gap-2">
             <div className={`floating3`}>
               <div
                 className={`icon-input 
@@ -148,16 +163,16 @@ const Register = () => {
                   ${errorMessages.username !== "" ? "error" : ""}
                 `}
               />
-              <label htmlFor="username">
-                {/* <div>
-                <div></div>
-                Username
-              </div> */}
-              </label>
+              <span className="icon right">
+                {errorMessages.username !== "" && (
+                  <BsExclamationCircle className="text-danger" />
+                )}
+              </span>
             </div>
-
             {errorMessages.username !== "" && (
-              <p className="text-start text-danger">{errorMessages.username}</p>
+              <span className="text-start text-danger">
+                {errorMessages.username}
+              </span>
             )}
           </div>
 
@@ -186,15 +201,16 @@ const Register = () => {
                   ${errorMessages.email !== "" ? "error" : ""}
                 `}
               />
-              <label htmlFor="Email">
-                {/* <div>
-                <div></div>
-                Email
-              </div> */}
-              </label>
+              <span className="icon right">
+                {errorMessages.email !== "" && (
+                  <BsExclamationCircle className="text-danger" />
+                )}
+              </span>
             </div>
             {errorMessages.email !== "" && (
-              <p className="text-start text-danger">{errorMessages.email}</p>
+              <span className="text-start text-danger">
+                {errorMessages.email}
+              </span>
             )}
           </div>
 
@@ -217,7 +233,7 @@ const Register = () => {
                 onChange={handlePasswordChange}
                 onFocus={() => handleInputFocus("password")}
                 onBlur={handleInputBlur}
-                placeholder="Password"
+                placeholder="Kata Sandi"
                 className={`bg-transparent 
                   ${activeInput === "password" ? "active" : ""}
                   ${errorMessages.password !== "" ? "error" : ""}
@@ -227,6 +243,9 @@ const Register = () => {
                 <div></div>
               </label>
               <span className="icon right">
+                {errorMessages.password !== "" && (
+                  <BsExclamationCircle className="text-danger" />
+                )}
                 {showPassword ? (
                   <BsEye onClick={handleTogglePassword} />
                 ) : (
@@ -235,7 +254,9 @@ const Register = () => {
               </span>
             </div>
             {errorMessages.password !== "" && (
-              <p className="text-start text-danger">{errorMessages.password}</p>
+              <span className="text-start text-danger">
+                {errorMessages.password}
+              </span>
             )}
           </div>
 
@@ -258,7 +279,7 @@ const Register = () => {
                 onChange={handleConfirmPasswordChange}
                 onFocus={() => handleInputFocus("confirmPassword")}
                 onBlur={handleInputBlur}
-                placeholder="Konfirmasi Password"
+                placeholder="Konfirmasi Kata Sandi"
                 className={`bg-transparent 
                   ${activeInput === "confirmPassword" ? "active" : ""}
                   ${errorMessages.confirmPassword !== "" ? "error" : ""}
@@ -268,6 +289,9 @@ const Register = () => {
                 <div></div>
               </label>
               <span className="icon right">
+                {errorMessages.confirmPassword !== "" && (
+                  <BsExclamationCircle className="text-danger" />
+                )}
                 {showConfirmPassword ? (
                   <BsEye onClick={handleToggleConfirmPassword} />
                 ) : (
@@ -276,9 +300,9 @@ const Register = () => {
               </span>
             </div>
             {errorMessages.confirmPassword !== "" && (
-              <p className="text-start text-danger">
+              <span className="text-start text-danger">
                 {errorMessages.confirmPassword}
-              </p>
+              </span>
             )}
           </div>
 
@@ -295,7 +319,7 @@ const Register = () => {
           <Button
             type="submit"
             id="btn-submit"
-            className={`btn btn-primary w-100 fw-bold 
+            className={`bttn btn-secondary w-100 fw-bold 
               ${isSubmitButtonDisabled ? "disabled" : ""}
             `}
             text="Daftar"

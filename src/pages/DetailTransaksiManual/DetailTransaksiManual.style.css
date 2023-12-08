@@ -1,0 +1,48 @@
+.header {
+  font-family: Montserrat;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  color: #000;
+  height: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.h2-bukti-transfer {
+  font-family: Montserrat;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 22px;
+  color: #000;
+}
+
+.image-bukti-transaksi {
+  background-color: white;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid #aee2ff;
+}
+
+.feedback {
+  background-color: white;
+  border: 1px solid #aee2ff;
+  border-radius: 12px;
+}
+
+/* styles rating bintang */
+.star-rating {
+  font-size: 32px;
+}
+
+.star-rating .filled {
+  color: gold;
+  margin-right: 8px;
+}
+
+.star-rating .empty {
+  color: #ccc;
+  margin-right: 8px;
+}

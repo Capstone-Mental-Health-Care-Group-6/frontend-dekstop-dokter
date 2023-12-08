@@ -1,207 +1,325 @@
 import React, { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser, faEnvelope, faPhone } from "@fortawesome/free-solid-svg-icons";
-import Label from "../../components/elements/Input/Label";
+import { gambar } from "../../../image"; 
 import Input from "../../components/elements/Input/Input";
-import Button from "../../components/elements/Button/Button";
+import Label from "../../components/elements/Input/Label";
 import InputSelect from "../../components/elements/Input/InputSelect";
-import './RegisDataPribadi.styles.css'
+import Button from "../../components/elements/Button/Button";
+import BackButton from "../../components/elements/Button/BackButton";
+import "./RegisDataPribadi.styles.css"
 
 const RegisDataPribadi = () => {
-    const [formData, setFormData] = useState({
-        namaLengkap: "",
-        email: "",
-        nik: "",
-        noHandphone: "",
-        tanggalLahir: "",
-        provinsi: "",
-        jenisKelamin: "",
-        kotaKabupaten: "",
-    });
+  const [formData, setFormData] = useState({
+    namaLengkap: "",
+    email: "",
+    nik: "",
+    noHandphone: "",
+    tanggalLahir: "",
+    provinsi: "",
+    jenisKelamin: "",
+    kotaKabupaten: "",
+    str: "",
+    noSip: "",
+  });
 
-    const [selectedImage, setSelectedImage] = useState(null);
 
-    const handleInputChange = (event) => {
-      const { name, value } = event.target;
-      setFormData({ ...formData, [name]: value });
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+  const [errorMessages, setErrorMessages] = useState({
+    namaLengkap: "",
+    email: "",
+    nik: "",
+    noHandphone: "",
+    tanggalLahir: "",
+    provinsi: "",
+    jenisKelamin: "",
+    kotaKabupaten: "",
+    str: "",
+    noSip: "",
+  });
+
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+
+    if (name === 'nik' || name === 'noHandphone' || name === 'str') {
+      const isNumeric = /^\d+$/.test(value);
+      
+      setErrorMessages((prevErrors) => ({
+        ...prevErrors,
+        [name]: isNumeric ? '' : `${name === 'nik' ? 'NIK' : name === 'noHandphone' ? 'Nomor handphone' : 'Nomor STR'} harus berupa angka`,
+      }));
+    }
+
+    if (name === 'namaLengkap' || name === 'provinsi' || name === 'kotaKabupaten') {
+      const isAlphabetic = /^[A-Za-z ]+$/.test(value);
+      
+      setErrorMessages((prevErrors) => ({
+        ...prevErrors,
+        [name]: isAlphabetic ? '' : `${name === 'namaLengkap' ? 'Nama Lengkap' : name === 'provinsi' ? 'Provinsi' : 'Kota/Kabupaten'} hanya boleh berisi huruf dan spasi`,
+      }));
+    }
+
+    if (name === 'email') {
+      const isValidEmail = emailRegex.test(value);
+      setErrorMessages((prevErrors) => ({
+        ...prevErrors,
+        email: isValidEmail ? '' : 'Email tidak valid',
+      }));
+    }
+
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setSelectedImage(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const openFileInput = () => {
+    document.getElementById("imageInput").click();
+  };
+
+  const handleSubmitClick = () => {
+    const newErrorMessages = {
+      namaLengkap: !formData.namaLengkap ? "Nama lengkap wajib diisi" : "",
+      email: !formData.email ? "Email wajib diisi" : "",
+      nik: !formData.nik ? "NIK wajib diisi" : "",
+      noHandphone: !formData.noHandphone ? "Nomor handphone wajib diisi" : "",
+      tanggalLahir: !formData.tanggalLahir ? "Tanggal lahir wajib diisi" : "",
+      provinsi: !formData.provinsi ? "Provinsi wajib diisi" : "",
+      jenisKelamin: !formData.jenisKelamin ? "Jenis kelamin wajib dipilih" : "",
+      kotaKabupaten: !formData.kotaKabupaten ? "Kota/Kabupaten wajib diisi" : "",
+      str: !formData.str ? "Nomor STR wajib diisi" : "",
+      noSip: !formData.noSip ? "Nomor SIP wajib diisi" : "",
     };
 
-    const handleImageChange = (event) => {
-      const file = event.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          setSelectedImage(reader.result);
-        };
-        reader.readAsDataURL(file);
-      }
-    };
+    setErrorMessages(newErrorMessages);
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        console.log("Form submitted:", formData);
-      };
-  
-      const openFileInput = () => {
-        document.getElementById("imageInput").click();
-      };
+    if (!formData.namaLengkap || !formData.email || !formData.nik || !formData.noHandphone || !formData.tanggalLahir || !formData.provinsi || !formData.jenisKelamin || !formData.kotaKabupaten || !formData.str || !formData.noSip) {
+      return;
+    }
+  };
 
-      const defaultImagePath = "../src/assets/Gambar.png";  
-
-    return (
-        <div className="register-data-pribadi">
-        <div className="card mb-3">
-          <label htmlFor="imageInput">
-            <div className="card-body" onClick={openFileInput}>
-              <div className="row mb-3">
-                <div className="col-md-4">
-                  {selectedImage ? (
-                    <img src={selectedImage} className="img-fluid" alt="Profile" />
-                  ) : (
-                    <img src={defaultImagePath} className="img-fluid" alt="Default" />
-                  )}
-                </div>
-                <div className="col-md-8">
-                  <h5 className="card-title-profile">Upload Your Profile</h5>
-                </div>
+  return (
+    <div className="regis-data-pribadi">
+      <div className="container">
+      <BackButton location={'/dokter/profile'} />
+      <div className="card mb-3">
+        <label htmlFor="imageInput">
+          <div className="card-body" onClick={openFileInput}>
+            <div className="row mb-3">
+              <div className="col-md-4">
+                {selectedImage ? (
+                  <img src={selectedImage} className="img-fluid" alt="Profile" />
+                ) : (
+                  <img src={gambar} className="img-fluid" alt="Default" />
+                )}
+              </div>
+              <div className="col-md-8">
+                <h5 className="card-title-profile">Upload Your Profile</h5>
               </div>
             </div>
-          </label>
-          <input
-            type="file"
-            id="imageInput"
-            accept="image/*"
-            onChange={handleImageChange}
-            style={{ display: "none" }}
-          />
           </div>
-            <form className="data-pribadi-form" onSubmit={handleSubmit}>
-            <h4 className="data-pribadi-title">Data Pribadi</h4>
-            <div className="row mb-3">
-            <div className="col-md-6">
-              <Label htmlFor="namaLengkap">Nama Lengkap</Label>
-                <div className="input-with-icon">
-                  <FontAwesomeIcon className="icon" icon={faUser} />
-                  <Input
-                    type="text"
-                    id="namaLengkap"
-                    name="namaLengkap"
-                    placeholder="Masukkan Nama Lengkap"
-                    value={formData.namaLengkap}
-                    onChange={handleInputChange}
-                  />
-                </div>
-              </div>
-
-              <div className="col-md-6">
-                <Label htmlFor="email">Email</Label>
-                <div className="input-with-icon">
-                  <FontAwesomeIcon className="icon" icon={faEnvelope} />
-                  <Input
-                    type="email"
-                    id="email"
-                    name="email"
-                    placeholder="Masukkan Email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div className="row mb-3">
-              <div className="col-md-6">
-                <Label htmlFor="nik">NIK</Label>
+        </label>
+        <input
+          type="file"
+          id="imageInput"
+          accept="image/*"
+          onChange={handleImageChange}
+          style={{ display: "none" }}
+        />
+        </div>
+          <form className="data-pribadi-form">
+          <h4 className="data-pribadi-title">Data Pribadi</h4>
+          <div className="row mb-3">
+          <div className="col-md-6">
+            <Label htmlFor="namaLengkap">Nama Lengkap</Label>
                 <Input
                   type="text"
-                  id="nik"
-                  name="nik"
-                  placeholder="Masukkan NIK"
-                  value={formData.nik}
+                  className={`form-control mb-2 ${errorMessages.namaLengkap ? "is-invalid" : ""}`}                  
+                  id="namaLengkap"
+                  name="namaLengkap"
+                  placeholder="Nama Lengkap"
+                  value={formData.namaLengkap}
                   onChange={handleInputChange}
                 />
+                {errorMessages.namaLengkap && (
+                  <div className="invalid-feedback">{errorMessages.namaLengkap}</div>
+                )} 
+            </div>
+
+            <div className="col-md-6">
+              <Label htmlFor="email">Email</Label>
+                <Input
+                  type="email"
+                  className={`form-control mb-2 ${errorMessages.email ? "is-invalid" : ""}`}                  
+                  id="email"
+                  name="email"
+                  placeholder="Email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                />
+                {errorMessages.email && (
+                  <div className="invalid-feedback">{errorMessages.email}</div>
+                )} 
+            </div>
+          </div>
+
+          <div className="row mb-3">
+            <div className="col-md-6">
+              <Label htmlFor="nik">NIK</Label>
+              <Input
+                type="text"
+                className={`form-control mb-2 ${errorMessages.nik ? "is-invalid" : ""}`}                  
+                id="nik"
+                name="nik"
+                placeholder="Nomor Induk Kependudukan"
+                value={formData.nik}
+                onChange={handleInputChange}
+              />
+              {errorMessages.nik && (
+                <div className="invalid-feedback">{errorMessages.nik}</div>
+              )} 
+            </div>
+
+            <div className="col-md-6">
+              <Label htmlFor="noHandphone">No Handphone</Label>
+                <Input
+                  type="text"
+                  className={`form-control mb-2 ${errorMessages.noHandphone ? "is-invalid" : ""}`}                  
+                  id="noHandphone"
+                  name="noHandphone"
+                  placeholder="Nomor Ponsel"
+                  value={formData.noHandphone}
+                  onChange={handleInputChange}
+                />
+                {errorMessages.noHandphone && (
+                  <div className="invalid-feedback">{errorMessages.noHandphone}</div>
+                )} 
+              </div>
+            </div>
+
+            <div className="row mb-3">
+              <div className="col-md-6">
+                <Label htmlFor="tanggalLahir">Tanggal Lahir</Label>
+                <Input
+                  type="date"
+                  className={`form-control mb-2 ${errorMessages.tanggalLahir ? "is-invalid" : ""}`}                  
+                  id="tanggalLahir"
+                  name="tanggalLahir"
+                  placeholder="Jenis Kelamin"
+                  value={formData.tanggalLahir}
+                  onChange={handleInputChange}
+                />
+                {errorMessages.tanggalLahir && (
+                  <div className="invalid-feedback">{errorMessages.tanggalLahir}</div>
+                )} 
               </div>
 
               <div className="col-md-6">
-                <Label htmlFor="noHandphone">No Handphone</Label>
-                <div className="input-with-icon">
-                  <FontAwesomeIcon className="icon" icon={faPhone} />
-                  <Input
-                    type="tel"
-                    id="noHandphone"
-                    name="noHandphone"
-                    placeholder="Masukkan No Handphone"
-                    value={formData.noHandphone}
-                    onChange={handleInputChange}
-                  />
-                </div>
-                </div>
+                <Label htmlFor="provinsi">Provinsi</Label>
+                <Input
+                  type="text"
+                  className={`form-control mb-2 ${errorMessages.provinsi ? "is-invalid" : ""}`}                  
+                  id="provinsi"
+                  name="provinsi"
+                  placeholder="Masukkan Provinsi"
+                  value={formData.provinsi}
+                  onChange={handleInputChange}
+                />
+                {errorMessages.provinsi && (
+                  <div className="invalid-feedback">{errorMessages.provinsi}</div>
+                )} 
+              </div>
+            </div>
+
+            <div className="row mb-3">
+              <div className="col-md-6">
+                <Label htmlFor="jenisKelamin">Jenis Kelamin</Label>
+                <InputSelect
+                  className={`form-select ${errorMessages.jenisKelamin ? "is-invalid" : ""}`}
+                  id="jenisKelamin"
+                  name="jenisKelamin"
+                  title="Jenis Kelamin"
+                  options={["Laki-laki", "Perempuan"]}
+                  value={formData.jenisKelamin}
+                  onChange={handleInputChange}
+                />
+                {errorMessages.jenisKelamin && (
+                  <div className="invalid-feedback">{errorMessages.jenisKelamin}</div>
+                )} 
               </div>
 
-              <div className="row mb-3">
-                <div className="col-md-6">
-                  <Label htmlFor="tanggalLahir">Tanggal Lahir</Label>
-                  <Input
-                    type="date"
-                    id="tanggalLahir"
-                    name="tanggalLahir"
-                    placeholder="Pilih Tanggal Lahir"
-                    value={formData.tanggalLahir}
-                    onChange={handleInputChange}
-                  />
-                </div>
-
-                <div className="col-md-6">
-                  <Label htmlFor="provinsi">Provinsi</Label>
-                  <Input
-                    type="text"
-                    id="provinsi"
-                    name="provinsi"
-                    placeholder="Masukkan Provinsi"
-                    value={formData.provinsi}
-                    onChange={handleInputChange}
-                  />
-                </div>
+              <div className="col-md-6">
+                <Label htmlFor="kotaKabupaten">Kota/Kabupaten</Label>
+                <Input
+                  type="text"
+                  className={`form-control mb-2 ${errorMessages.kotaKabupaten ? "is-invalid" : ""}`}                  
+                  id="kotaKabupaten"
+                  name="kotaKabupaten"
+                  placeholder="Kota/Kabupaten"
+                  value={formData.kotaKabupaten}
+                  onChange={handleInputChange}
+                />
+                {errorMessages.kotaKabupaten && (
+                  <div className="invalid-feedback">{errorMessages.kotaKabupaten}</div>
+                )} 
               </div>
+            </div>
 
-              <div className="row mb-3">
-                <div className="col-md-6">
-                  <Label htmlFor="jenisKelamin">Jenis Kelamin</Label>
-                  <InputSelect
-                    className="form-select"
-                    id="jenisKelamin"
-                    name="jenisKelamin"
-                    title="Pilih"
-                    options={["Laki-laki", "Perempuan"]}
-                    value={formData.jenisKelamin}
-                    onChange={handleInputChange}
-                  />
-                </div>
-
-                <div className="col-md-6">
-                  <Label htmlFor="kotaKabupaten">Kota/Kabupaten</Label>
-                  <Input
-                    type="text"
-                    id="kotaKabupaten"
-                    name="kotaKabupaten"
-                    placeholder="Masukkan Kota/Kabupaten"
-                    value={formData.kotaKabupaten}
-                    onChange={handleInputChange}
-                  />
-                </div>
-              </div>
-            </form>
-            <br />
-            <div className="button-container d-flex justify-content-center">
-              <Button
-                type="submit"
-                className="btn btn-primary"
-                text="Selanjutnya"
-                // onClick={handleSubmitClick}
+            <div className="row mb-3">
+            <div className="col-md-6">
+              <Label htmlFor="str">Nomor STR</Label>
+              <Input
+                type="text"
+                className={`form-control mb-2 ${errorMessages.str ? "is-invalid" : ""}`}                  
+                id="str"
+                name="str"
+                placeholder="Nomor Surat Tanda Registrasi"
+                value={formData.str}
+                onChange={handleInputChange}
               />
-          </div>    
-        </div>
-    )
-}
+              {errorMessages.str && (
+                <div className="invalid-feedback">{errorMessages.str}</div>
+              )} 
+            </div>
 
-export default RegisDataPribadi
+            <div className="col-md-6">
+              <Label htmlFor="noSip">Nomor SIP</Label>
+                <Input
+                  type="text"
+                  className={`form-control mb-2 ${errorMessages.noSip ? "is-invalid" : ""}`}                  
+                  id="noSip"
+                  name="noSip"
+                  placeholder="Nomor Surat Izin Praktik"
+                  value={formData.noSip}
+                  onChange={handleInputChange}
+                />
+                {errorMessages.noSip && (
+                  <div className="invalid-feedback">{errorMessages.noSip}</div>
+                )} 
+              </div>
+            </div>
+          </form>
+          <br />
+          <div className="button-container d-flex justify-content-center">
+            <Button
+              type="submit"
+              className="btn btn-primary"
+              text="Simpan Perubahan"
+              onClick={handleSubmitClick}
+            />
+        </div> 
+      </div> 
+      </div>
+  );
+};
+
+export default RegisDataPribadi;
