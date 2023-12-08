@@ -18,12 +18,14 @@ import {
 } from "../../../image";
 import SidebarItem from "../elements/SidebarItem/SidebarItem";
 import "./Layout.styles.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import DropdownNotif from "../elements/DropdownNotification/DropdownNotif";
 import Button from "../elements/Button/Button";
 import ModalLogout from "../fragments/Modal/ModalLogout";
 
 const Layouts = ({ children }) => {
+  const navigate = useNavigate();
+
   const [showLogoutModal, setShowLogoutModal] = useState(false);
 
   const handleLogoutClick = () => {
@@ -31,6 +33,8 @@ const Layouts = ({ children }) => {
   };
 
   const handleLogoutConfirm = () => {
+    localStorage.removeItem("token");
+    navigate("/login-dokter");
     setShowLogoutModal(false);
   };
 
@@ -143,26 +147,25 @@ const Layouts = ({ children }) => {
                 />
               </ul>
             </div>
-            <div className="d-grid logout justify-content-start" onClick={handleLogoutClick}>
-              <button 
-                className="btn" 
-                > {<BsBoxArrowRight />} 
-                <span 
-                className="ms-2" 
-                >
-                  Logout
-                </span> 
+            <div
+              className="d-grid logout justify-content-start"
+              onClick={handleLogoutClick}
+            >
+              <button className="btn">
+                {" "}
+                {<BsBoxArrowRight />}
+                <span className="ms-2">Logout</span>
               </button>
             </div>
           </div>
         </div>
       </div>
       <ModalLogout
-          show={showLogoutModal}
-          title="Profile"
-          onClose={handleLogoutCancel}
-          onSubmit={handleLogoutConfirm}
-        />
+        show={showLogoutModal}
+        title="Profile"
+        onClose={handleLogoutCancel}
+        onSubmit={handleLogoutConfirm}
+      />
       <main className="main">
         <div className="p-3">{children}</div>
       </main>
