@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Navbar.css";
 import { logoEmpathiCare, logoKemenkes } from "../../../../image";
-
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [navbar, setNavbar] = useState(false);
@@ -87,16 +87,18 @@ const Navbar = () => {
               </div>
             </div>
 
-            <button
-              class={
-                navbar
-                  ? "btn scroll-hover bg-primary fw-bold border border-primary text-white rounded-pill my-3 px-4"
-                  : "btn no-scroll-hover btn-transparent fw-bold border border-primary text-primary rounded-pill my-3 px-4"
-              }
-              type="submit"
-            >
-              Download Sekarang
-            </button>
+            <Link to={"/register-dokter"}>
+              <button
+                class={
+                  navbar
+                    ? "btn scroll-hover bg-primary fw-bold border border-primary text-white rounded-pill my-3 px-4"
+                    : "btn no-scroll-hover btn-transparent fw-bold border border-primary text-primary rounded-pill my-3 px-4"
+                }
+                type="submit"
+              >
+                Daftar Sekarang
+              </button>
+            </Link>
           </div>
         </div>
       </div>
