@@ -1,6 +1,5 @@
 import "./ForgetPassword.style.css"
 import { useState } from "react"
-import * as React from "react"
 import Button from "../../components/elements/Button/Button"
 import { Link } from "react-router-dom"
 import ModalForgot from "../../components/fragments/modalLogin/modalLogin"
@@ -9,15 +8,16 @@ import { MdOutlineEmail } from "react-icons/md"
 import logoEmpathi from "../../assets/LogoEmphati.png"
 import { useNavigate } from "react-router-dom"
 import { BsExclamationCircle } from "react-icons/bs"
-
+import { forgetPassword } from "../../service/authentication"
 const ForgotPw = () => {
-  const [email, setEmail] = React.useState("")
-  const [isEmailSent, setIsEmailSent] = React.useState(false)
-  const [isEmailVerified, setIsEmailVerified] = React.useState(false)
-  const [isModalOpen, setIsModalOpen] = React.useState(false)
+  const [email, setEmail] = useState("")
+  const [isEmailSent, setIsEmailSent] = useState(false)
+  const [isEmailVerified, setIsEmailVerified] = useState(false)
+  const [isModalOpen, setIsModalOpen] = useState(false)
   const [errorMessages, setErrorMessages] = useState({
     email: "",
   })
+
   const navigate = useNavigate()
 
   const handleEmailChange = (e) => {
@@ -36,9 +36,17 @@ const ForgotPw = () => {
 
       setIsEmailSent(true)
       setIsEmailVerified(true)
-      setTimeout(() => {
-        setIsModalOpen(true)
-      }, 1000)
+
+      const dataEmail = { email: email }
+
+      forgetPassword(dataEmail, (status, res) => {
+        if (status) {
+          setIsModalOpen(true)
+          setEmail("")
+        } else {
+          console.log(res);
+        }
+      })
     } catch (error) {
       console.error("Gagal mengirim email reset:", error)
     }
@@ -47,6 +55,7 @@ const ForgotPw = () => {
   const isEmailValid = () => {
     return !errorMessages.email
   }
+
 
   return (
     <div className="content-center">
@@ -88,9 +97,8 @@ const ForgotPw = () => {
           <Button
             type="button"
             id="btn-submit"
-            className={`bttn btn-secondary w-100 fw-bold ${
-              email ? "" : "disabled"
-            }`}
+            className={`bttn btn-secondary w-100 fw-bold ${email ? "" : "disabled"
+              }`}
             text="Kirim link verifikasi"
             onClick={handleForgotPassword}
             disabled={!isEmailValid() || !isEmailVerified}
