@@ -6,7 +6,7 @@ import "./RegisPengalaman.styles.css";
 import BackButton from "../../components/elements/Button/BackButton";
 import { NavLink } from "react-router-dom";
 
-const Pengalaman = () => {
+const RegisPengalaman = () => {
   const [formData, setFormData] = useState([
     {
       namaPerusahaan: "",
@@ -63,18 +63,24 @@ const Pengalaman = () => {
       akhirBekerja: !data.akhirBekerja ? `Akhir Bekerja wajib diisi (${index + 1})` : "",
       alamatPerusahaan: !data.alamatPerusahaan ? `Alamat Perusahaan wajib diisi (${index + 1})` : "",
     }));
-
+  
     setErrorMessages(newErrorMessages.reduce((acc, curr) => ({ ...acc, ...curr }), {}));
-
+  
     if (newErrorMessages.some((error) => Object.values(error).some((value) => value !== ""))) {
       return;
     }
+  
+    window.location.href = "/dokter/regis/profil-singkat";
   };
+  
 
   return (
       <div className="regis-pengalaman">
         <div className="container justify-content-center">
-          <BackButton location={"/dokter/profile"} />
+          <BackButton location={"/dokter/regis/dokumen"} />
+          <div className="step-regis">
+            <h4>4 / 5</h4>
+          </div> 
           {formData.map((data, index) => (
             <form className="pengalaman-form" key={index}>
               <h4 className="pengalaman-title">Pengalaman Kerja</h4>
@@ -192,7 +198,7 @@ const Pengalaman = () => {
             <Button
               type="button"
               className="btn btn-primary"
-              text="Simpan Perubahan"
+              text="Selanjutnya"
               onClick={handleSubmitClick}
             />
           </div>
@@ -201,4 +207,4 @@ const Pengalaman = () => {
   );
 };
 
-export default Pengalaman;
+export default RegisPengalaman;

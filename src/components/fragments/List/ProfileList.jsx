@@ -1,13 +1,13 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { accountBalance, acountCircle, archive, localLibrary } from '../../../../image';
+import { accountBalance, acountCircle, archive, localLibrary, businessCenter } from '../../../../image';
 
 const ProfileList = () => {
   return (
     <div>
       <div className="list-group">
         <div className=" title d-flex align-items-center">
-          <h4>Lihat / Edit Profile</h4>
+          <h4>Edit Profil</h4>
         </div>
         <hr className="styled-hr" />
         <NavLink
@@ -57,6 +57,18 @@ const ProfileList = () => {
             style={{ width: '32px', height: '32px', margin: '10px' }}
           />
           Pengalaman
+        </NavLink>
+        <NavLink
+          to="/dokter/profil-singkat"
+          className="list-group-item list-group-item-action"
+        >
+          <img
+            src={businessCenter}
+            alt="Profil Singkat"
+            className="mr-2"
+            style={{ width: '32px', height: '32px', margin: '10px'}}
+          />
+          Profil Singkat
         </NavLink>
       </div>
     </div>

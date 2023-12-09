@@ -7,8 +7,16 @@
   height: 100%;
 }
 
-.regis-data-pribadi .back-button {
+.regis-data-pribadi .step-regis h4 {
+  text-align: end;
+  padding-top: 5px;
   padding-bottom: 5%;
+  color: var(--neutral-1000, #000);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
 }
 
 .regis-data-pribadi .card {
@@ -103,7 +111,7 @@
   }
 
 .regis-data-pribadi .button-container {
-  padding-bottom: 5px;
+  padding-bottom: 50px;
 } 
 
 .regis-data-pribadi .button-container .btn {

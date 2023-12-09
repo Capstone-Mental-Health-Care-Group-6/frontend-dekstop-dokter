@@ -61,18 +61,24 @@ const RegisDataAkademik = () => {
       tahunMasuk: !data.tahunMasuk ? `Tahun Masuk wajib diisi (${index + 1})` : "",
       tahunTamat: !data.tahunTamat ? `Tahun Tamat wajib diisi (${index + 1})` : "",
     }));
-
+  
     setErrorMessages(newErrorMessages.reduce((acc, curr) => ({ ...acc, ...curr }), {}));
-
+  
     if (newErrorMessages.some((error) => Object.values(error).some((value) => value !== ""))) {
       return;
     }
+  
+    window.location.href = "/dokter/regis/dokumen";
   };
+  
 
   return (
       <div className="regis-data-akademik">
         <div className="container">
-          <BackButton location={'/dokter/profile'}/>
+          <BackButton location={'/dokter/regis/data-pribadi'}/>
+          <div className="step-regis">
+            <h4>2 / 5</h4>
+          </div> 
           {formData.map((data, index) => (
             <form className="data-akademik-form" key={index}>
               <h4 className="data-akademik-title">Data Akademik</h4>
@@ -161,7 +167,7 @@ const RegisDataAkademik = () => {
             <Button
               type="button"
               className="btn btn-primary"
-              text="Simpan Perubahan"
+              text="Selanjutnya"
               onClick={handleSubmitClick}
             />
           </div>

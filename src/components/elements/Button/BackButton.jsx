@@ -5,7 +5,7 @@ const BackButton = ({ location }) => {
   return (
     <div className="back-button">
       <NavLink to={location}>
-        <button className="btn" style={{
+        <button className="btn border-0" style={{
           color: 'var(--neutral-1000, #000)',
           fontFamily: 'Montserrat',
           fontSize: '30px',
@@ -14,7 +14,6 @@ const BackButton = ({ location }) => {
           paddingBottom: '20px',
           lineHeight: 'normal',
           marginLeft: '-40px',
-          border: '0px',
         }}
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">

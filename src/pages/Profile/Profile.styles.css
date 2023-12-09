@@ -1,14 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap');
 
+.profile-pages {
+  height: 900px;
+}
+
 .profile-pages .card {
   display: flex;
   margin-left: 20%;
-  margin-top: 5%;
+  margin-top: 10%;
+  margin-bottom: 20px;
   width: 60%;
   height: 121px;
-  padding: 20px;
-  align-items: center;
   gap: var(--corner-radius-8, 30px);
   flex-shrink: 0;
   border-radius: 10px;
@@ -16,14 +19,14 @@
   box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.08), 0px 1px 4px 0px rgba(0, 0, 0, 0.04);
 }
 
-.profile-pages .card .row .col-md-4 img {
-  width: 55%; 
-  height: 80%;
+.profile-pages .card img {
+  width: 80px; 
+  height: auto;
   margin: 0;
-  border-radius: var(--corner-radius-5, 20px);
+  border-radius: 20px;
 } 
 
-.profile-pages .card .row .col-md-8 .card-title {
+.profile-pages .card .ms-3 .card-title {
   height: 24px;
   color: var(--neutral-1000, #000);
   font-family: 'Montserrat', sans-serif;
@@ -31,11 +34,9 @@
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-  margin-top: -20px;
-  margin-left: -40px;
 }
 
-.profile-pages .card .row .col-md-8 .card-text {
+.profile-pages .card .ms-3 .card-text {
   align-self: stretch;
   color: var(--neutral-400, #A7A7A7);
   font-family: 'Montserrat', sans-serif;
@@ -43,11 +44,11 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-  margin-left: -40px;
 }
 
 .profile-pages .list {
   margin-left: 20%;
+  position: relative;
 }
 
 .profile-pages .list .list-group {
@@ -96,33 +97,61 @@
   border: none;
 }
 
+.profile-pages .modal-container {
+  position: fixed;
+  width: 674px;
+  height: fit-content;
+  top: 90%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000; 
+  background-color: transparent;
+  padding: 5%;
+  border-radius: 8px;
+}
+
+.profile-pages .modal-container .modal .modal-dialog .modal-content {
+  display: flex;
+  margin-left: -80px;
+  width: 660px;
+  height: 50px;
+  border-radius: 8px;
+  background: var(--neutral-50, #FFF);
+}
+
+.profile-pages .modal-container .modal .modal-dialog .modal-content .modal-header img {
+  margin-top: -5px;
+}
+
+.profile-pages .modal-container .modal .modal-dialog .modal-content .modal-header .modal-title {
+  padding-left: 10px;
+  margin-top: -5px;
+  color: var(--neutral-1000, #000);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 140%; /* 22.4px */
+}
+
 @media (max-width: 1024px) {
   .profile-pages .card {
     width: 100%;
     height: 100px;
     margin-left: 0;
-    padding: 25px;
-    padding-bottom: 0;
   }
 
-  .profile-pages .card .row .col-md-4 img {
-    width: 70%;
-    height: auto;
-    margin-left: -20px;
-    margin-top: -20px;
+  .profile-pages .card img {
+    width: 70px;
   }
 
-  .profile-pages .card .row .col-md-8 .card-title {
-    font-size: 10px;
-    margin-left: 35%;
-    width: 90%;
-    margin-top: -30px;
+  .profile-pages .card .ms-3 .card-title {
+    font-size: 16px;
   }
 
-  .profile-pages .card .row .col-md-8 .card-text {
-    font-size: 9px;
-    margin-left: 35%;
-    width: 95%;
+  .profile-pages .card .ms-3 .card-text {
+    margin-top: -5px;
+    font-size: 14px;
   }
 
   .profile-pages .list {
@@ -145,14 +174,37 @@
   .profile-pages .list .list-group .list-group-item {
     font-size: 14px;
   }
+
+  .profile-pages .modal-container {
+    width: 100%;
+  }
 }
 
 @media (max-width: 540px) {
-  .profile-pages .card .row .col-md-4 img {
-    width: 40%;
+  .profile-pages .modal-container {
+    width: 50%;
   }
 
-  .profile-pages .card .row .col-md-8 .card-title {
-    margin-top: -90px;
+  .profile-pages .card {
+    height: fit-content;
+  }
+  
+  .profile-pages .card .ms-3 .card-title {
+    font-size: 12px;
+    padding-bottom: 40%;
+  }
+
+  .profile-pages .card .ms-3 .card-text {
+    font-size: 10px;
+  }
+
+  .profile-pages .modal-container .modal .modal-dialog .modal-content .modal-header img {
+    margin-left: 10%;
+    margin-top: -15px;
+  }
+
+  .profile-pages .modal-container .modal .modal-dialog .modal-content .modal-header .modal-title {
+    font-size: 8px;
+    margin-top: -13px;
   }
 }

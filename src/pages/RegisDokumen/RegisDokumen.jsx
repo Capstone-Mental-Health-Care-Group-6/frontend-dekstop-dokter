@@ -36,18 +36,23 @@ const RegisDokumen = () => {
       ijazah: !ijazahFile ? "Ijazah file wajib diisi" : "",
       strpk: !strpkFile ? "STRPK wajib diisi" : "",
     };
-
+  
     setErrorMessages(newErrorMessages);
-
+  
     if (!cvFile || !sippkFile || !ijazahFile || !strpkFile) {
       return;
     }
+  
+    window.location.href = "/dokter/regis/pengalaman";
   };
-
+  
   return (
       <div className="regis-dokumen">
       <div className="container">
-        <BackButton location={'/dokter/profile'} />
+        <BackButton location={'/dokter/regis/data-akademik'}/>
+        <div className="step-regis">
+          <h4>3 / 5</h4>
+        </div> 
         <form className="dokumen-form" onSubmit={handleFileChange}>
           <h4 className="dokumen-title">Dokumen</h4>
 
@@ -71,7 +76,7 @@ const RegisDokumen = () => {
                   className={`form-control mb-2 ${errorMessages.cv ? "is-invalid" : ""}`}
                   id="cv"
                   name="cv"
-                  value={cvFile ? cvFile.name : ""}
+                  defaultValue={cvFile ? cvFile.name : ""}
                   placeholder="CV Dr.Helen.pdf"
                   readOnly
                 />
@@ -104,7 +109,7 @@ const RegisDokumen = () => {
                 className={`form-control mb-2 ${errorMessages.sippk ? "is-invalid" : ""}`}                  
                 id="sippk"
                 name="sippk"
-                value={sippkFile ? sippkFile.name : ""}
+                defaultValue={sippkFile ? sippkFile.name : ""}
                 placeholder="Surat Izin Praktek.pdf"
                 readOnly
               />
@@ -137,7 +142,7 @@ const RegisDokumen = () => {
                 className={`form-control mb-2 ${errorMessages.ijazah ? "is-invalid" : ""}`}                  
                 id="ijazah"
                 name="ijazah"
-                value={ijazahFile ? ijazahFile.name : ""}
+                defaultValue={ijazahFile ? ijazahFile.name : ""}
                 placeholder="Ijazah.pdf"
                 readOnly
               />
@@ -169,7 +174,7 @@ const RegisDokumen = () => {
                 className={`form-control mb-2 ${errorMessages.strpk ? "is-invalid" : ""}`}                  
                 id="strpk"
                 name="strpk"
-                value={strpkFile ? strpkFile.name : ""}
+                defaultValue={strpkFile ? strpkFile.name : ""}
                 placeholder="Surat Tanda Registrasi.pdf"
                 readOnly
               />
@@ -197,7 +202,7 @@ const RegisDokumen = () => {
           <Button
             type="button"
             className="btn btn-primary"
-            text="Simpan Perubahan"
+            text="Selanjutnya"
             onClick={handleSubmitClick}
           />
         </div>

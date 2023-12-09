@@ -24,12 +24,14 @@ import RegisDataPribadi from "../pages/RegisDataPribadi/RegisDataPribadi";
 import RegisDataAkademik from "../pages/RegisDataAkademik/RegisDataAkademik";
 import RegisDokumen from "../pages/RegisDokumen/RegisDokumen";
 import RegisPengalaman from "../pages/RegisPengalaman/RegisPengalaman";
+import RegisProfilSingkat from "../pages/RegisProfilSingkat/RegisProfilSingkat";
 
 const Routing = () => {
   return (
     <Routes>
       <Route path="/" element={<LandingPage />} />
       <Route path="/dokter/dashboard" element={<Dashboard />} />
+      <Route path="/dokter/chatbot" element={<ChatBot />} />
       <Route path="/login-dokter" element={<LoginForm />} />
       <Route path="/register-dokter" element={<Register />} />
       <Route path="/forgot-password" element={<ForgotPw />} />
@@ -53,10 +55,12 @@ const Routing = () => {
       <Route path="/dokter/profile/data-akademik" element={<DataAkademik />} />
       <Route path="/dokter/profile/dokumen" element={<Dokumen />} />
       <Route path="/dokter/profile/pengalaman" element={<Pengalaman />} />
+      <Route path="/dokter/chatbot" element={<ChatBot />} />
       <Route path="/dokter/regis/data-pribadi" element={<RegisDataPribadi />} />
       <Route path="/dokter/regis/data-akademik" element={<RegisDataAkademik />} />
       <Route path="/dokter/regis/dokumen" element={<RegisDokumen />} />
       <Route path="/dokter/regis/pengalaman" element={<RegisPengalaman />} />
+      <Route path="/dokter/regis/profil-singkat" element={<RegisProfilSingkat />} />
 
       {/* route ketika url tidak sesuai */}
       <Route element={<NotFound404 />} path="*" />

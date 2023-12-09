@@ -5,10 +5,31 @@
   padding-top: 10px;
   background: #CCE7FF;
   height: 100%;
+  position: relative;
 }
 
 .regis-dokumen .back-button {
+  top: 10px; 
+  left: 10px; 
   padding-bottom: 5%;
+}
+
+.regis-dokumen .step-regis {
+  position: absolute;
+  top: 10px; 
+  right: 120px; 
+}
+
+.regis-dokumen .step-regis h4 {
+  text-align: end;
+  padding-top: 5px;
+  padding-bottom: 5%;
+  color: var(--neutral-1000, #000);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
 }
 
 .regis-dokumen .container .dokumen-form {
@@ -123,7 +144,7 @@
   }
 
   .regis-dokumen .button-container {
-    padding-bottom: 5px;
+    padding-bottom: 50px;
   } 
 
   .regis-dokumen .container .button-container .btn {
@@ -144,6 +165,10 @@
   }
 
   @media (max-width: 1024px) {
+    .regis-dokumen .step-regis {
+      right: 100px;
+    }
+
     .regis-dokumen .container .dokumen-form {
       height: auto;
       padding: 5px;
@@ -187,6 +212,10 @@
   }
 
   @media (max-width: 540px) {
+    .regis-dokumen .step-regis {
+      right: 10px;
+    }
+    
     .regis-dokumen .back-button {
       padding-left: 5%;
     }
