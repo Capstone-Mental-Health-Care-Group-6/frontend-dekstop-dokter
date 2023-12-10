@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Button from "../../components/elements/Button/Button";
-import LogoEmphati from "../../assets/logoEmphati.png";
+import LogoEmphati from "../../assets/LogoEmphati.png";
 import Welcome from "../../assets/Welcome.png";
 import { BsExclamationCircle, BsEye, BsEyeSlash } from "react-icons/bs";
 import { useNavigate, Link } from "react-router-dom";
@@ -98,7 +98,8 @@ const Register = () => {
         console.log(formRegister);
         register(formRegister, (status, res) => {
           if (status) {
-            navigate("/login-dokter");
+            navigate("/dokter/regis/data-pribadi");
+
             console.log("berhasil resgister", res);
           } else {
             console.log(res);
@@ -107,7 +108,7 @@ const Register = () => {
       } else {
         setErrorMessages({
           ...errorMessages,
-          username: "Masukan username terlebih dahul",
+          username: "Masukan username terlebih dahulu",
         });
       }
     } else {

@@ -57,6 +57,12 @@ import acountCircle from "./src/assets/account-circle.png";
 import localLibrary from "./src/assets/local-ibrary.png";
 import archive from "./src/assets/archive.png";
 import arrowLeft from "./src/assets/arrowLeft.svg";
+import exclamation from "./src/assets/exclamation.png"
+import logoNatural from "./src/assets/Logo natural.png"
+import imacExit from "./src/assets/iMac Exit.png"
+import businessCenter from "./src/assets/business center.png"
+import logoEmpathi from "./src/assets/logoEmphati.png"
+import successIcon from "./src/assets/maps-and-flags.png"
 
 export {
   archive,
@@ -118,4 +124,10 @@ export {
   imgDataPasienKosong,
   imgNotFound404,
   arrowLeft,
+  exclamation,
+  logoNatural,
+  imacExit,
+  businessCenter,
+  logoEmpathi, 
+  successIcon,
 };

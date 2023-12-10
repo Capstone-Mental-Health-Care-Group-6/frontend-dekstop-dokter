@@ -1,14 +1,12 @@
 import React, { useState } from "react";
-import Layouts from "../../components/layouts/Layouts";
 import Input from "../../components/elements/Input/Input";
 import Label from "../../components/elements/Input/Label";
 import Button from "../../components/elements/Button/Button";
-import "./Pengalaman.styles.css";
+import "./RegisPengalaman.styles.css";
 import BackButton from "../../components/elements/Button/BackButton";
-import ModalProfile from "../../components/fragments/Modal/ModalProfile";
 import { NavLink } from "react-router-dom";
 
-const Pengalaman = () => {
+const RegisPengalaman = () => {
   const [formData, setFormData] = useState([
     {
       namaPerusahaan: "",
@@ -48,7 +46,6 @@ const Pengalaman = () => {
     ]);
   };
 
-  const [showProfileModal, setShowProfileModal] = useState(false);
 
   const [errorMessages, setErrorMessages] = useState({
     namaPerusahaan: "",
@@ -66,29 +63,24 @@ const Pengalaman = () => {
       akhirBekerja: !data.akhirBekerja ? `Akhir Bekerja wajib diisi (${index + 1})` : "",
       alamatPerusahaan: !data.alamatPerusahaan ? `Alamat Perusahaan wajib diisi (${index + 1})` : "",
     }));
-
+  
     setErrorMessages(newErrorMessages.reduce((acc, curr) => ({ ...acc, ...curr }), {}));
-
+  
     if (newErrorMessages.some((error) => Object.values(error).some((value) => value !== ""))) {
       return;
     }
-
-    setShowProfileModal(true);
+  
+    window.location.href = "/dokter/regis/profil-singkat";
   };
-
-  const handleSubmitConfirm = () => {
-    console.log("Data yang akan dikirim:", formData);
-  };
-
-  const handleSubmitCancel = () => {
-    setShowProfileModal(false);
-  };
+  
 
   return (
-    <Layouts>
-      <div className="pengalaman">
+      <div className="regis-pengalaman">
         <div className="container justify-content-center">
-          <BackButton location={"/dokter/profile"} />
+          <BackButton location={"/dokter/regis/dokumen"} />
+          <div className="step-regis">
+            <h4>4 / 5</h4>
+          </div> 
           {formData.map((data, index) => (
             <form className="pengalaman-form" key={index}>
               <h4 className="pengalaman-title">Pengalaman Kerja</h4>
@@ -201,25 +193,18 @@ const Pengalaman = () => {
             />
           </div>
 
-          <div className="button-container d-flex justify-content-center mb-3">
+          <div className="button-container d-flex justify-content-center">
             {/* Save Changes Button */}
             <Button
               type="button"
               className="btn btn-primary"
-              text="Simpan Perubahan"
+              text="Selanjutnya"
               onClick={handleSubmitClick}
             />
           </div>
-          <ModalProfile
-            show={showProfileModal}
-            title="Profile"
-            onClose={handleSubmitCancel}
-            onSubmit={handleSubmitConfirm}
-          />
         </div>
       </div>
-    </Layouts>
   );
 };
 
-export default Pengalaman;
+export default RegisPengalaman;

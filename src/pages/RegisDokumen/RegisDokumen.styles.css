@@ -1,7 +1,38 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700&display=swap');
 
-.dokumen .container .dokumen-form {
+.regis-dokumen {
+  padding-top: 10px;
+  background: #CCE7FF;
+  height: 100%;
+  position: relative;
+}
+
+.regis-dokumen .back-button {
+  top: 10px; 
+  left: 10px; 
+  padding-bottom: 5%;
+}
+
+.regis-dokumen .step-regis {
+  position: absolute;
+  top: 10px; 
+  right: 120px; 
+}
+
+.regis-dokumen .step-regis h4 {
+  text-align: end;
+  padding-top: 5px;
+  padding-bottom: 5%;
+  color: var(--neutral-1000, #000);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.regis-dokumen .container .dokumen-form {
     width: 100%;
     height: fit-content;
     padding: 80px;
@@ -15,7 +46,7 @@
     box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.04), 0px 1px 1px 0px rgba(0, 0, 0, 0.02);
   }
 
-  .dokumen .container .dokumen-form .dokumen-title {
+  .regis-dokumen .container .dokumen-form .dokumen-title {
     color: var(--neutral-1000, #000);
     font-family: 'Montserrat', sans-serif;
     font-size: 30px;
@@ -24,7 +55,7 @@
     line-height: normal;
   }
 
-  .dokumen .container .dokumen-form .row .ketentuan-container .teks-ketentuan {
+  .regis-dokumen .container .dokumen-form .row .ketentuan-container .teks-ketentuan {
     width: 301px;
     height: 49px;
     margin-top: 30px;
@@ -38,7 +69,7 @@
     letter-spacing: -0.22px;
   }
 
-  .dokumen .container .dokumen-form .row .ketentuan-container .ketentuan {
+  .regis-dokumen .container .dokumen-form .row .ketentuan-container .ketentuan {
     width: 388px;
     height:40px;
     color: rgba(0, 0, 0, 0.80);
@@ -50,7 +81,7 @@
     letter-spacing: -0.22px;
   }
 
-  .dokumen .container .dokumen-form .row  label {
+  .regis-dokumen .container .dokumen-form .row  label {
     display: flex;
     height: 34px;
     flex-direction: column;
@@ -65,17 +96,17 @@
     margin-top: 25px;
   }
 
-  .dokumen .container .dokumen-form .row .input-group {
+  .regis-dokumen .container .dokumen-form .row .input-group {
     width: 100%;
     border: 0;
   }
   
-  .dokumen .container .dokumen-form .row .input-group .form-control-wrapper {
+  .regis-dokumen .container .dokumen-form .row .input-group .form-control-wrapper {
     position: relative;
     width: 100%;
   }
   
-  .dokumen .container .dokumen-form .row .input-group .form-control {
+  .regis-dokumen .container .dokumen-form .row .input-group .form-control {
     height: 80px;
     width: 100%; /* Lebar input 100% */
     padding: 10px var(--corner-radius-8, 30px);
@@ -87,7 +118,7 @@
     border: 1px dashed var(--neutral-1000, #000);
   }
   
-  .dokumen .container .dokumen-form .row .input-group .btn {
+  .regis-dokumen .container .dokumen-form .row .input-group .btn {
     position: absolute;
     border-radius: 4px;
     right: 10px; 
@@ -107,12 +138,16 @@
     margin-top: -5px;
   }
 
-  .dokumen .container .dokumen-form .row .input-group .btn:hover {
+  .regis-dokumen .container .dokumen-form .row .input-group .btn:hover {
     color: #FFF;
     background: #0085FF;
   }
 
-  .dokumen .container .button-container .btn {
+  .regis-dokumen .button-container {
+    padding-bottom: 50px;
+  } 
+
+  .regis-dokumen .container .button-container .btn {
     width: 400px;
     height: 60px;
     padding: 12px 24px;
@@ -130,60 +165,72 @@
   }
 
   @media (max-width: 1024px) {
-    .dokumen .container .dokumen-form {
+    .regis-dokumen .step-regis {
+      right: 100px;
+    }
+
+    .regis-dokumen .container .dokumen-form {
       height: auto;
       padding: 5px;
       width: 100%;
     }
 
-    .dokumen .container .dokumen-form .dokumen-title {
+    .regis-dokumen .container .dokumen-form .dokumen-title {
       font-size: 16px;
       padding-top: 5%;
     }
   
-    .dokumen .container .dokumen-form .row .ketentuan-container .teks-ketentuan {
+    .regis-dokumen .container .dokumen-form .row .ketentuan-container .teks-ketentuan {
       width: auto;
       margin-top: 15px;
       font-size: 14px;
     }
   
-    .dokumen .container .dokumen-form .row .ketentuan-container .ketentuan {
+    .regis-dokumen .container .dokumen-form .row .ketentuan-container .ketentuan {
       width: auto;
       font-size: 13px;
     }
   
-    .dokumen .container .dokumen-form .row  label {
+    .regis-dokumen .container .dokumen-form .row  label {
       font-size: 14px;
     }
   
-    .dokumen .container .dokumen-form .row .input-group .form-control {
+    .regis-dokumen .container .dokumen-form .row .input-group .form-control {
       height: 60px;
       width: 100%;
     }
   
-    .dokumen .container .dokumen-form .row .input-group .btn {
+    .regis-dokumen .container .dokumen-form .row .input-group .btn {
       padding: 10px 20px;
       font-size: 14px;
       margin-top: -5px;
     }
 
-    .dokumen .container .button-container .btn {
+    .regis-dokumen .container .button-container .btn {
       width: fit-content;
     }
   }
 
   @media (max-width: 540px) {
-    .dokumen .container .dokumen-form {
-      margin-left: -25px;
-      width: fit-content;
+    .regis-dokumen .step-regis {
+      right: 10px;
+    }
+    
+    .regis-dokumen .back-button {
+      padding-left: 5%;
     }
 
-    .dokumen .container .dokumen-form .row .input-group .form-control {
+    .regis-dokumen .container .dokumen-form {
+      width: fit-content;
+      margin-left: 2%;
+    }
+
+    .regis-dokumen .container .dokumen-form .row .input-group .form-control {
       height: 60px;
       width: 100%;
     }
 
-    .dokumen .container .dokumen-form .row .input-group .btn {
+    .regis-dokumen .container .dokumen-form .row .input-group .btn {
       padding: 10px 20px;
       font-size: 14px;
       width: auto;

@@ -1,13 +1,11 @@
 import React, { useState } from "react";
-import Layouts from "../../components/layouts/Layouts";
 import Input from "../../components/elements/Input/Input";
 import Label from "../../components/elements/Input/Label";
 import Button from "../../components/elements/Button/Button";
-import ModalProfile from "../../components/fragments/Modal/ModalProfile";
 import BackButton from "../../components/elements/Button/BackButton";
-import "./DataAkademik.styles.css";
+import "./RegisDataAkademik.styles.css";
 
-const DataAkademik = () => {
+const RegisDataAkademik = () => {
   const [formData, setFormData] = useState([
     {
       asalUniversitas: "",
@@ -48,7 +46,6 @@ const DataAkademik = () => {
     ]);
   };
 
-  const [showProfileModal, setShowProfileModal] = useState(false);
 
   const [errorMessages, setErrorMessages] = useState({
     asalUniversitas: "",
@@ -64,30 +61,24 @@ const DataAkademik = () => {
       tahunMasuk: !data.tahunMasuk ? `Tahun Masuk wajib diisi (${index + 1})` : "",
       tahunTamat: !data.tahunTamat ? `Tahun Tamat wajib diisi (${index + 1})` : "",
     }));
-
+  
     setErrorMessages(newErrorMessages.reduce((acc, curr) => ({ ...acc, ...curr }), {}));
-
+  
     if (newErrorMessages.some((error) => Object.values(error).some((value) => value !== ""))) {
       return;
     }
-
-    setShowProfileModal(true);
-  };
-
-  const handleSubmitConfirm = () => {
-    setShowProfileModal(false);
+  
+    window.location.href = "/dokter/regis/dokumen";
   };
   
 
-  const handleSubmitCancel = () => {
-    setShowProfileModal(false);
-  };
-
   return (
-    <Layouts>
-      <div className="data-akademik">
+      <div className="regis-data-akademik">
         <div className="container">
-          <BackButton location={'/dokter/profile'}/>
+          <BackButton location={'/dokter/regis/data-pribadi'}/>
+          <div className="step-regis">
+            <h4>2 / 5</h4>
+          </div> 
           {formData.map((data, index) => (
             <form className="data-akademik-form" key={index}>
               <h4 className="data-akademik-title">Data Akademik</h4>
@@ -162,7 +153,7 @@ const DataAkademik = () => {
             </form>
           ))}
 
-          <div className="buttons-container d-flex justify-content-end mb-3">
+          <div className="buttons-container d-flex justify-content-end">
             {/* Add Data Button */}
             <Button
               type="button"
@@ -172,25 +163,17 @@ const DataAkademik = () => {
             />
           </div>
 
-          <div className="button-container d-flex justify-content-center mb-3">
+          <div className="button-container d-flex justify-content-center">
             <Button
               type="button"
               className="btn btn-primary"
-              text="Simpan Perubahan"
+              text="Selanjutnya"
               onClick={handleSubmitClick}
             />
           </div>
-
-          <ModalProfile
-            show={showProfileModal}
-            title="Profile"
-            onClose={handleSubmitCancel}
-            onSubmit={handleSubmitConfirm}
-          />
         </div>
       </div>
-    </Layouts>
   );
 };
 
-export default DataAkademik;
+export default RegisDataAkademik;

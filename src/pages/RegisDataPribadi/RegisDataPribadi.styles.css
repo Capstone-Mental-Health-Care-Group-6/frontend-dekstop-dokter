@@ -1,7 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700&display=swap');
 
-.data-pribadi .card {
+.regis-data-pribadi {
+  padding-top: 10px;
+  background: #CCE7FF;
+  height: 100%;
+}
+
+.regis-data-pribadi .step-regis h4 {
+  text-align: end;
+  padding-top: 5px;
+  padding-bottom: 5%;
+  color: var(--neutral-1000, #000);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.regis-data-pribadi .card {
   display: flex;
   align-items: center;
   width: 480px;
@@ -15,7 +33,7 @@
   box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.08), 0px 1px 4px 0px rgba(0, 0, 0, 0.04);
 }
 
-.data-pribadi .card h5 {
+.regis-data-pribadi .card h5 {
   width: 400px;
   color: var(--neutral-1000, #000);
   font-family: 'Montserrat', sans-serif;
@@ -24,7 +42,7 @@
   margin-left: -40px;
 }
 
-.data-pribadi .card img {
+.regis-data-pribadi .card img {
   align-self: stretch;
   border-radius: var(--corner-radius-5, 20px);
   width: 70px;
@@ -33,13 +51,13 @@
   padding-right: 0;
 }
 
-.data-pribadi .card-body {
+.regis-data-pribadi .card-body {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.data-pribadi .data-pribadi-form {
+.regis-data-pribadi .data-pribadi-form {
     width: 100%;
     height: 790px;
     padding-left: 100px;
@@ -56,7 +74,7 @@
     box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.04), 0px 1px 1px 0px rgba(0, 0, 0, 0.02);
   }
 
-  .data-pribadi .data-pribadi-form .data-pribadi-title {
+  .regis-data-pribadi .data-pribadi-form .data-pribadi-title {
     color: var(--neutral-1000, #000);
     font-family: 'Montserrat', sans-serif;
     font-size: 30px;
@@ -67,7 +85,7 @@
     margin-left: -50px;
   }
 
-  .data-pribadi .data-pribadi-form .row .col-md-6 label {
+  .regis-data-pribadi .data-pribadi-form .row .col-md-6 label {
     display: flex;
     height: 34px;
     flex-direction: column;
@@ -81,8 +99,8 @@
     line-height: normal;
   }
   
-  .data-pribadi .data-pribadi-form .row .col-md-6 input,
-  .data-pribadi .data-pribadi-form .row .col-md-6 select {
+  .regis-data-pribadi .data-pribadi-form .row .col-md-6 input,
+  .regis-data-pribadi .data-pribadi-form .row .col-md-6 select {
     display: flex;
     height: 40px;
     width: 90%;
@@ -92,7 +110,11 @@
     align-self: stretch;
   }
 
-.data-pribadi .button-container .btn {
+.regis-data-pribadi .button-container {
+  padding-bottom: 50px;
+} 
+
+.regis-data-pribadi .button-container .btn {
   width: 400px;
   height: 60px;
   padding: 12px 24px;
@@ -110,25 +132,25 @@
 }
 
 @media (max-width: 1024px) {
-    .data-pribadi .card {
-      width: 100%;
+    .regis-data-pribadi .card {
+      width: 60%;
       max-width: 100%;
     }
 
-    .data-pribadi .card img {
+    .regis-data-pribadi .card img {
      width: 70%;
      margin-left: -50px;
      height: auto;
     }
     
-    .data-pribadi .card h5 {
+    .regis-data-pribadi .card h5 {
       font-size: 16px;
       width: fit-content;
       height: fit-content;
       margin-left: -50px;
     }
   
-    .data-pribadi .data-pribadi-form {
+    .regis-data-pribadi .data-pribadi-form {
       padding: 10px;
       padding-left: 10px;
       padding-right: 0;
@@ -137,36 +159,40 @@
       width: 100%;
     }
   
-    .data-pribadi .data-pribadi-form .data-pribadi-title {
+    .regis-data-pribadi .data-pribadi-form .data-pribadi-title {
       font-size: 16px;
       margin-left: 3%;
       padding-top: 5%;
       padding-bottom: 5%;
     }
   
-    .data-pribadi .data-pribadi-form .row .col-md-6 label {
+    .regis-data-pribadi .data-pribadi-form .row .col-md-6 label {
       font-size: 14px;
     }
   
-    .data-pribadi .data-pribadi-form .row .col-md-6 input,
-    .data-pribadi .data-pribadi-form .row .col-md-6 select {
+    .regis-data-pribadi .data-pribadi-form .row .col-md-6 input,
+    .regis-data-pribadi .data-pribadi-form .row .col-md-6 select {
       height: 36px;
       width: 90%;
     }
 
-    .data-pribadi .button-container .btn {
+    .regis-data-pribadi .button-container .btn {
       width: fit-content;
     }
   }
 
   @media (max-width: 540px) {
-    .data-pribadi .card img {
+    .regis-data-pribadi .back-button {
+      padding-left: 5%;
+    }
+
+    .regis-data-pribadi .card img {
       margin-left: -20px; 
       width: 40%;
       height: auto;
      }
 
-     .data-pribadi .card h5 {
+     .regis-data-pribadi .card h5 {
       font-size: 12px;
       margin-left: 35%; 
       margin-top: -50px;

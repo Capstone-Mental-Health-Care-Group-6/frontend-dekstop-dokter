@@ -1,7 +1,38 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700&display=swap');
 
-.pengalaman .container .pengalaman-form {
+.regis-pengalaman {
+  padding-top: 10px;
+  background: #CCE7FF;
+  height: 100%;
+  position: relative;
+}
+
+.regis-pengalaman .back-button {
+  top: 10px; 
+  left: 10px; 
+  padding-bottom: 5%;
+}
+
+.regis-pengalaman .step-regis {
+  position: absolute;
+  top: 10px; 
+  right: 120px; 
+}
+
+.regis-pengalaman .step-regis h4 {
+  text-align: end;
+  padding-top: 5px;
+  padding-bottom: 5%;
+  color: var(--neutral-1000, #000);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.regis-pengalaman .container .pengalaman-form {
   width: 100%;
   height: 520px;
   padding-top: 70px;
@@ -17,7 +48,7 @@
   margin-bottom: 20px;
 }
 
-.pengalaman .container .pengalaman-form .pengalaman-title {
+.regis-pengalaman .container .pengalaman-form .pengalaman-title {
   color: var(--neutral-1000, #000);
   font-family: 'Montserrat', sans-serif;
   font-size: 30px;
@@ -27,8 +58,8 @@
   padding-bottom: 20px;
 }
 
-.pengalaman .container .pengalaman-form .row .col-md-6 label,
-.pengalaman .container .pengalaman-form .row label {
+.regis-pengalaman .container .pengalaman-form .row .col-md-6 label,
+.regis-pengalaman .container .pengalaman-form .row label {
   display: flex;
   height: 34px;
   flex-direction: column;
@@ -42,7 +73,7 @@
   line-height: normal;
 }
 
-.pengalaman .container .pengalaman-form .row .col-md-6 input {
+.regis-pengalaman .container .pengalaman-form .row .col-md-6 input {
   display: flex;
   height: 40px;
   width: 90%;
@@ -51,11 +82,11 @@
   align-self: stretch;
 }
 
-.pengalaman .container .pengalaman-form .row .input-alamat-perusahaan {
+.regis-pengalaman .container .pengalaman-form .row .input-alamat-perusahaan {
   padding-left: 10px;
 }
 
-.pengalaman .container .pengalaman-form .row input {
+.regis-pengalaman .container .pengalaman-form .row input {
   display: flex;
   height: 40px;
   width: 70%;
@@ -64,7 +95,11 @@
   align-self: stretch;
 }
 
-.pengalaman .container .button-container .btn {
+.regis-pengalaman .button-container {
+  padding-bottom: 50px;
+} 
+
+.regis-pengalaman .container .button-container .btn {
   width: 400px;
   height: 60px;
   padding: 12px 24px;
@@ -81,7 +116,7 @@
   line-height: normal;
 }
 
-.pengalaman .container .form-check .form-check-input {
+.regis-pengalaman .container .form-check .form-check-input {
   border-radius: 2px;
   border-top: 2px solid var(--neutral-50, #FFF);
   border-right: var(--spc-2, 2px) solid var(--neutral-50, #FFF);
@@ -89,7 +124,7 @@
   border-left: var(--spc-2, 2px) solid var(--neutral-50, #FFF);
 }
 
-.pengalaman .container .form-check .form-check-label {
+.regis-pengalaman .container .form-check .form-check-label {
   color: var(--neutral-1000, #000);
   font-family: 'Montserrat', sans-serif;
   font-size: 14px;
@@ -98,7 +133,7 @@
   line-height: 20px; /* 142.857% */
 }
 
-.pengalaman .container .form-check .form-check-label .privacyPolicy {
+.regis-pengalaman .container .form-check .form-check-label .privacyPolicy {
   font-family: 'Montserrat', sans-serif;
   font-size: 14px;
   font-style: normal;
@@ -108,7 +143,11 @@
 }
 
 @media (max-width: 1024px) {
-  .pengalaman .container .pengalaman-form {
+  .regis-pengalaman .step-regis {
+    right: 100px;
+  }
+
+  .regis-pengalaman .container .pengalaman-form {
     height: fit-content;
     width: 100%;
     padding-top: 5%;
@@ -117,43 +156,59 @@
     padding-bottom: 5%;
   }
 
-  .pengalaman .container .pengalaman-form .pengalaman-title {
+  .regis-pengalaman .container .pengalaman-form .pengalaman-title {
     font-size: 16px;
   }
 
-  .pengalaman .container .pengalaman-form .row .col-md-6 label {
+  .regis-pengalaman .container .pengalaman-form .row .col-md-6 label {
     font-size: 14px;
   }
 
-  .pengalaman .container .pengalaman-form .row label {
+  .regis-pengalaman .container .pengalaman-form .row label {
     font-size: 14px;
   }
 
-  .pengalaman .container .pengalaman-form .row .col-md-6 input {
+  .regis-pengalaman .container .pengalaman-form .row .col-md-6 input {
     height: 36px;
     width: fit-content;
   }
 
-  .pengalaman .container .pengalaman-form .row input {
+  .regis-pengalaman .container .pengalaman-form .row input {
     height: 36px;
     width: 80%;
   }
 
-  .pengalaman .container .button-container .btn {
+  .regis-pengalaman .container .button-container .btn {
     width: fit-content;
   }
 }
 
 @media (max-width: 540px) {
-  .pengalaman .container .pengalaman-form .row .col-md-6 input {
+  .regis-pengalaman .back-button {
+    padding-left: 5%;
+  }
+
+  .regis-pengalaman .step-regis {
+    right: 10px;
+  }
+
+  .regis-pengalaman .container .pengalaman-form .row .col-md-6 input {
     height: 36px;
     width: 90%;
     font-size: 12px;
   }
 
-  .pengalaman .container .pengalaman-form .row input {
+  .regis-pengalaman .container .pengalaman-form .row input {
     height: 36px;
     width: 90%;
+    font-size: 12px;
+  }
+
+  .regis-pengalaman .container .form-check .form-check-label {
+    font-size: 12px;
+  }
+
+  .regis-pengalaman .container .form-check .form-check-label .privacyPolicy {
     font-size: 12px;
   }
 }
