@@ -174,9 +174,17 @@
   .profile-pages .list .list-group .list-group-item {
     font-size: 14px;
   }
+
+  .profile-pages .modal-container {
+    width: 100%;
+  }
 }
 
 @media (max-width: 540px) {
+  .profile-pages .modal-container {
+    width: 50%;
+  }
+
   .profile-pages .card {
     height: fit-content;
   }
@@ -188,5 +196,15 @@
 
   .profile-pages .card .ms-3 .card-text {
     font-size: 10px;
+  }
+
+  .profile-pages .modal-container .modal .modal-dialog .modal-content .modal-header img {
+    margin-left: 10%;
+    margin-top: -15px;
+  }
+
+  .profile-pages .modal-container .modal .modal-dialog .modal-content .modal-header .modal-title {
+    font-size: 8px;
+    margin-top: -13px;
   }
 }

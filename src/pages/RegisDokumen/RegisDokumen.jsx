@@ -1,19 +1,16 @@
 import React, { useState } from "react";
-import Layouts from "../../components/layouts/Layouts";
 import Label from "../../components/elements/Input/Label";
 import Button from "../../components/elements/Button/Button";
 import BackButton from "../../components/elements/Button/BackButton";
-import './Dokumen.styles.css';
+import './RegisDokumen.styles.css';
 import Input from "../../components/elements/Input/Input";
-import ModalProfile from "../../components/fragments/Modal/ModalProfile";
 
-const Dokumen = () => {
+const RegisDokumen = () => {
   const [cvFile, setCvFile] = useState(null);
   const [sippkFile, setSippkFile] = useState(null);
   const [ijazahFile, setIjazahFile] = useState(null);
   const [strpkFile, setStrpkFile] = useState(null);
 
-  const [showProfileModal, setShowProfileModal] = useState(false); 
 
   const [errorMessages, setErrorMessages] = useState({
     cv: "",
@@ -39,31 +36,23 @@ const Dokumen = () => {
       ijazah: !ijazahFile ? "Ijazah file wajib diisi" : "",
       strpk: !strpkFile ? "STRPK wajib diisi" : "",
     };
-
+  
     setErrorMessages(newErrorMessages);
-
+  
     if (!cvFile || !sippkFile || !ijazahFile || !strpkFile) {
       return;
     }
-
-    setShowProfileModal(true);
+  
+    window.location.href = "/dokter/regis/pengalaman";
   };
-
-  const handleSubmitConfirm = () => {
-    setShowProfileModal(false);
-
-  };
-
-  const handleSubmitCancel = () => {
-    setShowProfileModal(false);
-  };
-
-
+  
   return (
-    <Layouts>
-      <div className="dokumen">
+      <div className="regis-dokumen">
       <div className="container">
-        <BackButton location={'/dokter/profile'} />
+        <BackButton location={'/dokter/regis/data-akademik'}/>
+        <div className="step-regis">
+          <h4>3 / 5</h4>
+        </div> 
         <form className="dokumen-form" onSubmit={handleFileChange}>
           <h4 className="dokumen-title">Dokumen</h4>
 
@@ -82,28 +71,29 @@ const Dokumen = () => {
             <Label htmlFor="cv">Curriculum Vitae (CV)</Label>
             <div className="input-group mb-3">
               <div className="form-control-wrapper">
-              <Input
+                <Input
                   type="text"
                   className={`form-control mb-2 ${errorMessages.cv ? "is-invalid" : ""}`}
                   id="cv"
                   name="cv"
-                  readOnly
-                  placeholder="CV Dr.Helen.pdf"
                   defaultValue={cvFile ? cvFile.name : ""}
+                  placeholder="CV Dr.Helen.pdf"
+                  readOnly
                 />
-                {errorMessages.cv && (
-                  <div className="invalid-feedback">{errorMessages.cv}</div>
-                )}
+                  {errorMessages.cv && (
+                    <div className="invalid-feedback">{errorMessages.cv}</div>
+                  )}  
                 <label className="btn btn-outline-primary mb-2 choose-file-btn">
                   Pilih File
                   <input
                     type="file"
                     style={{ display: "none" }}
                     onChange={(e) =>
-                      handleFileChange(e, setSippkFile, (value) =>
+                      handleFileChange(e, setCvFile, (value) =>
                         document.getElementById("cv").value = value
                       )
-                    }                  />
+                    }
+                  />               
                 </label>
               </div>
             </div>
@@ -208,24 +198,17 @@ const Dokumen = () => {
           </div>
         </form>
         <br />
-        <div className="button-container d-flex justify-content-center mb-3">
+        <div className="button-container d-flex justify-content-center">
           <Button
             type="button"
             className="btn btn-primary"
-            text="Simpan Perubahan"
+            text="Selanjutnya"
             onClick={handleSubmitClick}
           />
         </div>
-        <ModalProfile
-          show={showProfileModal}
-          title="Profile"
-          onClose={handleSubmitCancel}
-          onSubmit={handleSubmitConfirm}
-        />
       </div>
       </div>
-    </Layouts>
   );
 };
 
-export default Dokumen;
+export default RegisDokumen;
