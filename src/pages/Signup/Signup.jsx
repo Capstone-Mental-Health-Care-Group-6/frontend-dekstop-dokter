@@ -1,12 +1,12 @@
-import { useState, useEffect } from "react"
-import Button from "../../components/elements/Button/Button"
-import LogoEmphati from "../../assets/LogoEmphati.png"
-import Welcome from "../../assets/Welcome.png"
-import { BsExclamationCircle, BsEye, BsEyeSlash } from "react-icons/bs"
-import { useNavigate, Link } from "react-router-dom"
-import { FaUser, FaLock } from "react-icons/fa"
-import { IoMdMail } from "react-icons/io"
-import "./Signup.style.css"
+import { useState, useEffect } from "react";
+import Button from "../../components/elements/Button/Button";
+import LogoEmphati from "../../assets/LogoEmphati.png";
+import Welcome from "../../assets/Welcome.png";
+import { BsExclamationCircle, BsEye, BsEyeSlash } from "react-icons/bs";
+import { useNavigate, Link } from "react-router-dom";
+import { FaUser, FaLock } from "react-icons/fa";
+import { IoMdMail } from "react-icons/io";
+import "./Signup.style.css";
 import {
   confirmPasswordHandler,
   emailChecker,
@@ -15,123 +15,121 @@ import {
   passwordHandler,
   usernameChecker,
   usernameHandler,
-} from "../../utils/handler/input"
-import { register } from "../../service/authentication"
-
+} from "../../utils/handler/input";
+import { register } from "../../service/authentication";
 
 const Register = () => {
-  const [username, setUsername] = useState("")
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [confirmPassword, setConfirmPassword] = useState("")
-  const [showPassword, setShowPassword] = useState(false)
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
-  const [activeInput, setActiveInput] = useState(null)
-  const [isSubmitButtonDisabled, setIsSubmitButtonDisabled] = useState(true)
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [activeInput, setActiveInput] = useState(null);
+  const [isSubmitButtonDisabled, setIsSubmitButtonDisabled] = useState(true);
   const [errorMessages, setErrorMessages] = useState({
     username: "",
     email: "",
     password: "",
     confirmPassword: "",
-  })
-  const navigate = useNavigate()
+  });
+  const navigate = useNavigate();
 
   const handleUsernameChange = (e) => {
-    usernameHandler(e.target.value, setErrorMessages)
-    setUsername(e.target.value)
-    setActiveInput("username")
-  }
+    usernameHandler(e.target.value, setErrorMessages);
+    setUsername(e.target.value);
+    setActiveInput("username");
+  };
 
   const handleEmailChange = (e) => {
-    emailHandler(e.target.value, setErrorMessages)
-    setEmail(e.target.value)
-    setActiveInput("email")
-  }
+    emailHandler(e.target.value, setErrorMessages);
+    setEmail(e.target.value);
+    setActiveInput("email");
+  };
 
   const handlePasswordChange = (e) => {
-    passwordHandler(e.target.value, setErrorMessages)
-    setPassword(e.target.value)
-    setActiveInput("password")
-  }
+    passwordHandler(e.target.value, setErrorMessages);
+    setPassword(e.target.value);
+    setActiveInput("password");
+  };
 
   const handleConfirmPasswordChange = (e) => {
-    confirmPasswordHandler(e.target.value, setErrorMessages, password)
-    setConfirmPassword(e.target.value)
-    setActiveInput("confirmPassword")
-  }
+    confirmPasswordHandler(e.target.value, setErrorMessages, password);
+    setConfirmPassword(e.target.value);
+    setActiveInput("confirmPassword");
+  };
 
   const handleTogglePassword = () => {
-    setShowPassword(!showPassword)
-  }
+    setShowPassword(!showPassword);
+  };
 
   const handleToggleConfirmPassword = () => {
-    setShowConfirmPassword(!showConfirmPassword)
-  }
+    setShowConfirmPassword(!showConfirmPassword);
+  };
 
   const doPasswordMatch = (password, confirmationPassword) => {
-    return password === confirmationPassword
-  }
+    return password === confirmationPassword;
+  };
 
   const handleFormErrors = () => {
-    usernameHandler(username, setErrorMessages)
-    emailHandler(email, setErrorMessages)
-    passwordHandler(password, setErrorMessages)
-    confirmPasswordHandler(confirmPassword, setErrorMessages, password)
-  }
+    usernameHandler(username, setErrorMessages);
+    emailHandler(email, setErrorMessages);
+    passwordHandler(password, setErrorMessages);
+    confirmPasswordHandler(confirmPassword, setErrorMessages, password);
+  };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     const isValid =
       usernameChecker(username) &&
       emailChecker(email) &&
       passwordChecker(password) &&
-      doPasswordMatch(password, confirmPassword)
+      doPasswordMatch(password, confirmPassword);
 
     if (isValid) {
-
       if (username.length >= 4) {
         const formRegister = {
           name: username,
           email,
           password,
           role: "Doctor",
-        }
+        };
         console.log(formRegister);
         register(formRegister, (status, res) => {
           if (status) {
-            navigate("/login-dokter")
-            console.log('berhasil resgister', res);
+            navigate("/dokter/regis/data-pribadi");
+            console.log("berhasil resgister", res);
           } else {
             console.log(res);
           }
-        })
+        });
       } else {
         setErrorMessages({
           ...errorMessages,
           username: "Masukan username terlebih dahul",
-        })
+        });
       }
     } else {
-      handleFormErrors()
+      handleFormErrors();
     }
-  }
+  };
 
   useEffect(() => {
     setIsSubmitButtonDisabled(
       !(username.trim() !== "" && password.trim() !== "")
-    )
-  }, [username, password])
+    );
+  }, [username, password]);
 
   const handleInputFocus = (inputName) => {
-    setActiveInput(inputName)
-  }
+    setActiveInput(inputName);
+  };
 
   const handleInputBlur = () => {
-    setActiveInput(null)
-  }
+    setActiveInput(null);
+  };
 
-  const isPlaceholderShown = (inputValue) => inputValue === ""
+  const isPlaceholderShown = (inputValue) => inputValue === "";
 
   return (
     <div className="content-center">
@@ -347,7 +345,7 @@ const Register = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Register
+export default Register;
