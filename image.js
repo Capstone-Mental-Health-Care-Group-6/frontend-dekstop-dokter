@@ -23,7 +23,7 @@ import amico from "./src/assets/amico.png";
 import Googleplay from "./src/assets/googleplay.png";
 import Appstore from "./src/assets/appstore.png";
 import logoEmpathiCare from "./src/assets/logoEmpathiCare.svg";
-import logoKemenkes from "./src/assets/logokemenkes.png";
+import logoKemenkes from "./src/assets/logoKemenkes.png";
 import artikelEmpty from "./src/assets/artikel-empty.png";
 import personChat from "./src/assets/personChat.svg";
 import personChat2 from "./src/assets/personChat2.svg";
@@ -43,6 +43,9 @@ import avatar1 from "./src/assets/avatar1.svg";
 import avatar2 from "./src/assets/avatar2.svg";
 import avatar3 from "./src/assets/avatar3.svg";
 import avatar4 from "./src/assets/avatar4.svg";
+import avatar5 from "./src/assets/avatar5.svg";
+import searchFailed from "./src/assets/searchFailed.png";
+import BuktiTransaksi from "./src/assets/BuktiTransaksi.png";
 import imgModalSaldoCair from "./src/assets/imgModalSaldoCair.png";
 import iconChatBot from "./src/assets/iconChatBot.svg";
 import imgDataPasienKosong from "./src/assets/imgDataPasienKosong.png";
@@ -53,6 +56,13 @@ import accountBalance from "./src/assets/account-balance.png";
 import acountCircle from "./src/assets/account-circle.png";
 import localLibrary from "./src/assets/local-ibrary.png";
 import archive from "./src/assets/archive.png";
+import arrowLeft from "./src/assets/arrowLeft.svg";
+import exclamation from "./src/assets/exclamation.png"
+import logoNatural from "./src/assets/Logo natural.png"
+import imacExit from "./src/assets/iMac Exit.png"
+import businessCenter from "./src/assets/business center.png"
+import logoEmpathi from "./src/assets/logoEmphati.png"
+import successIcon from "./src/assets/maps-and-flags.png"
 
 export {
   archive,
@@ -100,6 +110,9 @@ export {
   avatar2,
   avatar3,
   avatar4,
+  avatar5,
+  searchFailed,
+  BuktiTransaksi,
   personChat,
   personChat2,
   personChat3,
@@ -110,4 +123,11 @@ export {
   iconChatBot,
   imgDataPasienKosong,
   imgNotFound404,
+  arrowLeft,
+  exclamation,
+  logoNatural,
+  imacExit,
+  businessCenter,
+  logoEmpathi, 
+  successIcon,
 };

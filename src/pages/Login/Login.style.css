@@ -21,7 +21,7 @@
 .content .container {
   width: 1000px;
   text-align: center;
-  background-color: rgba(226, 232, 253, 1);
+  background-color: #fff;
   border-radius: 18px;
 
   /* margin-top: 250px;
@@ -133,9 +133,11 @@
 .floating3 .icon.right {
   position: absolute;
   top: 50%;
-  right: 0;
+  right: 1.5rem;
   transform: translateY(-50%);
-  margin-right: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .floating3 input:focus+label,
@@ -143,7 +145,7 @@
   top: 0;
   left: 30px;
   color: #61a1fe;
-  background: rgba(226, 232, 253, 1);
+  background: #fff;
   transform: translateY(-50%);
 }
 
@@ -158,12 +160,12 @@
   cursor: not-allowed;
 }
 
-.btn-primary {
+.btn-secondary {
   background-color: #007bff;
   color: #fff;
 }
 
-.btn-primary:hover {
+.btn-secondary:hover {
   background-color: #0056b3;
 }
 
@@ -171,7 +173,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(226, 232, 253, 1);
+  background-color: #fff;
 
   border: 1px solid rgba(0, 133, 255, 1);
 
@@ -296,6 +298,13 @@
     transform: translateY(0);
     margin-top: 1em;
   }
+}
+
+input.error,
+.floating2 input.error:not(:placeholder-shown),
+.floating2 .icon-error {
+  border-color: #f08080;
+  color: #f08080;
 }
 
 @media screen and (max-width: 600px) {

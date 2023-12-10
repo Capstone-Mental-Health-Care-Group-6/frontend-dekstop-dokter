@@ -1,22 +1,23 @@
 import "./ForgetPassword.style.css";
 import { useState } from "react";
-import * as React from "react";
 import Button from "../../components/elements/Button/Button";
-
+import { Link } from "react-router-dom";
 import ModalForgot from "../../components/fragments/modalLogin/modalLogin";
 import { emailHandler } from "../../utils/handler/input";
 import { MdOutlineEmail } from "react-icons/md";
-import logoEmpathi from "../../assets/LogoEmphati.png";
-import { Link, useNavigate } from "react-router-dom";
-
+import logoEmpathi from "../../assets/logoEmphati.png";
+import { useNavigate } from "react-router-dom";
+import { BsExclamationCircle } from "react-icons/bs";
+import { forgetPassword } from "../../service/authentication";
 const ForgotPw = () => {
-  const [email, setEmail] = React.useState("");
-  const [isEmailSent, setIsEmailSent] = React.useState(false);
-  const [isEmailVerified, setIsEmailVerified] = React.useState(false);
-  const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const [email, setEmail] = useState("");
+  const [isEmailSent, setIsEmailSent] = useState(false);
+  const [isEmailVerified, setIsEmailVerified] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [errorMessages, setErrorMessages] = useState({
     email: "",
   });
+
   const navigate = useNavigate();
 
   const handleEmailChange = (e) => {
@@ -28,16 +29,24 @@ const ForgotPw = () => {
       if (!email || errorMessages.email) {
         setErrorMessages((prevState) => ({
           ...prevState,
-          email: "Email Tidak Valid",
+          email: "Masukkan Email Anda!",
         }));
         return;
       }
 
       setIsEmailSent(true);
       setIsEmailVerified(true);
-      setTimeout(() => {
-        setIsModalOpen(true);
-      }, 1000);
+
+      const dataEmail = { email: email };
+
+      forgetPassword(dataEmail, (status, res) => {
+        if (status) {
+          setIsModalOpen(true);
+          setEmail("");
+        } else {
+          console.log(res);
+        }
+      });
     } catch (error) {
       console.error("Gagal mengirim email reset:", error);
     }
@@ -53,8 +62,8 @@ const ForgotPw = () => {
         <img src={logoEmpathi} alt="Login" className="center-image" />
         <h2 className="textAdmin"> Atur Ulang Kata Sandi Anda </h2>
         <p className="textEmail">
-          Masukkan email yang terkait dengan akun Anda untuk mengubah kata sandi
-          baru.
+          Masukkan alamat email yang terkait dengan akun anda untuk mengubah
+          kata sandi.
         </p>
         <form className="login-form-container">
           <div className="vstack gap-1">
@@ -66,20 +75,28 @@ const ForgotPw = () => {
                 value={email}
                 onChange={handleEmailChange}
                 placeholder="Email"
+                className={`${errorMessages.email !== "" ? "error" : ""}`}
               />
+              <span className="icon right">
+                {errorMessages.email !== "" && (
+                  <BsExclamationCircle className="text-danger" />
+                )}
+              </span>
               <label htmlFor="email"></label>
               <span className="icon left">
                 <MdOutlineEmail />
               </span>
             </div>
             {errorMessages.email !== "" && (
-              <p className="text-start text-danger">{errorMessages.email}</p>
+              <span className="text-start text-danger">
+                {errorMessages.email}
+              </span>
             )}
           </div>
           <Button
             type="button"
             id="btn-submit"
-            className={`btn btn-primary w-100 fw-bold ${
+            className={`bttn btn-secondary w-100 fw-bold ${
               email ? "" : "disabled"
             }`}
             text="Kirim link verifikasi"
@@ -89,9 +106,9 @@ const ForgotPw = () => {
           <div className="divider d-flex align-items-center my-1">
             <p className="text-center mx-3 mb-0 text-muted">atau</p>
           </div>
-          <p className="btn-akun">
-            <Link to={"/register-dokter"} className="text-decoration-none">
-              <b>Buat Akun Baru</b>
+          <p className="text-center fw-bold mx-3 mb-0 text-muted">
+            <Link className="link-no-underline" to="/register-dokter">
+              Buat Akun Baru
             </Link>
           </p>
         </form>
