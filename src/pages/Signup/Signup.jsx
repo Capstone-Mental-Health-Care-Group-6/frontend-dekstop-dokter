@@ -107,7 +107,7 @@ const Register = () => {
       } else {
         setErrorMessages({
           ...errorMessages,
-          username: "Masukan username terlebih dahul",
+          username: "Masukan username terlebih dahulu",
         });
       }
     } else {
