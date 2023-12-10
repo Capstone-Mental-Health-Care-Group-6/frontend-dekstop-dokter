@@ -4,6 +4,7 @@ import Input from "../../components/elements/Input/Input";
 import Label from "../../components/elements/Input/Label";
 import Button from "../../components/elements/Button/Button";
 import "./Pengalaman.styles.css";
+import BackButton from "../../components/elements/Button/BackButton";
 import ModalProfile from "../../components/fragments/Modal/ModalProfile";
 import { NavLink } from "react-router-dom";
 
@@ -85,23 +86,28 @@ const Pengalaman = () => {
 
   return (
     <Layouts>
-      <div className="container justify-content-center">
-        <BackButton />
-        {formData.map((data, index) => (
-          <form className="pengalaman-form" key={index}>
-            <h4 className="pengalaman-title">Pengalaman Kerja</h4>
-            <div className="row mb-3">
-              <div className="col-md-6">
-                <Label htmlFor={`namaPerusahaan${index}`}>Nama Perusahaan</Label>
-                <Input
-                  type="text"
-                  id={`namaPerusahaan${index}`}
-                  name="namaPerusahaan"
-                  placeholder="Masukkan Nama Perusahaan"
-                  value={data.namaPerusahaan}
-                  onChange={(e) => handleInputChange(index, e)}
-                />
-              </div>
+      <div className="pengalaman">
+        <div className="container justify-content-center">
+          <BackButton location={"/dokter/profile"} />
+          {formData.map((data, index) => (
+            <form className="pengalaman-form" key={index}>
+              <h4 className="pengalaman-title">Pengalaman Kerja</h4>
+              <div className="row mb-3">
+                <div className="col-md-6">
+                  <Label htmlFor={`namaPerusahaan${index}`}>Nama Perusahaan</Label>
+                  <Input
+                    type="text"
+                    className={`form-control mb-2 ${errorMessages.namaPerusahaan ? "is-invalid" : ""}`}
+                    id={`namaPerusahaan${index}`}
+                    name="namaPerusahaan"
+                    placeholder="Nama Perusahaan"
+                    value={data.namaPerusahaan}
+                    onChange={(e) => handleInputChange(index, e)}
+                  />
+                  {errorMessages.namaPerusahaan && (
+                    <div className="invalid-feedback">{errorMessages.namaPerusahaan}</div>
+                  )}
+                </div>
 
                 <div className="col-md-6">
                   <Label htmlFor={`jabatan${index}`}>Jabatan di Perusahaan</Label>
@@ -181,7 +187,7 @@ const Pengalaman = () => {
               id="flexCheckDefault"
             />
             <label className="form-check-label" htmlFor="flexCheckDefault">
-              Dengan ini saya menyetujui <NavLink to={'/privacy/policy'} className="privacyPolicy">Kebijakan Privasi</NavLink> dari EmpathiCare
+              Dengan ini saya menyetujui <NavLink to={'/dokter/pengalaman/privacy-policy'} className="privacyPolicy">Kebijakan Privasi</NavLink> dari EmpathiCare
             </label>
           </div>
 
@@ -211,6 +217,7 @@ const Pengalaman = () => {
             onSubmit={handleSubmitConfirm}
           />
         </div>
+      </div>
     </Layouts>
   );
 };

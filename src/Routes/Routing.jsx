@@ -25,6 +25,8 @@ import RegisDataAkademik from "../pages/RegisDataAkademik/RegisDataAkademik";
 import RegisDokumen from "../pages/RegisDokumen/RegisDokumen";
 import RegisPengalaman from "../pages/RegisPengalaman/RegisPengalaman";
 import RegisProfilSingkat from "../pages/RegisProfilSingkat/RegisProfilSingkat";
+import ProfilSingkat from "../pages/ProfilSingkat/ProfilSingkat";
+import PrivacyPolicy from "../pages/PricacyPolicy/PrivacyPolicy";
 
 const Routing = () => {
   return (
@@ -55,12 +57,14 @@ const Routing = () => {
       <Route path="/dokter/profile/data-akademik" element={<DataAkademik />} />
       <Route path="/dokter/profile/dokumen" element={<Dokumen />} />
       <Route path="/dokter/profile/pengalaman" element={<Pengalaman />} />
+      <Route path="/dokter/profile/profil-singkat" element={<ProfilSingkat />} />
       <Route path="/dokter/chatbot" element={<ChatBot />} />
       <Route path="/dokter/regis/data-pribadi" element={<RegisDataPribadi />} />
       <Route path="/dokter/regis/data-akademik" element={<RegisDataAkademik />} />
       <Route path="/dokter/regis/dokumen" element={<RegisDokumen />} />
       <Route path="/dokter/regis/pengalaman" element={<RegisPengalaman />} />
       <Route path="/dokter/regis/profil-singkat" element={<RegisProfilSingkat />} />
+      <Route path="/dokter/pengalaman/privacy-policy" element={<PrivacyPolicy />} />
 
       {/* route ketika url tidak sesuai */}
       <Route element={<NotFound404 />} path="*" />
