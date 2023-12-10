@@ -59,7 +59,7 @@ const ProfileList = () => {
           Pengalaman
         </NavLink>
         <NavLink
-          to="/dokter/profil-singkat"
+          to="/dokter/profile/profil-singkat"
           className="list-group-item list-group-item-action"
         >
           <img

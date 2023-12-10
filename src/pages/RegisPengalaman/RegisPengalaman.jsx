@@ -179,7 +179,7 @@ const RegisPengalaman = () => {
               id="flexCheckDefault"
             />
             <label className="form-check-label" htmlFor="flexCheckDefault">
-              Dengan ini saya menyetujui <NavLink to={'/privacy/policy'} className="privacyPolicy">Kebijakan Privasi</NavLink> dari EmpathiCare
+              Dengan ini saya menyetujui <NavLink to={'/dokter/pengalaman/privacy-policy'} className="privacyPolicy">Kebijakan Privasi</NavLink> dari EmpathiCare
             </label>
           </div>
 
