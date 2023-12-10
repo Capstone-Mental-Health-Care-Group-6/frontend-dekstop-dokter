@@ -1,61 +1,60 @@
-import "./ForgetPassword.style.css"
-import { useState } from "react"
-import Button from "../../components/elements/Button/Button"
-import { Link } from "react-router-dom"
-import ModalForgot from "../../components/fragments/modalLogin/modalLogin"
-import { emailHandler } from "../../utils/handler/input"
-import { MdOutlineEmail } from "react-icons/md"
-import logoEmpathi from "../../assets/LogoEmphati.png"
-import { useNavigate } from "react-router-dom"
-import { BsExclamationCircle } from "react-icons/bs"
-import { forgetPassword } from "../../service/authentication"
+import "./ForgetPassword.style.css";
+import { useState } from "react";
+import Button from "../../components/elements/Button/Button";
+import { Link } from "react-router-dom";
+import ModalForgot from "../../components/fragments/modalLogin/modalLogin";
+import { emailHandler } from "../../utils/handler/input";
+import { MdOutlineEmail } from "react-icons/md";
+import logoEmpathi from "../../assets/logoEmphati.png";
+import { useNavigate } from "react-router-dom";
+import { BsExclamationCircle } from "react-icons/bs";
+import { forgetPassword } from "../../service/authentication";
 const ForgotPw = () => {
-  const [email, setEmail] = useState("")
-  const [isEmailSent, setIsEmailSent] = useState(false)
-  const [isEmailVerified, setIsEmailVerified] = useState(false)
-  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [email, setEmail] = useState("");
+  const [isEmailSent, setIsEmailSent] = useState(false);
+  const [isEmailVerified, setIsEmailVerified] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [errorMessages, setErrorMessages] = useState({
     email: "",
-  })
+  });
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleEmailChange = (e) => {
-    emailHandler(e.target.value, setErrorMessages)
-    setEmail(e.target.value)
-  }
+    emailHandler(e.target.value, setErrorMessages);
+    setEmail(e.target.value);
+  };
   const handleForgotPassword = async () => {
     try {
       if (!email || errorMessages.email) {
         setErrorMessages((prevState) => ({
           ...prevState,
           email: "Masukkan Email Anda!",
-        }))
-        return
+        }));
+        return;
       }
 
-      setIsEmailSent(true)
-      setIsEmailVerified(true)
+      setIsEmailSent(true);
+      setIsEmailVerified(true);
 
-      const dataEmail = { email: email }
+      const dataEmail = { email: email };
 
       forgetPassword(dataEmail, (status, res) => {
         if (status) {
-          setIsModalOpen(true)
-          setEmail("")
+          setIsModalOpen(true);
+          setEmail("");
         } else {
           console.log(res);
         }
-      })
+      });
     } catch (error) {
-      console.error("Gagal mengirim email reset:", error)
+      console.error("Gagal mengirim email reset:", error);
     }
-  }
+  };
 
   const isEmailValid = () => {
-    return !errorMessages.email
-  }
-
+    return !errorMessages.email;
+  };
 
   return (
     <div className="content-center">
@@ -97,8 +96,9 @@ const ForgotPw = () => {
           <Button
             type="button"
             id="btn-submit"
-            className={`bttn btn-secondary w-100 fw-bold ${email ? "" : "disabled"
-              }`}
+            className={`bttn btn-secondary w-100 fw-bold ${
+              email ? "" : "disabled"
+            }`}
             text="Kirim link verifikasi"
             onClick={handleForgotPassword}
             disabled={!isEmailValid() || !isEmailVerified}
@@ -123,7 +123,7 @@ const ForgotPw = () => {
         />
       )}
     </div>
-  )
-}
+  );
+};
 
-export default ForgotPw
+export default ForgotPw;

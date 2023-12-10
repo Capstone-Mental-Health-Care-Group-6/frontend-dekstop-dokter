@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Button from "../../components/elements/Button/Button";
-import LogoEmphati from "../../assets/LogoEmphati.png";
+import LogoEmphati from "../../assets/logoEmphati.png";
 import Welcome from "../../assets/Welcome.png";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { useNavigate, Link } from "react-router-dom";
