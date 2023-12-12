@@ -52,7 +52,7 @@ const Artikel = () => {
   return (
     <Layouts>
       <h2 className="py-3 fw-bold">Daftar Artikel</h2>
-      <div className="container bg-light rounded-2 py-3">
+      <div className="container rounded-2 py-3 artikel-background" >
         <div className="d-flex align-items-center justify-content-between px-4 fw-semibold ">
           <div className=" d-flex align-items-center">
             <p className="m-0 data-artikel-text">Data Artikel</p>
@@ -64,7 +64,7 @@ const Artikel = () => {
                 id={"create-artikel-btn"}
                 text={"Tambah Artikel"}
                 className={
-                  "button-create border-primary bg-light py-2 px-3 rounded-2 border-1 fw-bold"
+                  "button-create border-primary artikel-background py-2 px-3 rounded-2 border-1 fw-bold"
                 }
                 svg={<FaPlus />}
                 svgClassName={

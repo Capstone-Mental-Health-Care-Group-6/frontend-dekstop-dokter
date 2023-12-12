@@ -2,6 +2,10 @@
   border-style: solid;
 }
 
+.artikel-background{
+  background-color: white;
+}
+
 .table-header-border-id{
   width: 5%;
 }
