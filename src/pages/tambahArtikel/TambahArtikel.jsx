@@ -22,7 +22,6 @@ const TambahArtikel = () => {
     "Umum",
   ]);
 
-  console.log(dataArtikel)
   
   const [checkedIndex, setCheckedIndex] = useState(null);
   
@@ -31,29 +30,50 @@ const TambahArtikel = () => {
     setArtikel((old) => {
       return {
         ...old, 
-        kategori: id
+        category_id: id
       }
     })
   };
   
   const [errorMsg, setErrorMsg] = useState({
-    judul: "",
-    deskripsi: "",
-    linkVideo: "",
+    form: "",
+    title: "",
+    content: "",
     thumbnail: "",
   });
   const [artikel, setArtikel] = useState({
-    judul: "",
-    deskripsi: "",
-    linkVideo: "",
+    category_id: "",
+    user_id: "",
+    title: "",
+    content: "",
     thumbnail: "",
-    kategori: "",
-    visibilitas: "Publik"
+     status: "pending"
   });
 
   const [thumbnail, setThumbnail] = useState({
     gambar: "",
   });
+
+  const handleNull = () => {
+    if ( artikel.title === "" || artikel.content === "" || artikel.thumbnail === ""){
+      console.log(artikel)
+      setErrorMsg((old) => {
+        return {
+          ...old,
+          form: "Form tidak boleh ada yang kosong"
+        }
+      })
+    }
+    else{
+      setErrorMsg((old) => {
+        return {
+          ...old,
+          form: ""
+        }
+      })
+    }
+  }
+
 
   return (
     <Layouts>
@@ -77,16 +97,34 @@ const TambahArtikel = () => {
                   type={"text"}
                   className={"rounded-3 border-solid border-1"}
                   onChange={(e) => {
+                    if (e.target.value == null || e.target.value === "") {
+                      setErrorMsg((old) => {
+                        return {
+                          ...old,
+                          title: "Isi konten tidak boleh kosong!"
+                        }
+                      })
+                    } else {
+                      setErrorMsg((old) => {
+                        return {
+                          ...old,
+                          title: ""
+                        }
+                      })
+                    };
                     setArtikel((old) => {
                       return {
                         ...old, 
-                        judul: e.target.value 
+                        title: e.target.value 
                       }
                     })
                     // console.log(artikel)
                   }
               }
                 />
+                <div className="text-danger mb-0 my-2">
+                  <p>{errorMsg.title}</p>
+                </div>
 
                 <Label htmlFor={"deskripsi-artikel"}>
                   <p className="fw-bold mt-4 mb-0">Deskripsi Artikel</p>
@@ -95,17 +133,38 @@ const TambahArtikel = () => {
                   <Reactquill
                     // value={artikel}
                     id={"deksripsi-artikel"}
-                    value={artikel.deskripsi}
+                    value={artikel.content}
                     onChange={(value) => {
+                      console.log(value)
+                      if (value == '<p><br></p>' || value === "") {
+                        setErrorMsg((old) => {
+                          return {
+                            ...old,
+                            content: "Isi konten tidak boleh kosong!"
+                          }
+                        })
+                      } else {
+                        setErrorMsg((old) => {
+                          return {
+                            ...old,
+                            content: ""
+                          }
+                        })
+                      };
                       setArtikel((old) => {
                         return {
                           ...old,
-                          deskripsi: value
+                          content: value
                         }
                       })
                       // console.log(artikel)
                     }}
                   />
+                </div>
+                <div>
+                  <p className="text-danger mb-0 my-1">
+                  {errorMsg.content}
+                  </p>
                 </div>
                 <Label htmlFor={"link-video-artikel"}>
                   <p className="fw-bold mt-3 mb-0">Link Video Youtube</p>
@@ -134,7 +193,7 @@ const TambahArtikel = () => {
                   name={"thumbnail-artikel"}
                   type={"file"}
                   accept={".jpg, .jpeg, .png"}
-                  className={"rounded-3 border-solid border-1"}
+                  className={"rounded-3 border-solid border-1 mt-3  "}
                   onChange={(e) => {
                     const allowedFormats = ["jpg", "jpeg", "png"];
                     const selectedFile = e.target.files[0];
@@ -183,6 +242,9 @@ const TambahArtikel = () => {
                   Rekomendasi ukuran gambar: 300 x 450. Format gambar: jpg, png,
                   jpeg
                 </p>
+                <div className="text-danger">
+                {errorMsg.form}
+              </div>
                 <p className="text-danger">{errorMsg.thumbnail}</p>
               </div>
               <div className="d-flex m-3 button-form-artikel">
@@ -190,7 +252,11 @@ const TambahArtikel = () => {
                   <Button
                     type={"button"}
                     onClick={()=> {
-                      dataArtikel.push(artikel)
+                      handleNull();
+                      if (errorMsg.form == ""){
+                        dataArtikel.push(artikel)
+                        console.log(artikel)
+                      }
                     }}
                     className={
                       "btn btn-primary me-3 btn-upload-artikel fw-semibold"
@@ -208,6 +274,7 @@ const TambahArtikel = () => {
                   />
                 </div>
               </div>
+             
             </form>
           </div>
           <div className="col-3">
