@@ -11,8 +11,17 @@ import ModalAlert from "../ModalAlert/ModalAlert";
 import ModalSkeletonLoad from "../ModalSkeletonLoad/ModalSkeletonLoad";
 import Skeleton from "react-loading-skeleton";
 import { dataPasien } from "../../DataComponents/dataComponents";
+import { getAllCounseling } from "../../../service/counseling";
 
 const ModalDetailPasien = ({ id, size, selectedPasienId }) => {
+  const [dataPasien, setDataPasien] = useState([]);
+
+  useEffect(() => {
+    // Fetch data from the API and update the state
+    getAllCounseling((data) => {
+      setDataPasien(data.data);
+    });
+  }, []);
   const [selectedButton, setSelectedButton] = useState(null);
   const [modalTextArea, setModalTextArea] = useState("d-none");
   const [loadingSkeleton, setLoadingSkeleton] = useState(true);
@@ -20,7 +29,7 @@ const ModalDetailPasien = ({ id, size, selectedPasienId }) => {
   const [loading, setLoading] = useState(false);
 
   const selectedPasien = dataPasien.find(
-    (pasien) => pasien.id === selectedPasienId
+    (pasien) => pasien.user_id === selectedPasienId
   );
 
   const handleTerimaPasien = () => {
@@ -190,13 +199,19 @@ const ModalDetailPasien = ({ id, size, selectedPasienId }) => {
               <div className="modal-body">
                 {selectedPasien && (
                   <div className="d-flex justify-content-center ">
-                    <img src={profilDetailPasien} alt="profil-img-pasien" />
+                    <div className="h-100">
+                      <img
+                        src={selectedPasien.doctor_avatar}
+                        alt="profil-img-pasien"
+                        className="w-100 rounded-4"
+                      />
+                    </div>
 
                     <div className="ms-4">
                       <p className="d-flex flex-column">
                         Nama{" "}
                         <span className="fw-semibold">
-                          {selectedPasien.nama}
+                          {selectedPasien.doctor_name}
                         </span>
                       </p>
                       <p className="d-flex flex-column ">

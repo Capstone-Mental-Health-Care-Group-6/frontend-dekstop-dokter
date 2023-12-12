@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Layouts from "../../components/layouts/Layouts";
 import { dashboardImg, iconChatBot, imgDataPasienKosong } from "../../../image";
 import "./Dashboard.css";
@@ -9,8 +9,18 @@ import {
   dataPasien,
 } from "../../components/DataComponents/dataComponents";
 import { Link } from "react-router-dom";
+import { getAllCounseling } from "../../service/counseling";
 
 const Dashboard = () => {
+  const [dataPasien, setDataPasien] = useState([]);
+
+  useEffect(() => {
+    // Fetch data from the API and update the state
+    getAllCounseling((data) => {
+      setDataPasien(data.data);
+    });
+  }, []);
+
   return (
     <>
       <Layouts>
