@@ -75,6 +75,7 @@ const LoginForm = () => {
       login(formLogin, (status, res) => {
         if (status) {
           navigate("/dokter/dashboard");
+          localStorage.setItem("token", res.data.token.access_token);
           console.log("berhasil login", res);
         } else {
           setAlertLogin("d-block");
