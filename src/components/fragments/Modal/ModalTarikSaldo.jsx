@@ -1,11 +1,45 @@
-import React, { useEffect, useState } from "react";
-import InputSelect from "../../elements/Input/InputSelect";
-import Input from "../../elements/Input/Input";
-import Button from "../../elements/Button/Button";
-import ModalAlertSaldo from "../ModalAlert/ModalAlertSaldo";
-import { imgModalSaldoCair } from "../../../../image";
+import React, { useEffect, useState } from "react"
+import InputSelect from "../../elements/Input/InputSelect"
+import Input from "../../elements/Input/Input"
+import Button from "../../elements/Button/Button"
+import ModalAlertSaldo from "../ModalAlert/ModalAlertSaldo"
+import { imgModalSaldoCair } from "../../../../image"
 
 const ModalTarikSaldo = ({ id, size }) => {
+  const [formState, setFormState] = useState({
+    metodePembayaran: "",
+    namaPenerima: "",
+    nomorRekening: "",
+    nominalPenarikan: "",
+  })
+
+  const handleChange = (event) => {
+    setFormState({
+      ...formState,
+      [event.target.name]: event.target.value,
+    })
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+
+    // Extract form data
+    const { metodePembayaran, namaPenerima, nomorRekening, nominalPenarikan } =
+      formState
+
+    const bank = metodePembayaran.replace("BANK ", "")
+    let balanceReq = nominalPenarikan.replace("Rp ", "")
+    balanceReq = balanceReq.replace(".", "")
+    balanceReq = balanceReq.replace("-,", "")
+    balanceReq = parseInt(balanceReq, 10)
+    const withdrawData = {
+      balance_req: balanceReq,
+      payment_method: bank,
+      payment_name: namaPenerima,
+      payment_number: nomorRekening,
+    }
+    console.log(withdrawData)
+  }
   return (
     <div>
       <ModalAlertSaldo size={"modal-md"} id={"modal-alert-saldo-diproses"}>
@@ -31,7 +65,7 @@ const ModalTarikSaldo = ({ id, size }) => {
           <div className="modal-content rounded-4 ">
             <div className="modal-body p-5 d-flex flex-column ">
               <h5 className="fw-bold mb-4 px-3">Pencairan Saldo</h5>
-              <form action="#">
+              <form onSubmit={handleSubmit}>
                 <div className="mb-3 px-3">
                   <InputSelect
                     className={
@@ -40,6 +74,7 @@ const ModalTarikSaldo = ({ id, size }) => {
                     name={"metodePembayaran"}
                     id={"metodePembayaran"}
                     title={"Pilih Metode Pembayaran"}
+                    onChange={handleChange}
                     options={[
                       "BANK BCA",
                       "BANK BRI",
@@ -56,6 +91,7 @@ const ModalTarikSaldo = ({ id, size }) => {
                     }
                     name={"namaPenerima"}
                     id={"namaPenerima"}
+                    onChange={handleChange}
                     placeholder={"Masukan Nama Penerima"}
                   />
                 </div>
@@ -66,8 +102,9 @@ const ModalTarikSaldo = ({ id, size }) => {
                     className={
                       "fw-semibold border border-secondary px-3 rounded-3"
                     }
-                    name={"namaPenerima"}
-                    id={"namaPenerima"}
+                    name={"nomorRekening"}
+                    id={"nomorRekening"}
+                    onChange={handleChange}
                     placeholder={"Masukan Nomor Rekening"}
                   />
                 </div>
@@ -85,6 +122,7 @@ const ModalTarikSaldo = ({ id, size }) => {
                     name={"nominalPenarikan"}
                     id={"nominalPenarikan"}
                     title={"Pilih Nominal Penarikan"}
+                    onChange={handleChange}
                     options={[
                       "Rp 50.000-,",
                       "Rp 75.000-,",
@@ -102,6 +140,7 @@ const ModalTarikSaldo = ({ id, size }) => {
                     }
                     bsTogle={"modal"}
                     bsTarget={"#modal-alert-saldo-diproses"}
+                    type="submit"
                   />
                 </div>
               </form>
@@ -110,7 +149,7 @@ const ModalTarikSaldo = ({ id, size }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ModalTarikSaldo;
+export default ModalTarikSaldo
