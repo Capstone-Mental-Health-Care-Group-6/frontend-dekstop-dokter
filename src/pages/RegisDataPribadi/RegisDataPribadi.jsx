@@ -88,49 +88,44 @@ const RegisDataPribadi = () => {
     document.getElementById("imageInput").click();
   };
 
-  const handleSubmitClick = () => {
+  const handleCreateProfile = async (event) => {
+    event.preventDefault();
+
     const newErrorMessages = {
       doctor_name: !formData.doctor_name ? "Nama lengkap wajib diisi" : "",
       email: !formData.email ? "Email wajib diisi" : "",
       doctor_nik: !formData.doctor_nik ? "NIK wajib diisi" : "",
-      doctor_numberphone: !formData.doctor_numberphone ? "Nomor handphone wajib diisi" : "",
+      doctor_numberphone: !formData.doctor_numberphone
+        ? "Nomor handphone wajib diisi"
+        : "",
       doctor_dob: !formData.doctor_dob ? "Tanggal lahir wajib diisi" : "",
       doctor_provinsi: !formData.doctor_provinsi ? "Provinsi wajib diisi" : "",
-      doctor_gender: !formData.doctor_gender ? "Jenis kelamin wajib dipilih" : "",
+      doctor_gender: !formData.doctor_gender
+        ? "Jenis kelamin wajib dipilih"
+        : "",
       doctor_kota: !formData.doctor_kota ? "Kota/Kabupaten wajib diisi" : "",
       doctor_str: !formData.doctor_str ? "Nomor STR wajib diisi" : "",
       doctor_sipp: !formData.doctor_sipp ? "Nomor SIP wajib diisi" : "",
       doctor_avatar: !formData.doctor_avatar ? "" : "",
     };
-  
+
     setErrorMessages(newErrorMessages);
-  
+
     if (
       Object.values(newErrorMessages).some((error) => error !== "") ||
       Object.values(formData).some((value) => value === "")
     ) {
       return;
     }
-  
-    window.location.href = "/dokter/regis/data-akademik";
-  };
 
-  // useEffect(() => {
-  //   getAllDoctors((res) => {
-  //     setFormData(res.data)
-  //   })
-  // }, []);
+    const formDataKeys = ['doctor_avatar', 'doctor_name', 'doctor_nik', 'doctor_numberphone', 'doctor_dob', 'doctor_provinsi', 'doctor_gender', 'doctor_kota', 'doctor_str', 'doctor_sipp', 'email'];
+    const apiData = new FormData();
+    formDataKeys.forEach((key) => {
+        if (key !== 'email' && formData.hasOwnProperty(key)) {
+            apiData.append(key, formData[key]);
+        }
+    });
 
-  const formDataKeys = ['doctor_avatar', 'doctor_name', 'doctor_nik', 'doctor_numberphone', 'doctor_dob', 'doctor_provinsi', 'doctor_gender', 'doctor_kota', 'doctor_str', 'doctor_sipp', 'email'];
-  const apiData = new FormData();
-  formDataKeys.forEach((key) => {
-      if (key !== 'email' && formData.hasOwnProperty(key)) {
-          apiData.append(key, formData[key]);
-      }
-  });
-  
-  const handleCreateProfile = async (e) => {
-    e.preventDefault()
     await createProfileDoctor(apiData, (status, res) => {
       if (status) {
         console.log(res);
@@ -141,7 +136,9 @@ const RegisDataPribadi = () => {
         setErrorMessages('d-block')
       }
     })
-  }
+
+    // window.location.href = "/dokter/regis/data-akademik";
+  };
 
   return (
     <div className="regis-data-pribadi">

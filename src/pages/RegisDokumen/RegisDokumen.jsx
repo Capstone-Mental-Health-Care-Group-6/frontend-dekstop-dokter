@@ -14,19 +14,13 @@ const RegisDokumen = () => {
     doctor_str_file: null,
   });
 
-  useEffect(() => {
-    getAllDoctors((res) => {
-      setFormData(res.data)
-    })
-  }, []);
-
   const [errorMessages, setErrorMessages] = useState({
     doctor_cv: "",
     doctor_sipp_file: "",
     doctor_ijazah: "",
     doctor_str_file: "",
   });
-  
+
   const handleFileChange = (event, setFile, setInputValue, inputName) => {
     const selectedFile = event.target.files[0];
     setFile(selectedFile);
@@ -36,8 +30,10 @@ const RegisDokumen = () => {
     const newErrorMessages = { ...errorMessages, [inputName]: "" };
     setErrorMessages(newErrorMessages);
   };
+  
+  const handleCreateProfile = async (e) => {
+    e.preventDefault();
 
-  const handleSubmitClick = () => {
     const newErrorMessages = {
       doctor_cv: !files.doctor_cv ? "CV file wajib diisi" : "",
       doctor_sipp_file: !files.doctor_sipp_file ? "SIPPK file wajib diisi" : "",
@@ -50,19 +46,13 @@ const RegisDokumen = () => {
     if (!files.doctor_cv || !files.doctor_sipp_file || !files.doctor_ijazah || !files.doctor_str_file) {
       return;
     }
-  
-    window.location.href = "/dokter/regis/pengalaman";
-  };
 
-  const formDataKeys = ['doctor_cv', 'doctor_sipp_file', 'doctor_ijazah', 'doctor_str_file'];
-  const apiData = new FormData();
-  formDataKeys.forEach((key) => {
-    apiData.append(key, files[key]);
-  });
-  
-  const handleCreateProfile = async (e) => {
-    e.preventDefault();
-  
+    const formDataKeys = ['doctor_cv', 'doctor_sipp_file', 'doctor_ijazah', 'doctor_str_file'];
+    const apiData = new FormData();
+    formDataKeys.forEach((key) => {
+      apiData.append(key, files[key]);
+    });
+    
     await createProfileDoctor(apiData, (status, res) => {
       if (status) {
         console.log(res);
@@ -70,10 +60,12 @@ const RegisDokumen = () => {
           setFormData(res.data);
         });
       } else {
-        // Use setErrorMessages or handle errors as needed
-        setErrorMessages({ ...errorMessages, someKey: 'd-block' });
+        setErrorMessages('d-block')
       }
     });
+
+    // window.location.href = "/dokter/regis/pengalaman";
+
   };  
 
   return (

@@ -24,17 +24,22 @@ export const DetailDoctor = (id, callback) => {
 }
 
 export const createProfileDoctor = async (formData, callback) => {
-    await axiosInterceptor.post('/doctor/register', formData, {
+    try {
+      const res = await axiosInterceptor.post('/doctor/register', formData, {
         headers: {
-            'Content-Type': 'multipart/form-data',
+          'Content-Type': 'multipart/form-data',
         },
-    })
-        .then((res) => {
-            callback(true, res.data);
-        })
-        .catch((err) => {
-            console.log(err);
-            callback(false, err.message);
-        });
-};
+      });
+  
+      if (callback) {
+        callback(true, res.data);
+      }
+    } catch (err) {
+      console.log(err);
+      if (callback) {
+        callback(false, err.message);
+      }
+    }
+  };
+  
 

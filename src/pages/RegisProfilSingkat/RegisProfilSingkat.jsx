@@ -17,12 +17,6 @@ const RegisProfilSingkat = () => {
         start_time: "",
         end_time: "",
     })
-
-    useEffect(() => {
-        getAllDoctors((res) => {
-          setFormData(res.data)
-        })
-      }, []);
     
     const [errorMessages, setErrorMessages] = useState({
         doctor_expertise: "",
@@ -54,39 +48,36 @@ const RegisProfilSingkat = () => {
             doctor_expertise: [value],
         }));
     };
-  
-    const handleSubmitClick = () => {
-        const newErrorMessages = {
-          doctor_expertise: formData.doctor_expertise.length === 0 ? "Pilih satu keahlian" : "",
-          doctor_description: !formData.doctor_description ? "Tentang Anda wajib diisi" : "",
-          workday_id: formData.workday_id.length === 0 ? "Pilih satu jadwal" : "",
-          start_time: formData.start_time.length === 0 ? "Pilih jam kerja awal" : "",
-          end_time: formData.end_time.length === 0 ? "Pilih jam kerja akhir" : "",
-        };
-      
-        setErrorMessages(newErrorMessages);
-      
-        if (
-          !formData.doctor_description ||
-          formData.doctor_expertise.length === 0 ||
-          formData.workday_id.length ||
-          formData.start_time.length ||
-          formData.end_time.length
-        ) {
-          return;
-        }
-      
-        window.location.href = "/dokter/dashboard";
-      };
-
-      const formDataKeys = ['doctor_expertise', 'doctor_description', 'workday_id', 'start_time', 'end_time'];
-      const apiData = new FormData();
-      formDataKeys.forEach((key) => {
-        apiData.append(key, formData[key]);
-      });
       
       const handleCreateProfile = async (e) => {
         e.preventDefault();
+
+        const newErrorMessages = {
+            doctor_expertise: formData.doctor_expertise.length === 0 ? "Pilih satu keahlian" : "",
+            doctor_description: !formData.doctor_description ? "Tentang Anda wajib diisi" : "",
+            workday_id: formData.workday_id.length === 0 ? "Pilih satu jadwal" : "",
+            start_time: formData.start_time.length === 0 ? "Pilih jam kerja awal" : "",
+            end_time: formData.end_time.length === 0 ? "Pilih jam kerja akhir" : "",
+        };
+        
+          setErrorMessages(newErrorMessages);
+        
+        if (
+            !formData.doctor_description ||
+            formData.doctor_expertise.length === 0 ||
+            formData.workday_id.length ||
+            formData.start_time.length ||
+            formData.end_time.length
+        ) {
+            return;
+        }
+
+        const formDataKeys = ['doctor_expertise', 'doctor_description', 'workday_id', 'start_time', 'end_time'];
+        const apiData = new FormData();
+        formDataKeys.forEach((key) => {
+        apiData.append(key, formData[key]);
+        });
+
         await createProfileDoctor(apiData, (status, res) => {
           if (status) {
             console.log(res);
@@ -94,9 +85,12 @@ const RegisProfilSingkat = () => {
               setFormData(res.data);
             });
           } else {
-            setErrorMessages({ ...errorMessages, someKey: 'd-block' });
-          }
+            setErrorMessages('d-block')
+        }
         });
+
+        // window.location.href = "/dokter/dashboard";
+
       };      
 
     return (

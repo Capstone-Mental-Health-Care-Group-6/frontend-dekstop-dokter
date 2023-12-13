@@ -40,12 +40,6 @@ const RegisPengalaman = () => {
     }
   };
 
-  useEffect(() => {
-    getAllDoctors((res) => {
-      setFormData(res.data)
-    })
-  }, []);
-
   const [errorMessages, setErrorMessages] = useState({
     doctor_company: "",
     doctor_title: "",
@@ -53,8 +47,10 @@ const RegisPengalaman = () => {
     doctor_end_date: "",
     doctor_company_address: "",
   });
+  
+  const handleCreateProfile = async (e) => {
+    e.preventDefault();
 
-  const handleSubmitClick = () => {
     const newErrorMessages = formData.map((data, index) => ({
       doctor_company: !data.doctor_company ? `Nama Perusahaan wajib diisi (${index + 1})` : "",
       doctor_title: !data.doctor_title ? `Jabatan wajib diisi (${index + 1})` : "",
@@ -68,21 +64,14 @@ const RegisPengalaman = () => {
     if (newErrorMessages.some((error) => Object.values(error).some((value) => value !== ""))) {
       return;
     }
-  
-    window.location.href = "/dokter/regis/profil-singkat";
-  };
-
-  const formDataKeys = ['doctor_company', 'doctor_title', 'doctor_start_date', 'doctor_end_date', 'doctor_company_address'];
-  const apiData = new FormData();
-  formData.forEach((data, index) => {
-    formDataKeys.forEach((key) => {
-      apiData.append(`${key}_${index}`, data[key]);
+    
+    const apiData = new FormData();
+    formData.forEach((data, index) => {
+      Object.entries(data).forEach(([key, value]) => {
+        apiData.append(`${key}_${index}`, value);
+      });
     });
-  });
-  
-  const handleCreateProfile = async (e) => {
-    e.preventDefault();
-  
+
     await createProfileDoctor(apiData, (status, res) => {
       if (status) {
         console.log(res);
@@ -93,6 +82,9 @@ const RegisPengalaman = () => {
         setErrorMessages({ ...errorMessages, someKey: 'd-block' });
       }
     });
+
+    // window.location.href = "/dokter/regis/profil-singkat";
+
   };  
 
   return (

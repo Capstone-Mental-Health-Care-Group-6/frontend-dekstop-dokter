@@ -23,12 +23,6 @@ const RegisDataAkademik = () => {
     setFormData(updatedFormData);
   };
 
-  useEffect(() => {
-    getAllDoctors((res) => {
-      setFormData(res.data)
-    })
-  }, []);
-
   const handleAddData = () => {
     if (formData.length < 5) {
       setFormData([
@@ -43,22 +37,16 @@ const RegisDataAkademik = () => {
     }
   };
 
-  const formDataKeys = ['doctor_university', 'doctor_study_program', 'doctor_enroll_year', 'doctor_graduate_year'];
-  const apiData = new FormData();
-  formData.forEach((data, index) => {
-    formDataKeys.forEach((key) => {
-      apiData.append(`${key}_${index}`, data[key]);
-    });
-  });
-
   const [errorMessages, setErrorMessages] = useState({
     doctor_university: "",
     doctor_study_program: "",
     doctor_enroll_year: "",
     doctor_graduate_year: "",
   });
+  
+  const handleCreateProfile = async (e) => {
+    e.preventDefault();
 
-  const handleSubmitClick = () => {
     const newErrorMessages = formData.map((data, index) => ({
       doctor_university: !data.doctor_university ? `Asal Universitas wajib diisi (${index + 1})` : "",
       doctor_study_program: !data.doctor_study_program ? `Jenjang Pendidikan wajib diisi (${index + 1})` : "",
@@ -71,13 +59,15 @@ const RegisDataAkademik = () => {
     if (newErrorMessages.some((error) => Object.values(error).some((value) => value !== ""))) {
       return;
     }
-  
-    window.location.href = "/dokter/regis/dokumen";
-  };
-  
-  const handleCreateProfile = async (e) => {
-    e.preventDefault();
-  
+
+    const formDataKeys = ['doctor_university', 'doctor_study_program', 'doctor_enroll_year', 'doctor_graduate_year'];
+    const apiData = new FormData();
+    formData.forEach((data, index) => {
+      Object.entries(data).forEach(([key, value]) => {
+        apiData.append(`${key}_${index}`, value);
+      });
+    });
+    
     await createProfileDoctor(apiData, (status, res) => {
       if (status) {
         console.log(res);
@@ -88,6 +78,9 @@ const RegisDataAkademik = () => {
         setErrorMsg('d-block');
       }
     });
+
+    // window.location.href = "/dokter/regis/dokumen";
+
   };
 
   return (
