@@ -1,25 +1,88 @@
 import React, { useEffect, useState } from "react";
 import Layouts from "../../components/layouts/Layouts";
-import { dashboardImg, iconChatBot, imgDataPasienKosong } from "../../../image";
+import {
+  dashboardImg,
+  iconChat,
+  iconChatBot,
+  iconClock,
+  iconPasien,
+  iconZoom,
+  imgDataPasienKosong,
+} from "../../../image";
 import "./Dashboard.css";
 import Card from "../../components/fragments/Card/Card";
 import TableListPasien from "../../components/fragments/TableListPasien/TableListPasien";
-import {
-  cardLaporanMingguan,
-  dataPasien,
-} from "../../components/DataComponents/dataComponents";
+// import {
+//   cardLaporanMingguan,
+//   dataPasien,
+// } from "../../components/DataComponents/dataComponents";
 import { Link } from "react-router-dom";
 import { getAllCounseling } from "../../service/counseling";
+import { getByNameLoginDoctor, login } from "../../service/authentication";
 
 const Dashboard = () => {
   const [dataPasien, setDataPasien] = useState([]);
+  const [userData, setUserData] = useState({});
+  const [totalPasien, setTotalPasien] = useState(0);
+  const [chatCount, setChatCount] = useState(0);
+  const [videoCallCount, setVideoCallCount] = useState(0);
 
   useEffect(() => {
-    // Fetch data from the API and update the state
-    getAllCounseling((data) => {
-      setDataPasien(data.data);
+    getAllCounseling(
+      userData.id,
+      (totalPasienCount, chatCount, videoCallCount) => {
+        // Update the states with the counts
+        setTotalPasien(totalPasienCount);
+        setChatCount(chatCount);
+        setVideoCallCount(videoCallCount);
+      }
+    );
+
+    // const formLogin = {
+    //   name: userData.name,
+    //   email: userData.email,
+    // };
+
+    // login(formLogin, (success, data) => {
+    //   if (success) {
+    //     setUserData(data.data);
+    //   }
+    // });
+
+    getByNameLoginDoctor((data) => {
+      setUserData(data.data);
     });
-  }, []);
+  }, [userData.id]);
+
+  const cardLaporanMingguan = [
+    {
+      bgColor: "#A2DEFF",
+      iconCard: iconPasien,
+      subtitle: "Total Pasien",
+      text: totalPasien.toString(),
+    },
+
+    {
+      bgColor: "#FFBBBB",
+      iconCard: iconClock,
+      subtitle: "Jam Praktek",
+      text: "80",
+    },
+
+    {
+      bgColor: "#C1FFEF",
+      iconCard: iconChat,
+      subtitle: "Layanan Chat",
+      text: chatCount.toString(),
+    },
+
+    {
+      bgColor: "#F0CAFF",
+      iconCard: iconZoom,
+      subtitle: "Layanan Vidio Call",
+      text: videoCallCount.toString(),
+    },
+  ];
 
   return (
     <>
@@ -30,7 +93,7 @@ const Dashboard = () => {
               <div className="row d-flex align-items-center justify-content-between">
                 <div className="col-lg-9 col-md">
                   <h4 className="fw-bold text__title mb-4">
-                    Selamat Datang, dr Helen
+                    {`Selamat Datang, dr ${userData.name || "doctor"}`}
                   </h4>
                   <p className="text__subtitle fw-normal">
                     Have a nice day at work
