@@ -1,25 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import './RegisProfilSingkat.styles.css'
 import Label from "../../components/elements/Input/Label";
 import Button from "../../components/elements/Button/Button";
 import BackButton from "../../components/elements/Button/BackButton";
-import Checkbox from "../../components/elements/Checkbox/Checkbox";
 import RadioButton from "../../components/elements/RadioButton/RadioButton";
+import InputSelect from "../../components/elements/Input/InputSelect";
+import Input from "../../components/elements/Input/Input";
+import { createProfileDoctor, getAllDoctors } from "../../service/doctor";
 
 const RegisProfilSingkat = () => {
     
     const [formData, setFormData] = useState({
-        keahlian: [],
+        doctor_expertise: [],
         tentangAnda: "",
-        jadwal: [],
+        workday_id: "",
+        start_time: "",
+        end_time: "",
     })
-  
-    const [showProfileModal, setShowProfileModal] = useState(false); 
-  
+
+    useEffect(() => {
+        getAllDoctors((res) => {
+          setFormData(res.data)
+        })
+      }, []);
+    
     const [errorMessages, setErrorMessages] = useState({
-        keahlian: "",
-        tentangAnda: "",
-        jadwal: "",
+        doctor_expertise: "",
+        doctor_description: "",
+        workday_id: "",
+        start_time: "",
+        end_time: "",
+    });
+
+    const formDataKeys = ['doctor_expertise', 'doctor_description', 'workday_id', 'start_time', 'end_time'];
+    const apiData = new FormData();
+    formDataKeys.forEach((key) => {
+      apiData.append(key, value);
     });
 
     const handleInputChange = (event) => {
@@ -32,19 +48,6 @@ const RegisProfilSingkat = () => {
             [name]: value,
         }));
     };
-
-    const handleCheckboxChange = (event) => {
-        const { name, value, checked } = event.target;
-    
-        console.log(`Checkbox - Name: ${name}, Value: ${value}, Checked: ${checked}`);
-    
-        setFormData((prevData) => ({
-            ...prevData,
-            keahlian: checked
-                ? [...prevData.keahlian, value]
-                : prevData.keahlian.filter((item) => item !== value),
-        }));
-    };
     
     const handleRadioChange = (event) => {
         console.log("Radio Event:", event);
@@ -54,30 +57,47 @@ const RegisProfilSingkat = () => {
         
         setFormData((prevData) => ({
             ...prevData,
-            jadwal: [value],
+            doctor_expertise: [value],
         }));
     };
   
     const handleSubmitClick = () => {
         const newErrorMessages = {
-          keahlian: formData.keahlian.length === 0 ? "Minimal memilih satu keahlian" : "",
-          tentangAnda: !formData.tentangAnda ? "Tentang Anda wajib diisi" : "",
-          jadwal: formData.jadwal.length === 0 ? "Pilih minimal satu jadwal" : "",
+          doctor_expertise: formData.doctor_expertise.length === 0 ? "Pilih satu keahlian" : "",
+          doctor_description: !formData.doctor_description ? "Tentang Anda wajib diisi" : "",
+          workday_id: formData.workday_id.length === 0 ? "Pilih satu jadwal" : "",
+          start_time: formData.start_time.length === 0 ? "Pilih jam kerja awal" : "",
+          end_time: formData.end_time.length === 0 ? "Pilih jam kerja akhir" : "",
         };
       
         setErrorMessages(newErrorMessages);
       
         if (
-          !formData.tentangAnda ||
-          formData.keahlian.length === 0 ||
-          formData.jadwal.length === 0
+          !formData.doctor_description ||
+          formData.doctor_expertise.length === 0 ||
+          formData.workday_id.length ||
+          formData.start_time.length ||
+          formData.end_time.length
         ) {
           return;
         }
       
         window.location.href = "/dokter/dashboard";
       };
-      
+
+      const handleCreateProfile = async (e) => {
+        e.preventDefault()
+        await createProfileDoctor(apiData, (status, res) => {
+          if (status) {
+            console.log(res);
+            getAllDoctors((res) => {
+              setFormData(res.data)
+            })
+          } else {
+            setErrorMsg('d-block')
+          }
+        })
+      }
 
     return (
         <div className="regis-profil-singkat">
@@ -91,66 +111,66 @@ const RegisProfilSingkat = () => {
 
                     <div className="row">
                         <div className="col-md-6">
-                            <Label htmlFor="keahlian">Keahlian</Label>
+                            <Label htmlFor="doctor_expertise">Keahlian</Label>
                               <div className="form-check-keahlian">
                                 <div className="checkbox-inline">
-                                    <Checkbox 
-                                        value="Pekerjaan" 
+                                    <RadioButton 
+                                        value="1" 
                                         text="Pekerjaan" 
-                                        onChange={handleCheckboxChange} 
+                                        onChange={handleRadioChange} 
                                     />
                                 </div>
                                 <div className="checkbox-inline">
-                                    <Checkbox 
-                                        value="Keluarga" 
+                                    <RadioButton 
+                                        value="5" 
                                         text="Keluarga" 
-                                        onChange={handleCheckboxChange}
+                                        onChange={handleRadioChange}
                                     />
                                 </div>
                                 <div className="checkbox-inline">
-                                    <Checkbox 
-                                        value="Kecanduan" 
+                                    <RadioButton 
+                                        value="2" 
                                         text="Kecanduan" 
-                                        onChange={handleCheckboxChange}
+                                        onChange={handleRadioChange}
                                     />
                                 </div>
                                 <div className="checkbox-inline">
-                                    <Checkbox 
-                                        value="Sosial" 
+                                    <RadioButton 
+                                        value="6" 
                                             text="Sosial" 
-                                            onChange={handleCheckboxChange}
+                                            onChange={handleRadioChange}
                                         />
                                     </div>
                                     <div className="checkbox-inline">
-                                        <Checkbox 
-                                            value="Percintaan" 
+                                        <RadioButton 
+                                            value="3" 
                                             text="Percintaan" 
-                                            onChange={handleCheckboxChange}
+                                            onChange={handleRadioChange}
                                         />
                                     </div>
                                     <div className="checkbox-inline">
-                                        <Checkbox 
-                                            value="Kesepian" 
+                                        <RadioButton 
+                                            value="7" 
                                             text="Kesepian" 
-                                            onChange={handleCheckboxChange}
+                                            onChange={handleRadioChange}
                                         />
                                     </div>
                                     <div className="checkbox-inline">
-                                        <Checkbox 
-                                            value="Pendidikan" 
+                                        <RadioButton 
+                                            value="4" 
                                             text="Pendidikan" 
-                                            onChange={handleCheckboxChange}
+                                            onChange={handleRadioChange}
                                         />
                                     </div>
                                     <div className="checkbox-inline">
-                                        <Checkbox 
-                                            value="Kendali Emosi" 
+                                        <RadioButton 
+                                            value="8" 
                                             text="Kendali Emosi" 
-                                            onChange={handleCheckboxChange}
+                                            onChange={handleRadioChange}
                                         />
                                     </div>
-                                    {errorMessages.keahlian && (
-                                        <div className="invalid-feedback">{errorMessages.keahlian}</div>
+                                    {errorMessages.doctor_expertise && (
+                                        <div className="invalid-feedback">{errorMessages.doctor_expertise}</div>
                                     )}
                                 </div>
                             </div>
@@ -158,76 +178,77 @@ const RegisProfilSingkat = () => {
 
                         <div className="row">
                             <div className="col-md-10">
-                                <Label htmlFor="tentangAnda">Tentang Anda</Label>
+                                <Label htmlFor="doctor_description">Tentang Anda</Label>
                                 <textarea
-                                    className={`form-control ${errorMessages.tentangAnda ? "is-invalid" : ""}`}
-                                    id="tentangAnda"
-                                    name="tentangAnda"
-                                    value={formData.tentangAnda}
+                                    className={`form-control ${errorMessages.doctor_description ? "is-invalid" : ""}`}
+                                    id="doctor_description"
+                                    name="doctor_description"
+                                    value={formData.doctor_description}
                                     onChange={handleInputChange}
                                 />
-                                {errorMessages.tentangAnda && (
-                                    <div className="invalid-feedback">{errorMessages.tentangAnda}</div>
+                                {errorMessages.doctor_description && (
+                                    <div className="invalid-feedback">{errorMessages.doctor_description}</div>
                                 )}
                             </div>
                         </div>
 
                         <div className="row">
                             <div className="col-md-6">
-                                <Label htmlFor="jadwal">Pilih Jadwal</Label>
-                                <div className="form-check-jadwal">
-                                    <div className="checkbox-inline">
-                                        <RadioButton 
-                                            value="Senin, Rabu, Jumat 08.00 WIB - 12.00 WIB" 
-                                            text="Pilihan 1" 
-                                            deskripsi="Senin, Rabu, Jumat 08.00 WIB - 12.00 WIB"
-                                            onChange={handleRadioChange}
-                                        />                      
-                                    </div>
-                                    <div className="checkbox-inline">
-                                        <RadioButton 
-                                            value="Selasa, Kamis, Sabtu 08.00 WIB - 12.00 WIB" 
-                                            text="Pilihan 4" 
-                                            deskripsi="Selasa, Kamis, Sabtu 08.00 WIB - 12.00 WIB"
-                                            onChange={handleRadioChange}
-                                        />
-                                    </div>
-                                    <div className="checkbox-inline">
-                                        <RadioButton 
-                                            value="Senin, Rabu, Jumat 10.00 WIB - 14.00 WIB" 
-                                            text="Pilihan 2" 
-                                            deskripsi="Senin, Rabu, Jumat 10.00 WIB - 14.00 WIB"
-                                            onChange={handleRadioChange}
-                                        />
-                                    </div>
-                                    <div className="checkbox-inline">
-                                        <RadioButton 
-                                            value="Selasa, Kamis, Sabtu 10.00 WIB - 14.00 WIB" 
-                                            text="Pilihan 5" 
-                                            deskripsi="Selasa, Kamis, Sabtu 10.00 WIB - 14.00 WIB"
-                                            onChange={handleRadioChange}
-                                        />
-                                    </div>
-                                    <div className="checkbox-inline">
-                                        <RadioButton 
-                                            value="Senin, Rabu, Jumat 14.00 WIB - 18.00 WIB" 
-                                            text="Pilihan 3" 
-                                            deskripsi="Senin, Rabu, Jumat 14.00 WIB - 18.00 WIB"
-                                            onChange={handleRadioChange}
-                                        />
-                                    </div>
-                                    <div className="checkbox-inline">
-                                        <RadioButton 
-                                            value="Selasa, Kamis, Sabtu 14.00 WIB - 18.00 WIB" 
-                                            text="Pilihan 6" 
-                                            deskripsi="Selasa, Kamis, Sabtu 14.00 WIB - 18.00 WIB"
-                                            onChange={handleRadioChange}
-                                        />
-                                    </div>
-                                    {errorMessages.jadwal && (
-                                        <div className="invalid-feedback">{errorMessages.jadwal}</div>
-                                     )}
-                                </div>
+                                <Label htmlFor="workday_id">Pilih Jadwal</Label>
+                                <InputSelect 
+                                    className={`form-select ${errorMessages.workday_id ? "is-invalid" : ""}`}
+                                    id="workday_id"
+                                    name="workday_id"
+                                    title="Hari"
+                                    options={[
+                                        { value: 1, label: "Minggu" },
+                                        { value: 2, label: "Senin" },
+                                        { value: 3, label: "Selasa" },
+                                        { value: 4, label: "Rabu" },
+                                        { value: 5, label: "Kamis" },
+                                        { value: 6, label: "Jumat" },
+                                        { value: 7, label: "Sabtu" },
+                                      ]}                                    
+                                    value={formData.workday_id}
+                                    onChange={handleInputChange}
+                                />
+                                {errorMessages.workday_id && (
+                                    <div className="invalid-feedback">{errorMessages.workday_id}</div>
+                                )}
+                            </div>
+                        </div>
+
+                        <div className="row">
+                            <div className="col-md-6">
+                                <Label htmlFor="start_time">Jam Kerja Awal</Label>
+                                <Input
+                                    type="time" 
+                                    className={`form-select ${errorMessages.start_time ? "is-invalid" : ""}`}
+                                    id="start_time"
+                                    name="start_time"
+                                    value={formData.start_time}
+                                    onChange={handleInputChange}
+                                />
+                                {errorMessages.start_time && (
+                                    <div className="invalid-feedback">{errorMessages.start_time}</div>
+                                )}
+                            </div>
+                        </div>
+
+                        <div className="row">
+                            <div className="col-md-6">
+                                <Label htmlFor="end_time">Jam Kerja Akhir</Label>
+                                <Input
+                                    type="time" 
+                                    className={`form-select ${errorMessages.end_time ? "is-invalid" : ""}`}
+                                    id="end_time"
+                                    name="end_time"
+                                    value={formData.end_time}
+                                    onChange={handleInputChange}
+                                />
+                                {errorMessages.end_time && (
+                                    <div className="invalid-feedback">{errorMessages.end_time}</div>
+                                )}
                             </div>
                         </div>
                     </form>
@@ -237,7 +258,7 @@ const RegisProfilSingkat = () => {
                             type="button"
                             className="btn btn-primary"
                             text="Selanjutnya"
-                            onClick={handleSubmitClick}
+                            onClick={handleCreateProfile}
                         />
                     </div>
                 </div>

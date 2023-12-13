@@ -100,7 +100,7 @@ const Dokumen = () => {
                     type="file"
                     style={{ display: "none" }}
                     onChange={(e) =>
-                      handleFileChange(e, setSippkFile, (value) =>
+                      handleFileChange(e, setCvFile, (value) =>
                         document.getElementById("cv").value = value
                       )
                     }                  />

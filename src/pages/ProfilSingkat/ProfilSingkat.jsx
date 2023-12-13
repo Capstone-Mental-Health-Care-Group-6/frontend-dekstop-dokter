@@ -98,56 +98,56 @@ const ProfilSingkat = () => {
                                 <Label htmlFor="keahlian">Keahlian</Label>
                                 <div className="form-check-keahlian">
                                     <div className="checkbox-inline">
-                                        <Checkbox 
-                                            value="Pekerjaan" 
-                                            text="Pekerjaan" 
-                                            onChange={handleCheckboxChange} 
-                                        />
-                                    </div>
-                                    <div className="checkbox-inline">
-                                        <Checkbox 
-                                            value="Keluarga" 
-                                            text="Keluarga" 
-                                            onChange={handleCheckboxChange}
-                                        />
-                                    </div>
-                                    <div className="checkbox-inline">
-                                        <Checkbox 
-                                            value="Kecanduan" 
-                                            text="Kecanduan" 
-                                            onChange={handleCheckboxChange}
-                                        />
-                                    </div>
-                                    <div className="checkbox-inline">
-                                        <Checkbox 
-                                            value="Sosial" 
+                                    <RadioButton 
+                                        value="Pekerjaan" 
+                                        text="Pekerjaan" 
+                                        onChange={handleCheckboxChange} 
+                                    />
+                                </div>
+                                <div className="checkbox-inline">
+                                    <RadioButton 
+                                        value="Keluarga" 
+                                        text="Keluarga" 
+                                        onChange={handleCheckboxChange}
+                                    />
+                                </div>
+                                <div className="checkbox-inline">
+                                    <RadioButton 
+                                        value="Kecanduan" 
+                                        text="Kecanduan" 
+                                        onChange={handleCheckboxChange}
+                                    />
+                                </div>
+                                <div className="checkbox-inline">
+                                    <RadioButton 
+                                        value="Sosial" 
                                             text="Sosial" 
                                             onChange={handleCheckboxChange}
                                         />
                                     </div>
                                     <div className="checkbox-inline">
-                                        <Checkbox 
+                                        <RadioButton 
                                             value="Percintaan" 
                                             text="Percintaan" 
                                             onChange={handleCheckboxChange}
                                         />
                                     </div>
                                     <div className="checkbox-inline">
-                                        <Checkbox 
+                                        <RadioButton 
                                             value="Kesepian" 
                                             text="Kesepian" 
                                             onChange={handleCheckboxChange}
                                         />
                                     </div>
                                     <div className="checkbox-inline">
-                                        <Checkbox 
+                                        <RadioButton 
                                             value="Pendidikan" 
                                             text="Pendidikan" 
                                             onChange={handleCheckboxChange}
                                         />
                                     </div>
                                     <div className="checkbox-inline">
-                                        <Checkbox 
+                                        <RadioButton 
                                             value="Kendali Emosi" 
                                             text="Kendali Emosi" 
                                             onChange={handleCheckboxChange}

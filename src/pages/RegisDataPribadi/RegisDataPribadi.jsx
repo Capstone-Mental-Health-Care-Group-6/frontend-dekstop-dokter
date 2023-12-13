@@ -1,61 +1,76 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { gambar } from "../../../image"; 
 import Input from "../../components/elements/Input/Input";
 import Label from "../../components/elements/Input/Label";
 import InputSelect from "../../components/elements/Input/InputSelect";
 import Button from "../../components/elements/Button/Button";
 import "./RegisDataPribadi.styles.css"
+import { createProfileDoctor, getAllDoctors } from "../../service/doctor";
 
 const RegisDataPribadi = () => {
   const [formData, setFormData] = useState({
-    namaLengkap: "",
+    doctor_name: "",
     email: "",
-    nik: "",
-    noHandphone: "",
-    tanggalLahir: "",
-    provinsi: "",
-    jenisKelamin: "",
-    kotaKabupaten: "",
-    str: "",
-    noSip: "",
+    doctor_nik: "",
+    doctor_numberphone: "",
+    doctor_dob: "",
+    doctor_provinsi: "",
+    doctor_gender: "",
+    doctor_kota: "",
+    doctor_str: "",
+    doctor_sipp: "",
+    doctor_avatar: null, 
   });
 
+  useEffect(() => {
+    getAllDoctors((res) => {
+      setFormData(res.data)
+    })
+  }, []);
+
+  const formDataKeys = ['doctor_avatar', 'doctor_name', 'doctor_nik', 'doctor_numberphone', 'doctor_dob', 'doctor_provinsi', 'doctor_gender', 'doctor_kota', 'doctor_str', 'doctor_sipp', 'email'];
+  const apiData = new FormData();
+  
+  formDataKeys.forEach((key) => {
+      if (key !== 'email' && formData.hasOwnProperty(key)) {
+          apiData.append(key, formData[key]);
+      }
+  });
 
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
   const [errorMessages, setErrorMessages] = useState({
-    namaLengkap: "",
+    doctor_name: "",
     email: "",
-    nik: "",
-    noHandphone: "",
-    tanggalLahir: "",
-    provinsi: "",
-    jenisKelamin: "",
-    kotaKabupaten: "",
-    str: "",
-    noSip: "",
+    doctor_nik: "",
+    doctor_numberphone: "",
+    doctor_dob: "",
+    doctor_provinsi: "",
+    doctor_gender: "",
+    doctor_kota: "",
+    doctor_str: "",
+    doctor_sipp: "",
+    doctor_avatar: null,
   });
-
-  const [selectedImage, setSelectedImage] = useState(null);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
 
-    if (name === 'nik' || name === 'noHandphone' || name === 'str') {
+    if (name === 'doctor_nik' || name === 'doctor_numberphone' || name === 'doctor_str') {
       const isNumeric = /^\d+$/.test(value);
       
       setErrorMessages((prevErrors) => ({
         ...prevErrors,
-        [name]: isNumeric ? '' : `${name === 'nik' ? 'NIK' : name === 'noHandphone' ? 'Nomor handphone' : 'Nomor STR'} harus berupa angka`,
+        [name]: isNumeric ? '' : `${name === 'doctor_nik' ? 'NIK' : name === 'doctor_numberphone' ? 'Nomor handphone' : 'Nomor STR'} harus berupa angka`,
       }));
     }
 
-    if (name === 'namaLengkap' || name === 'provinsi' || name === 'kotaKabupaten') {
+    if (name === 'doctor_name' || name === 'doctor_provinsi' || name === 'doctor_kota') {
       const isAlphabetic = /^[A-Za-z ]+$/.test(value);
       
       setErrorMessages((prevErrors) => ({
         ...prevErrors,
-        [name]: isAlphabetic ? '' : `${name === 'namaLengkap' ? 'Nama Lengkap' : name === 'provinsi' ? 'Provinsi' : 'Kota/Kabupaten'} hanya boleh berisi huruf dan spasi`,
+        [name]: isAlphabetic ? '' : `${name === 'doctor_name' ? 'Nama Lengkap' : name === 'doctor_provinsi' ? 'Provinsi' : 'Kota/Kabupaten'} hanya boleh berisi huruf dan spasi`,
       }));
     }
 
@@ -67,6 +82,8 @@ const RegisDataPribadi = () => {
       }));
     }
 
+    console.log(`Name: ${name}, Value: ${value}`);
+
     setFormData({ ...formData, [name]: value });
   };
 
@@ -75,11 +92,12 @@ const RegisDataPribadi = () => {
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        setSelectedImage(reader.result);
+        setFormData({ ...formData, doctor_avatar: reader.result });
       };
       reader.readAsDataURL(file);
     }
   };
+
 
   const openFileInput = () => {
     document.getElementById("imageInput").click();
@@ -87,16 +105,17 @@ const RegisDataPribadi = () => {
 
   const handleSubmitClick = () => {
     const newErrorMessages = {
-      namaLengkap: !formData.namaLengkap ? "Nama lengkap wajib diisi" : "",
+      doctor_name: !formData.doctor_name ? "Nama lengkap wajib diisi" : "",
       email: !formData.email ? "Email wajib diisi" : "",
-      nik: !formData.nik ? "NIK wajib diisi" : "",
-      noHandphone: !formData.noHandphone ? "Nomor handphone wajib diisi" : "",
-      tanggalLahir: !formData.tanggalLahir ? "Tanggal lahir wajib diisi" : "",
-      provinsi: !formData.provinsi ? "Provinsi wajib diisi" : "",
-      jenisKelamin: !formData.jenisKelamin ? "Jenis kelamin wajib dipilih" : "",
-      kotaKabupaten: !formData.kotaKabupaten ? "Kota/Kabupaten wajib diisi" : "",
-      str: !formData.str ? "Nomor STR wajib diisi" : "",
-      noSip: !formData.noSip ? "Nomor SIP wajib diisi" : "",
+      doctor_nik: !formData.doctor_nik ? "NIK wajib diisi" : "",
+      doctor_numberphone: !formData.doctor_numberphone ? "Nomor handphone wajib diisi" : "",
+      doctor_dob: !formData.doctor_dob ? "Tanggal lahir wajib diisi" : "",
+      doctor_provinsi: !formData.doctor_provinsi ? "Provinsi wajib diisi" : "",
+      doctor_gender: !formData.doctor_gender ? "Jenis kelamin wajib dipilih" : "",
+      doctor_kota: !formData.doctor_kota ? "Kota/Kabupaten wajib diisi" : "",
+      doctor_str: !formData.doctor_str ? "Nomor STR wajib diisi" : "",
+      doctor_sipp: !formData.doctor_sipp ? "Nomor SIP wajib diisi" : "",
+      doctor_avatar: !formData.doctor_avatar ? "" : "",
     };
   
     setErrorMessages(newErrorMessages);
@@ -111,6 +130,19 @@ const RegisDataPribadi = () => {
     window.location.href = "/dokter/regis/data-akademik";
   };
   
+  const handleCreateProfile = async (e) => {
+    e.preventDefault()
+    await createProfileDoctor(apiData, (status, res) => {
+      if (status) {
+        console.log(res);
+        getAllDoctors((res) => {
+          setFormData(res.data)
+        })
+      } else {
+        setErrorMessages('d-block')
+      }
+    })
+  }
 
   return (
     <div className="regis-data-pribadi">
@@ -123,8 +155,8 @@ const RegisDataPribadi = () => {
             <div className="card-body" onClick={openFileInput}>
               <div className="row mb-3">
                 <div className="col-md-4">
-                  {selectedImage ? (
-                    <img src={selectedImage} className="img-fluid" alt="Profile" />
+                {formData.doctor_avatar ? (
+                    <img src={formData.doctor_avatar} className="img-fluid" alt="Profile" />
                   ) : (
                     <img src={gambar} className="img-fluid" alt="Default" />
                   )}
@@ -147,18 +179,18 @@ const RegisDataPribadi = () => {
             <h4 className="data-pribadi-title">Data Pribadi</h4>
             <div className="row mb-3">
             <div className="col-md-6">
-              <Label htmlFor="namaLengkap">Nama Lengkap</Label>
+              <Label htmlFor="doctor_name">Nama Lengkap</Label>
                   <Input
                     type="text"
-                    className={`form-control mb-2 ${errorMessages.namaLengkap ? "is-invalid" : ""}`}                  
-                    id="namaLengkap"
-                    name="namaLengkap"
+                    className={`form-control mb-2 ${errorMessages.doctor_name ? "is-invalid" : ""}`}                  
+                    id="doctor_name"
+                    name="doctor_name"
                     placeholder="Nama Lengkap"
-                    value={formData.namaLengkap}
+                    value={formData.doctor_name}
                     onChange={handleInputChange}
                   />
-                  {errorMessages.namaLengkap && (
-                    <div className="invalid-feedback">{errorMessages.namaLengkap}</div>
+                  {errorMessages.doctor_name && (
+                    <div className="invalid-feedback">{errorMessages.doctor_name}</div>
                   )} 
               </div>
 
@@ -181,136 +213,138 @@ const RegisDataPribadi = () => {
 
             <div className="row mb-3">
               <div className="col-md-6">
-                <Label htmlFor="nik">NIK</Label>
+                <Label htmlFor="doctor_nik">NIK</Label>
                 <Input
                   type="text"
-                  className={`form-control mb-2 ${errorMessages.nik ? "is-invalid" : ""}`}                  
-                  id="nik"
-                  name="nik"
+                  className={`form-control mb-2 ${errorMessages.doctor_nik ? "is-invalid" : ""}`}                  
+                  id="doctor_nik"
+                  name="doctor_nik"
                   placeholder="Nomor Induk Kependudukan"
-                  value={formData.nik}
+                  value={formData.doctor_nik}
                   onChange={handleInputChange}
                 />
-                {errorMessages.nik && (
-                  <div className="invalid-feedback">{errorMessages.nik}</div>
+                {errorMessages.doctor_nik && (
+                  <div className="invalid-feedback">{errorMessages.doctor_nik}</div>
                 )} 
               </div>
 
               <div className="col-md-6">
-                <Label htmlFor="noHandphone">No Handphone</Label>
+                <Label htmlFor="doctor_numberphone">No Handphone</Label>
                   <Input
                     type="text"
-                    className={`form-control mb-2 ${errorMessages.noHandphone ? "is-invalid" : ""}`}                  
-                    id="noHandphone"
-                    name="noHandphone"
+                    className={`form-control mb-2 ${errorMessages.doctor_numberphone ? "is-invalid" : ""}`}                  
+                    id="doctor_numberphone"
+                    name="doctor_numberphone"
                     placeholder="Nomor Ponsel"
-                    value={formData.noHandphone}
+                    value={formData.doctor_numberphone}
                     onChange={handleInputChange}
                   />
-                  {errorMessages.noHandphone && (
-                    <div className="invalid-feedback">{errorMessages.noHandphone}</div>
+                  {errorMessages.doctor_numberphone && (
+                    <div className="invalid-feedback">{errorMessages.doctor_numberphone}</div>
                   )} 
                 </div>
               </div>
 
               <div className="row mb-3">
                 <div className="col-md-6">
-                  <Label htmlFor="tanggalLahir">Tanggal Lahir</Label>
+                  <Label htmlFor="doctor_dob">Tanggal Lahir</Label>
                   <Input
                     type="date"
-                    className={`form-control mb-2 ${errorMessages.tanggalLahir ? "is-invalid" : ""}`}                  
-                    id="tanggalLahir"
-                    name="tanggalLahir"
-                    placeholder="Jenis Kelamin"
-                    value={formData.tanggalLahir}
+                    className={`form-control mb-2 ${errorMessages.doctor_dob ? "is-invalid" : ""}`}                  
+                    id="doctor_dob"
+                    name="doctor_dob"
+                    value={formData.doctor_dob}
                     onChange={handleInputChange}
                   />
-                  {errorMessages.tanggalLahir && (
-                    <div className="invalid-feedback">{errorMessages.tanggalLahir}</div>
+                  {errorMessages.doctor_dob && (
+                    <div className="invalid-feedback">{errorMessages.doctor_dob}</div>
                   )} 
                 </div>
 
                 <div className="col-md-6">
-                  <Label htmlFor="provinsi">Provinsi</Label>
+                  <Label htmlFor="doctor_provinsi">Provinsi</Label>
                   <Input
                     type="text"
-                    className={`form-control mb-2 ${errorMessages.provinsi ? "is-invalid" : ""}`}                  
-                    id="provinsi"
-                    name="provinsi"
+                    className={`form-control mb-2 ${errorMessages.doctor_provinsi ? "is-invalid" : ""}`}                  
+                    id="doctor_provinsi"
+                    name="doctor_provinsi"
                     placeholder="Masukkan Provinsi"
-                    value={formData.provinsi}
+                    value={formData.doctor_provinsi}
                     onChange={handleInputChange}
                   />
-                  {errorMessages.provinsi && (
-                    <div className="invalid-feedback">{errorMessages.provinsi}</div>
+                  {errorMessages.doctor_provinsi && (
+                    <div className="invalid-feedback">{errorMessages.doctor_provinsi}</div>
                   )} 
                 </div>
               </div>
 
               <div className="row mb-3">
                 <div className="col-md-6">
-                  <Label htmlFor="jenisKelamin">Jenis Kelamin</Label>
+                  <Label htmlFor="doctor_gender">Jenis Kelamin</Label>
                   <InputSelect
-                    className={`form-select ${errorMessages.jenisKelamin ? "is-invalid" : ""}`}
-                    id="jenisKelamin"
-                    name="jenisKelamin"
+                    className={`form-select ${errorMessages.doctor_gender ? "is-invalid" : ""}`}
+                    id="doctor_gender"
+                    name="doctor_gender"
                     title="Jenis Kelamin"
-                    options={["Laki-laki", "Perempuan"]}
-                    value={formData.jenisKelamin}
+                    options={[
+                      { value: "Laki-laki", label: "Laki-laki" },
+                      { value: "Perempuan", label: "Perempuan" },
+                    ]}
+                    value={formData.doctor_gender}
                     onChange={handleInputChange}
                   />
-                  {errorMessages.jenisKelamin && (
-                    <div className="invalid-feedback">{errorMessages.jenisKelamin}</div>
+                  {errorMessages.doctor_gender && (
+                    <div className="invalid-feedback">{errorMessages.doctor_gender}</div>
                   )} 
                 </div>
 
                 <div className="col-md-6">
-                  <Label htmlFor="kotaKabupaten">Kota/Kabupaten</Label>
+                  <Label htmlFor="doctor_kota">Kota/Kabupaten</Label>
                   <Input
                     type="text"
-                    className={`form-control mb-2 ${errorMessages.kotaKabupaten ? "is-invalid" : ""}`}                  
-                    id="kotaKabupaten"
-                    name="kotaKabupaten"
+                    className={`form-control mb-2 ${errorMessages.doctor_kota ? "is-invalid" : ""}`}                  
+                    id="doctor_kota"
+                    name="doctor_kota"
                     placeholder="Kota/Kabupaten"
-                    value={formData.kotaKabupaten}
+                    value={formData.doctor_kota}
                     onChange={handleInputChange}
                   />
-                  {errorMessages.kotaKabupaten && (
-                    <div className="invalid-feedback">{errorMessages.kotaKabupaten}</div>
+                  {errorMessages.doctor_kota && (
+                    <div className="invalid-feedback">{errorMessages.doctor_kota}</div>
                   )} 
                 </div>
               </div>
 
               <div className="row mb-3">
               <div className="col-md-6">
-                <Label htmlFor="str">Nomor STR</Label>
+                <Label htmlFor="doctor_str">Nomor STR</Label>
                 <Input
                   type="text"
-                  className={`form-control mb-2 ${errorMessages.str ? "is-invalid" : ""}`}                  
-                  id="str"
-                  name="str"
+                  className={`form-control mb-2 ${errorMessages.doctor_str ? "is-invalid" : ""}`}                  
+                  id="doctor_str"
+                  name="doctor_str"
                   placeholder="Nomor Surat Tanda Registrasi"
-                  value={formData.str}
+                  value={formData.doctor_str}
                   onChange={handleInputChange}
                 />
-                {errorMessages.str && (
-                  <div className="invalid-feedback">{errorMessages.str}</div>
+                {errorMessages.doctor_str && (
+                  <div className="invalid-feedback">{errorMessages.doctor_str}</div>
                 )} 
               </div>
 
               <div className="col-md-6">
-                <Label htmlFor="noSip">Nomor SIP</Label>
+                <Label htmlFor="doctor_sipp">Nomor SIP</Label>
                   <Input
                     type="text"
-                    className={`form-control mb-2 ${errorMessages.noSip ? "is-invalid" : ""}`}                  
-                    id="noSip"
-                    name="noSip"
+                    className={`form-control mb-2 ${errorMessages.doctor_sipp ? "is-invalid" : ""}`}                  
+                    id="doctor_sipp"
+                    name="doctor_sipp"
                     placeholder="Nomor Surat Izin Praktik"
-                    value={formData.noSip}
+                    value={formData.doctor_sipp}
                     onChange={handleInputChange}
                   />
-                  {errorMessages.noSip && (
-                    <div className="invalid-feedback">{errorMessages.noSip}</div>
+                  {errorMessages.doctor_sipp && (
+                    <div className="invalid-feedback">{errorMessages.doctor_sipp}</div>
                   )} 
                 </div>
               </div>
@@ -321,7 +355,7 @@ const RegisDataPribadi = () => {
                 type="submit"
                 className="btn btn-primary"
                 text="Selanjutnya"
-                onClick={handleSubmitClick}
+                onClick={handleCreateProfile}
               />
           </div> 
         </div> 

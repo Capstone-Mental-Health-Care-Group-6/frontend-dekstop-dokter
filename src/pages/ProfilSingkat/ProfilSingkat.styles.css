@@ -57,27 +57,13 @@
     flex: 0 0 50%;
 }
 
-.profil-singkat .container .profil-singkat-form .row .col-md-6 .form-check-keahlian .checkbox-inline .form-check,
-.profil-singkat .container .profil-singkat-form .row .col-md-6 .form-check-jadwal .checkbox-inline .form-check {
+.profil-singkat .container .profil-singkat-form .row .col-md-6 .form-check-keahlian .checkbox-inline .form-check-radio,
+.profil-singkat .container .profil-singkat-form .row .col-md-6 .form-check-jadwal .checkbox-inline .form-check-radio {
     padding-bottom: 5%; 
     padding-left: 15%;
 }
 
-.profil-singkat .container .profil-singkat-form .row .col-md-6 .form-check-keahlian .checkbox-inline .form-check .form-check-input { 
-    display: flex;
-    width: 20px;
-    height: 20px;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-radius: 2px;
-    border-top: 2px solid var(--neutral-100, #DCDCDC);
-    border-right: var(--spc-2, 2px) solid var(--neutral-100, #DCDCDC);
-    border-bottom: var(--spc-2, 2px) solid var(--neutral-100, #DCDCDC);
-    border-left: var(--spc-2, 2px) solid var(--neutral-100, #DCDCDC);
-}
-
-.profil-singkat .container .profil-singkat-form .row .col-md-6 .form-check-keahlian .checkbox-inline .form-check .form-check-label,
+.profil-singkat .container .profil-singkat-form .row .col-md-6 .form-check-keahlian .checkbox-inline .form-check-radio .form-check-label,
 .profil-singkat .container .profil-singkat-form .row .col-md-6 .form-check-jadwal .checkbox-inline .form-check-radio .form-check-label { 
     padding-left: 5px;
     color: var(--neutral-1000, #000);

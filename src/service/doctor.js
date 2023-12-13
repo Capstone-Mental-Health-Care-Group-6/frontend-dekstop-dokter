@@ -1,10 +1,8 @@
 import { axiosInterceptor } from "./axiosInterceptors";
 const url = process.env.BASE_API
 
-
-
 export const getAllDoctors = (callback) => {
-    axiosInterceptor.get(`${url}/patients`)
+    axiosInterceptor.get(`${url}/doctor`)
         .then((res) => {
             callback(res.data);
             console.log(res.data);
@@ -24,4 +22,19 @@ export const DetailDoctor = (id, callback) => {
         });
 
 }
+
+export const createProfileDoctor = async (formData, callback) => {
+    await axiosInterceptor.post('/doctor/register', formData, {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+        },
+    })
+        .then((res) => {
+            callback(true, res.data);
+        })
+        .catch((err) => {
+            console.log(err);
+            callback(false, err.message);
+        });
+};
 

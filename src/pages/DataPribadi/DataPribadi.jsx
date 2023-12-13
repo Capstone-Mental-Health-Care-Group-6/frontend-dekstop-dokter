@@ -40,6 +40,7 @@ const DataPribadi = () => {
   });
 
   const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedImageData, setSelectedImageData] = useState(null);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -79,6 +80,7 @@ const DataPribadi = () => {
       const reader = new FileReader();
       reader.onloadend = () => {
         setSelectedImage(reader.result);
+        setSelectedImageData(file);
       };
       reader.readAsDataURL(file);
     }
@@ -109,6 +111,8 @@ const DataPribadi = () => {
     if (!formData.namaLengkap || !formData.email || !formData.nik || !formData.noHandphone || !formData.tanggalLahir || !formData.provinsi || !formData.jenisKelamin || !formData.kotaKabupaten || !formData.str || !formData.noSip) {
       return;
     }
+
+    console.log("Selected Image Data:", selectedImageData);
 
     setShowProfileModal(true);
   };
