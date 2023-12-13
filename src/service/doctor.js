@@ -13,7 +13,7 @@ export const getAllDoctors = (callback) => {
 }
 
 export const DetailDoctor = (id, callback) => {
-    axiosInterceptor.get(`${url}/patients/${id}`)
+    axiosInterceptor.get(`${url}/doctor/${id}`)
 
         .then((res) => {
             callback((res.data))

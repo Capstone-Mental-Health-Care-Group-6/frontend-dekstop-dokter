@@ -22,21 +22,6 @@ const RegisDataPribadi = () => {
     doctor_avatar: null, 
   });
 
-  useEffect(() => {
-    getAllDoctors((res) => {
-      setFormData(res.data)
-    })
-  }, []);
-
-  const formDataKeys = ['doctor_avatar', 'doctor_name', 'doctor_nik', 'doctor_numberphone', 'doctor_dob', 'doctor_provinsi', 'doctor_gender', 'doctor_kota', 'doctor_str', 'doctor_sipp', 'email'];
-  const apiData = new FormData();
-  
-  formDataKeys.forEach((key) => {
-      if (key !== 'email' && formData.hasOwnProperty(key)) {
-          apiData.append(key, formData[key]);
-      }
-  });
-
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
   const [errorMessages, setErrorMessages] = useState({
@@ -129,6 +114,20 @@ const RegisDataPribadi = () => {
   
     window.location.href = "/dokter/regis/data-akademik";
   };
+
+  // useEffect(() => {
+  //   getAllDoctors((res) => {
+  //     setFormData(res.data)
+  //   })
+  // }, []);
+
+  const formDataKeys = ['doctor_avatar', 'doctor_name', 'doctor_nik', 'doctor_numberphone', 'doctor_dob', 'doctor_provinsi', 'doctor_gender', 'doctor_kota', 'doctor_str', 'doctor_sipp', 'email'];
+  const apiData = new FormData();
+  formDataKeys.forEach((key) => {
+      if (key !== 'email' && formData.hasOwnProperty(key)) {
+          apiData.append(key, formData[key]);
+      }
+  });
   
   const handleCreateProfile = async (e) => {
     e.preventDefault()

@@ -32,12 +32,6 @@ const RegisProfilSingkat = () => {
         end_time: "",
     });
 
-    const formDataKeys = ['doctor_expertise', 'doctor_description', 'workday_id', 'start_time', 'end_time'];
-    const apiData = new FormData();
-    formDataKeys.forEach((key) => {
-      apiData.append(key, value);
-    });
-
     const handleInputChange = (event) => {
         const { name, value } = event.target;
     
@@ -85,19 +79,25 @@ const RegisProfilSingkat = () => {
         window.location.href = "/dokter/dashboard";
       };
 
+      const formDataKeys = ['doctor_expertise', 'doctor_description', 'workday_id', 'start_time', 'end_time'];
+      const apiData = new FormData();
+      formDataKeys.forEach((key) => {
+        apiData.append(key, formData[key]);
+      });
+      
       const handleCreateProfile = async (e) => {
-        e.preventDefault()
+        e.preventDefault();
         await createProfileDoctor(apiData, (status, res) => {
           if (status) {
             console.log(res);
             getAllDoctors((res) => {
-              setFormData(res.data)
-            })
+              setFormData(res.data);
+            });
           } else {
-            setErrorMsg('d-block')
+            setErrorMessages({ ...errorMessages, someKey: 'd-block' });
           }
-        })
-      }
+        });
+      };      
 
     return (
         <div className="regis-profil-singkat">

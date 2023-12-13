@@ -26,13 +26,7 @@ const RegisDokumen = () => {
     doctor_ijazah: "",
     doctor_str_file: "",
   });
-
-  const formDataKeys = ['doctor_cv', 'doctor_sipp_file', 'doctor_ijazah', 'doctor_str_file'];
-  const apiData = new FormData();
-  formDataKeys.forEach((key) => {
-    apiData.append(key, value);
-  });
-
+  
   const handleFileChange = (event, setFile, setInputValue, inputName) => {
     const selectedFile = event.target.files[0];
     setFile(selectedFile);
@@ -60,19 +54,27 @@ const RegisDokumen = () => {
     window.location.href = "/dokter/regis/pengalaman";
   };
 
+  const formDataKeys = ['doctor_cv', 'doctor_sipp_file', 'doctor_ijazah', 'doctor_str_file'];
+  const apiData = new FormData();
+  formDataKeys.forEach((key) => {
+    apiData.append(key, files[key]);
+  });
+  
   const handleCreateProfile = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
+  
     await createProfileDoctor(apiData, (status, res) => {
       if (status) {
         console.log(res);
         getAllDoctors((res) => {
-          setFormData(res.data)
-        })
+          setFormData(res.data);
+        });
       } else {
-        setErrorMsg('d-block')
+        // Use setErrorMessages or handle errors as needed
+        setErrorMessages({ ...errorMessages, someKey: 'd-block' });
       }
-    })
-  }
+    });
+  };  
 
   return (
       <div className="regis-dokumen">

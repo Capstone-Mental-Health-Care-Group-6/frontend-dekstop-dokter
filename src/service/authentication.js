@@ -41,4 +41,3 @@ export const resetPassword = (id, formResetPass) => {
             console.log(err);
         });
 }
-

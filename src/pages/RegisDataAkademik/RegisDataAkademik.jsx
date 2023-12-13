@@ -45,8 +45,10 @@ const RegisDataAkademik = () => {
 
   const formDataKeys = ['doctor_university', 'doctor_study_program', 'doctor_enroll_year', 'doctor_graduate_year'];
   const apiData = new FormData();
-  formDataKeys.forEach((key) => {
-    apiData.append(key, value);
+  formData.forEach((data, index) => {
+    formDataKeys.forEach((key) => {
+      apiData.append(`${key}_${index}`, data[key]);
+    });
   });
 
   const [errorMessages, setErrorMessages] = useState({
@@ -74,18 +76,19 @@ const RegisDataAkademik = () => {
   };
   
   const handleCreateProfile = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
+  
     await createProfileDoctor(apiData, (status, res) => {
       if (status) {
         console.log(res);
         getAllDoctors((res) => {
-          setFormData(res.data)
-        })
+          setFormData(res.data);
+        });
       } else {
-        setErrorMsg('d-block')
+        setErrorMsg('d-block');
       }
-    })
-  }
+    });
+  };
 
   return (
       <div className="regis-data-akademik">

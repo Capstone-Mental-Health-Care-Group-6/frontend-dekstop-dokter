@@ -54,12 +54,6 @@ const RegisPengalaman = () => {
     doctor_company_address: "",
   });
 
-  const formDataKeys = ['doctor_company', 'doctor_title', 'doctor_start_date', 'doctor_end_date', 'doctor_company_address'];
-  const apiData = new FormData();
-  formDataKeys.forEach((key) => {
-    apiData.append(key, value);
-  });
-
   const handleSubmitClick = () => {
     const newErrorMessages = formData.map((data, index) => ({
       doctor_company: !data.doctor_company ? `Nama Perusahaan wajib diisi (${index + 1})` : "",
@@ -78,19 +72,28 @@ const RegisPengalaman = () => {
     window.location.href = "/dokter/regis/profil-singkat";
   };
 
+  const formDataKeys = ['doctor_company', 'doctor_title', 'doctor_start_date', 'doctor_end_date', 'doctor_company_address'];
+  const apiData = new FormData();
+  formData.forEach((data, index) => {
+    formDataKeys.forEach((key) => {
+      apiData.append(`${key}_${index}`, data[key]);
+    });
+  });
+  
   const handleCreateProfile = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
+  
     await createProfileDoctor(apiData, (status, res) => {
       if (status) {
         console.log(res);
         getAllDoctors((res) => {
-          setFormData(res.data)
-        })
+          setFormData(res.data);
+        });
       } else {
-        setErrorMsg('d-block')
+        setErrorMessages({ ...errorMessages, someKey: 'd-block' });
       }
-    })
-  }
+    });
+  };  
 
   return (
       <div className="regis-pengalaman">
