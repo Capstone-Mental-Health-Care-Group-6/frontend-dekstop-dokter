@@ -11,44 +11,14 @@ import {
   personChat,
   personChat2,
   personChat3,
-  avatar1, 
-  avatar2, 
-  avatar3, 
-  avatar4, 
+  avatar1,
+  avatar2,
+  avatar3,
+  avatar4,
   avatar5,
-  BuktiTransaksi
+  BuktiTransaksi,
 } from "../../../image";
 import Button from "../elements/Button/Button";
-
-export const cardLaporanMingguan = [
-  {
-    bgColor: "#A2DEFF",
-    iconCard: iconPasien,
-    subtitle: "Total Pasien",
-    text: "28",
-  },
-
-  {
-    bgColor: "#FFBBBB",
-    iconCard: iconClock,
-    subtitle: "Jam Praktek",
-    text: "80",
-  },
-
-  {
-    bgColor: "#C1FFEF",
-    iconCard: iconChat,
-    subtitle: "Layanan Chat",
-    text: "18",
-  },
-
-  {
-    bgColor: "#F0CAFF",
-    iconCard: iconZoom,
-    subtitle: "Layanan Vidio Call",
-    text: "10",
-  },
-];
 
 export const dataPasien = [
   {
@@ -334,8 +304,8 @@ export const transaksiUsers = [
     durasi: "120 Menit",
     statusPembayaran: "Sudah Bayar",
     detailWaktu: "18:06, Min 22 Okt 2023",
-    jenisTransaksi : "manual",
-    buktiTransaksi : BuktiTransaksi
+    jenisTransaksi: "manual",
+    buktiTransaksi: BuktiTransaksi,
   },
   {
     id: "TLFY0399HJIU",
@@ -349,8 +319,8 @@ export const transaksiUsers = [
     durasi: "120 Menit",
     statusPembayaran: "Sudah Bayar",
     detailWaktu: "18:06, Min 22 Okt 2023",
-    jenisTransaksi : "otomatis",
-    buktiTransaksi : BuktiTransaksi
+    jenisTransaksi: "otomatis",
+    buktiTransaksi: BuktiTransaksi,
   },
   {
     id: "EPTG2226LOGK",
@@ -364,8 +334,8 @@ export const transaksiUsers = [
     durasi: "120 Menit",
     statusPembayaran: "Sudah Bayar",
     detailWaktu: "18:06, Min 22 Okt 2023",
-    jenisTransaksi : "manual",
-    buktiTransaksi : BuktiTransaksi
+    jenisTransaksi: "manual",
+    buktiTransaksi: BuktiTransaksi,
   },
   {
     id: "CASX6737BJEU",
@@ -379,8 +349,8 @@ export const transaksiUsers = [
     durasi: "120 Menit",
     statusPembayaran: "Sudah Bayar",
     detailWaktu: "18:06, Min 22 Okt 2023",
-    jenisTransaksi : "otomatis",
-    buktiTransaksi : BuktiTransaksi
+    jenisTransaksi: "otomatis",
+    buktiTransaksi: BuktiTransaksi,
   },
   {
     id: "CASDI9823HUAK",
@@ -394,11 +364,10 @@ export const transaksiUsers = [
     durasi: "120 Menit",
     statusPembayaran: "Sudah Bayar",
     detailWaktu: "18:06, Min 22 Okt 2023",
-    jenisTransaksi : "manual",
-    buktiTransaksi : BuktiTransaksi
+    jenisTransaksi: "manual",
+    buktiTransaksi: BuktiTransaksi,
   },
-
-]
+];
 
 export const dataPencairanSaldo = [
   {
@@ -466,29 +435,29 @@ export const dataTablePencairanSaldo = [
 export const buttonChatBot1 = [
   {
     text: "Mengatasi Gangguan Kecemasan",
-    content: 'mengatasi gangguan kecemasan',
+    content: "mengatasi gangguan kecemasan",
   },
   {
     text: "Mengatasi Stress",
-    content: 'mengatasi stress',
+    content: "mengatasi stress",
   },
   {
     text: "Mengatasi Depresi",
-    content: 'mengatasi depresi',
+    content: "mengatasi depresi",
   },
   {
     text: "Mengatasi Kegilaan",
-    content: 'mengatasi kegilaan',
+    content: "mengatasi kegilaan",
   },
-]
+];
 
 export const buttonChatBot2 = [
   {
     text: "Sudah",
-    content: 'sudah',
+    content: "sudah",
   },
   {
     text: "Belum",
-    content: 'belum',
-  }
-]
+    content: "belum",
+  },
+];
