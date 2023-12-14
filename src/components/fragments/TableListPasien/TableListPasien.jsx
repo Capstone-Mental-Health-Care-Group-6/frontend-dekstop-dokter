@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import Button from "../../elements/Button/Button";
@@ -6,7 +6,7 @@ import ModalDetailPasien from "../Modal/ModalDetailPasien";
 import { profilDetailPasien } from "../../../../image";
 import { dataPasien } from "../../DataComponents/dataComponents";
 
-const TableListPasien = ({ data }) => {
+const TableListPasien = ({ data, onDataChanged }) => {
   const [selectedPasienId, setSelectedPasienId] = useState(null);
 
   const handleLihatDetail = (rowData) => {
@@ -16,10 +16,15 @@ const TableListPasien = ({ data }) => {
   const userBodyTemplate = (rowData) => {
     return (
       <div className="d-flex align-items-center">
-        <span>{rowData.nama}</span>
+        <span>{rowData.name_patient}</span>
       </div>
     );
   };
+
+  // useEffect(() => {
+  //   // Pemicu re-render ketika data berubah
+  //   onDataChanged();
+  // }, [data]);
 
   return (
     <>

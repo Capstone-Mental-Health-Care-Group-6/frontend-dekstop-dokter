@@ -11,13 +11,17 @@ import "primereact/resources/themes/lara-light-cyan/theme.css";
 import "react-loading-skeleton/dist/skeleton.css";
 // import { BrowserRouter } from "react-router-dom";
 import { SkeletonTheme } from "react-loading-skeleton";
+import store from "./utils/store/store.js";
+import { Provider } from "react-redux";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <BrowserRouter>
-      <SkeletonTheme baseColor="#e2e8f0" highlightColor="#f1f5f9">
-        <App />
-      </SkeletonTheme>
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <SkeletonTheme baseColor="#e2e8f0" highlightColor="#f1f5f9">
+          <App />
+        </SkeletonTheme>
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>
 );
