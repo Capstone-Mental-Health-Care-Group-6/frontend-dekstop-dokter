@@ -32,12 +32,13 @@ export const forgetPassword = (formForgetPass, callback) => {
 };
 
 
-export const resetPassword = (id, formResetPass) => {
+export const resetPassword = (id, formResetPass, callback) => {
     axios.post(`${url}/reset-password?token_reset_password=${id}`, formResetPass)
         .then((res) => {
-            console.log(res);
+            callback(true, res.data);
         })
         .catch((err) => {
+            callback(false, err);
             console.log(err);
         });
 }
