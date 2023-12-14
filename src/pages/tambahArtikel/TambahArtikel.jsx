@@ -8,16 +8,19 @@ import InputSelect from "../../components/elements/Input/InputSelect";
 import Checkbox from "../../components/elements/Input/Checkbox";
 import Button from "../../components/elements/Button/Button";
 import toast, { Toaster } from "react-hot-toast";
-import { getAllArticleCategories } from "../../service/article";
+import { createArticle, getAllArticleCategories } from "../../service/article";
+import { useSelector } from "react-redux";
 
 const TambahArtikel = () => {
   const dataArtikel = [];
   const [categories, setCategories] = useState([]);
-
   const [statusChecked, setStatusChecked] = useState("Publik");
-
-
   const [loading, setLoading] = useState(false);
+
+  const dataLogin = useSelector((state) => state.user.dataLogin);
+  const storedDataLogin = JSON.parse(localStorage.getItem('dataLogin'));
+
+
 
   useEffect(() => {
     setLoading(true);
@@ -36,12 +39,11 @@ const TambahArtikel = () => {
     setArtikel((old) => {
       return {
         ...old,
-        category_id: id,
+        category_name: id,
       };
     });
   };
 
-  
 
   const [errorMsg, setErrorMsg] = useState({
     form: "",
@@ -50,13 +52,16 @@ const TambahArtikel = () => {
     thumbnail: "",
   });
   const [artikel, setArtikel] = useState({
-    category_id: "",
-    user_id: "",
+    category_name: "",
+    user_name: "",
     title: "",
     content: "",
     thumbnail: "",
     status: "pending",
   });
+
+  console.log(artikel)
+
 
   const [thumbnail, setThumbnail] = useState({
     gambar: "",
@@ -87,10 +92,54 @@ const TambahArtikel = () => {
     }
   };
 
-  console.log(artikel.title)
+  const handleCreateArtikel = async (e) => {
+    e.preventDefault()
+    await createArticle(artikel, (status, res) => {
+      if (status) {
+        console.log(res)
+      } else {
+        console.log("ada kesalahan")
+      } 
+    })
+  }
+
+
+
+
+  // const handleCreateBundle = async (e) => {
+  //   e.preventDefault()
+  //   await createBundle(apiData, (status, res) => {
+  //     if (status) {
+  //       console.log(res);
+  //       deleteState()
+  //       getAllBundle((res) => {
+  //         setBundle(res.data)
+  //       })
+  //       addKonseling()
+  //     } else {
+  //       rejectKonseling()
+  //     }
+  //   })
+  // }
 
   const nullToast = () =>
     toast.error("Form tidak boleh ada yang kosong!", {
+      duration: 4000,
+      position: "top-center",
+      style: {
+        maxWidth: "700px",
+        marginBottom: "5%",
+      },
+
+      // Aria
+      ariaProps: {
+        role: "status",
+        "aria-live": "polite",
+      },
+    });
+
+    const sendArtikelToast = () =>
+    toast.success("Artikel berhasil diupload! Silakan tunggu admin untuk memverifikasi artikel", {
       duration: 4000,
       position: "top-center",
       style: {
@@ -272,11 +321,18 @@ const TambahArtikel = () => {
                 <div>
                   <Button
                     type={"button"}
-                    onClick={() => {
+                    onClick={(e) => {
                       handleNull();
+                      setArtikel((old) => {
+                        return {
+                          ...old,
+                          user_name: storedDataLogin,
+                          status: "pending",
+                        };
+                      });
                       if (errorMsg.form == "") {
                         dataArtikel.push(artikel);
-                        console.log(artikel);
+                        handleCreateArtikel()
                       }
                     }}
                     className={
@@ -292,6 +348,16 @@ const TambahArtikel = () => {
                     style={{ backgroundColor: "white" }}
                     className={"btn me-3 btn-draft-artikel fw-semibold"}
                     text={"Simpan sebagai Draft"}
+                    onClick={(e) => {
+
+                      setArtikel((old) => {
+                        return {
+                          ...old,
+                          user_name: storedDataLogin,
+                          status: "draft",
+                        };
+                      });
+                    }}
                   />
                 </div>
               </div>
@@ -437,11 +503,11 @@ const TambahArtikel = () => {
                     text={item.name}
                     id={"checkBox-artikel"}
                     checked={item.id == checkedIndex}
-                    onChange={() => handleCheckboxChange(item.id)}
+                    onChange={() => handleCheckboxChange(item.name)}
                     // index + 1 karena index ini dimulai dari 0. jadi supaya sesuai sama erd kategori di erd, harus ditambah 1
                     value={item.id}
                     classNameLabel={"fw-semibold label-artikel-text"}
-                    disabled={checkedIndex !== null && (item.id) !== checkedIndex}
+                    disabled={checkedIndex !== null && (item.name) !== checkedIndex}
                   />
                 ))}
                     </div>

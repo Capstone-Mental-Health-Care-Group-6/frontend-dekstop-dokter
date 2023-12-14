@@ -21,18 +21,12 @@ const Artikel = () => {
   const [pendingStatus, setPendingStatus] = useState(false);
   const [selected, setSelected] = useState(null);
 
-  const dataLogin = useSelector((state) => state.user.dataLogin);
+  // useEffect(() => {
+  //   getAllArticle((res) => {
+  //     setArtikel(res.data)
+  //   })
+  // }, [])
 
-  console.log(dataLogin)
-
-  useEffect(() => {
-    getAllArticle((res) => {
-      setArtikel(res.data)
-    })
-  }, [])
-  console.log(artikel)
-
-  
 
   // const pendingButton = () => {
     //   if (artikel.status === "pending") {
@@ -52,6 +46,8 @@ const Artikel = () => {
       </div>
     );
   };
+
+  console.log(artikel)
 
 
   // console.log(artikel[0].status)

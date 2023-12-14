@@ -1,7 +1,7 @@
 import { axiosInterceptor } from "./axiosInterceptors";
 
-export const createArticle = (formArticle, callback) => {
-  axiosInterceptor
+export const createArticle = async (formArticle, callback) => {
+  await axiosInterceptor
     .post(`/articles`, formArticle, {
       headers: {
         "Content-Type": "multipart/form-data",

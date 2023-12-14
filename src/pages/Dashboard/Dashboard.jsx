@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Layouts from "../../components/layouts/Layouts";
 import { dashboardImg, iconChatBot, imgDataPasienKosong } from "../../../image";
 import "./Dashboard.css";
@@ -12,8 +12,21 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const Dashboard = () => {
-  const dataLogin = useSelector((state) => state.user.dataLogin);
-  console.log(dataLogin)
+  const [namaDokter, setNamaDokter] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  const storedDataLogin = JSON.parse(localStorage.getItem('dataLogin'));
+
+
+  // setNamaDokter(dataLogin.name)
+  // console.log(namaDokter)
+
+  
+  // useEffect(() => {
+  //   setLoading(true);
+  //   setNamaDokter(dataLogin.name);
+  //   setLoading(false);
+  // }, [dataLogin]);
 
   return (
     <>
@@ -23,11 +36,16 @@ const Dashboard = () => {
             <div className="wrapper__dashboard bg-white">
               <div className="row d-flex align-items-center justify-content-between">
                 <div className="col-lg-9 col-md">
-                  <h4 className="fw-bold text__title mb-4">
-                    <p>
-                    Selamat Datang, dr. {dataLogin.name}
-                    </p>
-                  </h4>
+                    <h4 className="fw-bold text__title mb-4">
+                      <p>
+                        {/* Selamat Datang, dr. {namaDokter} */}
+                        Selamat Datang, dr. {storedDataLogin}
+                      </p>
+                    </h4>
+                    <div>
+                      <p>kosong</p>
+                    </div>
+
                   <p className="text__subtitle fw-normal">
                     Have a nice day at work
                   </p>
