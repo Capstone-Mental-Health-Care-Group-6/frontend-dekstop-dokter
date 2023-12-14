@@ -12,6 +12,7 @@ import { FilterMatchMode } from "primereact/api";
 import { IoEllipsisVertical } from "react-icons/io5";
 import ButtonSvg from "../../components/elements/Button/ButtonSvg";
 import { getAllArticle } from "../../service/article";
+import { useSelector } from "react-redux";
 
 const Artikel = () => {
   const navigate = useNavigate();
@@ -19,6 +20,10 @@ const Artikel = () => {
   const [artikel, setArtikel] = useState([]);
   const [pendingStatus, setPendingStatus] = useState(false);
   const [selected, setSelected] = useState(null);
+
+  const dataLogin = useSelector((state) => state.user.dataLogin);
+
+  console.log(dataLogin)
 
   useEffect(() => {
     getAllArticle((res) => {
@@ -28,6 +33,7 @@ const Artikel = () => {
   console.log(artikel)
 
   
+
   // const pendingButton = () => {
     //   if (artikel.status === "pending") {
       

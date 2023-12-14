@@ -10,7 +10,6 @@ export const login = (formLogin, callback) => {
         })
 }
 
-
 export const register = (formRegister, callback) => {
     axios.post(`${url}/register`, formRegister)
         .then((res) => {

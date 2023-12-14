@@ -9,8 +9,12 @@ import {
   dataPasien,
 } from "../../components/DataComponents/dataComponents";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Dashboard = () => {
+  const dataLogin = useSelector((state) => state.user.dataLogin);
+  console.log(dataLogin)
+
   return (
     <>
       <Layouts>
@@ -20,7 +24,9 @@ const Dashboard = () => {
               <div className="row d-flex align-items-center justify-content-between">
                 <div className="col-lg-9 col-md">
                   <h4 className="fw-bold text__title mb-4">
-                    Selamat Datang, dr Helen
+                    <p>
+                    Selamat Datang, dr. {dataLogin.name}
+                    </p>
                   </h4>
                   <p className="text__subtitle fw-normal">
                     Have a nice day at work
