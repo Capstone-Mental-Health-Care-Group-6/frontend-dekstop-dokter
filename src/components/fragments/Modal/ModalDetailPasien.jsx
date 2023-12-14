@@ -11,7 +11,8 @@ import ModalAlert from "../ModalAlert/ModalAlert";
 import ModalSkeletonLoad from "../ModalSkeletonLoad/ModalSkeletonLoad";
 import Skeleton from "react-loading-skeleton";
 import { dataPasien } from "../../DataComponents/dataComponents";
-import { getAllListPasien } from "../../../service/listPasien";
+import { deletePatient, getAllListPasien } from "../../../service/listPasien";
+import toast, { Toaster } from "react-hot-toast";
 
 const ModalDetailPasien = ({ id, size, selectedPasienId }) => {
   const [dataPasien, setDataPasien] = useState([]);
@@ -39,6 +40,34 @@ const ModalDetailPasien = ({ id, size, selectedPasienId }) => {
       setModalTextArea("d-block");
     } else {
       setModalTextArea("d-none");
+    }
+  };
+
+  const tolakToast = () => {
+    if (selectedPasienId) {
+      deletePatient(selectedPasienId)
+        .then(() => {
+          toast.success(
+            "Antrian Pasien Berhasil ditolak. Informasi ini akan disampaikan ke user",
+            {
+              duration: 4000,
+              position: 'position="bottom-center',
+              className: "custom-toast-payment",
+
+              // Aria
+              ariaProps: {
+                role: "status",
+                "aria-live": "polite",
+              },
+            }
+          );
+        })
+        .catch((err) => {
+          console.log("gagal menolak pasien", err);
+          toast.error("Error deleting patient data");
+        });
+    } else {
+      toast.error("Selected patient ID is not valid");
     }
   };
 
@@ -126,7 +155,9 @@ const ModalDetailPasien = ({ id, size, selectedPasienId }) => {
 
           <div className="text-center mt-3">
             <Button
+              onClick={tolakToast}
               text={"Tolak"}
+              bsDismiss={"modal"}
               className={"btn w-50 text-white text-center py-2 fw-semibold"}
             />
           </div>
@@ -163,6 +194,7 @@ const ModalDetailPasien = ({ id, size, selectedPasienId }) => {
             <div className="text-center">
               <Button
                 text={"Oke"}
+                bsDismiss={"modal"}
                 className={
                   "btn btn-success w-50 text-white text-center py-2 fw-semibold"
                 }
@@ -242,6 +274,7 @@ const ModalDetailPasien = ({ id, size, selectedPasienId }) => {
           </div>
         </div>
       </div>
+      <Toaster />
     </>
   );
 };

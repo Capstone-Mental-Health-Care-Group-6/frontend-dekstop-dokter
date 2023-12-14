@@ -149,6 +149,17 @@
   .modal-dialog
   .modal-content
   .modal-body
+  .text-center
+  .custom-toast-payment {
+  margin-top: 20px;
+  min-width: 56vw;
+}
+
+.wrapper__laporan__Mingguan
+  #modal-tolak-pasien
+  .modal-dialog
+  .modal-content
+  .modal-body
   .row
   .changeColorButton {
   color: #0085ff;
