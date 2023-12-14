@@ -12,10 +12,6 @@ import {
 import "./Dashboard.css";
 import Card from "../../components/fragments/Card/Card";
 import TableListPasien from "../../components/fragments/TableListPasien/TableListPasien";
-// import {
-//   cardLaporanMingguan,
-//   dataPasien,
-// } from "../../components/DataComponents/dataComponents";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { getAllCounseling } from "../../service/counseling";
