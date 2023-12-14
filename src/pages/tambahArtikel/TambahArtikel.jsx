@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Layouts from "../../components/layouts/Layouts";
 import Label from "../../components/elements/Input/Label";
 import Input from "../../components/elements/Input/Input";
@@ -7,34 +7,42 @@ import "./tambahArtikel.style.css";
 import InputSelect from "../../components/elements/Input/InputSelect";
 import Checkbox from "../../components/elements/Input/Checkbox";
 import Button from "../../components/elements/Button/Button";
+import toast, { Toaster } from "react-hot-toast";
+import { getAllArticleCategories } from "../../service/article";
 
 const TambahArtikel = () => {
-  const dataArtikel = []
+  const dataArtikel = [];
+  const [categories, setCategories] = useState([]);
 
   const [statusChecked, setStatusChecked] = useState("Publik");
-  const [listCheckbox, setListCheckbox] = useState([
-    "Anxiety",
-    "Depresi",
-    "Emosi",
-    "Kecemasan",
-    "Stress",
-    "Tips",
-    "Umum",
-  ]);
 
-  
+
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+    getAllArticleCategories((res) => {
+      setCategories(res.data);
+    });
+    setLoading(false);
+  }, []);
+
+  // console.log(categories[0].id)
+
   const [checkedIndex, setCheckedIndex] = useState(null);
-  
+
   const handleCheckboxChange = (id) => {
     setCheckedIndex(id === checkedIndex ? null : id);
     setArtikel((old) => {
       return {
-        ...old, 
-        category_id: id
-      }
-    })
+        ...old,
+        category_id: id,
+      };
+    });
   };
+
   
+
   const [errorMsg, setErrorMsg] = useState({
     form: "",
     title: "",
@@ -47,7 +55,7 @@ const TambahArtikel = () => {
     title: "",
     content: "",
     thumbnail: "",
-     status: "pending"
+    status: "pending",
   });
 
   const [thumbnail, setThumbnail] = useState({
@@ -55,25 +63,47 @@ const TambahArtikel = () => {
   });
 
   const handleNull = () => {
-    if ( artikel.title === "" || artikel.content === "" || artikel.thumbnail === ""){
-      console.log(artikel)
+    if (
+      artikel.title === "" ||
+      artikel.content === "" ||
+      artikel.thumbnail === "" ||
+      artikel.category_id === ""
+    ) {
+      console.log(artikel);
+      nullToast();
       setErrorMsg((old) => {
         return {
           ...old,
-          form: "Form tidak boleh ada yang kosong"
-        }
-      })
-    }
-    else{
+          form: "Form tidak boleh ada yang kosong",
+        };
+      });
+    } else {
       setErrorMsg((old) => {
         return {
           ...old,
-          form: ""
-        }
-      })
+          form: "",
+        };
+      });
     }
-  }
+  };
 
+  console.log(artikel.title)
+
+  const nullToast = () =>
+    toast.error("Form tidak boleh ada yang kosong!", {
+      duration: 4000,
+      position: "top-center",
+      style: {
+        maxWidth: "700px",
+        marginBottom: "5%",
+      },
+
+      // Aria
+      ariaProps: {
+        role: "status",
+        "aria-live": "polite",
+      },
+    });
 
   return (
     <Layouts>
@@ -81,9 +111,7 @@ const TambahArtikel = () => {
       <div className="container">
         <div className="row">
           <div className="col-9 px-3">
-            <form action="" id="form" className="needs-validation"
-              
-            >
+            <form action="" id="form" className="needs-validation">
               <div
                 className="container-fluid py-5 rounded-2"
                 style={{ backgroundColor: "white" }}
@@ -101,26 +129,25 @@ const TambahArtikel = () => {
                       setErrorMsg((old) => {
                         return {
                           ...old,
-                          title: "Isi konten tidak boleh kosong!"
-                        }
-                      })
+                          title: "Isi konten tidak boleh kosong!",
+                        };
+                      });
                     } else {
                       setErrorMsg((old) => {
                         return {
                           ...old,
-                          title: ""
-                        }
-                      })
-                    };
+                          title: "",
+                        };
+                      });
+                    }
                     setArtikel((old) => {
                       return {
-                        ...old, 
-                        title: e.target.value 
-                      }
-                    })
+                        ...old,
+                        title: e.target.value,
+                      };
+                    });
                     // console.log(artikel)
-                  }
-              }
+                  }}
                 />
                 <div className="text-danger mb-0 my-2">
                   <p>{errorMsg.title}</p>
@@ -135,36 +162,33 @@ const TambahArtikel = () => {
                     id={"deksripsi-artikel"}
                     value={artikel.content}
                     onChange={(value) => {
-                      console.log(value)
-                      if (value == '<p><br></p>' || value === "") {
+                      if (value == "<p><br></p>" || value === "") {
                         setErrorMsg((old) => {
                           return {
                             ...old,
-                            content: "Isi konten tidak boleh kosong!"
-                          }
-                        })
+                            content: "Isi konten tidak boleh kosong!",
+                          };
+                        });
                       } else {
                         setErrorMsg((old) => {
                           return {
                             ...old,
-                            content: ""
-                          }
-                        })
-                      };
+                            content: "",
+                          };
+                        });
+                      }
                       setArtikel((old) => {
                         return {
                           ...old,
-                          content: value
-                        }
-                      })
+                          content: value,
+                        };
+                      });
                       // console.log(artikel)
                     }}
                   />
                 </div>
                 <div>
-                  <p className="text-danger mb-0 my-1">
-                  {errorMsg.content}
-                  </p>
+                  <p className="text-danger mb-0 my-1">{errorMsg.content}</p>
                 </div>
                 <Label htmlFor={"link-video-artikel"}>
                   <p className="fw-bold mt-3 mb-0">Link Video Youtube</p>
@@ -179,9 +203,9 @@ const TambahArtikel = () => {
                     setArtikel((old) => {
                       return {
                         ...old,
-                        linkVideo: e.target.value
-                      }
-                    })
+                        linkVideo: e.target.value,
+                      };
+                    });
                   }}
                 />
                 <img src={thumbnail.gambar} width={100} className="mt-4" />
@@ -213,10 +237,10 @@ const TambahArtikel = () => {
                       });
                       setArtikel((old) => {
                         return {
-                          ...old, 
-                          thumbnail: URL.createObjectURL(selectedFile)
-                        }
-                      })
+                          ...old,
+                          thumbnail: URL.createObjectURL(selectedFile),
+                        };
+                      });
                       setThumbnail((old) => {
                         return {
                           ...old,
@@ -242,20 +266,17 @@ const TambahArtikel = () => {
                   Rekomendasi ukuran gambar: 300 x 450. Format gambar: jpg, png,
                   jpeg
                 </p>
-                <div className="text-danger">
-                {errorMsg.form}
-              </div>
                 <p className="text-danger">{errorMsg.thumbnail}</p>
               </div>
               <div className="d-flex m-3 button-form-artikel">
                 <div>
                   <Button
                     type={"button"}
-                    onClick={()=> {
+                    onClick={() => {
                       handleNull();
-                      if (errorMsg.form == ""){
-                        dataArtikel.push(artikel)
-                        console.log(artikel)
+                      if (errorMsg.form == "") {
+                        dataArtikel.push(artikel);
+                        console.log(artikel);
                       }
                     }}
                     className={
@@ -274,7 +295,6 @@ const TambahArtikel = () => {
                   />
                 </div>
               </div>
-             
             </form>
           </div>
           <div className="col-3">
@@ -331,9 +351,9 @@ const TambahArtikel = () => {
                                   setArtikel((old) => {
                                     return {
                                       ...old,
-                                      visibilitas: "Publik"
-                                    }
-                                  })
+                                      visibilitas: "Publik",
+                                    };
+                                  });
                                 }}
                               />
                               <label
@@ -363,9 +383,9 @@ const TambahArtikel = () => {
                                   setArtikel((old) => {
                                     return {
                                       ...old,
-                                      visibilitas: "Privat"
-                                    }
-                                  })
+                                      visibilitas: "Privat",
+                                    };
+                                  });
                                 }}
                               />
                               <label
@@ -407,18 +427,33 @@ const TambahArtikel = () => {
                 Kategori
               </p>
               <div>
-                {listCheckbox.map((id, index) => (
+                {!loading ? (
+                  categories.length > 0 ? (
+                    <div>
+                       {categories.map((item) => (
                   <Checkbox
-                    index={index}
-                    text={id}
+                  key={item.id}
+                    index={item.id}
+                    text={item.name}
                     id={"checkBox-artikel"}
-                    checked={id == checkedIndex}
-                    onChange={() => handleCheckboxChange(id)}
-                    value={id}
+                    checked={item.id == checkedIndex}
+                    onChange={() => handleCheckboxChange(item.id)}
+                    // index + 1 karena index ini dimulai dari 0. jadi supaya sesuai sama erd kategori di erd, harus ditambah 1
+                    value={item.id}
                     classNameLabel={"fw-semibold label-artikel-text"}
-                    disabled={checkedIndex !== null && id !== checkedIndex}
+                    disabled={checkedIndex !== null && (item.id) !== checkedIndex}
                   />
                 ))}
+                    </div>
+                  ) : (
+                    <div>
+                      <p>Kategori kosong</p>
+                    </div>
+                  )
+                ) : (
+                  <div>spinner</div>
+                )}
+               
               </div>
               <p style={{ fontSize: "10px" }} className="text-muted">
                 <span className="text-danger">*</span>Kategori hanya dapat
@@ -428,6 +463,7 @@ const TambahArtikel = () => {
           </div>
         </div>
       </div>
+      <Toaster />
     </Layouts>
   );
 };

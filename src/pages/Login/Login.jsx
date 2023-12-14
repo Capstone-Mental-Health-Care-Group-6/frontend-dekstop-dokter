@@ -28,6 +28,10 @@ const LoginForm = () => {
     password: "",
   });
   const navigate = useNavigate();
+  
+  const [dataLogin, setDataLogin] = useState([])
+  
+  
 
   const handleEmailChange = (e) => {
     emailHandler(e.target.value, setErrorMessages);
@@ -76,6 +80,7 @@ const LoginForm = () => {
         if (status) {
           navigate("/dokter/dashboard");
           console.log("berhasil login", res);
+          setDataLogin(res.data)
         } else {
           setAlertLogin("d-block");
           console.log(res);
@@ -243,3 +248,4 @@ const LoginForm = () => {
 };
 
 export default LoginForm;
+
