@@ -88,7 +88,8 @@ const LoginForm = () => {
       login(formLogin, (status, res) => {
         if (status) {
           navigate("/dokter/dashboard");
-          // console.log("berhasil login", res);
+          localStorage.setItem("token", res.data.token.access_token);
+          console.log("berhasil login", res);
           dispatch(setDataLogin(res.data));
           const dataLogin = res.data;
           localStorage.setItem('dataLogin', JSON.stringify(dataLogin.name));

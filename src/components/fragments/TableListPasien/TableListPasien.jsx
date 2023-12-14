@@ -16,7 +16,7 @@ const TableListPasien = ({ data }) => {
   const userBodyTemplate = (rowData) => {
     return (
       <div className="d-flex align-items-center">
-        <span>{rowData.nama}</span>
+        <span>{rowData.name_patient}</span>
       </div>
     );
   };
