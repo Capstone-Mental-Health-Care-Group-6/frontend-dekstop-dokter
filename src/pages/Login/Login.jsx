@@ -21,6 +21,13 @@ import { setDataLogin } from "../../service/userSlice";
 const LoginForm = () => {
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    const storedDataLogin = JSON.parse(localStorage.getItem('dataLogin'));
+    if (storedDataLogin) {
+      dispatch(setDataLogin(storedDataLogin));
+    }
+  }, [dispatch]);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -83,6 +90,8 @@ const LoginForm = () => {
           localStorage.setItem("token", res.data.token.access_token);
           console.log("berhasil login", res);
           dispatch(setDataLogin(res.data));
+          const dataLogin = res.data;
+          localStorage.setItem('dataLogin', JSON.stringify(dataLogin.name));
         } else {
           setAlertLogin("d-block");
           console.log(res);
