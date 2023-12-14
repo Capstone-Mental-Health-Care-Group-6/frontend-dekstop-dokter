@@ -158,32 +158,32 @@ const RegisDokumen = () => {
           <div className="row">
             <Label htmlFor="doctor_ijazah">Ijazah Terakhir</Label>
             <div className="input-group mb-3">
-            <div className="form-control-wrapper">
-            <Input
-                type="text"
-                className={`form-control mb-2 ${errorMessages.doctor_ijazah ? "is-invalid" : ""}`}                  
-                id="doctor_ijazah"
-                name="doctor_ijazah"
-                defaultValue={files.doctor_ijazah ? files.doctor_ijazah.name : ""}
-                placeholder="Ijazah.pdf"
-                readOnly
-              />
-              {errorMessages.doctor_ijazah && (
-                <div className="invalid-feedback">{errorMessages.doctor_ijazah}</div>
-              )}
-              <label className="btn btn-outline-primary mb-2 choose-file-btn">
-                Pilih File
-                <input
-                  type="file"
-                  style={{ display: "none" }}
-                  onChange={(e) =>
-                    handleFileChange(e,  setFiles, (value) =>
-                      document.getElementById("doctor_ijazah").value = value
-                    )
-                  }
+              <div className="form-control-wrapper">
+              <Input
+                  type="text"
+                  className={`form-control mb-2 ${errorMessages.doctor_ijazah ? "is-invalid" : ""}`}                  
+                  id="doctor_ijazah"
+                  name="doctor_ijazah"
+                  defaultValue={files.doctor_ijazah ? files.doctor_ijazah.name : ""}
+                  placeholder="Ijazah.pdf"
+                  readOnly
                 />
-              </label>
-            </div>
+                {errorMessages.doctor_ijazah && (
+                  <div className="invalid-feedback">{errorMessages.doctor_ijazah}</div>
+                )}
+                <label className="btn btn-outline-primary mb-2 choose-file-btn">
+                  Pilih File
+                  <input
+                    type="file"
+                    style={{ display: "none" }}
+                    onChange={(e) =>
+                      handleFileChange(e,  setFiles, (value) =>
+                        document.getElementById("doctor_ijazah").value = value
+                      )
+                    }
+                  />
+                </label>
+              </div>
             </div>
           </div>
 

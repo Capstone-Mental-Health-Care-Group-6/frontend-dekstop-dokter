@@ -12,7 +12,7 @@ const RegisProfilSingkat = () => {
     
     const [formData, setFormData] = useState({
         doctor_expertise: [],
-        tentangAnda: "",
+        doctor_description: "",
         workday_id: "",
         start_time: "",
         end_time: "",

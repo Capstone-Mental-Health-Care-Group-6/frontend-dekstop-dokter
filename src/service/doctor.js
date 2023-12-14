@@ -24,22 +24,56 @@ export const DetailDoctor = (id, callback) => {
 }
 
 export const createProfileDoctor = async (formData, callback) => {
-    try {
-      const res = await axiosInterceptor.post('/doctor/register', formData, {
+    await axiosInterceptor.post('/doctor/register', formData, {
         headers: {
-          'Content-Type': 'multipart/form-data',
+            'Content-Type': 'multipart/form-data',
         },
-      });
-  
-      if (callback) {
-        callback(true, res.data);
-      }
-    } catch (err) {
-      console.log(err);
-      if (callback) {
-        callback(false, err.message);
-      }
-    }
-  };
-  
+    })
+        .then((res) => {
+            callback(true, res.data);
+        })
+        .catch((err) => {
+            console.log(err);
+            callback(false, err.message);
+        });
+};
 
+export const updateProfileDataPokok = async (id, formData) => {
+    await axiosInterceptor.put(`/doctor/datapokok/${id}`, formData)
+        .then((res) => {
+            console.log(res);
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+}
+
+export const updateProfileWorkday = async (id, formData) => {
+    await axiosInterceptor.put(`/doctor/workday/${id}`, formData)
+        .then((res) => {
+            console.log(res);
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+}
+
+export const updateProfileEducation = async (id, formData) => {
+    await axiosInterceptor.put(`/doctor/education/${id}`, formData)
+        .then((res) => {
+            console.log(res);
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+}
+
+export const updateProfileExperience = async (id, formData) => {
+    await axiosInterceptor.put(`/doctor/experience/${id}`, formData)
+        .then((res) => {
+            console.log(res);
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+}

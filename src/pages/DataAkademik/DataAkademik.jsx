@@ -24,8 +24,6 @@ const DataAkademik = () => {
     setFormData(updatedFormData);
   };
   
-
-
   const handleAddData = () => {
     if (formData.length < 5) {
       setFormData([

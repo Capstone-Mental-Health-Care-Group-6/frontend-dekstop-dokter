@@ -75,7 +75,7 @@ const RegisDataAkademik = () => {
           setFormData(res.data);
         });
       } else {
-        setErrorMsg('d-block');
+        setErrorMessages('d-block');
       }
     });
 
