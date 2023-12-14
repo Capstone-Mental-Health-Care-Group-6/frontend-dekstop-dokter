@@ -13,3 +13,7 @@ export const getAllListPasien = (callback) => {
       console.error(error);
     });
 };
+
+export const deletePatient = (id) => {
+  return axiosInterceptor.delete(`${url}/listPasien/${id}`);
+};

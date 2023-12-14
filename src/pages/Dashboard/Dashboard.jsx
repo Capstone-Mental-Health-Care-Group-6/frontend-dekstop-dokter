@@ -28,6 +28,13 @@ const Dashboard = () => {
   const [chatCount, setChatCount] = useState(0);
   const [videoCallCount, setVideoCallCount] = useState(0);
 
+  const [dataChangedFlag, setDataChangedFlag] = useState(false);
+
+  const handleDataChange = () => {
+    // Paksakan re-render dengan memperbarui variabel state
+    setDataChangedFlag((prev) => !prev);
+  };
+
   useEffect(() => {
     getAllListPasien((data) => {
       setDataPasien(data);
@@ -59,7 +66,7 @@ const Dashboard = () => {
         password: "Agung!22",
       }
     );
-  }, [userData.id]);
+  }, []);
 
   const cardLaporanMingguan = [
     {
@@ -137,7 +144,10 @@ const Dashboard = () => {
           ) : (
             <>
               <h5 className="fw-bold mt-3">List Pasien</h5>
-              <TableListPasien data={dataPasien} />
+              <TableListPasien
+                data={dataPasien}
+                onDataChanged={handleDataChange}
+              />
             </>
           )}
 
