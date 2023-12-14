@@ -15,8 +15,13 @@ import {
   emailChecker,
 } from "../../utils/handler/input";
 import { login } from "../../service/authentication";
+import { useDispatch, useSelector } from "react-redux";
+import { setDataLogin } from "../../service/userSlice";
 
 const LoginForm = () => {
+  const dispatch = useDispatch();
+
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -66,6 +71,7 @@ const LoginForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     const formLogin = {
       email,
       password,
@@ -77,6 +83,7 @@ const LoginForm = () => {
           navigate("/dokter/dashboard");
           localStorage.setItem("token", res.data.token.access_token);
           console.log("berhasil login", res);
+          dispatch(setDataLogin(res.data));
         } else {
           setAlertLogin("d-block");
           console.log(res);

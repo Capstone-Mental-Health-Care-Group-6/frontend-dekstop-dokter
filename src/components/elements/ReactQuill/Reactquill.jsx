@@ -2,7 +2,7 @@ import React from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
-const Reactquill = ({value, onChange, id}) => {
+const Reactquill = ({value, onChange, id, row}) => {
   const modules = {
     toolbar: [
       [{ header: [1, 2, 3, 4, 5, 6, false] }],
@@ -29,7 +29,7 @@ const Reactquill = ({value, onChange, id}) => {
     "align",
     "size",
   ];
-  return <ReactQuill theme="snow" modules={modules} formats={formats} value={value} onChange={onChange} id={id} />;
+  return <ReactQuill theme="snow" modules={modules} formats={formats} value={value} onChange={onChange} id={id} row={row} />;
 };
 
 export default Reactquill;
