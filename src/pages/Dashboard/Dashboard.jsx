@@ -18,20 +18,20 @@ import TableListPasien from "../../components/fragments/TableListPasien/TableLis
 // } from "../../components/DataComponents/dataComponents";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-
 import { getAllCounseling } from "../../service/counseling";
 import { getAllListPasien } from "../../service/listPasien";
 import { getByNameLoginDoctor, login } from "../../service/authentication";
-
+import PulseLoader from "react-spinners/PulseLoader";
 
 const Dashboard = () => {
   const dataLogin = useSelector((state) => state.user.dataLogin);
-  console.log(dataLogin)
+  console.log(dataLogin);
   const [dataPasien, setDataPasien] = useState([]);
   const [userData, setUserData] = useState({});
   const [totalPasien, setTotalPasien] = useState(0);
   const [chatCount, setChatCount] = useState(0);
   const [videoCallCount, setVideoCallCount] = useState(0);
+  const [loading, setLoading] = useState(true);
 
   const [dataChangedFlag, setDataChangedFlag] = useState(false);
 
@@ -41,6 +41,8 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
+    setLoading(true);
+
     getAllListPasien((data) => {
       setDataPasien(data);
 
@@ -60,17 +62,9 @@ const Dashboard = () => {
       ).length;
 
       setVideoCallCount(totalVidioCall);
-    });
 
-    getByNameLoginDoctor(
-      (data) => {
-        setUserData(data.data);
-      },
-      {
-        email: "agunggokil27@gmail.com",
-        password: "Agung!22",
-      }
-    );
+      setLoading(false);
+    });
   }, []);
 
   const cardLaporanMingguan = [
@@ -78,7 +72,11 @@ const Dashboard = () => {
       bgColor: "#A2DEFF",
       iconCard: iconPasien,
       subtitle: "Total Pasien",
-      text: totalPasien.toString(),
+      text: loading ? (
+        <PulseLoader color="#D5E0DE" size={8} loading={loading} />
+      ) : (
+        totalPasien.toString()
+      ),
     },
 
     {
@@ -92,14 +90,22 @@ const Dashboard = () => {
       bgColor: "#C1FFEF",
       iconCard: iconChat,
       subtitle: "Layanan Chat",
-      text: chatCount.toString(),
+      text: loading ? (
+        <PulseLoader color="#D5E0DE" size={8} loading={loading} />
+      ) : (
+        chatCount.toString()
+      ),
     },
 
     {
       bgColor: "#F0CAFF",
       iconCard: iconZoom,
       subtitle: "Layanan Vidio Call",
-      text: videoCallCount.toString(),
+      text: loading ? (
+        <PulseLoader color="#D5E0DE" size={8} loading={loading} />
+      ) : (
+        videoCallCount.toString()
+      ),
     },
   ];
 
@@ -112,10 +118,7 @@ const Dashboard = () => {
               <div className="row d-flex align-items-center justify-content-between">
                 <div className="col-lg-9 col-md">
                   <h4 className="fw-bold text__title mb-4">
-                    <p>
-                    Selamat Datang, dr. {dataLogin.name}
-                    </p>
-
+                    <p>Selamat Datang, dr. {dataLogin.name}</p>
                   </h4>
                   <p className="text__subtitle fw-normal">
                     Have a nice day at work
