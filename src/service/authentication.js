@@ -46,13 +46,16 @@ export const forgetPassword = (formForgetPass, callback) => {
     });
 };
 
-export const resetPassword = (id, formResetPass) => {
-  axios
-    .post(`${url}/reset-password?token_reset_password=${id}`, formResetPass)
-    .then((res) => {
-      console.log(res);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-};
+
+export const resetPassword = (id, formResetPass, callback) => {
+    axios.post(`${url}/reset-password?token_reset_password=${id}`, formResetPass)
+        .then((res) => {
+            callback(true, res.data);
+        })
+        .catch((err) => {
+            callback(false, err);
+            console.log(err);
+        });
+}
+
+
