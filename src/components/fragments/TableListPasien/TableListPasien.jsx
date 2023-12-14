@@ -10,13 +10,13 @@ const TableListPasien = ({ data }) => {
   const [selectedPasienId, setSelectedPasienId] = useState(null);
 
   const handleLihatDetail = (rowData) => {
-    setSelectedPasienId(rowData.user_id);
+    setSelectedPasienId(rowData.id);
   };
 
   const userBodyTemplate = (rowData) => {
     return (
       <div className="d-flex align-items-center">
-        <span>{rowData.doctor_name}</span>
+        <span>{rowData.name_patient}</span>
       </div>
     );
   };
@@ -48,14 +48,14 @@ const TableListPasien = ({ data }) => {
 
           <Column
             header="Keluhan"
-            field="counseling_type"
+            field="keluhan"
             headerClassName="table-header-border"
             style={{ fontSize: "14px" }}
           />
 
           <Column
             header="Via Layanan"
-            field="method_name"
+            field="viaLayanan"
             headerClassName="table-header-border"
             style={{ fontSize: "14px" }}
           />

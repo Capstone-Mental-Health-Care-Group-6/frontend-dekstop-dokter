@@ -13,8 +13,9 @@ export default defineConfig(({ command, mode }) => {
       globals: true,
     },
     define: {
-      'process.env.BASE_API': JSON.stringify(env.BASE_API),
-      'process.env.OPEN_AI_KEY': JSON.stringify(env.OPEN_AI_KEY)
+      "process.env.BASE_API": JSON.stringify(env.BASE_API),
+      "process.env.OPEN_AI_KEY": JSON.stringify(env.OPEN_AI_KEY),
+      "process.env.API_LIST_PASIEN": JSON.stringify(env.API_LIST_PASIEN),
       // 'process.env': JSON.stringify(env)
     },
   };

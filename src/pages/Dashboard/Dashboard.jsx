@@ -18,6 +18,7 @@ import TableListPasien from "../../components/fragments/TableListPasien/TableLis
 // } from "../../components/DataComponents/dataComponents";
 import { Link } from "react-router-dom";
 import { getAllCounseling } from "../../service/counseling";
+import { getAllListPasien } from "../../service/listPasien";
 import { getByNameLoginDoctor, login } from "../../service/authentication";
 
 const Dashboard = () => {
@@ -28,30 +29,36 @@ const Dashboard = () => {
   const [videoCallCount, setVideoCallCount] = useState(0);
 
   useEffect(() => {
-    getAllCounseling(
-      userData.id,
-      (totalPasienCount, chatCount, videoCallCount) => {
-        // Update the states with the counts
-        setTotalPasien(totalPasienCount);
-        setChatCount(chatCount);
-        setVideoCallCount(videoCallCount);
+    getAllListPasien((data) => {
+      setDataPasien(data);
+
+      // mendapatkan jumlah total pasien
+      setTotalPasien(data.length);
+
+      // mendapatkan jumlah layanan via chat
+      const totalChat = data.filter(
+        (pasien) => pasien.viaLayanan === "Chat"
+      ).length;
+
+      setChatCount(totalChat);
+
+      // mendapatkan jumlah layanan via Vidio Call
+      const totalVidioCall = data.filter(
+        (pasien) => pasien.viaLayanan === "Zoom"
+      ).length;
+
+      setVideoCallCount(totalVidioCall);
+    });
+
+    getByNameLoginDoctor(
+      (data) => {
+        setUserData(data.data);
+      },
+      {
+        email: "agunggokil27@gmail.com",
+        password: "Agung!22",
       }
     );
-
-    // const formLogin = {
-    //   name: userData.name,
-    //   email: userData.email,
-    // };
-
-    // login(formLogin, (success, data) => {
-    //   if (success) {
-    //     setUserData(data.data);
-    //   }
-    // });
-
-    getByNameLoginDoctor((data) => {
-      setUserData(data.data);
-    });
   }, [userData.id]);
 
   const cardLaporanMingguan = [

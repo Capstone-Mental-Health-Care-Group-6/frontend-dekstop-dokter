@@ -12,9 +12,9 @@ export const login = (formLogin, callback) => {
     });
 };
 
-export const getByNameLoginDoctor = (callback) => {
+export const getByNameLoginDoctor = (callback, params) => {
   axios
-    .post(`${url}/login`)
+    .post(`${url}/login`, params)
     .then((res) => {
       callback(res.data);
     })

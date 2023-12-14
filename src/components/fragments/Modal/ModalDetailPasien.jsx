@@ -11,25 +11,16 @@ import ModalAlert from "../ModalAlert/ModalAlert";
 import ModalSkeletonLoad from "../ModalSkeletonLoad/ModalSkeletonLoad";
 import Skeleton from "react-loading-skeleton";
 import { dataPasien } from "../../DataComponents/dataComponents";
-import { getAllCounseling } from "../../../service/counseling";
+import { getAllListPasien } from "../../../service/listPasien";
 
 const ModalDetailPasien = ({ id, size, selectedPasienId }) => {
   const [dataPasien, setDataPasien] = useState([]);
-
-  useEffect(() => {
-    // Fetch data from the API and update the state
-    getAllCounseling((data) => {
-      setDataPasien(data.data);
-    });
-  }, []);
   const [selectedButton, setSelectedButton] = useState(null);
   const [modalTextArea, setModalTextArea] = useState("d-none");
-  const [loadingSkeleton, setLoadingSkeleton] = useState(true);
-
   const [loading, setLoading] = useState(false);
 
   const selectedPasien = dataPasien.find(
-    (pasien) => pasien.user_id === selectedPasienId
+    (pasien) => pasien.id === selectedPasienId
   );
 
   const handleTerimaPasien = () => {
@@ -52,14 +43,11 @@ const ModalDetailPasien = ({ id, size, selectedPasienId }) => {
   };
 
   useEffect(() => {
-    const fetchData = async () => {
-      // Simulate API call delay
-      await new Promise((resolve) => setTimeout(resolve, 3000));
-      setLoadingSkeleton(false);
-    };
-
-    fetchData();
-  }, [selectedPasienId]);
+    // Fetch data from the API and update the state
+    getAllListPasien((data) => {
+      setDataPasien(data);
+    });
+  }, []);
 
   return (
     <>
@@ -183,82 +171,77 @@ const ModalDetailPasien = ({ id, size, selectedPasienId }) => {
           </div>
         </ModalAlert>
       )}
+      <div
+        className="modal fade"
+        id={id}
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div className={`modal-dialog modal-dialog-centered  ${size}`}>
+          <div className="modal-content">
+            <div className="modal-body">
+              {selectedPasien && (
+                <div className="d-flex justify-content-center ">
+                  <div className="">
+                    <img
+                      src={selectedPasien.avatar}
+                      alt="profil-img-pasien"
+                      className=" rounded-4"
+                    />
+                  </div>
 
-      {loadingSkeleton ? (
-        <ModalSkeletonLoad />
-      ) : (
-        <div
-          className="modal fade"
-          id={id}
-          tabindex="-1"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div className={`modal-dialog modal-dialog-centered  ${size}`}>
-            <div className="modal-content">
-              <div className="modal-body">
-                {selectedPasien && (
-                  <div className="d-flex justify-content-center ">
-                    <div className="h-100">
-                      <img
-                        src={selectedPasien.doctor_avatar}
-                        alt="profil-img-pasien"
-                        className="w-100 rounded-4"
+                  <div className="ms-4">
+                    <p className="d-flex flex-column">
+                      Nama{" "}
+                      <span className="fw-semibold">
+                        {selectedPasien.name_patient}
+                      </span>
+                    </p>
+                    <p className="d-flex flex-column ">
+                      Jenis Kelamin{" "}
+                      <span className="fw-semibold">
+                        {selectedPasien.jenisKelamin}
+                      </span>
+                    </p>
+                    <p className="d-flex flex-column ">
+                      Keluhan{" "}
+                      <span className="fw-semibold">
+                        {selectedPasien.keluhan}
+                      </span>
+                    </p>
+                    <p className="d-flex flex-column ">
+                      Via Konsul{" "}
+                      <span className="fw-semibold">
+                        {selectedPasien.viaLayanan}
+                      </span>
+                    </p>
+                    <div className="mt-5 d-flex flex-row gap-3">
+                      <Button
+                        text={"Terima"}
+                        className={
+                          "btn btn-primary rounded-4 py-2 px-4 fw-semibold"
+                        }
+                        bsTogle={"modal"}
+                        bsTarget={"#modal-terima-pasien"}
+                        onClick={handleTerimaPasien}
+                      />
+                      <Button
+                        text={"Tolak"}
+                        className={
+                          "btn btn-transparent border-2 text-primary border-primary rounded-4 py-2 px-4 fw-semibold"
+                        }
+                        bsTogle={"modal"}
+                        bsTarget={"#modal-tolak-pasien"}
                       />
                     </div>
-
-                    <div className="ms-4">
-                      <p className="d-flex flex-column">
-                        Nama{" "}
-                        <span className="fw-semibold">
-                          {selectedPasien.doctor_name}
-                        </span>
-                      </p>
-                      <p className="d-flex flex-column ">
-                        Jenis Kelamin{" "}
-                        <span className="fw-semibold">
-                          {selectedPasien.jenisKelamin}
-                        </span>
-                      </p>
-                      <p className="d-flex flex-column ">
-                        Keluhan{" "}
-                        <span className="fw-semibold">
-                          {selectedPasien.keluhan}
-                        </span>
-                      </p>
-                      <p className="d-flex flex-column ">
-                        Via Konsul{" "}
-                        <span className="fw-semibold">
-                          {selectedPasien.viaLayanan}
-                        </span>
-                      </p>
-                      <div className="mt-5 d-flex flex-row gap-3">
-                        <Button
-                          text={"Terima"}
-                          className={
-                            "btn btn-primary rounded-4 py-2 px-4 fw-semibold"
-                          }
-                          bsTogle={"modal"}
-                          bsTarget={"#modal-terima-pasien"}
-                          onClick={handleTerimaPasien}
-                        />
-                        <Button
-                          text={"Tolak"}
-                          className={
-                            "btn btn-transparent border-2 text-primary border-primary rounded-4 py-2 px-4 fw-semibold"
-                          }
-                          bsTogle={"modal"}
-                          bsTarget={"#modal-tolak-pasien"}
-                        />
-                      </div>
-                    </div>
                   </div>
-                )}
-              </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
-      )}
+      </div>
     </>
   );
 };
