@@ -13,8 +13,8 @@ export const withdraw = (formWithdraw, callback) => {
 };
 
 export const allDataTransaction = (callback) => {
-  axios
-    .get(`/transaction`)
+  axiosInterceptor
+    .get(`/transaksi`)
     .then((res) => {
       callback(res.data);
     })
@@ -25,7 +25,7 @@ export const allDataTransaction = (callback) => {
 
 export const detailTransaction = (id, callback) => {
   axiosInterceptor
-    .get(`/transaction/${id}`)
+    .get(`/transaksi/${id}`)
     .then((res) => {
       callback(res.data);
       console.log(res.data);
