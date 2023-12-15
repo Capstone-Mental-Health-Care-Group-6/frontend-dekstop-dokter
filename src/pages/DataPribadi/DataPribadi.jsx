@@ -23,7 +23,6 @@ const DataPribadi = () => {
     doctor_sipp: "",
   });
 
-
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
   const [errorMessages, setErrorMessages] = useState({
@@ -266,7 +265,10 @@ const DataPribadi = () => {
                   id="doctor_gender"
                   name="doctor_gender"
                   title="Jenis Kelamin"
-                  options={["Laki-laki", "Perempuan"]}
+                  options={[
+                    { value: "Laki-laki", label: "Laki-laki" },
+                    { value: "Perempuan", label: "Perempuan" },
+                  ]}                  
                   value={formData.doctor_gender}
                   onChange={handleInputChange}
                 />

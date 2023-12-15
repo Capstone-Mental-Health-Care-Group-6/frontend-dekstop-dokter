@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { gambar } from "../../../image"; 
 import Input from "../../components/elements/Input/Input";
 import Label from "../../components/elements/Input/Label";
 import InputSelect from "../../components/elements/Input/InputSelect";
 import Button from "../../components/elements/Button/Button";
 import "./RegisDataPribadi.styles.css"
-import { createProfileDoctor, getAllDoctors } from "../../service/doctor";
+import { MyContext } from "../../context/ProfileDoctorContext";
 
-const RegisDataPribadi = () => {
+const RegisDataPribadi = ({ onNext }) => {
   const [formData, setFormData] = useState({
     doctor_name: "",
     email: "",
     doctor_nik: "",
-    doctor_numberphone: "",
+    doctor_number_phone: "",
     doctor_dob: "",
     doctor_provinsi: "",
     doctor_gender: "",
@@ -22,13 +22,17 @@ const RegisDataPribadi = () => {
     doctor_avatar: null, 
   });
 
+  const { dataDoctor, setDataDoctor } = useContext(MyContext);
+
+  console.log(dataDoctor)
+
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
   const [errorMessages, setErrorMessages] = useState({
     doctor_name: "",
     email: "",
     doctor_nik: "",
-    doctor_numberphone: "",
+    doctor_number_phone: "",
     doctor_dob: "",
     doctor_provinsi: "",
     doctor_gender: "",
@@ -41,12 +45,12 @@ const RegisDataPribadi = () => {
   const handleInputChange = (event) => {
     const { name, value } = event.target;
 
-    if (name === 'doctor_nik' || name === 'doctor_numberphone' || name === 'doctor_str') {
+    if (name === 'doctor_nik' || name === 'doctor_number_phone' || name === 'doctor_str') {
       const isNumeric = /^\d+$/.test(value);
       
       setErrorMessages((prevErrors) => ({
         ...prevErrors,
-        [name]: isNumeric ? '' : `${name === 'doctor_nik' ? 'NIK' : name === 'doctor_numberphone' ? 'Nomor handphone' : 'Nomor STR'} harus berupa angka`,
+        [name]: isNumeric ? '' : `${name === 'doctor_nik' ? 'NIK' : name === 'doctor_number_phone' ? 'Nomor handphone' : 'Nomor STR'} harus berupa angka`,
       }));
     }
 
@@ -67,8 +71,6 @@ const RegisDataPribadi = () => {
       }));
     }
 
-    console.log(`Name: ${name}, Value: ${value}`);
-
     setFormData({ ...formData, [name]: value });
   };
 
@@ -83,62 +85,55 @@ const RegisDataPribadi = () => {
     }
   };
 
-
   const openFileInput = () => {
     document.getElementById("imageInput").click();
   };
 
-  const handleCreateProfile = async (event) => {
-    event.preventDefault();
-
+  const handleSubmitClick = (e) => {
+    e.preventDefault();
+  
     const newErrorMessages = {
       doctor_name: !formData.doctor_name ? "Nama lengkap wajib diisi" : "",
       email: !formData.email ? "Email wajib diisi" : "",
       doctor_nik: !formData.doctor_nik ? "NIK wajib diisi" : "",
-      doctor_numberphone: !formData.doctor_numberphone
-        ? "Nomor handphone wajib diisi"
-        : "",
+      doctor_number_phone: !formData.doctor_number_phone ? "Nomor handphone wajib diisi" : "",
       doctor_dob: !formData.doctor_dob ? "Tanggal lahir wajib diisi" : "",
       doctor_provinsi: !formData.doctor_provinsi ? "Provinsi wajib diisi" : "",
-      doctor_gender: !formData.doctor_gender
-        ? "Jenis kelamin wajib dipilih"
-        : "",
+      doctor_gender: !formData.doctor_gender ? "Jenis kelamin wajib dipilih" : "",
       doctor_kota: !formData.doctor_kota ? "Kota/Kabupaten wajib diisi" : "",
       doctor_str: !formData.doctor_str ? "Nomor STR wajib diisi" : "",
       doctor_sipp: !formData.doctor_sipp ? "Nomor SIP wajib diisi" : "",
-      doctor_avatar: !formData.doctor_avatar ? "" : "",
     };
-
+  
     setErrorMessages(newErrorMessages);
-
+    
     if (
       Object.values(newErrorMessages).some((error) => error !== "") ||
       Object.values(formData).some((value) => value === "")
     ) {
       return;
     }
-
-    const formDataKeys = ['doctor_avatar', 'doctor_name', 'doctor_nik', 'doctor_numberphone', 'doctor_dob', 'doctor_provinsi', 'doctor_gender', 'doctor_kota', 'doctor_str', 'doctor_sipp', 'email'];
-    const apiData = new FormData();
-    formDataKeys.forEach((key) => {
-        if (key !== 'email' && formData.hasOwnProperty(key)) {
-            apiData.append(key, formData[key]);
-        }
+  
+    const updatedFormData = { ...formData };
+    setDataDoctor([...dataDoctor, updatedFormData]);
+    setFormData({
+      doctor_name: "",
+      email: "",
+      doctor_nik: "",
+      doctor_number_phone: "",
+      doctor_dob: "",
+      doctor_provinsi: "",
+      doctor_gender: "",
+      doctor_kota: "",
+      doctor_str: "",
+      doctor_sipp: "",
+      doctor_avatar: null,
     });
 
-    await createProfileDoctor(apiData, (status, res) => {
-      if (status) {
-        console.log(res);
-        getAllDoctors((res) => {
-          setFormData(res.data)
-        })
-      } else {
-        setErrorMessages('d-block')
-      }
-    })
+    onNext();
 
-    // window.location.href = "/dokter/regis/data-akademik";
   };
+  
 
   return (
     <div className="regis-data-pribadi">
@@ -225,18 +220,18 @@ const RegisDataPribadi = () => {
               </div>
 
               <div className="col-md-6">
-                <Label htmlFor="doctor_numberphone">No Handphone</Label>
+                <Label htmlFor="doctor_number_phone">No Handphone</Label>
                   <Input
                     type="text"
-                    className={`form-control mb-2 ${errorMessages.doctor_numberphone ? "is-invalid" : ""}`}                  
-                    id="doctor_numberphone"
-                    name="doctor_numberphone"
+                    className={`form-control mb-2 ${errorMessages.doctor_number_phone ? "is-invalid" : ""}`}                  
+                    id="doctor_number_phone"
+                    name="doctor_number_phone"
                     placeholder="Nomor Ponsel"
-                    value={formData.doctor_numberphone}
+                    value={formData.doctor_number_phone}
                     onChange={handleInputChange}
                   />
-                  {errorMessages.doctor_numberphone && (
-                    <div className="invalid-feedback">{errorMessages.doctor_numberphone}</div>
+                  {errorMessages.doctor_number_phone && (
+                    <div className="invalid-feedback">{errorMessages.doctor_number_phone}</div>
                   )} 
                 </div>
               </div>
@@ -351,7 +346,7 @@ const RegisDataPribadi = () => {
                 type="submit"
                 className="btn btn-primary"
                 text="Selanjutnya"
-                onClick={handleCreateProfile}
+                onClick={handleSubmitClick}
               />
           </div> 
         </div> 

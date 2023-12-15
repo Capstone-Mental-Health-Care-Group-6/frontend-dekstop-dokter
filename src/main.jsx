@@ -11,13 +11,16 @@ import "primereact/resources/themes/lara-light-cyan/theme.css";
 import "react-loading-skeleton/dist/skeleton.css";
 // import { BrowserRouter } from "react-router-dom";
 import { SkeletonTheme } from "react-loading-skeleton";
+import { MyContextProvider } from "./context/ProfileDoctorContext.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
-      <SkeletonTheme baseColor="#e2e8f0" highlightColor="#f1f5f9">
+    <MyContextProvider>
+    <SkeletonTheme baseColor="#e2e8f0" highlightColor="#f1f5f9">
         <App />
       </SkeletonTheme>
+    </MyContextProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

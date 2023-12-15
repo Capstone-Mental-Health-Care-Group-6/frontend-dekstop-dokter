@@ -23,20 +23,24 @@ export const DetailDoctor = (id, callback) => {
 
 }
 
-export const createProfileDoctor = async (formData, callback) => {
-    await axiosInterceptor.post('/doctor/register', formData, {
-        headers: {
-            'Content-Type': 'multipart/form-data',
-        },
+export const createProfileDoctor = async (formData, context, callback) => {
+    const { dataDoctor } = context;
+  
+    const mergedData = { ...formData, ...dataDoctor };
+  
+    await axiosInterceptor.post('/doctor/register', mergedData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
     })
-        .then((res) => {
-            callback(true, res.data);
-        })
-        .catch((err) => {
-            console.log(err);
-            callback(false, err.message);
-        });
-};
+      .then((res) => {
+        callback(true, res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        callback(false, err.message);
+      });
+  };
 
 export const updateProfileDataPokok = async (id, formData) => {
     await axiosInterceptor.put(`/doctor/datapokok/${id}`, formData)
@@ -69,11 +73,12 @@ export const updateProfileEducation = async (id, formData) => {
 }
 
 export const updateProfileExperience = async (id, formData) => {
-    await axiosInterceptor.put(`/doctor/experience/${id}`, formData)
-        .then((res) => {
-            console.log(res);
-        })
-        .catch((err) => {
-            console.log(err);
-        })
-}
+    try {
+        const res = await axiosInterceptor.put(`/doctor/experience/${id}`, formData);
+        console.log(res.data); // Log the successful response
+    } catch (error) {
+        console.error("Error updating experience:", error);
+        throw error; // Rethrow the error to be caught by the calling code
+    }
+};
+

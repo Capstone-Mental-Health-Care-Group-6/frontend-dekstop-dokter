@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import Input from "../../components/elements/Input/Input";
 import Label from "../../components/elements/Input/Label";
 import Button from "../../components/elements/Button/Button";
 import BackButton from "../../components/elements/Button/BackButton";
 import "./RegisDataAkademik.styles.css";
-import { createProfileDoctor, getAllDoctors } from "../../service/doctor";
+import { MyContext } from "../../context/ProfileDoctorContext";
 
-const RegisDataAkademik = () => {
+const RegisDataAkademik = ({ onNext }) => {
   const [formData, setFormData] = useState([
     {
       doctor_university: "",
@@ -16,17 +16,21 @@ const RegisDataAkademik = () => {
     },
   ]);
 
+  const { dataDoctor, setDataDoctor } = useContext(MyContext);
+
+  console.log(dataDoctor)
+
   const handleInputChange = (index, event) => {
-    const { name, value } = event.target;
+    const { name, value } = event.target;  
     const updatedFormData = [...formData];
     updatedFormData[index][name] = value;
     setFormData(updatedFormData);
   };
-
+  
   const handleAddData = () => {
     if (formData.length < 5) {
-      setFormData([
-        ...formData,
+      setFormData((prevData) => [
+        ...prevData,
         {
           doctor_university: "",
           doctor_study_program: "",
@@ -44,7 +48,7 @@ const RegisDataAkademik = () => {
     doctor_graduate_year: "",
   });
   
-  const handleCreateProfile = async (e) => {
+  const handleSubmitClick = (e) => {
     e.preventDefault();
 
     const newErrorMessages = formData.map((data, index) => ({
@@ -53,33 +57,25 @@ const RegisDataAkademik = () => {
       doctor_enroll_year: !data.doctor_enroll_year ? `Tahun Masuk wajib diisi (${index + 1})` : "",
       doctor_graduate_year: !data.doctor_graduate_year ? `Tahun Tamat wajib diisi (${index + 1})` : "",
     }));
-  
+
     setErrorMessages(newErrorMessages.reduce((acc, curr) => ({ ...acc, ...curr }), {}));
-  
+
     if (newErrorMessages.some((error) => Object.values(error).some((value) => value !== ""))) {
       return;
     }
 
-    const formDataKeys = ['doctor_university', 'doctor_study_program', 'doctor_enroll_year', 'doctor_graduate_year'];
-    const apiData = new FormData();
-    formData.forEach((data, index) => {
-      Object.entries(data).forEach(([key, value]) => {
-        apiData.append(`${key}_${index}`, value);
-      });
-    });
-    
-    await createProfileDoctor(apiData, (status, res) => {
-      if (status) {
-        console.log(res);
-        getAllDoctors((res) => {
-          setFormData(res.data);
-        });
-      } else {
-        setErrorMessages('d-block');
-      }
-    });
+    const updatedFormData = { ...formData };
+    setDataDoctor([...dataDoctor, updatedFormData]);
+    setFormData([
+    {
+      doctor_university: "",
+      doctor_study_program: "",
+      doctor_enroll_year: "",
+      doctor_graduate_year: "",
+    }
+  ]);
 
-    // window.location.href = "/dokter/regis/dokumen";
+  onNext();
 
   };
 
@@ -179,7 +175,7 @@ const RegisDataAkademik = () => {
               type="button"
               className="btn btn-primary"
               text="Selanjutnya"
-              onClick={handleCreateProfile}
+              onClick={handleSubmitClick}
             />
           </div>
         </div>

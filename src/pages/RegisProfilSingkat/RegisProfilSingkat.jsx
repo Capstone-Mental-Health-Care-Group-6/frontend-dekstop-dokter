@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import './RegisProfilSingkat.styles.css'
 import Label from "../../components/elements/Input/Label";
 import Button from "../../components/elements/Button/Button";
@@ -6,18 +6,21 @@ import BackButton from "../../components/elements/Button/BackButton";
 import RadioButton from "../../components/elements/RadioButton/RadioButton";
 import InputSelect from "../../components/elements/Input/InputSelect";
 import Input from "../../components/elements/Input/Input";
-import { createProfileDoctor, getAllDoctors } from "../../service/doctor";
+import { MyContext } from "../../context/ProfileDoctorContext";
 
-const RegisProfilSingkat = () => {
-    
+const RegisProfilSingkat = ({ onSubmit }) => {
     const [formData, setFormData] = useState({
         doctor_expertise: [],
         doctor_description: "",
         workday_id: "",
-        start_time: "",
-        end_time: "",
-    })
+        start_time: "",   
+        end_time: "",  
+    });
     
+    const { dataDoctor, setDataDoctor } = useContext(MyContext);
+
+    console.log(dataDoctor)
+
     const [errorMessages, setErrorMessages] = useState({
         doctor_expertise: "",
         doctor_description: "",
@@ -62,35 +65,26 @@ const RegisProfilSingkat = () => {
         
           setErrorMessages(newErrorMessages);
         
-        if (
-            !formData.doctor_description ||
-            formData.doctor_expertise.length === 0 ||
-            formData.workday_id.length ||
-            formData.start_time.length ||
-            formData.end_time.length
-        ) {
+          if (
+            Object.values(newErrorMessages).some((error) => error !== "") ||
+            Object.values(formData).some((value) => value === "")
+          ) {
             return;
-        }
+          }
 
-        const formDataKeys = ['doctor_expertise', 'doctor_description', 'workday_id', 'start_time', 'end_time'];
-        const apiData = new FormData();
-        formDataKeys.forEach((key) => {
-        apiData.append(key, formData[key]);
+        const updatedFormData = { ...formData };
+        setDataDoctor([...dataDoctor, updatedFormData]);
+        setFormData({
+            doctor_expertise: [],
+            doctor_description: "",
+            workday_id: "",
+            start_time: "",   
+            end_time: "", 
         });
 
-        await createProfileDoctor(apiData, (status, res) => {
-          if (status) {
-            console.log(res);
-            getAllDoctors((res) => {
-              setFormData(res.data);
-            });
-          } else {
-            setErrorMessages('d-block')
-        }
-        });
-
+        onSubmit();
         // window.location.href = "/dokter/dashboard";
-
+        
       };      
 
     return (
@@ -248,12 +242,12 @@ const RegisProfilSingkat = () => {
                     </form>
 
                     <div className="button-container d-flex justify-content-center">
-                        <Button
-                            type="button"
-                            className="btn btn-primary"
-                            text="Selanjutnya"
-                            onClick={handleCreateProfile}
-                        />
+                    <Button
+                        type="button"
+                        className="btn btn-primary"
+                        text="Selanjutnya"
+                        onClick={(e) => handleCreateProfile(e)}
+                    />
                     </div>
                 </div>
             </div>

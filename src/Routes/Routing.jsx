@@ -27,6 +27,7 @@ import RegisPengalaman from "../pages/RegisPengalaman/RegisPengalaman";
 import RegisProfilSingkat from "../pages/RegisProfilSingkat/RegisProfilSingkat";
 import ProfilSingkat from "../pages/ProfilSingkat/ProfilSingkat";
 import PrivacyPolicy from "../pages/PricacyPolicy/PrivacyPolicy";
+import RegistrationForm from "../pages/RegistrationForm/RegistrationForm";
 
 const Routing = () => {
   return (
@@ -65,6 +66,8 @@ const Routing = () => {
       <Route path="/dokter/regis/pengalaman" element={<RegisPengalaman />} />
       <Route path="/dokter/regis/profil-singkat" element={<RegisProfilSingkat />} />
       <Route path="/dokter/pengalaman/privacy-policy" element={<PrivacyPolicy />} />
+      <Route path="/dokter/regis/registration-form" element={<RegistrationForm />} />
+
 
       {/* route ketika url tidak sesuai */}
       <Route element={<NotFound404 />} path="*" />

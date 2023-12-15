@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Layouts from "../../components/layouts/Layouts";
 import Input from "../../components/elements/Input/Input";
 import Label from "../../components/elements/Input/Label";
@@ -7,6 +7,7 @@ import "./Pengalaman.styles.css";
 import BackButton from "../../components/elements/Button/BackButton";
 import ModalProfile from "../../components/fragments/Modal/ModalProfile";
 import { NavLink } from "react-router-dom";
+import { getAllDoctors, updateProfileExperience } from "../../service/doctor";
 
 const Pengalaman = () => {
   const [formData, setFormData] = useState([
@@ -76,6 +77,73 @@ const Pengalaman = () => {
   const handleSubmitCancel = () => {
     setShowProfileModal(false);
   };
+
+  const handleUpdateProfileExperience = async () => {
+    try {
+      const doctorId = "1"; // Replace with the actual doctor's ID
+      const apiData = {
+        experiences: formData.map((data) => ({
+          doctor_company: data.doctor_company,
+          doctor_title: data.doctor_title,
+          doctor_start_date: data.doctor_start_date,
+          doctor_end_date: data.doctor_end_date,
+          doctor_company_address: data.doctor_company_address,
+        })),
+      };
+
+      // Make sure axiosInterceptor is correctly imported and configured
+      await updateProfileExperience(doctorId, apiData);
+
+      // Ensure getAllDoctors returns a promise and resolves with the doctor data
+      const doctorData = await getAllDoctors(doctorId);
+
+      if (Array.isArray(doctorData.experience)) {
+        const formattedData = doctorData.experience.map((experience) => ({
+          doctor_company: experience.doctor_company || "",
+          doctor_title: experience.doctor_title || "",
+          doctor_start_date: experience.doctor_start_date || "",
+          doctor_end_date: experience.doctor_end_date || "",
+          doctor_company_address: experience.doctor_company_address || "",
+        }));
+
+        setFormData(formattedData);
+      }
+
+      // Close the modal or perform other actions as needed
+      setShowProfileModal(false);
+    } catch (error) {
+      console.error("Error updating experience:", error);
+      // Handle the error, display a message to the user, etc.
+    }
+  };
+
+  useEffect(() => {
+    const fetchDoctorData = async () => {
+      try {
+        const doctorId = "1"; // Replace with the actual doctor's ID
+
+        // Ensure getAllDoctors returns a promise and resolves with the doctor data
+        const doctorData = await getAllDoctors(doctorId);
+
+        if (Array.isArray(doctorData.experience)) {
+          const formattedData = doctorData.experience.map((experience) => ({
+            doctor_company: experience.doctor_company || "",
+            doctor_title: experience.doctor_title || "",
+            doctor_start_date: experience.doctor_start_date || "",
+            doctor_end_date: experience.doctor_end_date || "",
+            doctor_company_address: experience.doctor_company_address || "",
+          }));
+
+          setFormData(formattedData);
+        }
+      } catch (error) {
+        console.error("Error fetching doctor data:", error);
+        // Handle the error, display a message to the user, etc.
+      }
+    };
+
+    fetchDoctorData(); // Invoke the function to fetch data when the component mounts
+  }, []);
 
   return (
     <Layouts>
@@ -207,7 +275,7 @@ const Pengalaman = () => {
             show={showProfileModal}
             title="Profile"
             onClose={handleSubmitCancel}
-            onSubmit={handleSubmitConfirm}
+            onSubmit={handleUpdateProfileExperience}
           />
         </div>
       </div>

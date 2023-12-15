@@ -1,18 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import Label from "../../components/elements/Input/Label";
 import Button from "../../components/elements/Button/Button";
 import BackButton from "../../components/elements/Button/BackButton";
 import './RegisDokumen.styles.css';
 import Input from "../../components/elements/Input/Input";
-import { createProfileDoctor, getAllDoctors } from "../../service/doctor";
+import { MyContext } from "../../context/ProfileDoctorContext";
 
-const RegisDokumen = () => {
+const RegisDokumen = ({ onNext }) => {
   const [files, setFiles] = useState({
-    doctor_cv: null,
-    doctor_sipp_file: null,
-    doctor_ijazah: null,
-    doctor_str_file: null,
+    doctor_cv: "",
+    doctor_sipp_file: "",
+    doctor_ijazah: "",
+    doctor_str_file: "null",
   });
+
+  const { dataDoctor, setDataDoctor } = useContext(MyContext);
+
+  console.log(dataDoctor)
 
   const [errorMessages, setErrorMessages] = useState({
     doctor_cv: "",
@@ -31,7 +35,7 @@ const RegisDokumen = () => {
     setErrorMessages(newErrorMessages);
   };
   
-  const handleCreateProfile = async (e) => {
+  const handleSubmitClick = (e) => {
     e.preventDefault();
 
     const newErrorMessages = {
@@ -43,30 +47,21 @@ const RegisDokumen = () => {
   
     setErrorMessages(newErrorMessages);
   
-    if (!files.doctor_cv || !files.doctor_sipp_file || !files.doctor_ijazah || !files.doctor_str_file) {
+    if (!doctor_cv || !doctor_sipp_file|| !doctor_ijazah || !doctor_str_file) {
       return;
     }
 
-    const formDataKeys = ['doctor_cv', 'doctor_sipp_file', 'doctor_ijazah', 'doctor_str_file'];
-    const apiData = new FormData();
-    formDataKeys.forEach((key) => {
-      apiData.append(key, files[key]);
+    setDataDoctor([...dataDoctor, files]);
+    setFiles({
+      doctor_cv: "",
+      doctor_sipp_file: "",
+      doctor_ijazah: "",
+      doctor_str_file: "",
     });
-    
-    await createProfileDoctor(apiData, (status, res) => {
-      if (status) {
-        console.log(res);
-        getAllDoctors((res) => {
-          setFormData(res.data);
-        });
-      } else {
-        setErrorMessages('d-block')
-      }
-    });
+  
+    onNext();
 
-    // window.location.href = "/dokter/regis/pengalaman";
-
-  };  
+  };
 
   return (
       <div className="regis-dokumen">
@@ -225,7 +220,7 @@ const RegisDokumen = () => {
             type="button"
             className="btn btn-primary"
             text="Selanjutnya"
-            onClick={handleCreateProfile}
+            onClick={handleSubmitClick}
           />
         </div>
       </div>

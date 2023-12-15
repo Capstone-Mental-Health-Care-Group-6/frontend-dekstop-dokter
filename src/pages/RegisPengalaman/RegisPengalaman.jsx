@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import Input from "../../components/elements/Input/Input";
 import Label from "../../components/elements/Input/Label";
 import Button from "../../components/elements/Button/Button";
 import "./RegisPengalaman.styles.css";
 import BackButton from "../../components/elements/Button/BackButton";
 import { NavLink } from "react-router-dom";
-import { createProfileDoctor, getAllDoctors } from "../../service/doctor";
+import { MyContext } from "../../context/ProfileDoctorContext";
 
-const RegisPengalaman = () => {
+const RegisPengalaman = ({ onNext }) => {
   const [formData, setFormData] = useState([
     {
       doctor_company: "",
@@ -16,7 +16,11 @@ const RegisPengalaman = () => {
       doctor_end_date: "",
       doctor_company_address: "",
     },
-  ]);
+  ]);  
+
+  const { dataDoctor, setDataDoctor } = useContext(MyContext);
+
+  console.log(dataDoctor)
 
   const handleInputChange = (index, event) => {
     const { name, value } = event.target;  
@@ -65,25 +69,19 @@ const RegisPengalaman = () => {
       return;
     }
     
-    const apiData = new FormData();
-    formData.forEach((data, index) => {
-      Object.entries(data).forEach(([key, value]) => {
-        apiData.append(`${key}_${index}`, value);
-      });
-    });
+    const updatedFormData = { ...formData };
+    setDataDoctor([...dataDoctor, updatedFormData]);
+    setFormData([
+      {
+        doctor_company: "",
+        doctor_title: "",
+        doctor_start_date: "",
+        doctor_end_date: "",
+        doctor_company_address: "",
+      },
+    ]);
 
-    await createProfileDoctor(apiData, (status, res) => {
-      if (status) {
-        console.log(res);
-        getAllDoctors((res) => {
-          setFormData(res.data);
-        });
-      } else {
-        setErrorMessages({ ...errorMessages, someKey: 'd-block' });
-      }
-    });
-
-    // window.location.href = "/dokter/regis/profil-singkat";
+    onNext();
 
   };  
 
