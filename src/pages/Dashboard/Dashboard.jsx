@@ -149,7 +149,6 @@ const Dashboard = () => {
             </div>
           ) : (
             <>
-              <h5 className="fw-bold mt-3">List Pasien</h5>
               <TableListPasien data={dataPasien} />
             </>
           )}
