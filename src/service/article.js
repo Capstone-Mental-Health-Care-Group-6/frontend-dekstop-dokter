@@ -4,8 +4,8 @@ export const createArticle = async (formArticle, callback) => {
   await axiosInterceptor
     .post(`/articles`, formArticle, {
       headers: {
-        "Content-Type": "multipart/form-data",
-      },
+        'Content-Type': 'multipart/form-data',
+    },
     })
     .then((res) => {
       callback(true, res.data);
@@ -14,6 +14,16 @@ export const createArticle = async (formArticle, callback) => {
       callback(false, err.message);
     });
 };
+
+export const updateArticle = async (formArticle, id) => {
+  await axiosInterceptor.put(`/articles/${id}`, formArticle)
+  .then((res) => {
+      console.log(res);
+  })
+  .catch((err) => {
+      console.log(err);
+  })
+}
 
 export const getAllArticle = (callback) => {
   axiosInterceptor

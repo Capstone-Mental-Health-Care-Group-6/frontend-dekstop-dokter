@@ -21,11 +21,11 @@ const Artikel = () => {
   const [pendingStatus, setPendingStatus] = useState(false);
   const [selected, setSelected] = useState(null);
 
-  // useEffect(() => {
-  //   getAllArticle((res) => {
-  //     setArtikel(res.data)
-  //   })
-  // }, [])
+  useEffect(() => {
+    getAllArticle((res) => {
+      setArtikel(res.data)
+    })
+  }, [])
 
 
   // const pendingButton = () => {
@@ -79,8 +79,12 @@ const Artikel = () => {
           </div>
           <div className="bg-light rounded-3 my-2  dropdown-item">
             <Button
+             onClick={() => {
+              console.log(selected.id)
+              navigate(`/dokter/artikel/edit/${selected.id}`);
+            }}
             // disabled={}
-            disabled={selected !== null && selected.status === 'Pending'}
+            // disabled={selected !== null && selected.status === 'Pending'}
               text={"Edit Artikel"}
               className={"bg-transparent border-0 fw-semibold btn-edit-artikel"}
             />

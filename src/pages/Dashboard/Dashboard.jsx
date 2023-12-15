@@ -23,26 +23,18 @@ import { getAllListPasien } from "../../service/listPasien";
 import { getByNameLoginDoctor, login } from "../../service/authentication";
 
 const Dashboard = () => {
-  const [namaDokter, setNamaDokter] = useState(null);
-  const [loading, setLoading] = useState(false);
-
-  const storedDataLogin = JSON.parse(localStorage.getItem("dataLogin"));
-
-  // setNamaDokter(dataLogin.name)
-  // console.log(namaDokter)
-
-  // useEffect(() => {
-  //   setLoading(true);
-  //   setNamaDokter(dataLogin.name);
-  //   setLoading(false);
-  // }, [dataLogin]);
-
-  const Dashboard = () => {
     const [dataPasien, setDataPasien] = useState([]);
     const [userData, setUserData] = useState({});
     const [totalPasien, setTotalPasien] = useState(0);
     const [chatCount, setChatCount] = useState(0);
     const [videoCallCount, setVideoCallCount] = useState(0);
+
+    const [namaDokter, setNamaDokter] = useState(null);
+    const [loading, setLoading] = useState(false);
+  
+    const storedDataLogin = JSON.parse(localStorage.getItem("dataLogin"));
+  
+  
 
     useEffect(() => {
       getAllListPasien((data) => {
@@ -170,6 +162,5 @@ const Dashboard = () => {
       </>
     );
   };
-};
 
 export default Dashboard;

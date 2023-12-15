@@ -39,7 +39,7 @@ const TambahArtikel = () => {
     setArtikel((old) => {
       return {
         ...old,
-        category_name: id,
+        category_id: id,
       };
     });
   };
@@ -52,7 +52,7 @@ const TambahArtikel = () => {
     thumbnail: "",
   });
   const [artikel, setArtikel] = useState({
-    category_name: "",
+    category_id: "",
     user_name: "",
     title: "",
     content: "",
@@ -60,8 +60,7 @@ const TambahArtikel = () => {
     status: "pending",
   });
 
-  console.log(artikel)
-
+  // console.log(artikel)
 
   const [thumbnail, setThumbnail] = useState({
     gambar: "",
@@ -92,16 +91,24 @@ const TambahArtikel = () => {
     }
   };
 
-  const handleCreateArtikel = async (e) => {
-    e.preventDefault()
-    await createArticle(artikel, (status, res) => {
-      if (status) {
-        console.log(res)
-      } else {
-        console.log("ada kesalahan")
-      } 
-    })
-  }
+  // const formDataKeys = ['category_id', 'title', 'content', 'thumbnail', 'status']
+  // const apiData = new FormData()
+  // formDataKeys.forEach((key) => {
+  //   // console.log(artikel[key])
+  //   apiData.append(key, artikel[key])
+  // })
+
+  // const handleCreateArtikel = async (e) => {
+  //   e.preventDefault()
+  //   await createArticle(apiData, (status, res) => {
+  //     if (status) {
+  //       console.log(res)
+  //       sendArtikelToast()
+  //     } else {
+  //       console.log(res)
+  //     } 
+  //   })
+  // }
 
 
 
@@ -285,9 +292,10 @@ const TambahArtikel = () => {
                         };
                       });
                       setArtikel((old) => {
+                        console.log(selectedFile)
                         return {
                           ...old,
-                          thumbnail: URL.createObjectURL(selectedFile),
+                          thumbnail:selectedFile,
                         };
                       });
                       setThumbnail((old) => {
@@ -332,7 +340,7 @@ const TambahArtikel = () => {
                       });
                       if (errorMsg.form == "") {
                         dataArtikel.push(artikel);
-                        handleCreateArtikel()
+                        handleCreateArtikel(e)
                       }
                     }}
                     className={
@@ -503,11 +511,11 @@ const TambahArtikel = () => {
                     text={item.name}
                     id={"checkBox-artikel"}
                     checked={item.id == checkedIndex}
-                    onChange={() => handleCheckboxChange(item.name)}
+                    onChange={() => handleCheckboxChange(item.id)}
                     // index + 1 karena index ini dimulai dari 0. jadi supaya sesuai sama erd kategori di erd, harus ditambah 1
                     value={item.id}
                     classNameLabel={"fw-semibold label-artikel-text"}
-                    disabled={checkedIndex !== null && (item.name) !== checkedIndex}
+                    disabled={checkedIndex !== null && (item.id) !== checkedIndex}
                   />
                 ))}
                     </div>
