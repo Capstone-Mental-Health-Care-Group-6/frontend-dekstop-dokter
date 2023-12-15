@@ -11,7 +11,7 @@ import { createProfileDoctor } from "../../service/doctor";
 
 const RegisProfilSingkat = ({ onSubmit }) => {
     const [formData, setFormData] = useState({
-        doctor_expertise: [],
+        expertise_id: [],
         doctor_description: "",
         workday_id: "",
         start_time: "",   
@@ -23,7 +23,7 @@ const RegisProfilSingkat = ({ onSubmit }) => {
     console.log(dataDoctor[0])
 
     const [errorMessages, setErrorMessages] = useState({
-        doctor_expertise: "",
+        expertise_id: "",
         doctor_description: "",
         workday_id: "",
         start_time: "",
@@ -49,7 +49,7 @@ const RegisProfilSingkat = ({ onSubmit }) => {
         
         setFormData((prevData) => ({
             ...prevData,
-            doctor_expertise: [value],
+            expertise_id: [value],
         }));
     };
       
@@ -57,7 +57,7 @@ const RegisProfilSingkat = ({ onSubmit }) => {
         e.preventDefault();
     
         const newErrorMessages = {
-            doctor_expertise: formData.doctor_expertise.length === 0 ? "Pilih satu keahlian" : "",
+            expertise_id: formData.expertise_id.length === 0 ? "Pilih satu keahlian" : "",
             doctor_description: !formData.doctor_description ? "Tentang Anda wajib diisi" : "",
             workday_id: formData.workday_id.length === 0 ? "Pilih satu jadwal" : "",
             start_time: formData.start_time.length === 0 ? "Pilih jam kerja awal" : "",
@@ -87,7 +87,7 @@ const RegisProfilSingkat = ({ onSubmit }) => {
         // Reset form data and navigate to the next step
         setDataDoctor([...dataDoctor, formData]);
         setFormData({
-            doctor_expertise: [],
+            expertise_id: [],
             doctor_description: "",
             workday_id: "",
             start_time: "",
@@ -110,7 +110,7 @@ const RegisProfilSingkat = ({ onSubmit }) => {
 
                     <div className="row">
                         <div className="col-md-6">
-                            <Label htmlFor="doctor_expertise">Keahlian</Label>
+                            <Label htmlFor="expertise_id">Keahlian</Label>
                               <div className="form-check-keahlian">
                                 <div className="checkbox-inline">
                                     <RadioButton 
@@ -168,8 +168,8 @@ const RegisProfilSingkat = ({ onSubmit }) => {
                                             onChange={handleRadioChange}
                                         />
                                     </div>
-                                    {errorMessages.doctor_expertise && (
-                                        <div className="invalid-feedback">{errorMessages.doctor_expertise}</div>
+                                    {errorMessages.expertise_id && (
+                                        <div className="invalid-feedback">{errorMessages.expertise_id}</div>
                                     )}
                                 </div>
                             </div>

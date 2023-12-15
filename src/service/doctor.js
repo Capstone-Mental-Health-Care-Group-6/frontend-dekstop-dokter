@@ -34,14 +34,45 @@ export const createProfileDoctor = async (formData, context, callback) => {
 
       const mergedData = {
         ...formData,
-        dataDoctor: { ...dataDoctor }, // Preserve the original dataDoctor
+        dataDoctor: { ...dataDoctor }, 
       };
   
       console.log('ini merged data', mergedData)
 
       console.log('ini isi merged data', mergedData.dataDoctor)
+      const formDataNow = new FormData();
+      var currentDate = new Date();
+      var isoDateString = currentDate.toISOString();
+      formDataNow.append("doctor_name", dataDoctor.doctor_name);
+      formDataNow.append("doctor_nik", dataDoctor.doctor_nik);
+      formDataNow.append("doctor_dob", dataDoctor.doctor_dob);
+      formDataNow.append("doctor_gender", "perempuan");
+      formDataNow.append("doctor_description", dataDoctor.doctor_description);
+      formDataNow.append("doctor_provinsi", dataDoctor.doctor_provinsi);
+      formDataNow.append("doctor_kota", dataDoctor.doctor_kota);
+      formDataNow.append("doctor_number_phone", dataDoctor.doctor_number_phone);
+      formDataNow.append("doctor_sipp", dataDoctor.doctor_sipp);
+      formDataNow.append("doctor_str", dataDoctor.doctor_str);
+      formDataNow.append("expertise_id", 1);
+      formDataNow.append("doctor_avatar", dataDoctor.doctor_avatar);
+      formDataNow.append("doctor_university", "ini univ doctor");
+      formDataNow.append("doctor_study_program", "ini prodi doctor");
+      formDataNow.append("doctor_enroll_year", isoDateString);
+      formDataNow.append("doctor_graduate_year", isoDateString);
+      formDataNow.append("doctor_cv", dataDoctor.doctor_avatar);
+      formDataNow.append("doctor_sipp_file", dataDoctor.doctor_avatar);
+      formDataNow.append("doctor_ijazah",dataDoctor.doctor_avatar);
+      formDataNow.append("doctor_str_file",dataDoctor.doctor_avatar);
+      formDataNow.append("workday_id", 1);
+      formDataNow.append("start_time", isoDateString);
+      formDataNow.append("end_time", isoDateString);
+      formDataNow.append("doctor_company", "kek apa tuh");
+      formDataNow.append("doctor_title", "direktur");
+      formDataNow.append("doctor_company_address", "jl oke gan");
+      formDataNow.append("doctor_start_date", isoDateString);
+      formDataNow.append("doctor_end_date", isoDateString);
 
-      await axiosInterceptor.post('/doctor/register', mergedData, {
+      await axiosInterceptor.post('/doctor/register', formDataNow, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

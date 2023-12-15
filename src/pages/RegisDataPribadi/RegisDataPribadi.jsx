@@ -140,7 +140,7 @@ const RegisDataPribadi = ({ onNext }) => {
               <div className="row mb-3">
                 <div className="col-md-4">
                 {formData.doctor_avatar ? (
-                    <img src={formData.doctor_avatar} className="img-fluid" alt="Profile" />
+                    <img src={URL.createObjectURL(formData.doctor_avatar)} className="img-fluid" alt="Profile" />
                   ) : (
                     <img src={gambar} className="img-fluid" alt="Default" />
                   )}
@@ -270,8 +270,8 @@ const RegisDataPribadi = ({ onNext }) => {
                     name="doctor_gender"
                     title="Jenis Kelamin"
                     options={[
-                      { value: "Laki-laki", label: "Laki-laki" },
-                      { value: "Perempuan", label: "Perempuan" },
+                      { value: "laki", label: "Laki-laki" },
+                      { value: "perempuan", label: "Perempuan" },
                     ]}
                     value={formData.doctor_gender}
                     onChange={handleInputChange}
