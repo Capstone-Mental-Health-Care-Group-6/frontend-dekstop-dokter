@@ -21,6 +21,7 @@ import { useSelector } from "react-redux";
 import { getAllCounseling } from "../../service/counseling";
 import { getAllListPasien } from "../../service/listPasien";
 import { getByNameLoginDoctor, login } from "../../service/authentication";
+import PulseLoader from "react-spinners/PulseLoader";
 
 const Dashboard = () => {
     const [dataPasien, setDataPasien] = useState([]);
@@ -137,18 +138,21 @@ const Dashboard = () => {
                 </div>
               ))}
             </div>
-
             {dataPasien.length === 0 ? (
               <div className="pasien__kosong d-flex align-items-center justify-content-center flex-column">
                 <img src={imgDataPasienKosong} alt="img-pasien-kosong" />
                 <p className="fw-semibold">Belum Ada Antrian Pasien</p>
-              </div>
-            ) : (
-              <>
-                <h5 className="fw-bold mt-3">List Pasien</h5>
-                <TableListPasien data={dataPasien} />
-              </>
-            )}
+
+          ) : (
+            <>
+              <h5 className="fw-bold mt-3">List Pasien</h5>
+              <TableListPasien
+                data={dataPasien}
+                onDataChanged={handleDataChange}
+              />
+            </>
+          )}
+ 
 
             <div className="toogle__chatbot ">
               <Link to={"/dokter/chatbot"}>
