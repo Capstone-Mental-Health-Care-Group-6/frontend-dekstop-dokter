@@ -2,7 +2,7 @@ import Layouts from "../../components/layouts/Layouts";
 import "./DetailTransaksiManual.style.css";
 // import { transaksiUsers } from "../../components/DataComponents/dataComponents";
 import { useParams } from "react-router-dom";
-import { BuktiTransaksi, arrowLeft } from "../../../image";
+import { arrowLeft } from "../../../image";
 import { Link } from "react-router-dom";
 import { detailTransaction } from "../../service/transaction";
 import { useEffect, useState } from "react";
@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 const DetailTransaksiManual = () => {
   const { id } = useParams();
   const [detail, setDetail] = useState({}); // State untuk menyimpan detail transaksi
-  const rating = 5;
+  const [rating, setRating] = useState(5);
 
   useEffect(() => {
     detailTransaction(id, (data) => {
@@ -19,6 +19,10 @@ const DetailTransaksiManual = () => {
         console.log("Data to set:", data.data[0]); // Log data yang akan diatur ke state detail
         const formattedDate = formatDate(data.data[0].created_at); // Mengubah format tanggal sesuai kebutuhan
         data.data[0].created_at = formattedDate; // Mengupdate format tanggal dalam data
+
+        const doctorStarRating = data.data[0].doctor_star_rating;
+        setRating(doctorStarRating); // Set nilai rating dari response API
+
         setDetail(data.data[0]); // Ambil data pertama dari respons API
       } else {
         console.log("No data received from API");
@@ -184,7 +188,7 @@ const DetailTransaksiManual = () => {
                 </div>
                 <div className="col-12">
                   <p className="feedback-bawah">
-                    Sangat membantu dan membuat saya lebih bersemangat!
+                    {detail.doctor_review}
                   </p>
                 </div>
               </div>
