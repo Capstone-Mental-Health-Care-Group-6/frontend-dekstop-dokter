@@ -27,6 +27,7 @@ import RegisPengalaman from "../pages/RegisPengalaman/RegisPengalaman";
 import RegisProfilSingkat from "../pages/RegisProfilSingkat/RegisProfilSingkat";
 import ProfilSingkat from "../pages/ProfilSingkat/ProfilSingkat";
 import PrivacyPolicy from "../pages/PricacyPolicy/PrivacyPolicy";
+import DetailArtikel from "../pages/DetailArtikel/DetailArtikel";
 
 const Routing = () => {
   return (
@@ -52,6 +53,7 @@ const Routing = () => {
       <Route path="/dokter/saldo" element={<PencairanSaldo />} />
       <Route path="/dokter/artikel" element={<Artikel />} />
       <Route path="/dokter/artikel/tambah" element={<TambahArtikel />} />
+      <Route path="/dokter/artikel/detail/:id" element={<DetailArtikel />} />
       <Route path="/dokter/profile" element={<Profile />} />
       <Route path="/dokter/profile/data-pribadi" element={<DataPribadi />} />
       <Route path="/dokter/profile/data-akademik" element={<DataAkademik />} />
