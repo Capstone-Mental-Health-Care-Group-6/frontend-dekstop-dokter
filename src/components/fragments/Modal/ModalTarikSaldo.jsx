@@ -4,9 +4,44 @@ import Input from "../../elements/Input/Input"
 import Button from "../../elements/Button/Button"
 import ModalAlertSaldo from "../ModalAlert/ModalAlertSaldo"
 import { imgModalSaldoCair } from "../../../../image"
+import { withdraw } from "../../../service/transaction"
 
 const ModalTarikSaldo = ({ id, size }) => {
-  const [formState, setFormState] = useState({
+  // const [formState, setFormState] = useState({
+  //   metodePembayaran: "",
+  //   namaPenerima: "",
+  //   nomorRekening: "",
+  //   nominalPenarikan: "",
+  // })
+
+  // const handleChange = (event) => {
+  //   setFormState({
+  //     ...formState,
+  //     [event.target.name]: event.target.value,
+  //   })
+  // }
+
+  // const handleSubmit = (event) => {
+  //   event.preventDefault()
+
+  //   // Extract form data
+  //   const { metodePembayaran, namaPenerima, nomorRekening, nominalPenarikan } =
+  //     formState
+
+  //   const bank = metodePembayaran.replace("BANK ", "")
+  //   let balanceReq = nominalPenarikan.replace("Rp ", "")
+  //   balanceReq = balanceReq.replace(".", "")
+  //   balanceReq = balanceReq.replace("-,", "")
+  //   balanceReq = parseInt(balanceReq, 10)
+  //   const withdrawData = {
+  //     balance_req: balanceReq,
+  //     payment_method: bank,
+  //     payment_name: namaPenerima,
+  //     payment_number: nomorRekening,
+  //   }
+  //   console.log(withdrawData)
+  // }
+  const [formData, setFormData] = useState({
     metodePembayaran: "",
     namaPenerima: "",
     nomorRekening: "",
@@ -14,23 +49,24 @@ const ModalTarikSaldo = ({ id, size }) => {
   })
 
   const handleChange = (event) => {
-    setFormState({
-      ...formState,
+    setFormData({
+      ...formData,
       [event.target.name]: event.target.value,
     })
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
 
     // Extract form data
     const { metodePembayaran, namaPenerima, nomorRekening, nominalPenarikan } =
-      formState
+      formData
 
     const bank = metodePembayaran.replace("BANK ", "")
-    let balanceReq = nominalPenarikan.replace("Rp ", "")
-    balanceReq = balanceReq.replace(".", "")
-    balanceReq = balanceReq.replace("-,", "")
+    let balanceReq = nominalPenarikan
+      .replace("Rp ", "")
+      .replace(".", "")
+      .replace("-,", "")
     balanceReq = parseInt(balanceReq, 10)
     const withdrawData = {
       balance_req: balanceReq,
@@ -38,8 +74,75 @@ const ModalTarikSaldo = ({ id, size }) => {
       payment_name: namaPenerima,
       payment_number: nomorRekening,
     }
-    console.log(withdrawData)
+
+    withdraw(withdrawData)
+      .then((data) => {
+        console.log(data)
+        // Handle the response as needed
+      })
+      .catch((error) => {
+        console.error("Error:", error)
+        // Handle the error, display an error message, or show an alert
+      })
+    // try {
+    //   // Panggil fungsi withdraw
+    //   const response = await withdraw(withdrawData)
+    //   console.log(response.data)
+    //   // Handle the response as needed
+    //   // For example, display a success message or show an alert
+    // } catch (error) {
+    //   console.error("Error:", error)
+    //   // Handle the error, display an error message, or show an alert
+    // }
+    // try {
+    //   // Panggil fungsi withdrawApi
+    //   const response = await withdraw(withdrawData)
+
+    //   // Pastikan respons memiliki properti 'data'
+    //   if (response && response.data) {
+    //     console.log(response.data)
+    //     // Handle the response as needed
+    //     // For example, display a success message or show an alert
+    //   } else {
+    //     console.error("Error: Response data is undefined")
+    //     // Handle the error or show an alert
+    //   }
+    // } catch (error) {
+    //   console.error("Error:", error)
+    //   // Handle the error, display an error message, or show an alert
+    // }
   }
+
+  // Reset form state
+  const deleteState = () => {
+    setFormData({
+      metodePembayaran: "",
+      namaPenerima: "",
+      nomorRekening: "",
+      nominalPenarikan: "",
+    })
+  }
+
+  // Convert form data keys to an array
+  const formDataKeys = [
+    "metodePembayaran",
+    "namaPenerima",
+    "nomorRekening",
+    "nominalPenarikan",
+  ]
+
+  // Create a FormData object
+  const apiData = new FormData()
+
+  // Iterate over keys and append values to FormData
+  formDataKeys.forEach((key) => {
+    const value =
+      key === "nominalPenarikan"
+        ? parseFloat(formData[key].replace("Rp ", "").replace(",", ""))
+        : formData[key]
+    apiData.append(key, value)
+  })
+
   return (
     <div>
       <ModalAlertSaldo size={"modal-md"} id={"modal-alert-saldo-diproses"}>

@@ -1,16 +1,35 @@
 import axios from "axios";
 import { axiosInterceptor } from "./axiosInterceptors";
 
-export const withdraw = (formWithdraw, callback) => {
-  axiosInterceptor
-    .post(`/withdraw`, formWithdraw)
+// export const withdraw = (formWithdraw, callback) => {
+//   axiosInterceptor
+//     .post(`/withdraw`, formWithdraw)
+//     .then((res) => {
+//       callback(res.data);
+//     })
+//     .catch((err) => {
+//       callback(err);
+//     });
+// };
+export const withdraw = (formWithdraw) => {
+  return axiosInterceptor.post(`/withdraw`, formWithdraw)
     .then((res) => {
-      callback(res.data);
+      return Promise.resolve(res.data);
     })
     .catch((err) => {
-      callback(err);
+      return Promise.reject(err);
     });
 };
+
+
+// export const withdraw = async (withdrawData) => {
+//   try {
+//     const response = await axiosInterceptor.post('/withdraw', withdrawData);
+//     return response;
+//   } catch (error) {
+//     throw error;
+//   }
+// };
 
 export const allDataTransaction = (callback) => {
   axios
