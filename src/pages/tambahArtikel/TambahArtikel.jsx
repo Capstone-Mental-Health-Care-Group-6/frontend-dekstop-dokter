@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Layouts from "../../components/layouts/Layouts";
 import Label from "../../components/elements/Input/Label";
 import Input from "../../components/elements/Input/Input";
@@ -7,36 +7,152 @@ import "./tambahArtikel.style.css";
 import InputSelect from "../../components/elements/Input/InputSelect";
 import Checkbox from "../../components/elements/Input/Checkbox";
 import Button from "../../components/elements/Button/Button";
+import toast, { Toaster } from "react-hot-toast";
+import { createArticle, getAllArticleCategories } from "../../service/article";
+import { useSelector } from "react-redux";
 
 const TambahArtikel = () => {
-  const [showTambahKategori, setShowTambahKategori] = useState(false);
+  const dataArtikel = [];
+  const [categories, setCategories] = useState([]);
   const [statusChecked, setStatusChecked] = useState("Publik");
-  const [listCheckbox, setListCheckbox] = useState([
-    "Anxiety",
-    "Depresi",
-    "Emosi",
-    "Kecemasan",
-    "Stress",
-    "Tips",
-    "Umum",
-  ]);
-  const [artikel, setArtikel] = useState({
-    judul: "",
-    deskripsi: "",
-    linkVideo: "",
-    thumbnail: ""
+  const [loading, setLoading] = useState(false);
+
+  const dataLogin = useSelector((state) => state.user.dataLogin);
+  const storedDataLogin = JSON.parse(localStorage.getItem('dataLogin'));
+
+
+
+  useEffect(() => {
+    setLoading(true);
+    getAllArticleCategories((res) => {
+      setCategories(res.data);
+    });
+    setLoading(false);
+  }, []);
+
+  // console.log(categories[0].id)
+
+  const [checkedIndex, setCheckedIndex] = useState(null);
+
+  const handleCheckboxChange = (id) => {
+    setCheckedIndex(id === checkedIndex ? null : id);
+    setArtikel((old) => {
+      return {
+        ...old,
+        category_name: id,
+      };
+    });
+  };
+
+
+  const [errorMsg, setErrorMsg] = useState({
+    form: "",
+    title: "",
+    content: "",
+    thumbnail: "",
   });
+  const [artikel, setArtikel] = useState({
+    category_name: "",
+    user_name: "",
+    title: "",
+    content: "",
+    thumbnail: "",
+    status: "pending",
+  });
+
+  console.log(artikel)
+
+
   const [thumbnail, setThumbnail] = useState({
     gambar: "",
   });
 
-  const [checkedIndex, setCheckedIndex] = useState(null);
-
-  const handleCheckboxChange = (index) => {
-    setCheckedIndex(index === checkedIndex ? null : index);
+  const handleNull = () => {
+    if (
+      artikel.title === "" ||
+      artikel.content === "" ||
+      artikel.thumbnail === "" ||
+      artikel.category_id === ""
+    ) {
+      console.log(artikel);
+      nullToast();
+      setErrorMsg((old) => {
+        return {
+          ...old,
+          form: "Form tidak boleh ada yang kosong",
+        };
+      });
+    } else {
+      setErrorMsg((old) => {
+        return {
+          ...old,
+          form: "",
+        };
+      });
+    }
   };
 
+  const handleCreateArtikel = async (e) => {
+    e.preventDefault()
+    await createArticle(artikel, (status, res) => {
+      if (status) {
+        console.log(res)
+      } else {
+        console.log("ada kesalahan")
+      } 
+    })
+  }
 
+
+
+
+  // const handleCreateBundle = async (e) => {
+  //   e.preventDefault()
+  //   await createBundle(apiData, (status, res) => {
+  //     if (status) {
+  //       console.log(res);
+  //       deleteState()
+  //       getAllBundle((res) => {
+  //         setBundle(res.data)
+  //       })
+  //       addKonseling()
+  //     } else {
+  //       rejectKonseling()
+  //     }
+  //   })
+  // }
+
+  const nullToast = () =>
+    toast.error("Form tidak boleh ada yang kosong!", {
+      duration: 4000,
+      position: "top-center",
+      style: {
+        maxWidth: "700px",
+        marginBottom: "5%",
+      },
+
+      // Aria
+      ariaProps: {
+        role: "status",
+        "aria-live": "polite",
+      },
+    });
+
+    const sendArtikelToast = () =>
+    toast.success("Artikel berhasil diupload! Silakan tunggu admin untuk memverifikasi artikel", {
+      duration: 4000,
+      position: "top-center",
+      style: {
+        maxWidth: "700px",
+        marginBottom: "5%",
+      },
+
+      // Aria
+      ariaProps: {
+        role: "status",
+        "aria-live": "polite",
+      },
+    });
 
   return (
     <Layouts>
@@ -44,7 +160,7 @@ const TambahArtikel = () => {
       <div className="container">
         <div className="row">
           <div className="col-9 px-3">
-            <form action="">
+            <form action="" id="form" className="needs-validation">
               <div
                 className="container-fluid py-5 rounded-2"
                 style={{ backgroundColor: "white" }}
@@ -57,7 +173,34 @@ const TambahArtikel = () => {
                   name={"judul-artikel"}
                   type={"text"}
                   className={"rounded-3 border-solid border-1"}
+                  onChange={(e) => {
+                    if (e.target.value == null || e.target.value === "") {
+                      setErrorMsg((old) => {
+                        return {
+                          ...old,
+                          title: "Isi konten tidak boleh kosong!",
+                        };
+                      });
+                    } else {
+                      setErrorMsg((old) => {
+                        return {
+                          ...old,
+                          title: "",
+                        };
+                      });
+                    }
+                    setArtikel((old) => {
+                      return {
+                        ...old,
+                        title: e.target.value,
+                      };
+                    });
+                    // console.log(artikel)
+                  }}
                 />
+                <div className="text-danger mb-0 my-2">
+                  <p>{errorMsg.title}</p>
+                </div>
 
                 <Label htmlFor={"deskripsi-artikel"}>
                   <p className="fw-bold mt-4 mb-0">Deskripsi Artikel</p>
@@ -66,10 +209,35 @@ const TambahArtikel = () => {
                   <Reactquill
                     // value={artikel}
                     id={"deksripsi-artikel"}
+                    value={artikel.content}
                     onChange={(value) => {
-                      console.log(value);
+                      if (value == "<p><br></p>" || value === "") {
+                        setErrorMsg((old) => {
+                          return {
+                            ...old,
+                            content: "Isi konten tidak boleh kosong!",
+                          };
+                        });
+                      } else {
+                        setErrorMsg((old) => {
+                          return {
+                            ...old,
+                            content: "",
+                          };
+                        });
+                      }
+                      setArtikel((old) => {
+                        return {
+                          ...old,
+                          content: value,
+                        };
+                      });
+                      // console.log(artikel)
                     }}
                   />
+                </div>
+                <div>
+                  <p className="text-danger mb-0 my-1">{errorMsg.content}</p>
                 </div>
                 <Label htmlFor={"link-video-artikel"}>
                   <p className="fw-bold mt-3 mb-0">Link Video Youtube</p>
@@ -78,7 +246,16 @@ const TambahArtikel = () => {
                   id={"link-video-artikel"}
                   name={"link-video-artikel"}
                   type={"text"}
+                  value={artikel.linkVideo}
                   className={"rounded-3 border-solid border-1"}
+                  onChange={(e) => {
+                    setArtikel((old) => {
+                      return {
+                        ...old,
+                        linkVideo: e.target.value,
+                      };
+                    });
+                  }}
                 />
                 <img src={thumbnail.gambar} width={100} className="mt-4" />
                 <Label htmlFor={"thumbnail-artikel"}>
@@ -88,27 +265,76 @@ const TambahArtikel = () => {
                   id={"thumbnail-artikel"}
                   name={"thumbnail-artikel"}
                   type={"file"}
-                  className={"rounded-3 border-solid border-1"}
+                  accept={".jpg, .jpeg, .png"}
+                  className={"rounded-3 border-solid border-1 mt-3  "}
                   onChange={(e) => {
-                    console.log(e.currentTarget.files);
-                    setThumbnail((old) => {
-                      return {
-                        ...old,
-                        gambar: URL.createObjectURL(e.target.files[0]),
-                      };
-                    });
-                    console.log(thumbnail.gambar);
+                    const allowedFormats = ["jpg", "jpeg", "png"];
+                    const selectedFile = e.target.files[0];
+
+                    // Mendapatkan ekstensi file
+                    const fileExtension = selectedFile.name
+                      .split(".")
+                      .pop()
+                      .toLowerCase();
+
+                    if (allowedFormats.includes(fileExtension)) {
+                      setErrorMsg((old) => {
+                        return {
+                          ...old,
+                          thumbnail: "",
+                        };
+                      });
+                      setArtikel((old) => {
+                        return {
+                          ...old,
+                          thumbnail: URL.createObjectURL(selectedFile),
+                        };
+                      });
+                      setThumbnail((old) => {
+                        return {
+                          ...old,
+                          gambar: URL.createObjectURL(selectedFile),
+                        };
+                      });
+                    } else {
+                      setErrorMsg((old) => {
+                        return {
+                          ...old,
+                          thumbnail:
+                            "Format file tidak diizinkan. Pilih file dengan format jpg, jpeg, atau png",
+                        };
+                      });
+                      // Menampilkan pesan kesalahan jika format tidak diizinkan
+                      console.error(
+                        "Format file tidak diizinkan. Pilih file dengan format jpg, jpeg, atau png"
+                      );
+                    }
                   }}
                 />
                 <p className="text-deskripsi-thumbnail">
                   Rekomendasi ukuran gambar: 300 x 450. Format gambar: jpg, png,
                   jpeg
                 </p>
+                <p className="text-danger">{errorMsg.thumbnail}</p>
               </div>
               <div className="d-flex m-3 button-form-artikel">
                 <div>
                   <Button
-                    type={"submit"}
+                    type={"button"}
+                    onClick={(e) => {
+                      handleNull();
+                      setArtikel((old) => {
+                        return {
+                          ...old,
+                          user_name: storedDataLogin,
+                          status: "pending",
+                        };
+                      });
+                      if (errorMsg.form == "") {
+                        dataArtikel.push(artikel);
+                        handleCreateArtikel()
+                      }
+                    }}
                     className={
                       "btn btn-primary me-3 btn-upload-artikel fw-semibold"
                     }
@@ -122,6 +348,16 @@ const TambahArtikel = () => {
                     style={{ backgroundColor: "white" }}
                     className={"btn me-3 btn-draft-artikel fw-semibold"}
                     text={"Simpan sebagai Draft"}
+                    onClick={(e) => {
+
+                      setArtikel((old) => {
+                        return {
+                          ...old,
+                          user_name: storedDataLogin,
+                          status: "draft",
+                        };
+                      });
+                    }}
                   />
                 </div>
               </div>
@@ -159,7 +395,7 @@ const TambahArtikel = () => {
                             <p className="fw-semibold">Visibilitas</p>
                             <button
                               type="button"
-                              class="btn-close"
+                              className="btn-close"
                               aria-label="Close"
                             ></button>
                           </div>
@@ -176,17 +412,28 @@ const TambahArtikel = () => {
                                 name="visibilitas-artikel"
                                 id="visibilitas-publik"
                                 value="Publik"
-                                onChange={(e)=> {
-                                  setStatusChecked(e.target.value)
+                                onChange={(e) => {
+                                  setStatusChecked(e.target.value);
+                                  setArtikel((old) => {
+                                    return {
+                                      ...old,
+                                      visibilitas: "Publik",
+                                    };
+                                  });
                                 }}
                               />
                               <label
                                 className="form-check-label fw-bold"
-                                for="visibilitas-publik"
+                                htmlFor="visibilitas-publik"
                               >
-                               Publik
+                                Publik
                               </label>
-                              <p style={{fontSize: "12px"}} className="text-wrap">Dapat dilihat oleh semua orang</p>
+                              <p
+                                style={{ fontSize: "12px" }}
+                                className="text-wrap"
+                              >
+                                Dapat dilihat oleh semua orang
+                              </p>
                             </div>
                           </div>
                           <div className=" rounded-3 my-2  dropdown-item div-lihat-artikel ">
@@ -197,20 +444,30 @@ const TambahArtikel = () => {
                                 name="visibilitas-artikel"
                                 id="visibilitas-privat"
                                 value="Privat"
-                                onChange={(e)=> {
-                                  setStatusChecked(e.target.value)
+                                onChange={(e) => {
+                                  setStatusChecked(e.target.value);
+                                  setArtikel((old) => {
+                                    return {
+                                      ...old,
+                                      visibilitas: "Privat",
+                                    };
+                                  });
                                 }}
                               />
                               <label
                                 className="form-check-label fw-bold"
-                                for="visibilitas-privat"
+                                htmlFor="visibilitas-privat"
                               >
-                               Privat
+                                Privat
                               </label>
-                              <p style={{fontSize: "12px"}} className="text-wrap">Hanya dapat dilihat oleh admin dan editor situs</p>
+                              <p
+                                style={{ fontSize: "12px" }}
+                                className="text-wrap"
+                              >
+                                Hanya dapat dilihat oleh admin dan editor situs
+                              </p>
                             </div>
                           </div>
-                      
                         </div>
                       </div>
                     </div>
@@ -236,24 +493,43 @@ const TambahArtikel = () => {
                 Kategori
               </p>
               <div>
-                {listCheckbox.map((id, index) => (
+                {!loading ? (
+                  categories.length > 0 ? (
+                    <div>
+                       {categories.map((item) => (
                   <Checkbox
-                    index={index}
-                    text={id}
+                  key={item.id}
+                    index={item.id}
+                    text={item.name}
                     id={"checkBox-artikel"}
-                    checked={index == checkedIndex}
-                    onChange={() => handleCheckboxChange(index)}
-                    value={id}
+                    checked={item.id == checkedIndex}
+                    onChange={() => handleCheckboxChange(item.name)}
+                    // index + 1 karena index ini dimulai dari 0. jadi supaya sesuai sama erd kategori di erd, harus ditambah 1
+                    value={item.id}
                     classNameLabel={"fw-semibold label-artikel-text"}
-                    disabled={checkedIndex !== null && index !== checkedIndex}
+                    disabled={checkedIndex !== null && (item.name) !== checkedIndex}
                   />
                 ))}
+                    </div>
+                  ) : (
+                    <div>
+                      <p>Kategori kosong</p>
+                    </div>
+                  )
+                ) : (
+                  <div>spinner</div>
+                )}
+               
               </div>
-              <p style={{fontSize: "10px"}} className="text-muted" ><span className="text-danger">*</span>Kategori hanya dapat dipilih salah satu</p>
+              <p style={{ fontSize: "10px" }} className="text-muted">
+                <span className="text-danger">*</span>Kategori hanya dapat
+                dipilih salah satu
+              </p>
             </div>
           </div>
         </div>
       </div>
+      <Toaster />
     </Layouts>
   );
 };
