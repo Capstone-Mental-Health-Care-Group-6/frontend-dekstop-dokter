@@ -19,7 +19,7 @@ const RegisProfilSingkat = ({ onSubmit }) => {
     
     const { dataDoctor, setDataDoctor } = useContext(MyContext);
 
-    console.log(dataDoctor)
+    console.log(dataDoctor[0])
 
     const [errorMessages, setErrorMessages] = useState({
         doctor_expertise: "",
@@ -72,8 +72,7 @@ const RegisProfilSingkat = ({ onSubmit }) => {
             return;
           }
 
-        const updatedFormData = { ...formData };
-        setDataDoctor([...dataDoctor, updatedFormData]);
+        setDataDoctor([...dataDoctor, formData]);
         setFormData({
             doctor_expertise: [],
             doctor_description: "",
@@ -82,7 +81,7 @@ const RegisProfilSingkat = ({ onSubmit }) => {
             end_time: "", 
         });
 
-        onSubmit();
+        onSubmit(e);
         // window.location.href = "/dokter/dashboard";
         
       };      

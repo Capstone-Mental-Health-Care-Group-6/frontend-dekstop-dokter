@@ -24,7 +24,7 @@ const RegisDataPribadi = ({ onNext }) => {
 
   const { dataDoctor, setDataDoctor } = useContext(MyContext);
 
-  console.log(dataDoctor)
+  console.log(dataDoctor[0])
 
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
@@ -114,8 +114,7 @@ const RegisDataPribadi = ({ onNext }) => {
       return;
     }
   
-    const updatedFormData = { ...formData };
-    setDataDoctor([...dataDoctor, updatedFormData]);
+    setDataDoctor([...dataDoctor, formData]);
     setFormData({
       doctor_name: "",
       email: "",

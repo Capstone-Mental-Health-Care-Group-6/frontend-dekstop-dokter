@@ -16,7 +16,7 @@ const RegisDokumen = ({ onNext }) => {
 
   const { dataDoctor, setDataDoctor } = useContext(MyContext);
 
-  console.log(dataDoctor)
+  console.log(dataDoctor[0])
 
   const [errorMessages, setErrorMessages] = useState({
     doctor_cv: "",

@@ -24,23 +24,31 @@ export const DetailDoctor = (id, callback) => {
 }
 
 export const createProfileDoctor = async (formData, context, callback) => {
-    const { dataDoctor } = context;
+    try {
+      const { dataDoctor } = context;
   
-    const mergedData = { ...formData, ...dataDoctor };
-  
-    await axiosInterceptor.post('/doctor/register', mergedData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    })
-      .then((res) => {
-        callback(true, res.data);
+      const mergedData = { ...formData, ...dataDoctor };
+    
+      await axiosInterceptor.post('/doctor/register', mergedData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
       })
-      .catch((err) => {
-        console.log(err);
-        callback(false, err.message);
-      });
-  };
+        .then((res) => {
+          console.log('Response:', res);
+  
+          callback(true, res.data);
+        })
+        .catch((err) => {
+          console.log('Error Response:', err.response);
+  
+          callback(false, err.message);
+        });
+    } catch (error) {
+      console.error('Unexpected Error:', error);
+      callback(false, error.message);
+    }
+  };  
 
 export const updateProfileDataPokok = async (id, formData) => {
     await axiosInterceptor.put(`/doctor/datapokok/${id}`, formData)

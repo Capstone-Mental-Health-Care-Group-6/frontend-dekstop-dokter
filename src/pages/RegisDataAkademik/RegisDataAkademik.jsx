@@ -18,7 +18,7 @@ const RegisDataAkademik = ({ onNext }) => {
 
   const { dataDoctor, setDataDoctor } = useContext(MyContext);
 
-  console.log(dataDoctor)
+  console.log(dataDoctor[0])
 
   const handleInputChange = (index, event) => {
     const { name, value } = event.target;  
@@ -64,8 +64,7 @@ const RegisDataAkademik = ({ onNext }) => {
       return;
     }
 
-    const updatedFormData = { ...formData };
-    setDataDoctor([...dataDoctor, updatedFormData]);
+    setDataDoctor([...dataDoctor, formData]);
     setFormData([
     {
       doctor_university: "",
