@@ -25,10 +25,22 @@ export const DetailDoctor = (id, callback) => {
 
 export const createProfileDoctor = async (formData, context, callback) => {
     try {
-      const { dataDoctor } = context;
+    const dataDoctor = context.dataDoctor[0];
+    const dataDoctor2 = context.dataDoctor[1];
+    const dataDoctor3 = context.dataDoctor[2];
+    const dataDoctor4 = context.dataDoctor[3];
+
+    console.log('ini isi semua form doctor', dataDoctor, dataDoctor2, dataDoctor3, dataDoctor4)
+
+      const mergedData = {
+        ...formData,
+        dataDoctor: { ...dataDoctor }, // Preserve the original dataDoctor
+      };
   
-      const mergedData = { ...formData, ...dataDoctor };
-    
+      console.log('ini merged data', mergedData)
+
+      console.log('ini isi merged data', mergedData.dataDoctor)
+
       await axiosInterceptor.post('/doctor/register', mergedData, {
         headers: {
           'Content-Type': 'multipart/form-data',

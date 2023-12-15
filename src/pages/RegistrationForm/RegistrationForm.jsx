@@ -22,14 +22,13 @@ const RegistrationForm = () => {
     for (const key of formDataKeys) {
       try {
         if (formData['doctor_avatar']) {
-          const base64Data = formData['doctor_avatar'];
-          const blob = await (await fetch(`data:image/png;base64,${base64Data}`)).blob();
-          apiData.append('doctor_avatar', blob, 'avatar.png');
+          console.log('ini sudah sampai sini')
+          apiData.append('doctor_avatar', 'testing');
         } else if (key !== 'email' && formData.hasOwnProperty(key)) {
           apiData.append(key, formData[key]);
           combinedFormData[key] = formData[key];
         }
-        
+
         console.log('Request Payload:', mergedData);
 
       } catch (error) {

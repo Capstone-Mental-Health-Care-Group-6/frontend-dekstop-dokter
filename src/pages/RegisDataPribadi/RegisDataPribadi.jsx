@@ -76,13 +76,7 @@ const RegisDataPribadi = ({ onNext }) => {
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setFormData({ ...formData, doctor_avatar: reader.result });
-      };
-      reader.readAsDataURL(file);
-    }
+    setFormData({ ...formData, doctor_avatar: file });
   };
 
   const openFileInput = () => {
@@ -160,7 +154,6 @@ const RegisDataPribadi = ({ onNext }) => {
           <input
             type="file"
             id="imageInput"
-            accept="image/*"
             onChange={handleImageChange}
             style={{ display: "none" }}
           />

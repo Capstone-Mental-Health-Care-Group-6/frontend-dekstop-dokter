@@ -7,6 +7,7 @@ import RadioButton from "../../components/elements/RadioButton/RadioButton";
 import InputSelect from "../../components/elements/Input/InputSelect";
 import Input from "../../components/elements/Input/Input";
 import { MyContext } from "../../context/ProfileDoctorContext";
+import { createProfileDoctor } from "../../service/doctor";
 
 const RegisProfilSingkat = ({ onSubmit }) => {
     const [formData, setFormData] = useState({
@@ -52,9 +53,9 @@ const RegisProfilSingkat = ({ onSubmit }) => {
         }));
     };
       
-      const handleCreateProfile = async (e) => {
+    const handleCreateProfile = async (e) => {
         e.preventDefault();
-
+    
         const newErrorMessages = {
             doctor_expertise: formData.doctor_expertise.length === 0 ? "Pilih satu keahlian" : "",
             doctor_description: !formData.doctor_description ? "Tentang Anda wajib diisi" : "",
@@ -62,29 +63,40 @@ const RegisProfilSingkat = ({ onSubmit }) => {
             start_time: formData.start_time.length === 0 ? "Pilih jam kerja awal" : "",
             end_time: formData.end_time.length === 0 ? "Pilih jam kerja akhir" : "",
         };
-        
-          setErrorMessages(newErrorMessages);
-        
-          if (
+    
+        setErrorMessages(newErrorMessages);
+    
+        if (
             Object.values(newErrorMessages).some((error) => error !== "") ||
             Object.values(formData).some((value) => value === "")
-          ) {
+        ) {
             return;
-          }
-
+        }
+    
+        // Assuming createProfileDoctor is imported from doctor.js
+        createProfileDoctor(formData, { dataDoctor }, (success, data) => {
+            if (success) {
+                // Handle success, if needed
+                console.log("Profile created successfully:", data);
+            } else {
+                // Handle error, if needed
+                console.error("Error creating profile:", data);
+            }
+        });
+    
+        // Reset form data and navigate to the next step
         setDataDoctor([...dataDoctor, formData]);
         setFormData({
             doctor_expertise: [],
             doctor_description: "",
             workday_id: "",
-            start_time: "",   
-            end_time: "", 
+            start_time: "",
+            end_time: "",
         });
-
+    
         onSubmit(e);
         // window.location.href = "/dokter/dashboard";
-        
-      };      
+    };    
 
     return (
         <div className="regis-profil-singkat">
