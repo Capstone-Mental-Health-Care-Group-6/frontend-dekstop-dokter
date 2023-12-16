@@ -15,9 +15,11 @@ export const createArticle = async (formArticle, callback) => {
     });
 };
 
-export const updateArticle = async (formArticle, id) => {
-  await axiosInterceptor.put(`/articles/${id}`, formArticle)
+export const updateArticle = async (id, formArticle) => {
+  await axiosInterceptor
+  .put(`/articles/${id}`, formArticle )
   .then((res) => {
+    console.log(res.data)
       console.log(res);
   })
   .catch((err) => {

@@ -23,7 +23,7 @@ const TableListPasien = ({ data, onDataChanged }) => {
 
   useEffect(() => {
     // Pemicu re-render ketika data berubah
-    onDataChanged();
+    onDataChanged;
   }, [data]);
 
   return (

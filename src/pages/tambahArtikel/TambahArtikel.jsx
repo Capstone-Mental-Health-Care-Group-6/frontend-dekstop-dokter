@@ -10,6 +10,7 @@ import Button from "../../components/elements/Button/Button";
 import toast, { Toaster } from "react-hot-toast";
 import { createArticle, getAllArticleCategories } from "../../service/article";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const TambahArtikel = () => {
   const dataArtikel = [];
@@ -18,9 +19,9 @@ const TambahArtikel = () => {
   const [loading, setLoading] = useState(false);
 
   const dataLogin = useSelector((state) => state.user.dataLogin);
-  const storedDataLogin = JSON.parse(localStorage.getItem('dataLogin'));
+  const storedDataLogin = JSON.parse(localStorage.getItem("dataLogin"));
 
-
+  const navigate = useNavigate();
 
   useEffect(() => {
     setLoading(true);
@@ -43,7 +44,6 @@ const TambahArtikel = () => {
       };
     });
   };
-
 
   const [errorMsg, setErrorMsg] = useState({
     form: "",
@@ -91,43 +91,33 @@ const TambahArtikel = () => {
     }
   };
 
-  // const formDataKeys = ['category_id', 'title', 'content', 'thumbnail', 'status']
-  // const apiData = new FormData()
-  // formDataKeys.forEach((key) => {
-  //   // console.log(artikel[key])
-  //   apiData.append(key, artikel[key])
-  // })
+  console.log(artikel);
 
-  // const handleCreateArtikel = async (e) => {
-  //   e.preventDefault()
-  //   await createArticle(apiData, (status, res) => {
-  //     if (status) {
-  //       console.log(res)
-  //       sendArtikelToast()
-  //     } else {
-  //       console.log(res)
-  //     } 
-  //   })
-  // }
+  const formDataKeys = [
+    "category_id",
+    "title",
+    "content",
+    "thumbnail",
+    "status",
+  ];
+  const apiData = new FormData();
+  formDataKeys.forEach((key) => {
+    // console.log(artikel[key])
+    apiData.append(key, artikel[key]);
+  });
 
-
-
-
-  // const handleCreateBundle = async (e) => {
-  //   e.preventDefault()
-  //   await createBundle(apiData, (status, res) => {
-  //     if (status) {
-  //       console.log(res);
-  //       deleteState()
-  //       getAllBundle((res) => {
-  //         setBundle(res.data)
-  //       })
-  //       addKonseling()
-  //     } else {
-  //       rejectKonseling()
-  //     }
-  //   })
-  // }
+  const handleCreateArtikel = async (e) => {
+    e.preventDefault();
+    await createArticle(apiData, (status, res) => {
+      if (status) {
+        console.log(res);
+        sendArtikelToast();
+        navigate("/dokter/artikel");
+      } else {
+        console.log(res);
+      }
+    });
+  };
 
   const nullToast = () =>
     toast.error("Form tidak boleh ada yang kosong!", {
@@ -145,21 +135,24 @@ const TambahArtikel = () => {
       },
     });
 
-    const sendArtikelToast = () =>
-    toast.success("Artikel berhasil diupload! Silakan tunggu admin untuk memverifikasi artikel", {
-      duration: 4000,
-      position: "top-center",
-      style: {
-        maxWidth: "700px",
-        marginBottom: "5%",
-      },
+  const sendArtikelToast = () =>
+    toast.success(
+      "Artikel berhasil diupload! Silakan tunggu admin untuk memverifikasi artikel",
+      {
+        duration: 4000,
+        position: "top-center",
+        style: {
+          maxWidth: "700px",
+          marginBottom: "5%",
+        },
 
-      // Aria
-      ariaProps: {
-        role: "status",
-        "aria-live": "polite",
-      },
-    });
+        // Aria
+        ariaProps: {
+          role: "status",
+          "aria-live": "polite",
+        },
+      }
+    );
 
   return (
     <Layouts>
@@ -264,7 +257,11 @@ const TambahArtikel = () => {
                     });
                   }}
                 />
-                <img src={thumbnail.gambar} width={100} className="mt-4" />
+                <img
+                  src={thumbnail.gambar}
+                  width={100}
+                  className="mt-4 d-block"
+                />
                 <Label htmlFor={"thumbnail-artikel"}>
                   <p className="fw-bold mt-4 mb-0">Thumbnail Artikel</p>
                 </Label>
@@ -292,10 +289,10 @@ const TambahArtikel = () => {
                         };
                       });
                       setArtikel((old) => {
-                        console.log(selectedFile)
+                        console.log(selectedFile);
                         return {
                           ...old,
-                          thumbnail:selectedFile,
+                          thumbnail: selectedFile,
                         };
                       });
                       setThumbnail((old) => {
@@ -335,12 +332,12 @@ const TambahArtikel = () => {
                         return {
                           ...old,
                           user_name: storedDataLogin,
-                          status: "pending",
+                          status: "Pending",
                         };
                       });
                       if (errorMsg.form == "") {
                         dataArtikel.push(artikel);
-                        handleCreateArtikel(e)
+                        handleCreateArtikel(e);
                       }
                     }}
                     className={
@@ -357,14 +354,17 @@ const TambahArtikel = () => {
                     className={"btn me-3 btn-draft-artikel fw-semibold"}
                     text={"Simpan sebagai Draft"}
                     onClick={(e) => {
-
                       setArtikel((old) => {
                         return {
                           ...old,
                           user_name: storedDataLogin,
-                          status: "draft",
+                          status: "Draft",
                         };
                       });
+                      if (errorMsg.form == "") {
+                        dataArtikel.push(artikel);
+                        handleCreateArtikel(e);
+                      }
                     }}
                   />
                 </div>
@@ -504,20 +504,22 @@ const TambahArtikel = () => {
                 {!loading ? (
                   categories.length > 0 ? (
                     <div>
-                       {categories.map((item) => (
-                  <Checkbox
-                  key={item.id}
-                    index={item.id}
-                    text={item.name}
-                    id={"checkBox-artikel"}
-                    checked={item.id == checkedIndex}
-                    onChange={() => handleCheckboxChange(item.id)}
-                    // index + 1 karena index ini dimulai dari 0. jadi supaya sesuai sama erd kategori di erd, harus ditambah 1
-                    value={item.id}
-                    classNameLabel={"fw-semibold label-artikel-text"}
-                    disabled={checkedIndex !== null && (item.id) !== checkedIndex}
-                  />
-                ))}
+                      {categories.map((item) => (
+                        <Checkbox
+                          key={item.id}
+                          index={item.id}
+                          text={item.name}
+                          id={"checkBox-artikel"}
+                          checked={item.id == checkedIndex}
+                          onChange={() => handleCheckboxChange(item.id)}
+                          // index + 1 karena index ini dimulai dari 0. jadi supaya sesuai sama erd kategori di erd, harus ditambah 1
+                          value={item.id}
+                          classNameLabel={"fw-semibold label-artikel-text"}
+                          disabled={
+                            checkedIndex !== null && item.id !== checkedIndex
+                          }
+                        />
+                      ))}
                     </div>
                   ) : (
                     <div>
@@ -527,7 +529,6 @@ const TambahArtikel = () => {
                 ) : (
                   <div>spinner</div>
                 )}
-               
               </div>
               <p style={{ fontSize: "10px" }} className="text-muted">
                 <span className="text-danger">*</span>Kategori hanya dapat

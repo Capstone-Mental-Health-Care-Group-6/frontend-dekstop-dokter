@@ -18,26 +18,26 @@ const Artikel = () => {
   const navigate = useNavigate();
 
   const [artikel, setArtikel] = useState([]);
+  const [artikelApi, setArtikelApi] = useState([]);
   const [pendingStatus, setPendingStatus] = useState(false);
   const [selected, setSelected] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
+    const storedDataLogin = JSON.parse(localStorage.getItem("dataLogin"));
+
     getAllArticle((res) => {
-      setArtikel(res.data)
-    })
-  }, [])
+      const filteredArticles = res.data.filter(
+        (item) => item.user_name === storedDataLogin
+      );
+
+      setArtikel(filteredArticles);
+      setLoading(false);
+    });
+  }, []);
 
 
-  // const pendingButton = () => {
-    //   if (artikel.status === "pending") {
-      
-      //   }
-      // }
-      
-      // useEffect(() => {
-      //   setArtikel(dataArtikel);
-      // }, []);
-      
   const tanggalBodyTemplate = (rowData) => {
     return (
       <div className="d-flex flex-column">
@@ -46,12 +46,7 @@ const Artikel = () => {
       </div>
     );
   };
-
-  console.log(artikel)
-
-
-  // console.log(artikel[0].status)
-  // console.log(selected.id);
+  
 
   const aksiBodyTemplate = () => {
     return (
@@ -72,19 +67,19 @@ const Artikel = () => {
                 "bg-transparent border-0 fw-semibold btn-lihat-artikel"
               }
               onClick={() => {
-                console.log(selected.id)
+                console.log(selected.id);
                 navigate(`/dokter/artikel/detail/${selected.id}`);
               }}
             />
           </div>
           <div className="bg-light rounded-3 my-2  dropdown-item">
             <Button
-             onClick={() => {
-              console.log(selected.id)
-              navigate(`/dokter/artikel/edit/${selected.id}`);
-            }}
-            // disabled={}
-            // disabled={selected !== null && selected.status === 'Pending'}
+              onClick={() => {
+                console.log(selected.id);
+                navigate(`/dokter/artikel/edit/${selected.id}`);
+              }}
+              // disabled={}
+              // disabled={selected !== null && selected.status === 'Pending'}
               text={"Edit Artikel"}
               className={"bg-transparent border-0 fw-semibold btn-edit-artikel"}
             />
@@ -92,7 +87,7 @@ const Artikel = () => {
           <div className="bg-light rounded-3 my-2  dropdown-item">
             <Button
               text={"Hapus Artikel"}
-            disabled={selected !== null && selected.status === 'Pending'}
+              disabled={selected !== null && selected.status === "Pending"}
               className={
                 "bg-transparent border-0 fw-semibold btn-hapus-artikel"
               }
@@ -129,46 +124,54 @@ const Artikel = () => {
           </div>
         </div>
         <hr />
-        {artikel.length > 0 ? (
-          <Table
-            value={artikel}
-            selectionMode="single"
-            dataKey="id"
-            selection={selected}
-            onSelectionChange={(e) => setSelected(e.value)}
-          >
-            <ColumnTable
-              field="id"
-              header="No"
-              headerClassName="table-header-border-id"
-            />
-            <ColumnTable
-              field="title"
-              header="Judul"
-              headerClassName="table-header-border-judul"
-            />
-            <ColumnTable
-              field="user_name"
-              header="Author"
-              headerClassName="table-header-border-author"
-            />
-            <ColumnTable
-              body={tanggalBodyTemplate}
-              header="Status"
-              headerClassName="table-header-border-status"
-            />
-            <ColumnTable
-              body={aksiBodyTemplate}
-              headerClassName="table-header-border-aksi"
-            />
-          </Table>
+        {!loading ? (
+          artikel.length > 0 ? (
+            <Table
+              value={artikel}
+              selectionMode="single"
+              dataKey="id"
+              selection={selected}
+              onSelectionChange={(e) => setSelected(e.value)}
+            >
+              <ColumnTable
+                field="id"
+                header="No"
+                headerClassName="table-header-border-id"
+              />
+              <ColumnTable
+                field="title"
+                header="Judul"
+                headerClassName="table-header-border-judul"
+              />
+              <ColumnTable
+                field="user_name"
+                header="Author"
+                headerClassName="table-header-border-author"
+              />
+              <ColumnTable
+                body={tanggalBodyTemplate}
+                header="Status"
+                headerClassName="table-header-border-status"
+              />
+              <ColumnTable
+                body={aksiBodyTemplate}
+                headerClassName="table-header-border-aksi"
+              />
+            </Table>
+          ) : (
+            <div className="h-100 d-flex flex-column justify-content-center align-items-center ">
+              <img src={artikelEmpty} alt="artikel Empty Image" />
+              <p className="my-3 fw-bold w-50 justify-content-center">
+                Bagikan pengetahuan Anda untuk membantu orang lain melewati masa
+                sulit.
+              </p>
+            </div>
+          )
         ) : (
-          <div className="h-100 d-flex flex-column justify-content-center align-items-center ">
-            <img src={artikelEmpty} alt="artikel Empty Image" />
-            <p className="my-3 fw-bold w-50 justify-content-center">
-              Bagikan pengetahuan Anda untuk membantu orang lain melewati masa
-              sulit.
-            </p>
+          <div className="d-flex justify-content-center">
+            <div className="spinner-border text-primary" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </div>
           </div>
         )}
       </div>
