@@ -194,11 +194,11 @@ const Chat = () => {
                         <EmojiPicker width={'100%'} height={'50vh'} onEmojiClick={handleEmojiClick} />
                       </div>
                     )}
-                    <button className="btn dropdown-toggle border-0" data-bs-toggle="dropdown" aria-expanded="false" onClick={toggleEmojiPicker} >
+                    <button className="btn dropdown-toggle border-0" data-bs-toggle="dropdown" aria-expanded="false" onClick={toggleEmojiPicker} type="button" >
                       <img src={choiseChat} alt="" />
                     </button>
                     <Input placeholder={'Ketik pesan'} className={'shadow-none border-secondary-subtle'} name={'message'} onChange={handleChangeMessage} value={formMessage.message} />
-                    <button className="btn border-0">
+                    <button className="btn border-0" type="submit">
                       <img src={sendChat} alt="" />
                     </button>
                   </form>
