@@ -9,6 +9,7 @@ import { BsDot, BsThreeDots } from "react-icons/bs";
 import { dataChat } from "../../components/DataComponents/dataComponents";
 import EmojiPicker from "emoji-picker-react";
 import Input from "../../components/elements/Input/Input";
+import { getIdDoctor } from "../../service/authentication";
 const Chat = () => {
 
   // logic di sintak ini tidak 100% final ini hanya perkiraan, untuk mengambil data nya nanti lewat object keys
@@ -95,6 +96,21 @@ const Chat = () => {
   };
 
   console.log(formMessage.message);
+
+  // mengambil id dokter dari jwt decode
+  const [idDoctor, setIdDoctor] = useState('');
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      const decodedIdDoctor = getIdDoctor(token);
+      setIdDoctor(decodedIdDoctor);
+    }
+  }, []);
+  console.log(idDoctor);
+
+
+
 
 
 
