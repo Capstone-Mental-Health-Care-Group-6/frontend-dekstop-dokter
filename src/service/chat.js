@@ -1,5 +1,18 @@
 import axios from "axios";
+import { axiosInterceptor } from "./axiosInterceptors";
 const url = process.env.BASE_API
+
+export const getAllChat = (id, callback) => {
+    axiosInterceptor.get(`/api/chats/users/${id}`)
+        .then((res) => {
+            callback(res.data)
+            console.log(res.data);
+        })
+        .then((err) => {
+            console.log(err);
+        })
+}
+
 
 export const postChat = (formChat, callback) => {
     axios.post(`${url}/chat`, formChat)
@@ -32,3 +45,4 @@ export const deleteChat = (id, callback) => {
             console.log(err);
         })
 }
+
