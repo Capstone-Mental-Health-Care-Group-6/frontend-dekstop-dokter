@@ -13,31 +13,48 @@ import { IoEllipsisVertical } from "react-icons/io5";
 import ButtonSvg from "../../components/elements/Button/ButtonSvg";
 import { getAllArticle } from "../../service/article";
 import { useSelector } from "react-redux";
+import toast from "react-hot-toast";
+import Skeleton from "react-loading-skeleton";
 
 const Artikel = () => {
   const navigate = useNavigate();
 
   const [artikel, setArtikel] = useState([]);
+  const [artikelApi, setArtikelApi] = useState([]);
   const [pendingStatus, setPendingStatus] = useState(false);
   const [selected, setSelected] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-  // useEffect(() => {
-  //   getAllArticle((res) => {
-  //     setArtikel(res.data)
-  //   })
-  // }, [])
+  useEffect(() => {
+    setLoading(true);
+    const storedDataLogin = JSON.parse(localStorage.getItem("dataLogin"));
 
+    getAllArticle((res) => {
+      const filteredArticles = res.data.filter(
+        (item) => item.user_name === storedDataLogin
+      );
 
-  // const pendingButton = () => {
-    //   if (artikel.status === "pending") {
-      
-      //   }
-      // }
-      
-      // useEffect(() => {
-      //   setArtikel(dataArtikel);
-      // }, []);
-      
+      setArtikel(filteredArticles);
+      setLoading(false);
+    });
+  }, []);
+
+  const idNullToast = () =>
+    toast.error("Id tidak ditemukan. Harap klik baris artikel dahulu", {
+      duration: 4000,
+      position: "bottom-center",
+      style: {
+        maxWidth: "700px",
+        marginBottom: "5%",
+      },
+
+      // Aria
+      ariaProps: {
+        role: "status",
+        "aria-live": "polite",
+      },
+    });
+
   const tanggalBodyTemplate = (rowData) => {
     return (
       <div className="d-flex flex-column">
@@ -46,12 +63,6 @@ const Artikel = () => {
       </div>
     );
   };
-
-  console.log(artikel)
-
-
-  // console.log(artikel[0].status)
-  // console.log(selected.id);
 
   const aksiBodyTemplate = () => {
     return (
@@ -72,15 +83,25 @@ const Artikel = () => {
                 "bg-transparent border-0 fw-semibold btn-lihat-artikel"
               }
               onClick={() => {
-                console.log(selected.id)
-                navigate(`/dokter/artikel/detail/${selected.id}`);
+                try {
+                  navigate(`/dokter/artikel/detail/${selected.id}`);
+                } catch {
+                  idNullToast();
+                }
               }}
             />
           </div>
           <div className="bg-light rounded-3 my-2  dropdown-item">
             <Button
-            // disabled={}
-            disabled={selected !== null && selected.status === 'Pending'}
+              onClick={() => {
+                try {
+                  navigate(`/dokter/artikel/edit/${selected.id}`);
+                } catch {
+                  idNullToast();
+                }
+              }}
+              // disabled={}
+              // disabled={selected !== null && selected.status === 'Pending'}
               text={"Edit Artikel"}
               className={"bg-transparent border-0 fw-semibold btn-edit-artikel"}
             />
@@ -88,10 +109,17 @@ const Artikel = () => {
           <div className="bg-light rounded-3 my-2  dropdown-item">
             <Button
               text={"Hapus Artikel"}
-            disabled={selected !== null && selected.status === 'Pending'}
+              disabled={selected !== null && selected.status === "Pending"}
               className={
                 "bg-transparent border-0 fw-semibold btn-hapus-artikel"
               }
+              onClick={() => {
+                try {
+                  // console.log("error")
+                } catch {
+                  idNullToast();
+                }
+              }}
             />
           </div>
         </div>
@@ -125,47 +153,51 @@ const Artikel = () => {
           </div>
         </div>
         <hr />
-        {artikel.length > 0 ? (
-          <Table
-            value={artikel}
-            selectionMode="single"
-            dataKey="id"
-            selection={selected}
-            onSelectionChange={(e) => setSelected(e.value)}
-          >
-            <ColumnTable
-              field="id"
-              header="No"
-              headerClassName="table-header-border-id"
-            />
-            <ColumnTable
-              field="title"
-              header="Judul"
-              headerClassName="table-header-border-judul"
-            />
-            <ColumnTable
-              field="user_name"
-              header="Author"
-              headerClassName="table-header-border-author"
-            />
-            <ColumnTable
-              body={tanggalBodyTemplate}
-              header="Status"
-              headerClassName="table-header-border-status"
-            />
-            <ColumnTable
-              body={aksiBodyTemplate}
-              headerClassName="table-header-border-aksi"
-            />
-          </Table>
+        {!loading ? (
+          artikel.length > 0 ? (
+            <Table
+              value={artikel}
+              selectionMode="single"
+              dataKey="id"
+              selection={selected}
+              onSelectionChange={(e) => setSelected(e.value)}
+            >
+              <ColumnTable
+                field="id"
+                header="No"
+                headerClassName="table-header-border-id"
+              />
+              <ColumnTable
+                field="title"
+                header="Judul"
+                headerClassName="table-header-border-judul"
+              />
+              <ColumnTable
+                field="user_name"
+                header="Author"
+                headerClassName="table-header-border-author"
+              />
+              <ColumnTable
+                body={tanggalBodyTemplate}
+                header="Status"
+                headerClassName="table-header-border-status"
+              />
+              <ColumnTable
+                body={aksiBodyTemplate}
+                headerClassName="table-header-border-aksi"
+              />
+            </Table>
+          ) : (
+            <div className="h-100 d-flex flex-column justify-content-center align-items-center ">
+              <img src={artikelEmpty} alt="artikel Empty Image" />
+              <p className="my-3 fw-bold w-50 justify-content-center">
+                Bagikan pengetahuan Anda untuk membantu orang lain melewati masa
+                sulit.
+              </p>
+            </div>
+          )
         ) : (
-          <div className="h-100 d-flex flex-column justify-content-center align-items-center ">
-            <img src={artikelEmpty} alt="artikel Empty Image" />
-            <p className="my-3 fw-bold w-50 justify-content-center">
-              Bagikan pengetahuan Anda untuk membantu orang lain melewati masa
-              sulit.
-            </p>
-          </div>
+          <Skeleton height={60} count={6} />
         )}
       </div>
     </Layouts>
