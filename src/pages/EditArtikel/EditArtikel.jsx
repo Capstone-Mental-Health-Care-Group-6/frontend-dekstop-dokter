@@ -141,7 +141,7 @@ const EditArtikel = () => {
       });
 
       await updateArticle(id, apiData);
-      sendArtikelToast()
+      sendArtikelToast();
       navigate("/dokter/artikel");
     } catch (error) {
       console.error("Error updating Artikel:", error);
@@ -168,7 +168,6 @@ const EditArtikel = () => {
       }
     );
 
-
   // console.log(checkedIndex)
   // console.log(artikel);
   // console.log(image);
@@ -183,12 +182,12 @@ const EditArtikel = () => {
               <div className="modal-content p-3">
                 <div className="modal-body ">
                   <div className="d-block">
-                  <button
-                    type="button"
-                    className="btn-close float-end"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
-                  ></button>
+                    <button
+                      type="button"
+                      className="btn-close float-end"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
                   </div>
                   <p className="fw-bold">
                     Apakah anda yakin untuk upload artikel ini?
@@ -205,7 +204,6 @@ const EditArtikel = () => {
                           !loading &&
                           artikel.thumbnail instanceof File
                         ) {
-
                           handleUpdateArtikel(artikel.id);
                         }
                       }}
@@ -224,12 +222,12 @@ const EditArtikel = () => {
               <div className="modal-content p-3">
                 <div className="modal-body ">
                   <div className="d-block">
-                  <button
-                    type="button"
-                    className="btn-close float-end"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
-                  ></button>
+                    <button
+                      type="button"
+                      className="btn-close float-end"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
                   </div>
                   <p className="fw-bold pe-5">
                     Apakah anda yakin untuk upload artikel ini sebagai draft?
@@ -246,7 +244,6 @@ const EditArtikel = () => {
                           !loading &&
                           artikel.thumbnail instanceof File
                         ) {
-
                           handleUpdateArtikel(artikel.id);
                         }
                       }}
@@ -457,7 +454,7 @@ const EditArtikel = () => {
                               artikel.thumbnail
                             );
                             console.log(file);
-                            console.log(artikel)
+                            console.log(artikel);
 
                             setArtikel((old) => {
                               return {
@@ -525,12 +522,12 @@ const EditArtikel = () => {
                         className={"btn me-3 btn-draft-artikel fw-semibold"}
                         text={"Simpan sebagai Draft"}
                         onClick={async (e) => {
-                        setArtikel((old) => {
-                          return {
-                            ...old,
-                            status: "Inactive"
-                          }
-                        })
+                          setArtikel((old) => {
+                            return {
+                              ...old,
+                              status: "Inactive",
+                            };
+                          });
                           if (
                             errorMsg.form == "" &&
                             !loading &&
@@ -544,7 +541,7 @@ const EditArtikel = () => {
                               artikel.thumbnail
                             );
                             console.log(file);
-                            console.log(artikel)
+                            console.log(artikel);
 
                             setArtikel((old) => {
                               return {
@@ -654,15 +651,9 @@ const EditArtikel = () => {
                                 name="visibilitas-artikel"
                                 id="visibilitas-publik"
                                 value="Publik"
-                                // onChange={(e) => {
-                                //   setStatusChecked(e.target.value);
-                                //   setArtikel((old) => {
-                                //     return {
-                                //       ...old,
-                                //       visibilitas: "Publik",
-                                //     };
-                                //   });
-                                // }}
+                                onChange={(e) => {
+                                  setStatusChecked("Publik");
+                                }}
                               />
                               <label
                                 className="form-check-label fw-bold"
@@ -686,15 +677,9 @@ const EditArtikel = () => {
                                 name="visibilitas-artikel"
                                 id="visibilitas-privat"
                                 value="Privat"
-                                // onChange={(e) => {
-                                //   setStatusChecked(e.target.value);
-                                //   setArtikel((old) => {
-                                //     return {
-                                //       ...old,
-                                //       visibilitas: "Privat",
-                                //     };
-                                //   });
-                                // }}
+                                onChange={(e) => {
+                                  setStatusChecked(Privat)
+                                }}
                               />
                               <label
                                 className="form-check-label fw-bold"
@@ -721,7 +706,7 @@ const EditArtikel = () => {
                   <div className="row justify-content-center align-items-center g-2">
                     <div className="col text-status">Author</div>
                     <div className="col text-status text-end pe-2">
-                      Dr. {storedDataLogin.charAt(0).toUpperCase() + storedDataLogin.slice(1)}
+                      {storedDataLogin}
                     </div>
                   </div>
                 </div>
@@ -744,7 +729,11 @@ const EditArtikel = () => {
                           index={item.id}
                           text={item.name}
                           id={"checkBox-artikel"}
-                          checked={artikel && artikel.category_name && artikel.category_name.includes(item.name)}
+                          checked={
+                            artikel &&
+                            artikel.category_name &&
+                            artikel.category_name.includes(item.name)
+                          }
                           onChange={() =>
                             handleCheckboxChange(item.id, item.name)
                           }

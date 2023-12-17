@@ -513,7 +513,7 @@ const TambahArtikel = () => {
                   <div className="row justify-content-center align-items-center g-2">
                     <div className="col text-status">Author</div>
                     <div className="col text-status text-end pe-2">
-                      Dr. {storedDataLogin.charAt(0).toUpperCase() + storedDataLogin.slice(1)}
+                      {storedDataLogin}
                     </div>
                   </div>
                 </div>
