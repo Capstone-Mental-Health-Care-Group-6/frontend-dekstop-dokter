@@ -15,15 +15,7 @@ const DetailArtikel = () => {
   };
 
   const [artikel, setArtikel] = useState([]);
-  // const [select, setSelect] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [artikelApi, setArtikelApi] = useState([]);
-
-  // useEffect(() => {
-  //   setLoading(true);
-  //   setArtikel(dataArtikel);
-  //   setLoading(false);
-  // }, []);
 
   const parseData = (dataParam) => {
     const data = dataParam;
@@ -38,27 +30,9 @@ const DetailArtikel = () => {
     setLoading(false);
   }, []);
 
-  // useEffect(() => {
-  //   const selectedArtikel = artikel.filter(
-  //     (item) => item.id === parseInt(params.id)
-  //   );
-  //   setSelect(selectedArtikel);
-  // }, []);
-
-  // useEffect(() => {
-  //   setLoading(true);
-  //   setSelect(artikel.filter(
-  //     (item) => item.id === parseInt(params.id)
-  //   ))
-  //   setLoading(false)
-  // }, [])
-
   const selectedArtikel = (id) => {
     return artikel.filter((d) => d.id == id);
   };
-  // setLoading(false);
-
-  console.log(selectedArtikel(id));
 
   const YoutubeEmbed = ({ embedUrl }) => {
     return (
@@ -76,7 +50,6 @@ const DetailArtikel = () => {
     );
   };
 
-  const youtubeLink = ""
 
   return (
     <Layouts>

@@ -135,7 +135,6 @@ const EditArtikel = () => {
 
       formDataKeys.forEach((key) => {
         if (key in artikel) {
-          console.log(artikel[key]);
           apiData.append(key, artikel[key]);
         }
       });
@@ -167,10 +166,6 @@ const EditArtikel = () => {
         },
       }
     );
-
-  // console.log(checkedIndex)
-  // console.log(artikel);
-  // console.log(image);
 
   return (
     <Layouts>
@@ -296,7 +291,6 @@ const EditArtikel = () => {
                             title: e.target.value,
                           };
                         });
-                        // console.log(artikel)
                       }}
                     />
                     <div className="text-danger mb-0 my-2">
@@ -333,7 +327,6 @@ const EditArtikel = () => {
                               content: value,
                             };
                           });
-                          // console.log(artikel)
                         }}
                       />
                     </div>
@@ -453,8 +446,6 @@ const EditArtikel = () => {
                             const file = await convertThumbnailUrlToFile(
                               artikel.thumbnail
                             );
-                            console.log(file);
-                            console.log(artikel);
 
                             setArtikel((old) => {
                               return {
@@ -462,7 +453,6 @@ const EditArtikel = () => {
                                 thumbnail: file, // Menggunakan objek File yang didapat dari fungsi
                               };
                             });
-                            console.log("belum terubah");
 
                             setThumbnail((old) => {
                               return {
@@ -488,8 +478,6 @@ const EditArtikel = () => {
                           ) {
                             dataArtikel.push(artikel);
 
-                            console.log(artikel);
-                            // handleUpdateArtikel(artikel.id);
                           } else {
                             <div className="d-flex justify-content-center">
                               <div
@@ -513,7 +501,7 @@ const EditArtikel = () => {
                       />
                     </div>
                     <div>
-                      <Button
+                      {/* <Button
                         bsTogle="modal"
                         id={"button-draft-artikel"}
                         bsTarget={"#button-draft-artikel-modal"}
@@ -589,7 +577,7 @@ const EditArtikel = () => {
                             </div>;
                           }
                         }}
-                      />
+                      /> */}
                     </div>
                   </div>
                 </form>
@@ -739,7 +727,8 @@ const EditArtikel = () => {
                           }
                           classNameLabel={"fw-semibold label-artikel-text"}
                           disabled={
-                            checkedIndex !== null && item.id !== checkedIndex
+                            // checkedIndex !== null && item.id !== checkedIndex
+                            artikel.category_name
                           }
                         />
                       ))}
@@ -754,8 +743,7 @@ const EditArtikel = () => {
                 )}
               </div>
               <p style={{ fontSize: "10px" }} className="text-muted">
-                <span className="text-danger">*</span>Kategori hanya dapat
-                dipilih salah satu
+                <span className="text-danger">*</span>Kategori tidak dapat diubah
               </p>
             </div>
           </div>

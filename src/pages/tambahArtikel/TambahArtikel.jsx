@@ -31,8 +31,6 @@ const TambahArtikel = () => {
     setLoading(false);
   }, []);
 
-  // console.log(categories[0].id)
-
   const [checkedIndex, setCheckedIndex] = useState(null);
 
   const handleCheckboxChange = (id) => {
@@ -60,7 +58,6 @@ const TambahArtikel = () => {
     status: "pending",
   });
 
-  // console.log(artikel)
 
   const [thumbnail, setThumbnail] = useState({
     gambar: "",
@@ -73,7 +70,6 @@ const TambahArtikel = () => {
       artikel.thumbnail === "" ||
       artikel.category_id === ""
     ) {
-      console.log(artikel);
       nullToast();
       setErrorMsg((old) => {
         return {
@@ -91,7 +87,6 @@ const TambahArtikel = () => {
     }
   };
 
-  console.log(artikel);
 
   const formDataKeys = [
     "category_id",
@@ -102,7 +97,6 @@ const TambahArtikel = () => {
   ];
   const apiData = new FormData();
   formDataKeys.forEach((key) => {
-    // console.log(artikel[key])
     apiData.append(key, artikel[key]);
   });
 
@@ -110,7 +104,7 @@ const TambahArtikel = () => {
     e.preventDefault();
     await createArticle(apiData, (status, res) => {
       if (status) {
-        console.log(res);
+        // console.log(res);
         sendArtikelToast();
         navigate("/dokter/artikel");
       } else {
@@ -211,7 +205,6 @@ const TambahArtikel = () => {
                         title: e.target.value,
                       };
                     });
-                    // console.log(artikel)
                   }}
                 />
                 <div className="text-danger mb-0 my-2">
@@ -248,7 +241,6 @@ const TambahArtikel = () => {
                           content: value,
                         };
                       });
-                      // console.log(artikel)
                     }}
                   />
                 </div>
@@ -305,7 +297,6 @@ const TambahArtikel = () => {
                         };
                       });
                       setArtikel((old) => {
-                        console.log(selectedFile);
                         return {
                           ...old,
                           thumbnail: selectedFile,
@@ -338,6 +329,7 @@ const TambahArtikel = () => {
                 </p>
                 <p className="text-danger">{errorMsg.thumbnail}</p>
               </div>
+              
               <div className="d-flex m-3 button-form-artikel">
                 <div>
                   <Button
@@ -369,7 +361,7 @@ const TambahArtikel = () => {
                   />
                 </div>
                 <div>
-                  <Button
+                  {/* <Button
                     type={"button"}
                     style={{ backgroundColor: "white" }}
                     className={"btn me-3 btn-draft-artikel fw-semibold"}
@@ -392,7 +384,7 @@ const TambahArtikel = () => {
                       errorToast()
                     }
                     }}
-                  />
+                  /> */}
                 </div>
               </div>
             </form>
