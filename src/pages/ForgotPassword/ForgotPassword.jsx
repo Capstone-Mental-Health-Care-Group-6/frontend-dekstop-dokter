@@ -96,12 +96,10 @@ const ForgotPw = () => {
           <Button
             type="button"
             id="btn-submit"
-            className={`bttn btn-secondary w-100 fw-bold ${
-              email ? "" : "disabled"
-            }`}
+            className={`bttn btn-secondary w-100 fw-bold ${email ? "" : "disabled"
+              }`}
             text="Kirim link verifikasi"
             onClick={handleForgotPassword}
-            disabled={!isEmailValid() || !isEmailVerified}
           />
           <div className="divider d-flex align-items-center my-1">
             <p className="text-center mx-3 mb-0 text-muted">atau</p>
