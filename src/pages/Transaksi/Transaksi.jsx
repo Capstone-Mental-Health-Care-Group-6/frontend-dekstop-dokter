@@ -39,7 +39,7 @@ const Transaksi = () => {
 
     if (sortById) {
       dataToDisplay = dataToDisplay.sort((a, b) =>
-        a.id.localeCompare(b.id, undefined, { numeric: true, sensitivity: 'base' })
+        a.transaction_id.localeCompare(b.transaction_id, undefined, { numeric: true, sensitivity: 'base' })
       );
     }
 
