@@ -19,24 +19,24 @@ const DetailArtikel = () => {
   const [loading, setLoading] = useState(false);
   const [artikelApi, setArtikelApi] = useState([]);
 
-  useEffect(() => {
-    setLoading(true);
-    setArtikel(dataArtikel);
-    setLoading(false);
-  }, []);
+  // useEffect(() => {
+  //   setLoading(true);
+  //   setArtikel(dataArtikel);
+  //   setLoading(false);
+  // }, []);
 
   const parseData = (dataParam) => {
     const data = dataParam;
     return parse(String(data));
   };
 
-  // useEffect(() => {
-  //   setLoading(true);
-  //   getAllArticle((res) => {
-  //     setArtikel(res.data);
-  //   });
-  //   setLoading(false);
-  // }, []);
+  useEffect(() => {
+    setLoading(true);
+    getAllArticle((res) => {
+      setArtikel(res.data);
+    });
+    setLoading(false);
+  }, []);
 
   // useEffect(() => {
   //   const selectedArtikel = artikel.filter(

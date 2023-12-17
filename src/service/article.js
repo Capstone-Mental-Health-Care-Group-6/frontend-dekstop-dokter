@@ -1,11 +1,10 @@
 import { axiosInterceptor } from "./axiosInterceptors";
 
 export const createArticle = async (formArticle, callback) => {
-  await axiosInterceptor
-    .post(`/articles`, formArticle, {
+  await axiosInterceptor.post(`/articles`, formArticle, {
       headers: {
-        "Content-Type": "multipart/form-data",
-      },
+        'Content-Type': 'multipart/form-data',
+    },
     })
     .then((res) => {
       callback(true, res.data);
@@ -14,6 +13,19 @@ export const createArticle = async (formArticle, callback) => {
       callback(false, err.message);
     });
 };
+
+export const updateArticle = async (id, formArticle) => {
+  console.log("ini request data:", formArticle)
+  await axiosInterceptor
+  .put(`/articles/${id}`, formArticle )
+  .then((res) => {
+    console.log(res.data)
+      console.log(res);
+  })
+  .catch((err) => {
+      console.log(err);
+  })
+}
 
 export const getAllArticle = (callback) => {
   axiosInterceptor

@@ -13,6 +13,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 import { SkeletonTheme } from "react-loading-skeleton";
 import store from "./utils/store/store.js";
 import { Provider } from "react-redux";
+import { Toaster } from "react-hot-toast";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -20,6 +21,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <BrowserRouter>
         <SkeletonTheme baseColor="#e2e8f0" highlightColor="#f1f5f9">
           <App />
+          <Toaster/>
         </SkeletonTheme>
       </BrowserRouter>
     </Provider>
