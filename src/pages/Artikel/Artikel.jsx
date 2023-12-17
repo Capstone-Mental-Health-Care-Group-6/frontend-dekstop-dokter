@@ -13,6 +13,8 @@ import { IoEllipsisVertical } from "react-icons/io5";
 import ButtonSvg from "../../components/elements/Button/ButtonSvg";
 import { getAllArticle } from "../../service/article";
 import { useSelector } from "react-redux";
+import toast from "react-hot-toast";
+import Skeleton from "react-loading-skeleton";
 
 const Artikel = () => {
   const navigate = useNavigate();
@@ -37,6 +39,21 @@ const Artikel = () => {
     });
   }, []);
 
+  const idNullToast = () =>
+    toast.error("Id tidak ditemukan. Harap klik baris artikel dahulu", {
+      duration: 4000,
+      position: "bottom-center",
+      style: {
+        maxWidth: "700px",
+        marginBottom: "5%",
+      },
+
+      // Aria
+      ariaProps: {
+        role: "status",
+        "aria-live": "polite",
+      },
+    });
 
   const tanggalBodyTemplate = (rowData) => {
     return (
@@ -46,7 +63,6 @@ const Artikel = () => {
       </div>
     );
   };
-  
 
   const aksiBodyTemplate = () => {
     return (
@@ -67,16 +83,22 @@ const Artikel = () => {
                 "bg-transparent border-0 fw-semibold btn-lihat-artikel"
               }
               onClick={() => {
-                console.log(selected.id);
-                navigate(`/dokter/artikel/detail/${selected.id}`);
+                try {
+                  navigate(`/dokter/artikel/detail/${selected.id}`);
+                } catch {
+                  idNullToast();
+                }
               }}
             />
           </div>
           <div className="bg-light rounded-3 my-2  dropdown-item">
             <Button
               onClick={() => {
-                console.log(selected.id);
-                navigate(`/dokter/artikel/edit/${selected.id}`);
+                try {
+                  navigate(`/dokter/artikel/edit/${selected.id}`);
+                } catch {
+                  idNullToast();
+                }
               }}
               // disabled={}
               // disabled={selected !== null && selected.status === 'Pending'}
@@ -91,6 +113,13 @@ const Artikel = () => {
               className={
                 "bg-transparent border-0 fw-semibold btn-hapus-artikel"
               }
+              onClick={() => {
+                try {
+                  // console.log("error")
+                } catch {
+                  idNullToast();
+                }
+              }}
             />
           </div>
         </div>
@@ -168,11 +197,12 @@ const Artikel = () => {
             </div>
           )
         ) : (
-          <div className="d-flex justify-content-center">
-            <div className="spinner-border text-primary" role="status">
-              <span className="visually-hidden">Loading...</span>
-            </div>
-          </div>
+          // <div className="d-flex justify-content-center">
+          //   <div className="spinner-border text-primary" role="status">
+          //     <span className="visually-hidden">Loading...</span>
+          //   </div>
+          // </div>
+          <Skeleton/>
         )}
       </div>
     </Layouts>

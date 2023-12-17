@@ -135,6 +135,22 @@ const TambahArtikel = () => {
       },
     });
 
+    const errorToast = () =>
+    toast.error("Tambah artikel gagal! Silakan coba lagi atau login ulang", {
+      duration: 4000,
+      position: "top-center",
+      style: {
+        maxWidth: "700px",
+        marginBottom: "5%",
+      },
+
+      // Aria
+      ariaProps: {
+        role: "status",
+        "aria-live": "polite",
+      },
+    });
+
   const sendArtikelToast = () =>
     toast.success(
       "Artikel berhasil diupload! Silakan tunggu admin untuk memverifikasi artikel",
@@ -327,8 +343,10 @@ const TambahArtikel = () => {
                   <Button
                     type={"button"}
                     onClick={(e) => {
-                      handleNull();
-                      setArtikel((old) => {
+                      try{
+
+                        handleNull();
+                        setArtikel((old) => {
                         return {
                           ...old,
                           user_name: storedDataLogin,
@@ -339,6 +357,9 @@ const TambahArtikel = () => {
                         dataArtikel.push(artikel);
                         handleCreateArtikel(e);
                       }
+                    } catch {
+                      errorToast()
+                    }
                     }}
                     className={
                       "btn btn-primary me-3 btn-upload-artikel fw-semibold"
@@ -354,8 +375,10 @@ const TambahArtikel = () => {
                     className={"btn me-3 btn-draft-artikel fw-semibold"}
                     text={"Simpan sebagai Draft"}
                     onClick={(e) => {
-                      setArtikel((old) => {
-                        return {
+                      try{
+
+                        setArtikel((old) => {
+                          return {
                           ...old,
                           user_name: storedDataLogin,
                           status: "Draft",
@@ -365,6 +388,9 @@ const TambahArtikel = () => {
                         dataArtikel.push(artikel);
                         handleCreateArtikel(e);
                       }
+                    } catch {
+                      errorToast()
+                    }
                     }}
                   />
                 </div>
@@ -487,7 +513,7 @@ const TambahArtikel = () => {
                   <div className="row justify-content-center align-items-center g-2">
                     <div className="col text-status">Author</div>
                     <div className="col text-status text-end pe-2">
-                      Dr. Helen
+                      Dr. {storedDataLogin.charAt(0).toUpperCase() + storedDataLogin.slice(1)}
                     </div>
                   </div>
                 </div>

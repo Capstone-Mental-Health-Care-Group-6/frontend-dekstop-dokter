@@ -528,7 +528,7 @@ const EditArtikel = () => {
                         setArtikel((old) => {
                           return {
                             ...old,
-                            status: "Draft"
+                            status: "Inactive"
                           }
                         })
                           if (
@@ -565,7 +565,7 @@ const EditArtikel = () => {
                               return {
                                 ...old,
                                 user_name: storedDataLogin,
-                                status: "Draft",
+                                status: "Inactive",
                               };
                             });
                             setLoading(false);
@@ -721,7 +721,7 @@ const EditArtikel = () => {
                   <div className="row justify-content-center align-items-center g-2">
                     <div className="col text-status">Author</div>
                     <div className="col text-status text-end pe-2">
-                      Dr. Helen
+                      Dr. {storedDataLogin.charAt(0).toUpperCase() + storedDataLogin.slice(1)}
                     </div>
                   </div>
                 </div>
