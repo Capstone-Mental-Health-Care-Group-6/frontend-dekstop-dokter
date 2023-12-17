@@ -2,15 +2,23 @@ import React from "react";
 import "./Transaksi.style.css"
 import Layouts from "../../components/layouts/Layouts";
 import TableTransaksi from "../../components/fragments/TableTransaksi/TableTransaksi";
-import { transaksiUsers } from "../../components/DataComponents/dataComponents";
+// import { transaksiUsers } from "../../components/DataComponents/dataComponents";
 import Search from "../../components/elements/Search/Search";
 import Filter from "../../components/elements/Filter/Filter";
 import { useState, useEffect } from "react";
+import { allDataTransaction } from "../../service/transaction";
 
 const Transaksi = () => {
   const [searchValue, setSearchValue] = useState('');
   const [sortById, setSortById] = useState(false);
-  const [filteredData, setFilteredData] = useState(transaksiUsers);
+  // const [filteredData, setFilteredData] = useState(transaksiUsers);
+  const [transaksiData, setTransaksiData] = useState([]);
+
+  useEffect(() => {
+    allDataTransaction((data) => {
+      setTransaksiData(data.data);
+    });
+  }, []);
 
   const handleSearchChange = (event) => {
     setSearchValue(event.target.value);
@@ -21,8 +29,8 @@ const Transaksi = () => {
   };
 
   useEffect(() => {
-    let dataToDisplay = transaksiUsers.filter((user) =>
-      Object.values(user).some(
+    let dataToDisplay = transaksiData.filter((item) =>
+      Object.values(item).some(
         (value) =>
           value &&
           value.toString().toLowerCase().includes(searchValue.toLowerCase())
@@ -31,11 +39,11 @@ const Transaksi = () => {
 
     if (sortById) {
       dataToDisplay = dataToDisplay.sort((a, b) =>
-        a.id.localeCompare(b.id, undefined, { numeric: true, sensitivity: 'base' })
+        a.transaction_id.localeCompare(b.transaction_id, undefined, { numeric: true, sensitivity: 'base' })
       );
     }
 
-    setFilteredData(dataToDisplay);
+    setTransaksiData(dataToDisplay);
   }, [searchValue, sortById]);
 
   return (
@@ -64,7 +72,7 @@ const Transaksi = () => {
         <div className="row table-transaksi">
           <div className="col">
             <TableTransaksi
-              data={filteredData}
+              data={transaksiData}
               searchValue={searchValue}
             />
           </div>
