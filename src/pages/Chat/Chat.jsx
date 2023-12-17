@@ -110,7 +110,41 @@ const Chat = () => {
   console.log(idDoctor);
 
 
+  // const [messages, setMessages] = useState([]);
+  // const [messagesInput, setMessagesInput] = useState('');
+  // const socket = new WebSocket('https://kmb5alta.nantilinknya');
 
+  // useEffect(() => {
+
+  //   socket.onopen(() => {
+  //     console.log('WebSocket connection established');
+  //   })
+  //   socket.onmessage = (event) => {
+  //     const receivedMessage = JSON.parse(event.data);
+  //     setMessages([...messages, receivedMessage]);
+  //   };
+
+  //   socket.onclose = (event) => {
+  //     console.log('Koneksi ditutup:', event);
+  //   };
+
+  //   // Membersihkan koneksi saat komponen dibongkar
+  //   return () => {
+  //     socket.close();
+  //   };
+  // }, [messages]);
+
+  // const sendMessage = () => {
+  //   if (messagesInput.trim() !== '') {
+  //     const message = {
+  //       text: messagesInput,
+  //       timeStrap: new Date().toISOString()
+  //     }
+  //     socket.send(JSON.stringify(message));
+  //     setMessagesInput('');
+  //   }
+
+  // }
 
 
 
