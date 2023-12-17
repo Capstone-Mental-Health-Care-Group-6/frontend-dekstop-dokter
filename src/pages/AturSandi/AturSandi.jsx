@@ -16,6 +16,8 @@ import {
   passwordChecker,
   passwordHandler,
 } from "../../utils/handler/input"
+import { resetPassword } from "../../service/authentication"
+import { useParams, useNavigate } from "react-router"
 
 const ResetPassword = () => {
   const [password, setpassword] = useState("")
@@ -28,6 +30,7 @@ const ResetPassword = () => {
     password: "",
     confirmPassword: "",
   })
+  const [errorSend, setErrorSend] = useState('d-none')
 
   const handlepasswordChange = (e) => {
     passwordHandler(e.target.value, setErrorMessages)
@@ -40,9 +43,19 @@ const ResetPassword = () => {
     setConfirmPassword(e.target.value)
     setIsFormFilled(password !== "" && e.target.value !== "")
   }
+
+  const id = useParams()
+  const idString = id.id
+  console.log(idString);
+  const navigate = useNavigate()
+
   const handleSubmit = (e) => {
     e.preventDefault()
 
+    const formReset = {
+      password: password,
+      password_confirm: confirmPassword,
+    }
     // Validate password and confirmPassword
     if (errorMessages.password || errorMessages.confirmPassword) {
       // Tampilkan pesan kesalahan jika password atau konfirmasi password tidak valid
@@ -51,7 +64,14 @@ const ResetPassword = () => {
 
     // Proceed with resetting password if validation is successful
     if (isFormFilled) {
-      setShowModal(true)
+      resetPassword(idString, formReset, (status, res) => {
+        if (status) {
+          setShowModal(true)
+        } else {
+          console.log(res);
+          setErrorSend('d-block')
+        }
+      })
     }
   }
 
@@ -65,8 +85,11 @@ const ResetPassword = () => {
 
   const handleCloseModal = () => {
     setShowModal(false)
+    navigate("/login-dokter")
   }
 
+  console.log(password);
+  console.log(confirmPassword);
   return (
     <div className="content-center">
       <div className="kotak">
@@ -120,9 +143,8 @@ const ResetPassword = () => {
                 value={confirmPassword}
                 onChange={handleConfirmPasswordChange}
                 placeholder="Konfirmasi Password Baru"
-                className={`${
-                  errorMessages.confirmPassword !== "" ? "error" : ""
-                }`}
+                className={`${errorMessages.confirmPassword !== "" ? "error" : ""
+                  }`}
               />
               <label htmlFor="confirmation"></label>
               <span className="icon left">
@@ -145,13 +167,12 @@ const ResetPassword = () => {
               </span>
             )}
           </div>
-
+          <p className={`text-start text-danger mt-2 ${errorSend}`} >Terjadi kesalahan</p>
           <Button
             type="submit"
             id="btn-submit"
-            className={`mt-4 bttn btn-secondary w-100 fw-bold ${
-              !isFormFilled ? "disabled" : ""
-            }`}
+            className={`mt-4 bttn btn-secondary w-100 fw-bold ${!isFormFilled ? "disabled" : ""
+              }`}
             text="Atur ulang kata sandi"
             disabled={!isFormFilled}
           />

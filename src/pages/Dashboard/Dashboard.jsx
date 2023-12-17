@@ -12,10 +12,6 @@ import {
 import "./Dashboard.css";
 import Card from "../../components/fragments/Card/Card";
 import TableListPasien from "../../components/fragments/TableListPasien/TableListPasien";
-// import {
-//   cardLaporanMingguan,
-//   dataPasien,
-// } from "../../components/DataComponents/dataComponents";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { getAllCounseling } from "../../service/counseling";
@@ -36,6 +32,8 @@ const Dashboard = () => {
   const storedDataLogin = JSON.parse(localStorage.getItem("dataLogin"));
 
   useEffect(() => {
+    setLoading(true);
+
     getAllListPasien((data) => {
       setDataPasien(data);
 
@@ -55,17 +53,9 @@ const Dashboard = () => {
       ).length;
 
       setVideoCallCount(totalVidioCall);
-    });
 
-    getByNameLoginDoctor(
-      (data) => {
-        setUserData(data.data);
-      },
-      {
-        email: "agunggokil27@gmail.com",
-        password: "Agung!22",
-      }
-    );
+      setLoading(false);
+    });
   }, [userData.id]);
 
   const cardLaporanMingguan = [
@@ -73,28 +63,44 @@ const Dashboard = () => {
       bgColor: "#A2DEFF",
       iconCard: iconPasien,
       subtitle: "Total Pasien",
-      text: totalPasien.toString(),
+      text: loading ? (
+        <PulseLoader color="#D5E0DE" size={8} loading={loading} />
+      ) : (
+        totalPasien.toString()
+      ),
     },
 
     {
       bgColor: "#FFBBBB",
       iconCard: iconClock,
       subtitle: "Jam Praktek",
-      text: "80",
+      text: loading ? (
+        <PulseLoader color="#D5E0DE" size={8} loading={loading} />
+      ) : (
+        "12"
+      ),
     },
 
     {
       bgColor: "#C1FFEF",
       iconCard: iconChat,
       subtitle: "Layanan Chat",
-      text: chatCount.toString(),
+      text: loading ? (
+        <PulseLoader color="#D5E0DE" size={8} loading={loading} />
+      ) : (
+        chatCount.toString()
+      ),
     },
 
     {
       bgColor: "#F0CAFF",
       iconCard: iconZoom,
       subtitle: "Layanan Vidio Call",
-      text: videoCallCount.toString(),
+      text: loading ? (
+        <PulseLoader color="#D5E0DE" size={8} loading={loading} />
+      ) : (
+        videoCallCount.toString()
+      ),
     },
   ];
 
@@ -143,11 +149,7 @@ const Dashboard = () => {
             </div>
           ) : (
             <>
-              <h5 className="fw-bold mt-3">List Pasien</h5>
-              <TableListPasien
-                data={dataPasien}
-                // onDataChanged={handleDataChange}
-              />
+              <TableListPasien data={dataPasien} />
             </>
           )}
 
