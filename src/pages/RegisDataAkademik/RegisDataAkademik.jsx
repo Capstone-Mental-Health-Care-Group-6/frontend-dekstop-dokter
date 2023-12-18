@@ -18,8 +18,6 @@ const RegisDataAkademik = ({ onNext }) => {
 
   const { dataDoctor, setDataDoctor } = useContext(MyContext);
 
-  console.log(dataDoctor[0])
-
   const handleInputChange = (index, event) => {
     const { name, value } = event.target;  
     const updatedFormData = [...formData];
@@ -160,7 +158,6 @@ const RegisDataAkademik = ({ onNext }) => {
           ))}
 
           <div className="buttons-container d-flex justify-content-end">
-            {/* Add Data Button */}
             <Button
               type="button"
               className="btn btn-outline-primary"

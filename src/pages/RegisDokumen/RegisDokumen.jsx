@@ -11,12 +11,10 @@ const RegisDokumen = ({ onNext }) => {
     doctor_cv: "",
     doctor_sipp_file: "",
     doctor_ijazah: "",
-    doctor_str_file: "null",
+    doctor_str_file: "",
   });
 
   const { dataDoctor, setDataDoctor } = useContext(MyContext);
-
-  console.log(dataDoctor[0])
 
   const [errorMessages, setErrorMessages] = useState({
     doctor_cv: "",
@@ -24,6 +22,7 @@ const RegisDokumen = ({ onNext }) => {
     doctor_ijazah: "",
     doctor_str_file: "",
   });
+  
 
   const handleFileChange = (event, setFile, setInputValue, inputName) => {
     const selectedFile = event.target.files[0];
@@ -116,7 +115,6 @@ const RegisDokumen = ({ onNext }) => {
             </div>
           </div>
 
-          {/* SIP Section */}
           <div className="row">
             <Label htmlFor="doctor_sipp_file">Surat Izin Praktik Psikologi Klinis  (SIPPK)</Label>
             <div className="input-group mb-3">
@@ -149,7 +147,6 @@ const RegisDokumen = ({ onNext }) => {
             </div>
           </div>
 
-          {/* Ijazah Terakhir Section */}
           <div className="row">
             <Label htmlFor="doctor_ijazah">Ijazah Terakhir</Label>
             <div className="input-group mb-3">

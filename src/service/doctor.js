@@ -66,7 +66,7 @@ export const createProfileDoctor = async (formData, context, callback) => {
       formDataNow.append("workday_id", 1);
       formDataNow.append("start_time", isoDateString);
       formDataNow.append("end_time", isoDateString);
-      formDataNow.append("doctor_company", "kek apa tuh");
+      formDataNow.append("doctor_company", "PT Doctor");
       formDataNow.append("doctor_title", "direktur");
       formDataNow.append("doctor_company_address", "jl oke gan");
       formDataNow.append("doctor_start_date", isoDateString);

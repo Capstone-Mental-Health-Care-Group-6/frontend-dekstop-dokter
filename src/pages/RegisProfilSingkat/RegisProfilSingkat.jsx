@@ -20,8 +20,6 @@ const RegisProfilSingkat = ({ onSubmit }) => {
     
     const { dataDoctor, setDataDoctor } = useContext(MyContext);
 
-    console.log(dataDoctor[0])
-
     const [errorMessages, setErrorMessages] = useState({
         expertise_id: "",
         doctor_description: "",
@@ -32,9 +30,7 @@ const RegisProfilSingkat = ({ onSubmit }) => {
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
-    
-        console.log(`Name: ${name}, Value: ${value}`);
-    
+        
         setFormData((prevData) => ({
             ...prevData,
             [name]: value,
@@ -73,18 +69,14 @@ const RegisProfilSingkat = ({ onSubmit }) => {
             return;
         }
     
-        // Assuming createProfileDoctor is imported from doctor.js
         createProfileDoctor(formData, { dataDoctor }, (success, data) => {
             if (success) {
-                // Handle success, if needed
                 console.log("Profile created successfully:", data);
             } else {
-                // Handle error, if needed
                 console.error("Error creating profile:", data);
             }
         });
     
-        // Reset form data and navigate to the next step
         setDataDoctor([...dataDoctor, formData]);
         setFormData({
             expertise_id: [],

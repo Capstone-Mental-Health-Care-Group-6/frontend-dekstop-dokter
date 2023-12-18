@@ -98,7 +98,7 @@ const Register = () => {
         console.log(formRegister);
         register(formRegister, (status, res) => {
           if (status) {
-            navigate("/dokter/regis/registration-form");
+            navigate("/dokter/registration-form");
 
             console.log("berhasil resgister", res);
           } else {

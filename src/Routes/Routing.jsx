@@ -66,7 +66,7 @@ const Routing = () => {
       <Route path="/dokter/regis/pengalaman" element={<RegisPengalaman />} />
       <Route path="/dokter/regis/profil-singkat" element={<RegisProfilSingkat />} />
       <Route path="/dokter/pengalaman/privacy-policy" element={<PrivacyPolicy />} />
-      <Route path="/dokter/regis/registration-form" element={<RegistrationForm />} />
+      <Route path="/dokter/registration-form" element={<RegistrationForm />} />
 
 
       {/* route ketika url tidak sesuai */}

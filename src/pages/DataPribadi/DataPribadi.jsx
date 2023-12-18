@@ -75,14 +75,7 @@ const DataPribadi = () => {
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setSelectedImage(reader.result);
-        setSelectedImageData(file);
-      };
-      reader.readAsDataURL(file);
-    }
+    setFormData({ ...formData, doctor_avatar: file });
   };
 
   const openFileInput = () => {
@@ -133,11 +126,11 @@ const DataPribadi = () => {
           <div className="card-body" onClick={openFileInput}>
             <div className="row mb-3">
               <div className="col-md-4">
-                {selectedImage ? (
-                  <img src={selectedImage} className="img-fluid" alt="Profile" />
-                ) : (
-                  <img src={gambar} className="img-fluid" alt="Default" />
-                )}
+              {formData.doctor_avatar ? (
+                    <img src={URL.createObjectURL(formData.doctor_avatar)} className="img-fluid" alt="Profile" />
+                  ) : (
+                    <img src={gambar} className="img-fluid" alt="Default" />
+                  )}
               </div>
               <div className="col-md-8">
                 <h5 className="card-title-profile">Upload Your Profile</h5>
