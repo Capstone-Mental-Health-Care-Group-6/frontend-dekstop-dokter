@@ -2,8 +2,10 @@ import React from "react";
 import "./NotFound404.style.css";
 import Layouts from "../../components/layouts/Layouts";
 import { imgNotFound404 } from "../../../image";
+import { useLogin } from "../../hooks/useLogin";
 
 const NotFound404 = () => {
+  useLogin();
   return (
     <div>
       <Layouts>
