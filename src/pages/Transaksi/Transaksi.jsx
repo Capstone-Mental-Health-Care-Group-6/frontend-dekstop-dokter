@@ -2,14 +2,16 @@ import React from "react";
 import "./Transaksi.style.css";
 import Layouts from "../../components/layouts/Layouts";
 import TableTransaksi from "../../components/fragments/TableTransaksi/TableTransaksi";
-// import { transaksiUsers } from "../../components/DataComponents/dataComponents";
 import Search from "../../components/elements/Search/Search";
 import Filter from "../../components/elements/Filter/Filter";
 import { useState, useEffect } from "react";
 import { allDataTransaction } from "../../service/transaction";
 import Skeleton from "react-loading-skeleton";
+import { useLogin } from "../../hooks/useLogin";
 
 const Transaksi = () => {
+  useLogin();
+
   const [searchValue, setSearchValue] = useState("");
   const [sortById, setSortById] = useState(false);
   // const [filteredData, setFilteredData] = useState(transaksiUsers);

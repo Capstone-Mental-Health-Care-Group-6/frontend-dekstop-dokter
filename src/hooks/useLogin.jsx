@@ -5,12 +5,11 @@ export const useLogin = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     if (!token) {
-      navigate('/');
+      navigate("/login-dokter");
     }
   }, []);
-
 };
 
 // pemanggilan nya cukup import useLogin dan panggilnya seperti ini useLogin()

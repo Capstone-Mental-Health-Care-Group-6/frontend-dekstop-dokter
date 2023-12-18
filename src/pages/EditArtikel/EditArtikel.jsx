@@ -17,8 +17,11 @@ import {
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import ModalAlert from "../../components/fragments/ModalAlert/ModalAlert";
+import { useLogin } from "../../hooks/useLogin";
 
 const EditArtikel = () => {
+  useLogin();
+
   const navigate = useNavigate();
   const dataArtikel = [];
   const [loading, setLoading] = useState(false);
@@ -678,7 +681,7 @@ const EditArtikel = () => {
                                 id="visibilitas-privat"
                                 value="Privat"
                                 onChange={(e) => {
-                                  setStatusChecked(Privat)
+                                  setStatusChecked(Privat);
                                 }}
                               />
                               <label

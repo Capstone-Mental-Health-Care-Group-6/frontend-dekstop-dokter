@@ -19,8 +19,11 @@ import { getAllListPasien } from "../../service/listPasien";
 import { getByNameLoginDoctor, login } from "../../service/authentication";
 import PulseLoader from "react-spinners/PulseLoader";
 import Skeleton from "react-loading-skeleton";
+import { useLogin } from "../../hooks/useLogin";
 
 const Dashboard = () => {
+  useLogin();
+
   const [dataPasien, setDataPasien] = useState([]);
   const [userData, setUserData] = useState({});
   const [totalPasien, setTotalPasien] = useState(0);

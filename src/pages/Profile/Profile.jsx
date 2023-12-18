@@ -5,12 +5,15 @@ import ProfileList from "../../components/fragments/List/ProfileList";
 import { gambar } from "../../../image";
 import { useLocation } from "react-router-dom";
 import ModalProfileSuccess from "../../components/fragments/Modal/ModalProfileSuccess";
+import { useLogin } from "../../hooks/useLogin";
 
 const Profile = () => {
-  const namaPsikolog = "nama psikolog"
+  useLogin();
+
+  const namaPsikolog = "nama psikolog";
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
-  const dataSaved = queryParams.get('dataSaved') === 'true';
+  const dataSaved = queryParams.get("dataSaved") === "true";
 
   const [showModal, setShowModal] = useState(dataSaved);
 
@@ -34,7 +37,10 @@ const Profile = () => {
         <div className="list mb-3">
           <ProfileList />
         </div>
-        <div className="modal-container" style={{ display: showModal ? 'block' : 'none' }}>
+        <div
+          className="modal-container"
+          style={{ display: showModal ? "block" : "none" }}
+        >
           <div className="modal-overlay" onClick={handleCloseModal}></div>
           <ModalProfileSuccess show={showModal} onClose={handleCloseModal} />
         </div>
