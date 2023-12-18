@@ -18,6 +18,7 @@ import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import ModalAlert from "../../components/fragments/ModalAlert/ModalAlert";
 import { useLogin } from "../../hooks/useLogin";
+import ModalAlertEditArtikel from "../../components/fragments/ModalAlert/ModalAlertEditArtikel";
 
 const EditArtikel = () => {
   useLogin();
@@ -181,7 +182,7 @@ const EditArtikel = () => {
       <div className="container">
         <div className="row">
           <div className="col-9 px-3">
-            <ModalAlert id={"button-upload-artikel-modal"}>
+            <ModalAlertEditArtikel id={"button-upload-artikel-modal"}>
               <div className="modal-content p-3">
                 <div className="modal-body ">
                   <div className="d-block">
@@ -220,8 +221,8 @@ const EditArtikel = () => {
                   </div>
                 </div>
               </div>
-            </ModalAlert>
-            <ModalAlert id={"button-draft-artikel-modal"}>
+            </ModalAlertEditArtikel>
+            <ModalAlertEditArtikel id={"button-draft-artikel-modal"}>
               <div className="modal-content p-3">
                 <div className="modal-body ">
                   <div className="d-block">
@@ -260,7 +261,7 @@ const EditArtikel = () => {
                   </div>
                 </div>
               </div>
-            </ModalAlert>
+            </ModalAlertEditArtikel>
             {!loading && artikel !== null ? (
               <div>
                 <form action="" id="form" className="needs-validation">
