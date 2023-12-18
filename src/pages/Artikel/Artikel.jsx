@@ -15,8 +15,11 @@ import { getAllArticle } from "../../service/article";
 import { useSelector } from "react-redux";
 import toast from "react-hot-toast";
 import Skeleton from "react-loading-skeleton";
+import { useLogin } from "../../hooks/useLogin";
 
 const Artikel = () => {
+  useLogin();
+
   const navigate = useNavigate();
 
   const [artikel, setArtikel] = useState([]);

@@ -6,8 +6,11 @@ import { Link } from "react-router-dom";
 import { arrowLeft } from "../../../image";
 import { detailTransaction } from "../../service/transaction";
 import { useState, useEffect } from "react";
+import { useLogin } from "../../hooks/useLogin";
 
 const DetailTransaksiOtomatis = () => {
+  useLogin();
+
   const { id } = useParams();
   const [detail, setDetail] = useState({}); // State untuk menyimpan detail transaksi
   const [rating, setRating] = useState(5);
@@ -32,17 +35,16 @@ const DetailTransaksiOtomatis = () => {
 
   const formatDate = (dateString) => {
     const options = {
-      hour: '2-digit',
-      minute: '2-digit',
-      weekday: 'short',
-      day: '2-digit',
-      month: 'short',
-      year: 'numeric'
+      hour: "2-digit",
+      minute: "2-digit",
+      weekday: "short",
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
     };
-    const formattedDate = new Date(dateString).toLocaleString('id-ID', options);
-    return formattedDate.replace(',', ''); // Menghapus koma setelah hari dalam bahasa Inggris
+    const formattedDate = new Date(dateString).toLocaleString("id-ID", options);
+    return formattedDate.replace(",", ""); // Menghapus koma setelah hari dalam bahasa Inggris
   };
-
 
   return (
     <Layouts>
@@ -112,7 +114,9 @@ const DetailTransaksiOtomatis = () => {
                 </div>
                 <div className="col-6">
                   <p className="value-detail">
-                    {detail.counseling_type === "A" ? "Paket Primium" : "Paket Instan"}
+                    {detail.counseling_type === "A"
+                      ? "Paket Primium"
+                      : "Paket Instan"}
                   </p>
                 </div>
               </div>
@@ -138,7 +142,11 @@ const DetailTransaksiOtomatis = () => {
                 </div>
                 <div className="col-6">
                   <p className="value-detail">
-                    {detail.payment_status === 2 ? "accept" : detail.payment_status === 5 ? "pending" : "failed"}
+                    {detail.payment_status === 2
+                      ? "accept"
+                      : detail.payment_status === 5
+                      ? "pending"
+                      : "failed"}
                   </p>
                 </div>
               </div>
@@ -164,14 +172,12 @@ const DetailTransaksiOtomatis = () => {
               </div>
             </div>
             <div className="col-12">
-              <p className="feedback-bawah">
-                {detail.doctor_review}
-              </p>
+              <p className="feedback-bawah">{detail.doctor_review}</p>
             </div>
           </div>
         </div>
       </section>
-    </Layouts >
+    </Layouts>
   );
 };
 
