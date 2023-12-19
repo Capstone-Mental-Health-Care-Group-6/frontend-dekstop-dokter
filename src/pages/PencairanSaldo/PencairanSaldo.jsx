@@ -11,12 +11,13 @@ import CardSaldo from "../../components/fragments/Card/CardSaldo"
 import TablePencairanSaldo from "../../components/fragments/TablePencairanSaldo/TablePencairanSaldo"
 import { saldoTarik } from "../../service/transaction"
 import { withdrawDoctor } from "../../service/transaction"
-
-const storedId = JSON.parse(localStorage.getItem("id"))
+import { useLogin } from "../../hooks/useLogin"
 
 const PencairanSaldo = () => {
+  useLogin()
   const [saldoDokter, setSaldoDokter] = useState({})
   const [saldoPenarikan, setSaldoPenarikan] = useState({})
+  const storedId = JSON.parse(localStorage.getItem("id"))
 
   useEffect(() => {
     saldoTarik(storedId, (responseData) => {
@@ -46,6 +47,8 @@ const PencairanSaldo = () => {
       subTitle: `Rp ${saldoPenarikan.balance_req || 0}`,
     },
   ]
+
+  useLogin()
 
   return (
     <Layouts>

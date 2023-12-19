@@ -18,8 +18,12 @@ import { getAllCounseling } from "../../service/counseling";
 import { getAllListPasien } from "../../service/listPasien";
 import { getByNameLoginDoctor, login } from "../../service/authentication";
 import PulseLoader from "react-spinners/PulseLoader";
+import Skeleton from "react-loading-skeleton";
+import { useLogin } from "../../hooks/useLogin";
 
 const Dashboard = () => {
+  useLogin();
+
   const [dataPasien, setDataPasien] = useState([]);
   const [userData, setUserData] = useState({});
   const [totalPasien, setTotalPasien] = useState(0);
@@ -142,16 +146,19 @@ const Dashboard = () => {
               </div>
             ))}
           </div>
-          {dataPasien.length === 0 ? (
-            <div className="pasien__kosong d-flex align-items-center justify-content-center flex-column">
-              <img src={imgDataPasienKosong} alt="img-pasien-kosong" />
-              <p className="fw-semibold">Belum Ada Antrian Pasien</p>
-            </div>
+          {!loading ? (
+            dataPasien.length === 0 ? (
+              <div className="pasien__kosong d-flex align-items-center justify-content-center flex-column">
+                <img src={imgDataPasienKosong} alt="img-pasien-kosong" />
+                <p className="fw-semibold">Belum Ada Antrian Pasien</p>
+              </div>
+            ) : (
+              <>
+                <TableListPasien data={dataPasien} />
+              </>
+            )
           ) : (
-            <>
-              <h5 className="fw-bold mt-3">List Pasien</h5>
-              <TableListPasien data={dataPasien} />
-            </>
+            <Skeleton height={100} count={1} className="mt-3" />
           )}
 
           <div className="toogle__chatbot ">

@@ -1,17 +1,16 @@
 import React from "react";
 import Button from "../../elements/Button/Button";
-import { iconAlertTolakPasien } from "../../../../image";
 
-const ModalAlert = ({ id, size, iconAlert, children }) => {
+function ModalAlert({ children, id, iconAlert, size }) {
   return (
     <div
       className="modal fade"
       id={id}
-      tabindex="-1"
+      tabIndex={"-1"}
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
     >
-      <div className={`modal-dialog modal-dialog-centered ${size}`}>
+      <div className={`modal-dialog modal-dialog-centered   ${size}`}>
         <div className="modal-content">
           <div className="border-0 d-flex justify-content-center position-relative">
             <img src={iconAlert} alt="icon-alert" className="text-center" />
@@ -26,6 +25,6 @@ const ModalAlert = ({ id, size, iconAlert, children }) => {
       </div>
     </div>
   );
-};
+}
 
 export default ModalAlert;

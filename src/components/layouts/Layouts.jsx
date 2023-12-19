@@ -22,6 +22,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import DropdownNotif from "../elements/DropdownNotification/DropdownNotif";
 import Button from "../elements/Button/Button";
 import ModalLogout from "../fragments/Modal/ModalLogout";
+import { Toaster } from "react-hot-toast";
 
 const Layouts = ({ children }) => {
   const navigate = useNavigate();
@@ -169,6 +170,7 @@ const Layouts = ({ children }) => {
       <main className="main">
         <div className="p-3">{children}</div>
       </main>
+      <Toaster/>
     </>
   );
 };
