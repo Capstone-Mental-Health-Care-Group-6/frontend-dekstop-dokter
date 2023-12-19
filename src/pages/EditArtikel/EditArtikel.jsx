@@ -63,6 +63,7 @@ const EditArtikel = () => {
       const filter = res.data.filter((item) => item.id == id);
       const firstFilteredItem = filter.length > 0 ? filter[0] : null;
       setArtikel(firstFilteredItem);
+      setCheckedIndex(firstFilteredItem.category_name);
       setImage(firstFilteredItem.thumbnail);
     });
     setLoading(false);
@@ -91,8 +92,6 @@ const EditArtikel = () => {
       }));
     }
   };
-
-  function takeFileImage(imageUrl) {}
 
   async function convertThumbnailUrlToFile(thumbnailUrl) {
     try {
@@ -142,8 +141,9 @@ const EditArtikel = () => {
           apiData.append(key, artikel[key]);
         }
       });
-
+      setLoading(true)
       await updateArticle(id, apiData);
+      setLoading(false)
       sendArtikelToast();
       navigate("/dokter/artikel");
     } catch (error) {
@@ -481,7 +481,6 @@ const EditArtikel = () => {
                             artikel.thumbnail instanceof File
                           ) {
                             dataArtikel.push(artikel);
-
                           } else {
                             <div className="d-flex justify-content-center">
                               <div
@@ -501,7 +500,17 @@ const EditArtikel = () => {
                         bsTogle="modal"
                         id={"button-upload-artikel"}
                         bsTarget={"#button-upload-artikel-modal"}
-                        text={"Unggah Artikel"}
+                        text={
+                          !loading ? (
+                            "Perbarui Artikel"
+                          ) : (
+                            <div class="d-flex justify-content-center">
+                              <div class="spinner-border" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                              </div>
+                            </div>
+                          )
+                        }
                       />
                     </div>
                     <div>
@@ -731,8 +740,8 @@ const EditArtikel = () => {
                           }
                           classNameLabel={"fw-semibold label-artikel-text"}
                           disabled={
-                            // checkedIndex !== null && item.id !== checkedIndex
-                            artikel.category_name
+                            checkedIndex !== null
+                            // artikel.category_name !== null ? art
                           }
                         />
                       ))}
@@ -747,7 +756,8 @@ const EditArtikel = () => {
                 )}
               </div>
               <p style={{ fontSize: "10px" }} className="text-muted">
-                <span className="text-danger">*</span>Kategori tidak dapat diubah
+                <span className="text-danger">*</span>Kategori tidak dapat
+                diubah
               </p>
             </div>
           </div>

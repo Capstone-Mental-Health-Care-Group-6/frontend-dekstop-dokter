@@ -36,7 +36,6 @@ const Artikel = () => {
       const filteredArticles = res.data.filter(
         (item) => item.user_name === storedDataLogin
       );
-
       setArtikel(filteredArticles);
       setLoading(false);
     });
@@ -112,7 +111,7 @@ const Artikel = () => {
           <div className="bg-light rounded-3 my-2  dropdown-item">
             <Button
               text={"Hapus Artikel"}
-              disabled={selected !== null && selected.status === "Pending"}
+              disabled={selected !== null}
               className={
                 "bg-transparent border-0 fw-semibold btn-hapus-artikel"
               }

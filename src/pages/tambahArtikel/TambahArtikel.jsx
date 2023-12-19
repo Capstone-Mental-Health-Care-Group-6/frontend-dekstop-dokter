@@ -12,6 +12,7 @@ import { createArticle, getAllArticleCategories } from "../../service/article";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useLogin } from "../../hooks/useLogin";
+import ModalAlertEditArtikel from "../../components/fragments/ModalAlert/ModalAlertEditArtikel";
 
 const TambahArtikel = () => {
   useLogin();
@@ -61,7 +62,6 @@ const TambahArtikel = () => {
     status: "pending",
   });
 
-
   const [thumbnail, setThumbnail] = useState({
     gambar: "",
   });
@@ -90,7 +90,6 @@ const TambahArtikel = () => {
     }
   };
 
-
   const formDataKeys = [
     "category_id",
     "title",
@@ -105,9 +104,11 @@ const TambahArtikel = () => {
 
   const handleCreateArtikel = async (e) => {
     e.preventDefault();
+    setLoading(true);
     await createArticle(apiData, (status, res) => {
       if (status) {
         // console.log(res);
+        setLoading(false);
         sendArtikelToast();
         navigate("/dokter/artikel");
       } else {
@@ -170,6 +171,65 @@ const TambahArtikel = () => {
   return (
     <Layouts>
       <h2 className="py-3 fw-bold">Tambah Artikel</h2>
+      <ModalAlertEditArtikel id={"button-upload-artikel-modal"}>
+        <div className="modal-content p-3">
+          <div className="modal-body ">
+            <div className="d-block">
+              <button
+                type="button"
+                className="btn-close float-end"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <p className="fw-bold">
+              Apakah anda yakin untuk upload artikel ini?
+            </p>
+            <div className="d-flex mb-3 mt-4">
+              <Button
+                text={
+                  !loading ? (
+                    "Unggah"
+                  ) : (
+                    <div class="d-flex justify-content-center">
+                      <div class="spinner-border" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                      </div>
+                    </div>
+                  )
+                }
+                type={"button"}
+                className={"btn btn-primary fw-semibold"}
+                bsDismiss={"modal"}
+                onClick={(e) => {
+                  try {
+                    handleNull();
+                    setArtikel((old) => {
+                      return {
+                        ...old,
+                        user_name: storedDataLogin,
+                        status: "Pending",
+                      };
+                    });
+                    if (errorMsg.form == "") {
+                      dataArtikel.push(artikel);
+                      handleCreateArtikel(e);
+                    }
+                  } catch {
+                    errorToast();
+                  }
+                }}
+              />
+              <Button
+                text={"Batal"}
+                className={"btn btn-danger mx-3 fw-semibold"}
+                bsDismiss={"modal"}
+                ariaLabel={"Close"}
+              />
+            </div>
+          </div>
+        </div>
+      </ModalAlertEditArtikel>
       <div className="container">
         <div className="row">
           <div className="col-9 px-3">
@@ -332,14 +392,14 @@ const TambahArtikel = () => {
                 </p>
                 <p className="text-danger">{errorMsg.thumbnail}</p>
               </div>
-              
+
               <div className="d-flex m-3 button-form-artikel">
                 <div>
                   <Button
                     type={"button"}
                     onClick={(e) => {
                       try {
-                        handleNull();
+                        // handleNull();
                         setArtikel((old) => {
                           return {
                             ...old,
@@ -349,7 +409,7 @@ const TambahArtikel = () => {
                         });
                         if (errorMsg.form == "") {
                           dataArtikel.push(artikel);
-                          handleCreateArtikel(e);
+                          // handleCreateArtikel(e);
                         }
                       } catch {
                         errorToast();
@@ -360,6 +420,8 @@ const TambahArtikel = () => {
                     }
                     id={"button-upload-artikel"}
                     text={"Unggah Artikel"}
+                    bsTogle={"modal"}
+                    bsTarget={"#button-upload-artikel-modal"}
                   />
                 </div>
                 <div>
