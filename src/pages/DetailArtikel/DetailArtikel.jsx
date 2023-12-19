@@ -4,9 +4,11 @@ import { useParams } from "react-router-dom";
 import { dataArtikel } from "../Artikel/dataArtikel";
 import parse from "html-react-parser";
 import { getAllArticle } from "../../service/article";
-import "./DetailArtikel.style.css"
+import "./DetailArtikel.style.css";
+import { useLogin } from "../../hooks/useLogin";
 
 const DetailArtikel = () => {
+  useLogin();
   const params = useParams();
   const id = params.id;
 
@@ -89,7 +91,11 @@ const DetailArtikel = () => {
                 {parseData(selectedArtikel(id)[0].content)}
               </div>
               <div>
-                <YoutubeEmbed embedUrl={"https://www.youtube.com/embed/DxIDKZHW3-E?si=6sy-iwJDpqIBHGLA"}/>
+                <YoutubeEmbed
+                  embedUrl={
+                    "https://www.youtube.com/embed/DxIDKZHW3-E?si=6sy-iwJDpqIBHGLA"
+                  }
+                />
               </div>
             </div>
           ) : (

@@ -11,8 +11,11 @@ import toast, { Toaster } from "react-hot-toast";
 import { createArticle, getAllArticleCategories } from "../../service/article";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useLogin } from "../../hooks/useLogin";
 
 const TambahArtikel = () => {
+  useLogin();
+
   const dataArtikel = [];
   const [categories, setCategories] = useState([]);
   const [statusChecked, setStatusChecked] = useState("Publik");
@@ -129,7 +132,7 @@ const TambahArtikel = () => {
       },
     });
 
-    const errorToast = () =>
+  const errorToast = () =>
     toast.error("Tambah artikel gagal! Silakan coba lagi atau login ulang", {
       duration: 4000,
       position: "top-center",
@@ -335,23 +338,22 @@ const TambahArtikel = () => {
                   <Button
                     type={"button"}
                     onClick={(e) => {
-                      try{
-
+                      try {
                         handleNull();
                         setArtikel((old) => {
-                        return {
-                          ...old,
-                          user_name: storedDataLogin,
-                          status: "Pending",
-                        };
-                      });
-                      if (errorMsg.form == "") {
-                        dataArtikel.push(artikel);
-                        handleCreateArtikel(e);
+                          return {
+                            ...old,
+                            user_name: storedDataLogin,
+                            status: "Pending",
+                          };
+                        });
+                        if (errorMsg.form == "") {
+                          dataArtikel.push(artikel);
+                          handleCreateArtikel(e);
+                        }
+                      } catch {
+                        errorToast();
                       }
-                    } catch {
-                      errorToast()
-                    }
                     }}
                     className={
                       "btn btn-primary me-3 btn-upload-artikel fw-semibold"
@@ -367,22 +369,21 @@ const TambahArtikel = () => {
                     className={"btn me-3 btn-draft-artikel fw-semibold"}
                     text={"Simpan sebagai Draft"}
                     onClick={(e) => {
-                      try{
-
+                      try {
                         setArtikel((old) => {
                           return {
-                          ...old,
-                          user_name: storedDataLogin,
-                          status: "Draft",
-                        };
-                      });
-                      if (errorMsg.form == "") {
-                        dataArtikel.push(artikel);
-                        handleCreateArtikel(e);
+                            ...old,
+                            user_name: storedDataLogin,
+                            status: "Draft",
+                          };
+                        });
+                        if (errorMsg.form == "") {
+                          dataArtikel.push(artikel);
+                          handleCreateArtikel(e);
+                        }
+                      } catch {
+                        errorToast();
                       }
-                    } catch {
-                      errorToast()
-                    }
                     }}
                   /> */}
                 </div>

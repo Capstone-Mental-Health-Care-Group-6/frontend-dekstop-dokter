@@ -7,8 +7,10 @@ import "./Pengalaman.styles.css";
 import BackButton from "../../components/elements/Button/BackButton";
 import ModalProfile from "../../components/fragments/Modal/ModalProfile";
 import { NavLink } from "react-router-dom";
+import { useLogin } from "../../hooks/useLogin";
 
 const Pengalaman = () => {
+  useLogin();
   const [formData, setFormData] = useState([
     {
       namaPerusahaan: "",
@@ -21,16 +23,20 @@ const Pengalaman = () => {
 
   const handleInputChange = (index, event) => {
     const { name, value } = event.target;
-  
-    if (name === 'awalBekerja') {
+
+    if (name === "awalBekerja") {
       const isNumeric = /^\d+$/.test(value);
-  
+
       setErrorMessages((prevErrors) => ({
         ...prevErrors,
-        [name]: isNumeric ? '' : `${name === 'awalBekerja' ? 'Awal Bekerja' : 'Awal Bekerja'} harus berupa angka`,
+        [name]: isNumeric
+          ? ""
+          : `${
+              name === "awalBekerja" ? "Awal Bekerja" : "Awal Bekerja"
+            } harus berupa angka`,
       }));
     }
-  
+
     const updatedFormData = [...formData];
     updatedFormData[index][name] = value;
     setFormData(updatedFormData);
@@ -60,16 +66,30 @@ const Pengalaman = () => {
 
   const handleSubmitClick = () => {
     const newErrorMessages = formData.map((data, index) => ({
-      namaPerusahaan: !data.namaPerusahaan ? `Nama Perusahaan wajib diisi (${index + 1})` : "",
+      namaPerusahaan: !data.namaPerusahaan
+        ? `Nama Perusahaan wajib diisi (${index + 1})`
+        : "",
       jabatan: !data.jabatan ? `Jabatan wajib diisi (${index + 1})` : "",
-      awalBekerja: !data.awalBekerja ? `Awal Bekerja wajib diisi (${index + 1})` : "",
-      akhirBekerja: !data.akhirBekerja ? `Akhir Bekerja wajib diisi (${index + 1})` : "",
-      alamatPerusahaan: !data.alamatPerusahaan ? `Alamat Perusahaan wajib diisi (${index + 1})` : "",
+      awalBekerja: !data.awalBekerja
+        ? `Awal Bekerja wajib diisi (${index + 1})`
+        : "",
+      akhirBekerja: !data.akhirBekerja
+        ? `Akhir Bekerja wajib diisi (${index + 1})`
+        : "",
+      alamatPerusahaan: !data.alamatPerusahaan
+        ? `Alamat Perusahaan wajib diisi (${index + 1})`
+        : "",
     }));
 
-    setErrorMessages(newErrorMessages.reduce((acc, curr) => ({ ...acc, ...curr }), {}));
+    setErrorMessages(
+      newErrorMessages.reduce((acc, curr) => ({ ...acc, ...curr }), {})
+    );
 
-    if (newErrorMessages.some((error) => Object.values(error).some((value) => value !== ""))) {
+    if (
+      newErrorMessages.some((error) =>
+        Object.values(error).some((value) => value !== "")
+      )
+    ) {
       return;
     }
 
@@ -94,10 +114,14 @@ const Pengalaman = () => {
               <h4 className="pengalaman-title">Pengalaman Kerja</h4>
               <div className="row mb-3">
                 <div className="col-md-6">
-                  <Label htmlFor={`namaPerusahaan${index}`}>Nama Perusahaan</Label>
+                  <Label htmlFor={`namaPerusahaan${index}`}>
+                    Nama Perusahaan
+                  </Label>
                   <Input
                     type="text"
-                    className={`form-control mb-2 ${errorMessages.namaPerusahaan ? "is-invalid" : ""}`}
+                    className={`form-control mb-2 ${
+                      errorMessages.namaPerusahaan ? "is-invalid" : ""
+                    }`}
                     id={`namaPerusahaan${index}`}
                     name="namaPerusahaan"
                     placeholder="Nama Perusahaan"
@@ -105,15 +129,21 @@ const Pengalaman = () => {
                     onChange={(e) => handleInputChange(index, e)}
                   />
                   {errorMessages.namaPerusahaan && (
-                    <div className="invalid-feedback">{errorMessages.namaPerusahaan}</div>
+                    <div className="invalid-feedback">
+                      {errorMessages.namaPerusahaan}
+                    </div>
                   )}
                 </div>
 
                 <div className="col-md-6">
-                  <Label htmlFor={`jabatan${index}`}>Jabatan di Perusahaan</Label>
+                  <Label htmlFor={`jabatan${index}`}>
+                    Jabatan di Perusahaan
+                  </Label>
                   <Input
                     type="text"
-                    className={`form-control mb-2 ${errorMessages.jabatan ? "is-invalid" : ""}`}
+                    className={`form-control mb-2 ${
+                      errorMessages.jabatan ? "is-invalid" : ""
+                    }`}
                     id={`jabatan${index}`}
                     name="jabatan"
                     placeholder="Jabatan"
@@ -121,7 +151,9 @@ const Pengalaman = () => {
                     onChange={(e) => handleInputChange(index, e)}
                   />
                   {errorMessages.jabatan && (
-                    <div className="invalid-feedback">{errorMessages.jabatan}</div>
+                    <div className="invalid-feedback">
+                      {errorMessages.jabatan}
+                    </div>
                   )}
                 </div>
               </div>
@@ -131,7 +163,9 @@ const Pengalaman = () => {
                   <Label htmlFor={`awalBekerja${index}`}>Awal Bekerja</Label>
                   <Input
                     type="text"
-                    className={`form-control mb-2 ${errorMessages.awalBekerja ? "is-invalid" : ""}`}
+                    className={`form-control mb-2 ${
+                      errorMessages.awalBekerja ? "is-invalid" : ""
+                    }`}
                     id={`awalBekerja${index}`}
                     name="awalBekerja"
                     placeholder="Tahun Masuk"
@@ -139,7 +173,9 @@ const Pengalaman = () => {
                     onChange={(e) => handleInputChange(index, e)}
                   />
                   {errorMessages.awalBekerja && (
-                    <div className="invalid-feedback">{errorMessages.awalBekerja}</div>
+                    <div className="invalid-feedback">
+                      {errorMessages.awalBekerja}
+                    </div>
                   )}
                 </div>
 
@@ -147,7 +183,9 @@ const Pengalaman = () => {
                   <Label htmlFor={`akhirBekerja${index}`}>Akhir Bekerja</Label>
                   <Input
                     type="text"
-                    className={`form-control mb-2 ${errorMessages.akhirBekerja ? "is-invalid" : ""}`}
+                    className={`form-control mb-2 ${
+                      errorMessages.akhirBekerja ? "is-invalid" : ""
+                    }`}
                     id={`akhirBekerja${index}`}
                     name="akhirBekerja"
                     placeholder="Tahun Keluar"
@@ -155,17 +193,23 @@ const Pengalaman = () => {
                     onChange={(e) => handleInputChange(index, e)}
                   />
                   {errorMessages.akhirBekerja && (
-                    <div className="invalid-feedback">{errorMessages.akhirBekerja}</div>
+                    <div className="invalid-feedback">
+                      {errorMessages.akhirBekerja}
+                    </div>
                   )}
                 </div>
               </div>
 
               <div className="row mb-3">
                 <div className="input-alamat-perusahaan">
-                  <Label htmlFor={`alamatPerusahaan${index}`}>Alamat Perusahaan</Label>
+                  <Label htmlFor={`alamatPerusahaan${index}`}>
+                    Alamat Perusahaan
+                  </Label>
                   <Input
                     type="text"
-                    className={`form-control mb-2 ${errorMessages.alamatPerusahaan ? "is-invalid" : ""}`}
+                    className={`form-control mb-2 ${
+                      errorMessages.alamatPerusahaan ? "is-invalid" : ""
+                    }`}
                     id={`alamatPerusahaan${index}`}
                     name="alamatPerusahaan"
                     placeholder="Alamat"
@@ -173,7 +217,9 @@ const Pengalaman = () => {
                     onChange={(e) => handleInputChange(index, e)}
                   />
                   {errorMessages.alamatPerusahaan && (
-                    <div className="invalid-feedback">{errorMessages.alamatPerusahaan}</div>
+                    <div className="invalid-feedback">
+                      {errorMessages.alamatPerusahaan}
+                    </div>
                   )}
                 </div>
               </div>
@@ -187,7 +233,14 @@ const Pengalaman = () => {
               id="flexCheckDefault"
             />
             <label className="form-check-label" htmlFor="flexCheckDefault">
-              Dengan ini saya menyetujui <NavLink to={'/dokter/pengalaman/privacy-policy'} className="privacyPolicy">Kebijakan Privasi</NavLink> dari EmpathiCare
+              Dengan ini saya menyetujui{" "}
+              <NavLink
+                to={"/dokter/pengalaman/privacy-policy"}
+                className="privacyPolicy"
+              >
+                Kebijakan Privasi
+              </NavLink>{" "}
+              dari EmpathiCare
             </label>
           </div>
 
