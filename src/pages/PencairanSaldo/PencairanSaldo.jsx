@@ -1,16 +1,52 @@
-import React, { useState } from "react";
-import Layouts from "../../components/layouts/Layouts";
-import "./PencairanSaldo.css";
-import { iconCardTarikSaldo } from "../../../image";
-import ModalTarikSaldo from "../../components/fragments/Modal/ModalTarikSaldo";
-import CardSaldo from "../../components/fragments/Card/CardSaldo";
-import TablePencairanSaldo from "../../components/fragments/TablePencairanSaldo/TablePencairanSaldo";
+import React, { useState, useEffect } from "react"
+import Layouts from "../../components/layouts/Layouts"
+import "./PencairanSaldo.css"
 import {
-  dataPencairanSaldo,
-  dataTablePencairanSaldo,
-} from "../../components/DataComponents/dataComponents";
+  iconCardTarikSaldo,
+  iconCardSaldoAktif,
+  iconCardProsesPenarikan,
+} from "../../../image"
+import ModalTarikSaldo from "../../components/fragments/Modal/ModalTarikSaldo"
+import CardSaldo from "../../components/fragments/Card/CardSaldo"
+import TablePencairanSaldo from "../../components/fragments/TablePencairanSaldo/TablePencairanSaldo"
+import { saldoTarik } from "../../service/transaction"
+import { withdrawDoctor } from "../../service/transaction"
+
+const storedId = JSON.parse(localStorage.getItem("id"))
 
 const PencairanSaldo = () => {
+  const [saldoDokter, setSaldoDokter] = useState({})
+  const [saldoPenarikan, setSaldoPenarikan] = useState({})
+
+  useEffect(() => {
+    saldoTarik(storedId, (responseData) => {
+      setSaldoDokter(responseData.data)
+      localStorage.setItem(
+        "saldo",
+        JSON.stringify(responseData.data.doctor_balance)
+      )
+      withdrawDoctor((responseData) => {
+        const length = responseData.length
+        setSaldoPenarikan(responseData[length - 1])
+      })
+    })
+  }, [])
+
+  const updatedDataPencairanSaldo = [
+    {
+      className: "card__saldo__aktif",
+      imgSrc: iconCardSaldoAktif,
+      title: "Saldo Aktif",
+      subTitle: `Rp ${saldoDokter.doctor_balance || 0}`,
+    },
+    {
+      className: "card__proses__penarikan",
+      imgSrc: iconCardProsesPenarikan,
+      title: "Proses Penarikan",
+      subTitle: `Rp ${saldoPenarikan.balance_req || 0}`,
+    },
+  ]
+
   return (
     <Layouts>
       <div className="pencairan__saldo  bg-white rounded-2 px-2 py-2">
@@ -32,7 +68,7 @@ const PencairanSaldo = () => {
               </div>
             </div>
           </div>
-          {dataPencairanSaldo.map((item, index) => (
+          {updatedDataPencairanSaldo.map((item, index) => (
             <div className="col" key={index}>
               <CardSaldo
                 className={item.className}
@@ -44,12 +80,12 @@ const PencairanSaldo = () => {
           ))}
         </div>
 
-        <TablePencairanSaldo data={dataTablePencairanSaldo} />
+        <TablePencairanSaldo data={saldoDokter} />
       </div>
 
       <ModalTarikSaldo id={"modal-tarik-saldo"} size={"modal-md"} />
     </Layouts>
-  );
-};
+  )
+}
 
-export default PencairanSaldo;
+export default PencairanSaldo

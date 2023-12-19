@@ -7,46 +7,13 @@ import { imgModalSaldoCair } from "../../../../image"
 import { withdraw } from "../../../service/transaction"
 
 const ModalTarikSaldo = ({ id, size }) => {
-  // const [formState, setFormState] = useState({
-  //   metodePembayaran: "",
-  //   namaPenerima: "",
-  //   nomorRekening: "",
-  //   nominalPenarikan: "",
-  // })
-
-  // const handleChange = (event) => {
-  //   setFormState({
-  //     ...formState,
-  //     [event.target.name]: event.target.value,
-  //   })
-  // }
-
-  // const handleSubmit = (event) => {
-  //   event.preventDefault()
-
-  //   // Extract form data
-  //   const { metodePembayaran, namaPenerima, nomorRekening, nominalPenarikan } =
-  //     formState
-
-  //   const bank = metodePembayaran.replace("BANK ", "")
-  //   let balanceReq = nominalPenarikan.replace("Rp ", "")
-  //   balanceReq = balanceReq.replace(".", "")
-  //   balanceReq = balanceReq.replace("-,", "")
-  //   balanceReq = parseInt(balanceReq, 10)
-  //   const withdrawData = {
-  //     balance_req: balanceReq,
-  //     payment_method: bank,
-  //     payment_name: namaPenerima,
-  //     payment_number: nomorRekening,
-  //   }
-  //   console.log(withdrawData)
-  // }
   const [formData, setFormData] = useState({
     metodePembayaran: "",
     namaPenerima: "",
     nomorRekening: "",
     nominalPenarikan: "",
   })
+  const storedSaldo = JSON.parse(localStorage.getItem("saldo"))
 
   const handleChange = (event) => {
     setFormData({
@@ -58,7 +25,6 @@ const ModalTarikSaldo = ({ id, size }) => {
   const handleSubmit = async (event) => {
     event.preventDefault()
 
-    // Extract form data
     const { metodePembayaran, namaPenerima, nomorRekening, nominalPenarikan } =
       formData
 
@@ -78,70 +44,11 @@ const ModalTarikSaldo = ({ id, size }) => {
     withdraw(withdrawData)
       .then((data) => {
         console.log(data)
-        // Handle the response as needed
       })
       .catch((error) => {
         console.error("Error:", error)
-        // Handle the error, display an error message, or show an alert
       })
-    // try {
-    //   // Panggil fungsi withdraw
-    //   const response = await withdraw(withdrawData)
-    //   console.log(response.data)
-    //   // Handle the response as needed
-    //   // For example, display a success message or show an alert
-    // } catch (error) {
-    //   console.error("Error:", error)
-    //   // Handle the error, display an error message, or show an alert
-    // }
-    // try {
-    //   // Panggil fungsi withdrawApi
-    //   const response = await withdraw(withdrawData)
-
-    //   // Pastikan respons memiliki properti 'data'
-    //   if (response && response.data) {
-    //     console.log(response.data)
-    //     // Handle the response as needed
-    //     // For example, display a success message or show an alert
-    //   } else {
-    //     console.error("Error: Response data is undefined")
-    //     // Handle the error or show an alert
-    //   }
-    // } catch (error) {
-    //   console.error("Error:", error)
-    //   // Handle the error, display an error message, or show an alert
-    // }
   }
-
-  // Reset form state
-  const deleteState = () => {
-    setFormData({
-      metodePembayaran: "",
-      namaPenerima: "",
-      nomorRekening: "",
-      nominalPenarikan: "",
-    })
-  }
-
-  // Convert form data keys to an array
-  const formDataKeys = [
-    "metodePembayaran",
-    "namaPenerima",
-    "nomorRekening",
-    "nominalPenarikan",
-  ]
-
-  // Create a FormData object
-  const apiData = new FormData()
-
-  // Iterate over keys and append values to FormData
-  formDataKeys.forEach((key) => {
-    const value =
-      key === "nominalPenarikan"
-        ? parseFloat(formData[key].replace("Rp ", "").replace(",", ""))
-        : formData[key]
-    apiData.append(key, value)
-  })
 
   return (
     <div>
@@ -214,7 +121,7 @@ const ModalTarikSaldo = ({ id, size }) => {
                 <div className="jumlah__Saldo rounded-3 py-4 px-4 mb-3">
                   <p className="d-flex flex-column fw-semibold text-white">
                     Jumlah Saldo{" "}
-                    <span className="fw-bold mt-2">Rp 200.000-,</span>
+                    <span className="fw-bold mt-2">Rp {storedSaldo}</span>
                   </p>
                 </div>
                 <div className="px-3 mb-5">

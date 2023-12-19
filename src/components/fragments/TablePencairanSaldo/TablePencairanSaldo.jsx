@@ -1,8 +1,17 @@
-import { Column } from "primereact/column";
-import { DataTable } from "primereact/datatable";
-import React from "react";
+import { Column } from "primereact/column"
+import { DataTable } from "primereact/datatable"
+import React, { useEffect, useState } from "react"
+import { withdrawDoctor } from "../../../service/transaction"
 
-const TablePencairanSaldo = ({ data }) => {
+const TablePencairanSaldo = () => {
+  const [data, setData] = useState([])
+
+  useEffect(() => {
+    withdrawDoctor((responseData) => {
+      setData(responseData)
+    })
+  }, [])
+
   const userBodyTemplate = (rowData) => {
     return (
       <div className="d-flex align-items-center">
@@ -14,22 +23,23 @@ const TablePencairanSaldo = ({ data }) => {
         />
         <span>{rowData.namaPasien}</span>
       </div>
-    );
-  };
+    )
+  }
 
   const statusBodyTemplate = (rowData) => {
-    let statusClassName;
+    let statusClassName
 
     if (rowData.status === "Sukses") {
-      statusClassName = "success-status";
+      statusClassName = "success-status"
     } else if (rowData.status === "Proses") {
-      statusClassName = "process-status";
+      statusClassName = "process-status"
     } else {
-      statusClassName = "insuccess-status";
+      statusClassName = "insuccess-status"
     }
 
-    return <span className={statusClassName}>{rowData.status}</span>;
-  };
+    return <span className={statusClassName}>{rowData.status}</span>
+  }
+
   return (
     <div className="mt-4 bg-white wrapper__table__saldo rounded-1">
       <DataTable
@@ -42,28 +52,27 @@ const TablePencairanSaldo = ({ data }) => {
       >
         <Column
           header="ID Transaksi"
-          field="idTransaksi"
+          field="id"
           headerClassName="table-header-border"
         />
         <Column
-          header="Nama Pasien"
-          body={userBodyTemplate}
+          header="Nomor Rekening"
+          field="payment_number"
           headerClassName="table-header-border"
         />
-
         <Column
           header="Tanggal"
-          field="tanggal"
+          field="date_confirmed"
           headerClassName="table-header-border"
         />
         <Column
-          header="Paket Langganan"
-          field="paketLangganan"
+          header="Metode Pembayaran"
+          field="payment_method"
           headerClassName="table-header-border"
         />
         <Column
-          header="Harga"
-          field="harga"
+          header="Nominal"
+          field="balance_req"
           headerClassName="table-header-border"
         />
         <Column
@@ -74,7 +83,7 @@ const TablePencairanSaldo = ({ data }) => {
         />
       </DataTable>
     </div>
-  );
-};
+  )
+}
 
-export default TablePencairanSaldo;
+export default TablePencairanSaldo
