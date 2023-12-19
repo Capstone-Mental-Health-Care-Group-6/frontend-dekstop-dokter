@@ -1,16 +1,22 @@
-import { Column } from "primereact/column"
-import { DataTable } from "primereact/datatable"
-import React, { useEffect, useState } from "react"
-import { withdrawDoctor } from "../../../service/transaction"
+import { Column } from "primereact/column";
+import { DataTable } from "primereact/datatable";
+import React, { useEffect, useState } from "react";
+import { withdrawDoctor } from "../../../service/transaction";
 
 const TablePencairanSaldo = () => {
-  const [data, setData] = useState([])
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     withdrawDoctor((responseData) => {
-      setData(responseData)
-    })
-  }, [])
+      setData(responseData);
+    });
+  }, []);
+
+  const formatDate = (date) => {
+    const options = { day: "2-digit", month: "short", year: "numeric" };
+    const formattedDate = new Date(date).toLocaleDateString("id-ID", options);
+    return formattedDate.replace(".", ""); // Menghapus titik setelah singkatan bulan
+  };
 
   const userBodyTemplate = (rowData) => {
     return (
@@ -23,22 +29,20 @@ const TablePencairanSaldo = () => {
         />
         <span>{rowData.namaPasien}</span>
       </div>
-    )
-  }
+    );
+  };
 
   const statusBodyTemplate = (rowData) => {
-    let statusClassName
+    let statusClassName;
 
-    if (rowData.status === "Sukses") {
-      statusClassName = "success-status"
-    } else if (rowData.status === "Proses") {
-      statusClassName = "process-status"
+    if (rowData.status === "DONE") {
+      statusClassName = "success-status";
     } else {
-      statusClassName = "insuccess-status"
+      statusClassName = "process-status";
     }
 
-    return <span className={statusClassName}>{rowData.status}</span>
-  }
+    return <span className={statusClassName}>{rowData.status}</span>;
+  };
 
   return (
     <div className="mt-4 bg-white wrapper__table__saldo rounded-1">
@@ -64,6 +68,7 @@ const TablePencairanSaldo = () => {
           header="Tanggal"
           field="date_confirmed"
           headerClassName="table-header-border"
+          body={(rowData) => <span>{formatDate(rowData.date_confirmed)}</span>}
         />
         <Column
           header="Metode Pembayaran"
@@ -83,7 +88,7 @@ const TablePencairanSaldo = () => {
         />
       </DataTable>
     </div>
-  )
-}
+  );
+};
 
-export default TablePencairanSaldo
+export default TablePencairanSaldo;
