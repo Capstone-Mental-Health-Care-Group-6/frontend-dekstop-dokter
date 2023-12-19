@@ -13,9 +13,9 @@ const RegistrationForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     const apiData = new FormData();
-  
+
     formDataArray.forEach((data) => {
       for (const key in data) {
         if (key !== 'email') {
@@ -23,7 +23,7 @@ const RegistrationForm = () => {
         }
       }
     });
-  
+
     await createProfileDoctor(apiData, (status, res) => {
       if (status) {
         console.log(res);
@@ -36,7 +36,7 @@ const RegistrationForm = () => {
       }
     });
   };
-  
+
   const handleInputChange = (key, value) => {
     setFormData((prevData) => ({ ...prevData, [key]: value }));
   };
