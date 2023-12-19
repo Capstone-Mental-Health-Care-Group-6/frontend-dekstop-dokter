@@ -6,14 +6,13 @@ import ModalAlertSaldo from "../ModalAlert/ModalAlertSaldo"
 import { imgModalSaldoCair } from "../../../../image"
 import { withdraw } from "../../../service/transaction"
 
-const ModalTarikSaldo = ({ id, size }) => {
+const ModalTarikSaldo = ({ id, size, storedSaldo }) => {
   const [formData, setFormData] = useState({
     metodePembayaran: "",
     namaPenerima: "",
     nomorRekening: "",
     nominalPenarikan: "",
   })
-  const storedSaldo = JSON.parse(localStorage.getItem("saldo"))
 
   const handleChange = (event) => {
     setFormData({
@@ -44,6 +43,7 @@ const ModalTarikSaldo = ({ id, size }) => {
     withdraw(withdrawData)
       .then((data) => {
         console.log(data)
+        window.location.reload()
       })
       .catch((error) => {
         console.error("Error:", error)

@@ -22,10 +22,7 @@ const PencairanSaldo = () => {
   useEffect(() => {
     saldoTarik(storedId, (responseData) => {
       setSaldoDokter(responseData.data)
-      localStorage.setItem(
-        "saldo",
-        JSON.stringify(responseData.data.doctor_balance)
-      )
+
       withdrawDoctor((responseData) => {
         const length = responseData.length
         setSaldoPenarikan(responseData[length - 1])
@@ -86,7 +83,11 @@ const PencairanSaldo = () => {
         <TablePencairanSaldo data={saldoDokter} />
       </div>
 
-      <ModalTarikSaldo id={"modal-tarik-saldo"} size={"modal-md"} />
+      <ModalTarikSaldo
+        id={"modal-tarik-saldo"}
+        size={"modal-md"}
+        storedSaldo={saldoDokter.doctor_balance || "0"}
+      />
     </Layouts>
   )
 }
