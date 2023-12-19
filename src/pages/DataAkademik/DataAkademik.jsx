@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Layouts from "../../components/layouts/Layouts";
 import Input from "../../components/elements/Input/Input";
 import Label from "../../components/elements/Input/Label";
@@ -6,8 +6,11 @@ import Button from "../../components/elements/Button/Button";
 import ModalProfile from "../../components/fragments/Modal/ModalProfile";
 import BackButton from "../../components/elements/Button/BackButton";
 import "./DataAkademik.styles.css";
+import { useLogin } from "../../hooks/useLogin";
+import { DetailDoctor } from "../../service/doctor";
 
 const DataAkademik = () => {
+  useLogin();
   const [formData, setFormData] = useState([
     {
       doctor_university: "",
@@ -19,6 +22,16 @@ const DataAkademik = () => {
 
   const handleInputChange = (index, event) => {
     const { name, value } = event.target;
+  
+    if (name === 'doctor_enroll_year' || name === 'doctor_graduate_year') {
+      const isNumeric = /^\d+$/.test(value);
+  
+      setErrorMessages((prevErrors) => ({
+        ...prevErrors,
+        [name]: isNumeric ? '' : `Tahun ${name === 'doctor_enroll_year' ? 'Masuk' : 'Tamat'} harus berupa angka`,
+      }));
+    }
+  
     const updatedFormData = [...formData];
     updatedFormData[index][name] = value;
     setFormData(updatedFormData);
@@ -55,9 +68,15 @@ const DataAkademik = () => {
       doctor_graduate_year: !data.doctor_graduate_year ? `Tahun Tamat wajib diisi (${index + 1})` : "",
     }));
 
-    setErrorMessages(newErrorMessages.reduce((acc, curr) => ({ ...acc, ...curr }), {}));
+    setErrorMessages(
+      newErrorMessages.reduce((acc, curr) => ({ ...acc, ...curr }), {})
+    );
 
-    if (newErrorMessages.some((error) => Object.values(error).some((value) => value !== ""))) {
+    if (
+      newErrorMessages.some((error) =>
+        Object.values(error).some((value) => value !== "")
+      )
+    ) {
       return;
     }
 
@@ -67,17 +86,29 @@ const DataAkademik = () => {
   const handleSubmitConfirm = () => {
     setShowProfileModal(false);
   };
-  
 
   const handleSubmitCancel = () => {
     setShowProfileModal(false);
   };
 
+  useEffect(() => {
+      DetailDoctor((res) => {
+        const dataDoctor = res.data;
+        console.log("Doctor Data :", dataDoctor)
+        setFormData({
+          doctor_university: dataDoctor.doctor_university,
+          doctor_study_program: dataDoctor.doctor_study_program,
+          doctor_enroll_year: dataDoctor.doctor_enroll_year,
+          doctor_graduate_year: dataDoctor.doctor_graduate_year,
+        });
+      });
+  }, []);
+
   return (
     <Layouts>
       <div className="data-akademik">
         <div className="container">
-          <BackButton location={'/dokter/profile'}/>
+          <BackButton location={"/dokter/profile"} />
           {formData.map((data, index) => (
             <form className="data-akademik-form" key={index}>
               <h4 className="data-akademik-title">Data Akademik</h4>
@@ -119,7 +150,7 @@ const DataAkademik = () => {
                 <div className="col-md-6">
                   <Label htmlFor={`doctor_enroll_year ${index}`}>Tahun Masuk Universitas</Label>
                   <Input
-                    type="date"
+                    type="text"
                     className={`form-control mb-2 ${errorMessages.doctor_enroll_year ? "is-invalid" : ""}`}
                     id={`doctor_enroll_year${index}`}
                     name="doctor_enroll_year"
@@ -135,7 +166,7 @@ const DataAkademik = () => {
                 <div className="col-md-6">
                   <Label htmlFor={`doctor_graduate_year ${index}`}>Tahun Tamat Universitas</Label>
                   <Input
-                    type="date"
+                    type="text"
                     className={`form-control mb-2 ${errorMessages.doctor_graduate_year ? "is-invalid" : ""}`}
                     id={`doctor_graduate_year${index}`}
                     name="doctor_graduate_year"

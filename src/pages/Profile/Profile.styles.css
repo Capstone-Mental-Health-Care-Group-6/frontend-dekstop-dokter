@@ -24,6 +24,7 @@
   height: auto;
   margin: 0;
   border-radius: 20px;
+  object-fit: cover;
 } 
 
 .profile-pages .card .ms-3 .card-title {

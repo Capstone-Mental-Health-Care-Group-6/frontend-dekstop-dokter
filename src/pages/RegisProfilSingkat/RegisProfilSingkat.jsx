@@ -19,6 +19,7 @@ const RegisProfilSingkat = ({ onSubmit }) => {
     });
     
     const { dataDoctor, setDataDoctor } = useContext(MyContext);
+    console.log(dataDoctor)
 
     const [errorMessages, setErrorMessages] = useState({
         expertise_id: "",
@@ -87,7 +88,7 @@ const RegisProfilSingkat = ({ onSubmit }) => {
         });
     
         onSubmit(e);
-        // window.location.href = "/dokter/dashboard";
+        window.location.href = "/login-dokter";
     };    
 
     return (

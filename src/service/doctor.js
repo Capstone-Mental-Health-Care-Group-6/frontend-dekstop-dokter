@@ -20,17 +20,16 @@ export const DetailDoctor = (id, callback) => {
         }).catch((err) => {
             console.log(err);
         });
-
 }
 
 export const createProfileDoctor = async (formData, context, callback) => {
     try {
     const dataDoctor = context.dataDoctor[0];
-    const dataDoctor2 = context.dataDoctor[1];
-    const dataDoctor3 = context.dataDoctor[2];
-    const dataDoctor4 = context.dataDoctor[3];
+    // const dataDoctor2 = context.dataDoctor[1];
+    // const dataDoctor3 = context.dataDoctor[2];
+    // const dataDoctor4 = context.dataDoctor[3];
 
-    console.log('ini isi semua form doctor', dataDoctor, dataDoctor2, dataDoctor3, dataDoctor4)
+    console.log('ini isi semua form doctor', dataDoctor)
 
       const mergedData = {
         ...formData,
@@ -126,10 +125,10 @@ export const updateProfileEducation = async (id, formData) => {
 export const updateProfileExperience = async (id, formData) => {
     try {
         const res = await axiosInterceptor.put(`/doctor/experience/${id}`, formData);
-        console.log(res.data); // Log the successful response
+        console.log(res.data); 
     } catch (error) {
         console.error("Error updating experience:", error);
-        throw error; // Rethrow the error to be caught by the calling code
+        throw error; 
     }
 };
 

@@ -27,7 +27,9 @@ import RegisPengalaman from "../pages/RegisPengalaman/RegisPengalaman";
 import RegisProfilSingkat from "../pages/RegisProfilSingkat/RegisProfilSingkat";
 import ProfilSingkat from "../pages/ProfilSingkat/ProfilSingkat";
 import PrivacyPolicy from "../pages/PricacyPolicy/PrivacyPolicy";
-import RegistrationForm from "../pages/RegistrationForm/RegistrationForm";
+import DetailArtikel from "../pages/DetailArtikel/DetailArtikel";
+import EditArtikel from "../pages/EditArtikel/EditArtikel";
+import RegistrationForm from "../pages/RegistrationForm/RegistrationForm"
 
 const Routing = () => {
   return (
@@ -43,31 +45,43 @@ const Routing = () => {
       <Route path="/dokter/chat/:id" element={<Chat />} />
       <Route path="/dokter/transaksi" element={<Transaksi />} />
       <Route
-        path="/dokter/transaksi/transaksi/otomatis/:id"
+        path="/dokter/transaksi/otomatis/:id"
         element={<DetailTransaksiOtomatis />}
       />
       <Route
-        path="/dokter/transaksi/transaksi/manual/:id"
+        path="/dokter/transaksi/manual/:id"
         element={<DetailTransaksiManual />}
       />
       <Route path="/dokter/saldo" element={<PencairanSaldo />} />
       <Route path="/dokter/artikel" element={<Artikel />} />
       <Route path="/dokter/artikel/tambah" element={<TambahArtikel />} />
+      <Route path="/dokter/artikel/detail/:id" element={<DetailArtikel />} />
+      <Route path="/dokter/artikel/edit/:id" element={<EditArtikel />} />
       <Route path="/dokter/profile" element={<Profile />} />
       <Route path="/dokter/profile/data-pribadi" element={<DataPribadi />} />
       <Route path="/dokter/profile/data-akademik" element={<DataAkademik />} />
       <Route path="/dokter/profile/dokumen" element={<Dokumen />} />
       <Route path="/dokter/profile/pengalaman" element={<Pengalaman />} />
-      <Route path="/dokter/profile/profil-singkat" element={<ProfilSingkat />} />
-      <Route path="/dokter/chatbot" element={<ChatBot />} />
+      <Route
+        path="/dokter/profile/profil-singkat"
+        element={<ProfilSingkat />}
+      />
       <Route path="/dokter/regis/data-pribadi" element={<RegisDataPribadi />} />
-      <Route path="/dokter/regis/data-akademik" element={<RegisDataAkademik />} />
+      <Route
+        path="/dokter/regis/data-akademik"
+        element={<RegisDataAkademik />}
+      />
       <Route path="/dokter/regis/dokumen" element={<RegisDokumen />} />
       <Route path="/dokter/regis/pengalaman" element={<RegisPengalaman />} />
-      <Route path="/dokter/regis/profil-singkat" element={<RegisProfilSingkat />} />
-      <Route path="/dokter/pengalaman/privacy-policy" element={<PrivacyPolicy />} />
+      <Route
+        path="/dokter/regis/profil-singkat"
+        element={<RegisProfilSingkat />}
+      />
+      <Route
+        path="/dokter/pengalaman/privacy-policy"
+        element={<PrivacyPolicy />}
+      />
       <Route path="/dokter/registration-form" element={<RegistrationForm />} />
-
 
       {/* route ketika url tidak sesuai */}
       <Route element={<NotFound404 />} path="*" />

@@ -1,27 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Layouts from "../../components/layouts/Layouts";
-import './ProfilSingkat.styles.css'
+import "./ProfilSingkat.styles.css";
 import Label from "../../components/elements/Input/Label";
 import Button from "../../components/elements/Button/Button";
 import BackButton from "../../components/elements/Button/BackButton";
 import ModalProfile from "../../components/fragments/Modal/ModalProfile";
-import Checkbox from "../../components/elements/Checkbox/Checkbox";
 import RadioButton from "../../components/elements/RadioButton/RadioButton";
 import InputSelect from "../../components/elements/Input/InputSelect";
 import Input from "../../components/elements/Input/Input";
+import { useLogin } from "../../hooks/useLogin";
+import { DetailDoctor } from "../../service/doctor";
 
 const ProfilSingkat = () => {
-    
+    useLogin();
     const [formData, setFormData] = useState({
-        doctor_expertise: [],
+        expertise_id: [],
         doctor_description: "",
         workday_id: "",
-        start_time: "",
-        end_time: "",
-    })
-    
+        start_time: "",   
+        end_time: "",  
+    });
+  
+    const [showProfileModal, setShowProfileModal] = useState(false); 
+  
     const [errorMessages, setErrorMessages] = useState({
-        doctor_expertise: "",
+        expertise_id: "",
         doctor_description: "",
         workday_id: "",
         start_time: "",
@@ -38,6 +41,19 @@ const ProfilSingkat = () => {
             [name]: value,
         }));
     };
+
+    const handleCheckboxChange = (event) => {
+        const { name, value, checked } = event.target;
+    
+        console.log(`Checkbox - Name: ${name}, Value: ${value}, Checked: ${checked}`);
+    
+        setFormData((prevData) => ({
+            ...prevData,
+            keahlian: checked
+                ? [...prevData.keahlian, value]
+                : prevData.keahlian.filter((item) => item !== value),
+        }));
+    };
     
     const handleRadioChange = (event) => {
         console.log("Radio Event:", event);
@@ -47,29 +63,24 @@ const ProfilSingkat = () => {
         
         setFormData((prevData) => ({
             ...prevData,
-            doctor_expertise: [value],
+            jadwal: [value],
         }));
     };
-
-    const [showProfileModal, setShowProfileModal] = useState(false);
   
     const handleSubmitClick = () => {
         const newErrorMessages = {
-            doctor_expertise: formData.doctor_expertise.length === 0 ? "Pilih satu keahlian" : "",
+            expertise_id: formData.expertise_id.length === 0 ? "Pilih satu keahlian" : "",
             doctor_description: !formData.doctor_description ? "Tentang Anda wajib diisi" : "",
             workday_id: formData.workday_id.length === 0 ? "Pilih satu jadwal" : "",
             start_time: formData.start_time.length === 0 ? "Pilih jam kerja awal" : "",
             end_time: formData.end_time.length === 0 ? "Pilih jam kerja akhir" : "",
         };
-        
-          setErrorMessages(newErrorMessages);
-        
+    
+        setErrorMessages(newErrorMessages);
+    
         if (
-            !formData.doctor_description ||
-            formData.doctor_expertise.length === 0 ||
-            formData.workday_id.length ||
-            formData.start_time.length ||
-            formData.end_time.length
+            Object.values(newErrorMessages).some((error) => error !== "") ||
+            Object.values(formData).some((value) => value === "")
         ) {
             return;
         }
@@ -77,7 +88,6 @@ const ProfilSingkat = () => {
         setShowProfileModal(true);
     };
     
-  
     const handleSubmitConfirm = () => {
       setShowProfileModal(false);
     };
@@ -85,6 +95,20 @@ const ProfilSingkat = () => {
     const handleSubmitCancel = () => {
       setShowProfileModal(false);
     };
+
+    useEffect(() => {
+        DetailDoctor((res) => {
+          const dataDoctor = res.data;
+          console.log("Doctor Data :", dataDoctor)
+          setFormData({
+            expertise_id: dataDoctor.expertise_id,
+            doctor_description: dataDoctor.doctor_description,
+            workday_id: dataDoctor.workday_id,
+            start_time: dataDoctor.start_time,
+            end_time: dataDoctor.end_time,
+          });
+        });
+    }, []);
 
     return (
         <Layouts>
@@ -96,7 +120,7 @@ const ProfilSingkat = () => {
 
                     <div className="row">
                         <div className="col-md-6">
-                            <Label htmlFor="doctor_expertise">Keahlian</Label>
+                            <Label htmlFor="expertise_id">Keahlian</Label>
                               <div className="form-check-keahlian">
                                 <div className="checkbox-inline">
                                     <RadioButton 
@@ -154,8 +178,8 @@ const ProfilSingkat = () => {
                                             onChange={handleRadioChange}
                                         />
                                     </div>
-                                    {errorMessages.doctor_expertise && (
-                                        <div className="invalid-feedback">{errorMessages.doctor_expertise}</div>
+                                    {errorMessages.expertise_id && (
+                                        <div className="invalid-feedback">{errorMessages.expertise_id}</div>
                                     )}
                                 </div>
                             </div>
@@ -238,24 +262,24 @@ const ProfilSingkat = () => {
                         </div>
                     </form>
 
-                    <div className="button-container d-flex justify-content-center mb-3">
-                        <Button
-                            type="button"
-                            className="btn btn-primary"
-                            text="Simpan Perubahan"
-                            onClick={handleSubmitClick}
-                        />
-                    </div>
-                    <ModalProfile
-                        show={showProfileModal}
-                        title="Profile"
-                        onClose={handleSubmitCancel}
-                        onSubmit={handleSubmitConfirm}
-                    />
-                </div>
-            </div>
-        </Layouts>
-    );
+          <div className="button-container d-flex justify-content-center mb-3">
+            <Button
+              type="button"
+              className="btn btn-primary"
+              text="Simpan Perubahan"
+              onClick={handleSubmitClick}
+            />
+          </div>
+          <ModalProfile
+            show={showProfileModal}
+            title="Profile"
+            onClose={handleSubmitCancel}
+            onSubmit={handleSubmitConfirm}
+          />
+        </div>
+      </div>
+    </Layouts>
+  );
 };
 
 export default ProfilSingkat;

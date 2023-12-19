@@ -17,6 +17,7 @@ const RegisDataAkademik = ({ onNext }) => {
   ]);
 
   const { dataDoctor, setDataDoctor } = useContext(MyContext);
+  console.log(dataDoctor)
 
   const handleInputChange = (index, event) => {
     const { name, value } = event.target;  

@@ -1,19 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Layouts from "../../components/layouts/Layouts";
 import Label from "../../components/elements/Input/Label";
 import Button from "../../components/elements/Button/Button";
 import BackButton from "../../components/elements/Button/BackButton";
-import './Dokumen.styles.css';
+import "./Dokumen.styles.css";
 import Input from "../../components/elements/Input/Input";
 import ModalProfile from "../../components/fragments/Modal/ModalProfile";
+import { useLogin } from "../../hooks/useLogin";
+import { DetailDoctor } from "../../service/doctor";
 
 const Dokumen = () => {
   const [files, setFiles] = useState({
-    doctor_cv: null,
-    doctor_sipp_file: null,
-    doctor_ijazah: null,
-    doctor_str_file: null,
+    doctor_cv: "",
+    doctor_sipp_file: "",
+    doctor_ijazah: "",
+    doctor_str_file: "",
   });
+
+  const [showProfileModal, setShowProfileModal] = useState(false); 
 
   const [errorMessages, setErrorMessages] = useState({
     doctor_cv: "",
@@ -42,7 +46,7 @@ const Dokumen = () => {
   
     setErrorMessages(newErrorMessages);
   
-    if (!files.doctor_cv || !files.doctor_sipp_file || !files.doctor_ijazah || !files.doctor_str_file) {
+    if (!doctor_cv || !doctor_sipp_file|| !doctor_ijazah || !doctor_str_file) {
       return;
     }
 
@@ -51,23 +55,34 @@ const Dokumen = () => {
 
   const handleSubmitConfirm = () => {
     setShowProfileModal(false);
-
   };
 
   const handleSubmitCancel = () => {
     setShowProfileModal(false);
   };
 
+  useEffect(() => {
+    DetailDoctor((res) => {
+      const dataDoctor = res.data;
+      console.log("Doctor Data :", dataDoctor)
+      setFormData({
+        doctor_cv: dataDoctor.doctor_cv,
+        doctor_sipp_file: dataDoctor.doctor_sipp_file,
+        doctor_ijazah: dataDoctor.doctor_ijazah,
+        doctor_str_file: dataDoctor.doctor_str_file
+      });
+    });
+}, []);
 
   return (
     <Layouts>
       <div className="dokumen">
-      <div className="container">
-        <BackButton location={'/dokter/profile'} />
-        <form className="dokumen-form" onSubmit={handleFileChange}>
-          <h4 className="dokumen-title">Dokumen</h4>
+        <div className="container">
+          <BackButton location={"/dokter/profile"} />
+          <form className="dokumen-form" onSubmit={handleFileChange}>
+            <h4 className="dokumen-title">Dokumen</h4>
 
-          <div className="row">
+            <div className="row">
             <div className="ketentuan-container">
               <h4 className="teks-ketentuan">Ketentuan File:</h4>
               <ul className="ketentuan">
@@ -79,7 +94,7 @@ const Dokumen = () => {
 
           {/* CV Section */}
           <div className="row">
-          <Label htmlFor="doctor_cv">Curriculum Vitae (CV)</Label>
+            <Label htmlFor="doctor_cv">Curriculum Vitae (CV)</Label>
             <div className="input-group mb-3">
               <div className="form-control-wrapper">
                 <Input
@@ -110,9 +125,8 @@ const Dokumen = () => {
             </div>
           </div>
 
-          {/* SIP Section */}
           <div className="row">
-          <Label htmlFor="doctor_sipp_file">Surat Izin Praktik Psikologi Klinis  (SIPPK)</Label>
+            <Label htmlFor="doctor_sipp_file">Surat Izin Praktik Psikologi Klinis  (SIPPK)</Label>
             <div className="input-group mb-3">
               <div className="form-control-wrapper">
               <Input
@@ -143,9 +157,8 @@ const Dokumen = () => {
             </div>
           </div>
 
-          {/* Ijazah Terakhir Section */}
           <div className="row">
-          <Label htmlFor="doctor_ijazah">Ijazah Terakhir</Label>
+            <Label htmlFor="doctor_ijazah">Ijazah Terakhir</Label>
             <div className="input-group mb-3">
               <div className="form-control-wrapper">
               <Input
@@ -177,7 +190,7 @@ const Dokumen = () => {
           </div>
 
           <div className="row">
-          <Label htmlFor="doctor_str_file">Surat Tanda Registrasi Psikologi Klinis (STRPK)</Label>
+            <Label htmlFor="doctor_str_file">Surat Tanda Registrasi Psikologi Klinis (STRPK)</Label>
             <div className="input-group mb-3">
             <div className="form-control-wrapper">
             <Input

@@ -9,8 +9,11 @@ import {
   dataPencairanSaldo,
   dataTablePencairanSaldo,
 } from "../../components/DataComponents/dataComponents";
+import { useLogin } from "../../hooks/useLogin";
 
 const PencairanSaldo = () => {
+  useLogin();
+
   return (
     <Layouts>
       <div className="pencairan__saldo  bg-white rounded-2 px-2 py-2">
