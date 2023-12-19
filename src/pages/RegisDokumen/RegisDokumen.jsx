@@ -6,15 +6,13 @@ import './RegisDokumen.styles.css';
 import Input from "../../components/elements/Input/Input";
 import { MyContext } from "../../context/ProfileDoctorContext";
 
-const RegisDokumen = ({ onNext }) => {
+const RegisDokumen = () => {
   const [files, setFiles] = useState({
     doctor_cv: "",
     doctor_sipp_file: "",
     doctor_ijazah: "",
     doctor_str_file: "",
   });
-
-  const { dataDoctor, setDataDoctor } = useContext(MyContext);
 
   const [errorMessages, setErrorMessages] = useState({
     doctor_cv: "",
@@ -49,16 +47,6 @@ const RegisDokumen = ({ onNext }) => {
     if (!doctor_cv || !doctor_sipp_file|| !doctor_ijazah || !doctor_str_file) {
       return;
     }
-
-    setDataDoctor([...dataDoctor, files]);
-    setFiles({
-      doctor_cv: "",
-      doctor_sipp_file: "",
-      doctor_ijazah: "",
-      doctor_str_file: "",
-    });
-  
-    onNext();
 
   };
 

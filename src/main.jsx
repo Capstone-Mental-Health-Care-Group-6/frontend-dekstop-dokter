@@ -14,9 +14,11 @@ import { SkeletonTheme } from "react-loading-skeleton";
 import store from "./utils/store/store.js";
 import { Provider } from "react-redux";
 import { Toaster } from "react-hot-toast";
+import { MyContextProvider } from "./context/ProfileDoctorContext.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
+   <MyContextProvider>
     <Provider store={store}>
       <BrowserRouter>
         <SkeletonTheme baseColor="#e2e8f0" highlightColor="#f1f5f9">
@@ -25,5 +27,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         </SkeletonTheme>
       </BrowserRouter>
     </Provider>
+   </MyContextProvider>
   </React.StrictMode>
 );

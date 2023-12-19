@@ -5,7 +5,6 @@ import ProfileList from "../../components/fragments/List/ProfileList";
 import { useLocation } from "react-router-dom";
 import ModalProfileSuccess from "../../components/fragments/Modal/ModalProfileSuccess";
 import { useLogin } from "../../hooks/useLogin";
-import axios from "axios";
 import { DetailDoctor, getAllDoctors } from "../../service/doctor";
 
 const Profile = () => {
