@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react"
-import InputSelect from "../../elements/Input/InputSelect"
-import Input from "../../elements/Input/Input"
-import Button from "../../elements/Button/Button"
-import ModalAlertSaldo from "../ModalAlert/ModalAlertSaldo"
-import { imgModalSaldoCair } from "../../../../image"
-import { withdraw } from "../../../service/transaction"
+import React, { useEffect, useState } from "react";
+import InputSelect from "../../elements/Input/InputSelect";
+import Input from "../../elements/Input/Input";
+import Button from "../../elements/Button/Button";
+import ModalAlertSaldo from "../ModalAlert/ModalAlertSaldo";
+import { imgModalSaldoCair } from "../../../../image";
+import { withdraw } from "../../../service/transaction";
 
 const ModalTarikSaldo = ({ id, size, storedSaldo }) => {
   const [formData, setFormData] = useState({
@@ -12,43 +12,45 @@ const ModalTarikSaldo = ({ id, size, storedSaldo }) => {
     namaPenerima: "",
     nomorRekening: "",
     nominalPenarikan: "",
-  })
+  });
+
+  const [showAlert, setShowAlert] = useState(true);
 
   const handleChange = (event) => {
     setFormData({
       ...formData,
       [event.target.name]: event.target.value,
-    })
-  }
+    });
+  };
 
   const handleSubmit = async (event) => {
-    event.preventDefault()
+    event.preventDefault();
 
     const { metodePembayaran, namaPenerima, nomorRekening, nominalPenarikan } =
-      formData
+      formData;
 
-    const bank = metodePembayaran.replace("BANK ", "")
+    const bank = metodePembayaran.replace("BANK ", "");
     let balanceReq = nominalPenarikan
       .replace("Rp ", "")
       .replace(".", "")
-      .replace("-,", "")
-    balanceReq = parseInt(balanceReq, 10)
+      .replace("-,", "");
+    balanceReq = parseInt(balanceReq, 10);
     const withdrawData = {
       balance_req: balanceReq,
       payment_method: bank,
       payment_name: namaPenerima,
       payment_number: nomorRekening,
-    }
+    };
 
     withdraw(withdrawData)
       .then((data) => {
-        console.log(data)
-        window.location.reload()
+        console.log(data);
+        window.location.reload();
       })
       .catch((error) => {
-        console.error("Error:", error)
-      })
-  }
+        console.error("Error:", error);
+      });
+  };
 
   return (
     <div>
@@ -83,7 +85,7 @@ const ModalTarikSaldo = ({ id, size, storedSaldo }) => {
                     }
                     name={"metodePembayaran"}
                     id={"metodePembayaran"}
-                    title={"Pilih Metode Pembayaran"}
+                    title={"Pilih Metode Pencairan"}
                     onChange={handleChange}
                     options={[
                       "BANK BCA",
@@ -159,7 +161,7 @@ const ModalTarikSaldo = ({ id, size, storedSaldo }) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ModalTarikSaldo
+export default ModalTarikSaldo;

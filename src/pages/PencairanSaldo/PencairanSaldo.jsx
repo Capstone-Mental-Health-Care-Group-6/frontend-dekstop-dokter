@@ -1,34 +1,38 @@
-import React, { useState, useEffect } from "react"
-import Layouts from "../../components/layouts/Layouts"
-import "./PencairanSaldo.css"
+import React, { useState, useEffect } from "react";
+import Layouts from "../../components/layouts/Layouts";
+import "./PencairanSaldo.css";
 import {
   iconCardTarikSaldo,
   iconCardSaldoAktif,
   iconCardProsesPenarikan,
-} from "../../../image"
-import ModalTarikSaldo from "../../components/fragments/Modal/ModalTarikSaldo"
-import CardSaldo from "../../components/fragments/Card/CardSaldo"
-import TablePencairanSaldo from "../../components/fragments/TablePencairanSaldo/TablePencairanSaldo"
-import { saldoTarik } from "../../service/transaction"
-import { withdrawDoctor } from "../../service/transaction"
-import { useLogin } from "../../hooks/useLogin"
+} from "../../../image";
+import ModalTarikSaldo from "../../components/fragments/Modal/ModalTarikSaldo";
+import CardSaldo from "../../components/fragments/Card/CardSaldo";
+import TablePencairanSaldo from "../../components/fragments/TablePencairanSaldo/TablePencairanSaldo";
+import { saldoTarik } from "../../service/transaction";
+import { withdrawDoctor } from "../../service/transaction";
+import { useLogin } from "../../hooks/useLogin";
+import Skeleton from "react-loading-skeleton";
 
 const PencairanSaldo = () => {
-  useLogin()
-  const [saldoDokter, setSaldoDokter] = useState({})
-  const [saldoPenarikan, setSaldoPenarikan] = useState({})
-  const storedId = JSON.parse(localStorage.getItem("id"))
+  useLogin();
+  const [saldoDokter, setSaldoDokter] = useState({});
+  const [saldoPenarikan, setSaldoPenarikan] = useState({});
+  const [loading, setLoading] = useState(false);
+  const storedId = JSON.parse(localStorage.getItem("id"));
 
   useEffect(() => {
+    setLoading(true);
     saldoTarik(storedId, (responseData) => {
-      setSaldoDokter(responseData.data)
+      setSaldoDokter(responseData.data);
 
       withdrawDoctor((responseData) => {
-        const length = responseData.length
-        setSaldoPenarikan(responseData[length - 1])
-      })
-    })
-  }, [])
+        const length = responseData.length;
+        setSaldoPenarikan(responseData[length - 1]);
+      });
+      setLoading(false);
+    });
+  }, []);
 
   const updatedDataPencairanSaldo = [
     {
@@ -43,9 +47,7 @@ const PencairanSaldo = () => {
       title: "Proses Penarikan",
       subTitle: `Rp ${saldoPenarikan.balance_req || 0}`,
     },
-  ]
-
-  useLogin()
+  ];
 
   return (
     <Layouts>
@@ -79,8 +81,11 @@ const PencairanSaldo = () => {
             </div>
           ))}
         </div>
-
-        <TablePencairanSaldo data={saldoDokter} />
+        {!loading ? (
+          <TablePencairanSaldo data={saldoDokter} />
+        ) : (
+          <Skeleton className="mt-2" height={60} count={6} />
+        )}
       </div>
 
       <ModalTarikSaldo
@@ -89,7 +94,7 @@ const PencairanSaldo = () => {
         storedSaldo={saldoDokter.doctor_balance || "0"}
       />
     </Layouts>
-  )
-}
+  );
+};
 
-export default PencairanSaldo
+export default PencairanSaldo;
