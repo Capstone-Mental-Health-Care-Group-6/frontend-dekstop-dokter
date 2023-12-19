@@ -16,37 +16,11 @@ import ModalAlertEditArtikel from "../../components/fragments/ModalAlert/ModalAl
 
 const TambahArtikel = () => {
   useLogin();
-
   const dataArtikel = [];
   const [categories, setCategories] = useState([]);
   const [statusChecked, setStatusChecked] = useState("Publik");
   const [loading, setLoading] = useState(false);
-
-  const dataLogin = useSelector((state) => state.user.dataLogin);
-  const storedDataLogin = JSON.parse(localStorage.getItem("dataLogin"));
-
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    setLoading(true);
-    getAllArticleCategories((res) => {
-      setCategories(res.data);
-    });
-    setLoading(false);
-  }, []);
-
   const [checkedIndex, setCheckedIndex] = useState(null);
-
-  const handleCheckboxChange = (id) => {
-    setCheckedIndex(id === checkedIndex ? null : id);
-    setArtikel((old) => {
-      return {
-        ...old,
-        category_id: id,
-      };
-    });
-  };
-
   const [errorMsg, setErrorMsg] = useState({
     form: "",
     title: "",
@@ -65,6 +39,33 @@ const TambahArtikel = () => {
   const [thumbnail, setThumbnail] = useState({
     gambar: "",
   });
+
+
+  // ini buat narik data dari redux
+  // const dataLogin = useSelector((state) => state.user.dataLogin);
+
+  const storedDataLogin = JSON.parse(localStorage.getItem("dataLogin"));
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    setLoading(true);
+    getAllArticleCategories((res) => {
+      setCategories(res.data);
+    });
+    setLoading(false);
+  }, []);
+
+
+  const handleCheckboxChange = (id) => {
+    setCheckedIndex(id === checkedIndex ? null : id);
+    setArtikel((old) => {
+      return {
+        ...old,
+        category_id: id,
+      };
+    });
+  };
+
 
   const handleNull = () => {
     if (
@@ -107,12 +108,11 @@ const TambahArtikel = () => {
     setLoading(true);
     await createArticle(apiData, (status, res) => {
       if (status) {
-        // console.log(res);
         setLoading(false);
         sendArtikelToast();
         navigate("/dokter/artikel");
       } else {
-        console.log(res);
+        // console.log(res);
       }
     });
   };
@@ -380,9 +380,9 @@ const TambahArtikel = () => {
                         };
                       });
                       // Menampilkan pesan kesalahan jika format tidak diizinkan
-                      console.error(
-                        "Format file tidak diizinkan. Pilih file dengan format jpg, jpeg, atau png"
-                      );
+                      // console.error(
+                      //   "Format file tidak diizinkan. Pilih file dengan format jpg, jpeg, atau png"
+                      // );
                     }
                   }}
                 />

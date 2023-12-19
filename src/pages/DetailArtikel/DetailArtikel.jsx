@@ -9,16 +9,19 @@ import { useLogin } from "../../hooks/useLogin";
 
 const DetailArtikel = () => {
   useLogin();
+  const [artikel, setArtikel] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  // buat narik param
   const params = useParams();
   const id = params.id;
 
+  // buat filter data by params
   const selectArtikel = (id) => {
     return artikel.filter((item) => item.id == id);
   };
 
-  const [artikel, setArtikel] = useState([]);
-  const [loading, setLoading] = useState(false);
-
+// buat parsing html tag to content
   const parseData = (dataParam) => {
     const data = dataParam;
     return parse(String(data));

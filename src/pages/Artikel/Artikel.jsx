@@ -23,8 +23,6 @@ const Artikel = () => {
   const navigate = useNavigate();
 
   const [artikel, setArtikel] = useState([]);
-  const [artikelApi, setArtikelApi] = useState([]);
-  const [pendingStatus, setPendingStatus] = useState(false);
   const [selected, setSelected] = useState(null);
   const [loading, setLoading] = useState(false);
 
