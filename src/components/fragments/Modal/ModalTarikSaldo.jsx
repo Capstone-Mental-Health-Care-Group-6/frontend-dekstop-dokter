@@ -88,10 +88,10 @@ const ModalTarikSaldo = ({ id, size, storedSaldo }) => {
                     title={"Pilih Metode Pencairan"}
                     onChange={handleChange}
                     options={[
-                      "BANK BCA",
-                      "BANK BRI",
-                      "BANK BNI",
-                      "BANK MANDIRI",
+                      { value: "BCA", label: "BANK BCA" },
+                      { value: "BRI", label: "BANK BRI" },
+                      { value: "BNI", label: "BANK BNI" },
+                      { value: "MANDIRI", label: "BANK MANDIRI" },
                     ]}
                   />
                 </div>
@@ -136,10 +136,10 @@ const ModalTarikSaldo = ({ id, size, storedSaldo }) => {
                     title={"Pilih Nominal Penarikan"}
                     onChange={handleChange}
                     options={[
-                      "Rp 50.000-,",
-                      "Rp 75.000-,",
-                      "Rp 100.000-,",
-                      "Rp 150.000-,",
+                      { value: "50000", label: "Rp 50.000-," },
+                      { value: "75000", label: "Rp 75.000-," },
+                      { value: "100000", label: "Rp 100.000-," },
+                      { value: "150000", label: "Rp 150.000-," },
                     ]}
                   />
                 </div>
