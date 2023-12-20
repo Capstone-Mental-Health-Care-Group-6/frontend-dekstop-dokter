@@ -1,11 +1,10 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Input from "../../components/elements/Input/Input";
 import Label from "../../components/elements/Input/Label";
 import Button from "../../components/elements/Button/Button";
 import BackButton from "../../components/elements/Button/BackButton";
 import "./RegisDataAkademik.styles.css";
 import useStore from "../../zustand/store";
-// import { MyContext } from "../../context/ProfileDoctorContext";
 
 const RegisDataAkademik = ({ onNext }) => {
   const [formData, setFormData] = useState([
@@ -17,8 +16,25 @@ const RegisDataAkademik = ({ onNext }) => {
     },
   ]);
 
-  const { dataDoctor, setDataDoctor } = useContext(MyContext);
-  console.log(dataDoctor)
+  const formDoctor = useStore((state) => state.formDoctor)
+  const SetFormDoctor = useStore((state) => state.SetFormDoctor)
+
+  // useEffect(() => {
+  //   SetFormDoctor({
+  //     doctor_university: formData.doctor_university,
+  //     doctor_study_program: formData.doctor_study_program,
+  //     doctor_enroll_year: formData.doctor_enroll_year,
+  //     doctor_graduate_year: formData.doctor_graduate_year,
+  //   })
+  // }, [formData]);
+
+  useEffect(() => {
+    SetFormDoctor({
+      academic_data: formData,
+    });
+  }, [formData]);
+
+  console.log(formDoctor);
 
   const handleInputChange = (index, event) => {
     const { name, value } = event.target;
@@ -64,7 +80,6 @@ const RegisDataAkademik = ({ onNext }) => {
       return;
     }
 
-    // setDataDoctor([...dataDoctor, formData]);
     setFormData([
       {
         doctor_university: "",

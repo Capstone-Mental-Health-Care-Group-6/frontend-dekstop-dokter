@@ -13,25 +13,41 @@ const useStore = create((set) => ({
         doctor_kota: "",
         doctor_str: "",
         doctor_sipp: "",
-        doctor_avatar: null,
-        doctor_university: "",
-        doctor_study_program: "",
-        doctor_enroll_year: "",
-        doctor_graduate_year: "",
-        doctor_cv: "",
-        doctor_sipp_file: "",
-        doctor_ijazah: "",
-        doctor_str_file: "",
-        doctor_company: "",
-        doctor_title: "",
-        doctor_start_date: "",
-        doctor_end_date: "",
-        doctor_company_address: "",
-        expertise_id: "",
-        doctor_description: "",
-        workday_id: "",
-        start_time: "",
-        end_time: "",
+        doctor_avatar: "",
+        academic_data: [
+            {
+              doctor_university: "",
+              doctor_study_program: "",
+              doctor_enroll_year: "",
+              doctor_graduate_year: "",
+            }
+          ],
+        dokumen_data: [
+            {
+              doctor_cv: "",
+              doctor_sipp_file: "",
+              doctor_ijazah: "",
+              doctor_str_file: "",
+            }
+        ],
+        experience_data: [
+            {
+              doctor_company: "",
+              doctor_title: "",
+              doctor_start_date: "",
+              doctor_end_date: "",
+              doctor_company_address: "",
+            }
+        ],
+        profile_singkat_data: [
+            {
+              expertise_id: "",
+              doctor_description: "",
+              workday_id: "",
+              start_time: "",
+              end_time: "",
+            }
+        ]
 
     },
     SetFormDoctor: (newData) => set((state) => ({ formDoctor: { ...state.formDoctor, ...newData } })),

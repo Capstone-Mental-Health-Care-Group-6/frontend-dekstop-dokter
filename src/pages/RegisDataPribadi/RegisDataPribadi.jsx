@@ -5,7 +5,6 @@ import Label from "../../components/elements/Input/Label";
 import InputSelect from "../../components/elements/Input/InputSelect";
 import Button from "../../components/elements/Button/Button";
 import "./RegisDataPribadi.styles.css"
-// import { MyContext } from "../../context/ProfileDoctorContext";
 import useStore from "../../zustand/store";
 
 const RegisDataPribadi = ({ onNext }) => {
@@ -23,26 +22,25 @@ const RegisDataPribadi = ({ onNext }) => {
     doctor_avatar: null,
   });
 
-  // const { dataDoctor, setDataDoctor } = useContext(MyContext);
-
   const formDoctor = useStore((state) => state.formDoctor)
   const SetFormDoctor = useStore((state) => state.SetFormDoctor)
 
   useEffect(() => {
     SetFormDoctor({
-      doctor_name: "oriza sativa",
-      email: "oryza@gmail.com",
-      doctor_nik: "2333333",
-      doctor_number_phone: "08999999957",
-      doctor_dob: "333-33-3333",
-      doctor_provinsi: "jawa barat",
-      doctor_gender: "laki laki",
-      doctor_kota: "africa",
-      doctor_str: "4433399",
-      doctor_sipp: "data sipp",
-      doctor_avatar: 'fdfdfdfd',
-    })
-  }, []);
+      doctor_name: formData.doctor_name,
+      email: formData.email,
+      doctor_nik: formData.doctor_nik,
+      doctor_number_phone: formData.doctor_number_phone,
+      doctor_dob: formData.doctor_dob,
+      doctor_provinsi: formData.doctor_provinsi,
+      doctor_gender: formData.doctor_gender,
+      doctor_kota: formData.doctor_kota,
+      doctor_str: formData.doctor_str,
+      doctor_sipp: formData.doctor_sipp,
+      doctor_avatar: formData.doctor_avatar, 
+    });
+  }, [formData]);
+  
 
   console.log(formDoctor);
 
@@ -127,21 +125,6 @@ const RegisDataPribadi = ({ onNext }) => {
     ) {
       return;
     }
-
-    // setDataDoctor([...dataDoctor, formData]);
-    setFormData({
-      doctor_name: "",
-      email: "",
-      doctor_nik: "",
-      doctor_number_phone: "",
-      doctor_dob: "",
-      doctor_provinsi: "",
-      doctor_gender: "",
-      doctor_kota: "",
-      doctor_str: "",
-      doctor_sipp: "",
-      doctor_avatar: null,
-    });
 
     onNext();
 

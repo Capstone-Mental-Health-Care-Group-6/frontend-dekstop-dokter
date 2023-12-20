@@ -1,11 +1,11 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import Input from "../../components/elements/Input/Input";
 import Label from "../../components/elements/Input/Label";
 import Button from "../../components/elements/Button/Button";
 import "./RegisPengalaman.styles.css";
 import BackButton from "../../components/elements/Button/BackButton";
 import { NavLink } from "react-router-dom";
-import { MyContext } from "../../context/ProfileDoctorContext";
+import useStore from "../../zustand/store";
 
 const RegisPengalaman = ({ onNext }) => {
   const [formData, setFormData] = useState([
@@ -18,7 +18,26 @@ const RegisPengalaman = ({ onNext }) => {
     },
   ]);  
 
-  const { dataDoctor, setDataDoctor } = useContext(MyContext);
+  const formDoctor = useStore((state) => state.formDoctor)
+  const SetFormDoctor = useStore((state) => state.SetFormDoctor)
+
+  // useEffect(() => {
+  //   SetFormDoctor({
+  //     doctor_company: formData.doctor_company,
+  //     doctor_title: formData.doctor_title,
+  //     doctor_start_date: formData.doctor_start_date,
+  //     doctor_end_date: formData.doctor_end_date,
+  //     doctor_company_address: formData.doctor_company_address,
+  //   })
+  // }, []);
+
+  useEffect(() => {
+    SetFormDoctor({
+      experience_data: formData,
+    });
+  }, [formData]);
+
+  console.log(formDoctor);
 
   const handleInputChange = (index, event) => {
     const { name, value } = event.target;  
@@ -67,17 +86,6 @@ const RegisPengalaman = ({ onNext }) => {
       return;
     }
     
-    setDataDoctor([...dataDoctor, formData]);
-    setFormData([
-      {
-        doctor_company: "",
-        doctor_title: "",
-        doctor_start_date: "",
-        doctor_end_date: "",
-        doctor_company_address: "",
-      },
-    ]);
-
     onNext();
 
   };  

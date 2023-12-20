@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import './RegisProfilSingkat.styles.css'
 import Label from "../../components/elements/Input/Label";
 import Button from "../../components/elements/Button/Button";
@@ -6,20 +6,38 @@ import BackButton from "../../components/elements/Button/BackButton";
 import RadioButton from "../../components/elements/RadioButton/RadioButton";
 import InputSelect from "../../components/elements/Input/InputSelect";
 import Input from "../../components/elements/Input/Input";
-import { MyContext } from "../../context/ProfileDoctorContext";
 import { createProfileDoctor } from "../../service/doctor";
+import useStore from "../../zustand/store";
 
 const RegisProfilSingkat = ({ onSubmit }) => {
     const [formData, setFormData] = useState({
-        expertise_id: [],
+        expertise_id: "",
         doctor_description: "",
         workday_id: "",
         start_time: "",   
         end_time: "",  
     });
+
+    const formDoctor = useStore((state) => state.formDoctor)
+    const SetFormDoctor = useStore((state) => state.SetFormDoctor)
     
-    const { dataDoctor, setDataDoctor } = useContext(MyContext);
-    console.log(dataDoctor)
+    // useEffect(() => {
+    //     SetFormDoctor({
+    //         expertise_id: formData.expertise_id,
+    //         doctor_description: formData.doctor_description,
+    //         workday_id: formData.workday_id,
+    //         start_time: formData.start_time,   
+    //         end_time: formData.end_time,  
+    //     })
+    //   }, []);
+
+    useEffect(() => {
+        SetFormDoctor({
+          profile_singkat_data: formData,
+        });
+      }, [formData]);
+
+      console.log(formDoctor);
 
     const [errorMessages, setErrorMessages] = useState({
         expertise_id: "",
@@ -52,7 +70,7 @@ const RegisProfilSingkat = ({ onSubmit }) => {
       
     const handleCreateProfile = async (e) => {
         e.preventDefault();
-    
+
         const newErrorMessages = {
             expertise_id: formData.expertise_id.length === 0 ? "Pilih satu keahlian" : "",
             doctor_description: !formData.doctor_description ? "Tentang Anda wajib diisi" : "",
@@ -60,35 +78,39 @@ const RegisProfilSingkat = ({ onSubmit }) => {
             start_time: formData.start_time.length === 0 ? "Pilih jam kerja awal" : "",
             end_time: formData.end_time.length === 0 ? "Pilih jam kerja akhir" : "",
         };
-    
+
         setErrorMessages(newErrorMessages);
-    
+
         if (
             Object.values(newErrorMessages).some((error) => error !== "") ||
             Object.values(formData).some((value) => value === "")
         ) {
             return;
         }
-    
-        createProfileDoctor(formData, { dataDoctor }, (success, data) => {
-            if (success) {
-                console.log("Profile created successfully:", data);
-            } else {
-                console.error("Error creating profile:", data);
-            }
-        });
-    
-        setDataDoctor([...dataDoctor, formData]);
-        setFormData({
-            expertise_id: [],
-            doctor_description: "",
-            workday_id: "",
-            start_time: "",
-            end_time: "",
-        });
+
+        try {
+            await createProfileDoctor(formDoctor, (success, data) => {
+                if (success) {
+                    console.log("Profile created successfully:", data);
+                } else {
+                    console.error("Error creating profile:", data);
+                }
+            });
+
+            setFormData({
+                expertise_id: "",
+                doctor_description: "",
+                workday_id: "",
+                start_time: "",
+                end_time: "",
+            });
+            
+        } catch (error) {
+            console.error("Unexpected Error:", error);
+        }
     
         onSubmit(e);
-        window.location.href = "/login-dokter";
+        // window.location.href = "/login-dokter";
     };    
 
     return (

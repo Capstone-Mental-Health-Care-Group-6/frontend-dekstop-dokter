@@ -1,13 +1,12 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import Label from "../../components/elements/Input/Label";
 import Button from "../../components/elements/Button/Button";
 import BackButton from "../../components/elements/Button/BackButton";
 import './RegisDokumen.styles.css';
 import Input from "../../components/elements/Input/Input";
-import { MyContext } from "../../context/ProfileDoctorContext";
 import useStore from "../../zustand/store";
 
-const RegisDokumen = () => {
+const RegisDokumen = ({onNext}) => {
   const [files, setFiles] = useState({
     doctor_cv: "",
     doctor_sipp_file: "",
@@ -28,13 +27,10 @@ const RegisDokumen = () => {
 
   useEffect(() => {
     SetFormDoctor({
-      doctor_cv: "cv.pdf",
-      doctor_sipp_file: "sipp.pdf",
-      doctor_ijazah: "ijazah.pdf",
-      doctor_str_file: "str.pdf",
-    })
+      dokumen_data: files,
+    });
+  }, [files]);
 
-  }, []);
   console.log(formDoctor);
 
 
@@ -64,7 +60,10 @@ const RegisDokumen = () => {
       return;
     }
 
-    setDataDoctor([...dataDoctor, files]);
+    SetFormDoctor({
+      dokumen_data: files,
+    });
+  
     setFiles({
       doctor_cv: "",
       doctor_sipp_file: "",
