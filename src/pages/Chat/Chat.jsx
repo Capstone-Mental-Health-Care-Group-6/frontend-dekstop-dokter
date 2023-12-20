@@ -16,6 +16,7 @@ import { dataChat } from "../../components/DataComponents/dataComponents";
 import EmojiPicker from "emoji-picker-react";
 import Input from "../../components/elements/Input/Input";
 import { getIdDoctor } from "../../service/authentication";
+import { useLogin } from "../../hooks/useLogin";
 
 
 const Chat = () => {
@@ -111,44 +112,47 @@ const Chat = () => {
       setIdDoctor(decodedIdDoctor);
     }
   }, []);
-  console.log(idDoctor);
+  console.log('ini adalah id dokter', idDoctor);
 
 
   // const [messages, setMessages] = useState([]);
   // const [messagesInput, setMessagesInput] = useState('');
-  // const socket = new WebSocket('https://kmb5alta.nantilinknya');
+  // const socket = new WebSocket(`ws://kmb5alta.online/api/socket/doctor/${idDoctor}`);
 
   // useEffect(() => {
 
-  //   socket.onopen(() => {
+  //   socket.onopen = () => {
   //     console.log('WebSocket connection established');
-  //   })
-  //   socket.onmessage = (event) => {
-  //     const receivedMessage = JSON.parse(event.data);
-  //     setMessages([...messages, receivedMessage]);
   //   };
+  //   // socket.onmessage = (event) => {
+  //   //   const receivedMessage = JSON.parse(event.data);
+  //   //   setMessages([...messages, receivedMessage]);
+  //   // };
 
-  //   socket.onclose = (event) => {
-  //     console.log('Koneksi ditutup:', event);
-  //   };
+  //   // socket.onclose = (event) => {
+  //   //   console.log('Koneksi ditutup:', event);
+  //   // };
 
   //   // Membersihkan koneksi saat komponen dibongkar
   //   return () => {
-  //     socket.close();
+  //     // Close the socket only if it is open
+  //     if (socket.readyState === WebSocket.OPEN) {
+  //       socket.close();
+  //     }
   //   };
   // }, [messages]);
 
-  // const sendMessage = () => {
-  //   if (messagesInput.trim() !== '') {
-  //     const message = {
-  //       text: messagesInput,
-  //       timeStrap: new Date().toISOString()
-  //     }
-  //     socket.send(JSON.stringify(message));
-  //     setMessagesInput('');
-  //   }
+  const sendMessage = () => {
+    if (messagesInput.trim() !== '') {
+      const message = {
+        text: messagesInput,
+        timeStrap: new Date().toISOString()
+      }
+      socket.send(JSON.stringify(message));
+      setMessagesInput('');
+    }
 
-  // }
+  }
 
 
 
@@ -259,8 +263,8 @@ const Chat = () => {
                     <div
                       key={index}
                       className={`chat-text d-grid align-items-center ${chat.sender === "dokter"
-                          ? "chat-text-dokter"
-                          : "chat-text-user"
+                        ? "chat-text-dokter"
+                        : "chat-text-user"
                         }`}
                     >
                       <span>{chat.content}</span>
