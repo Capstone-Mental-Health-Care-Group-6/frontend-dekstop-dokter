@@ -4,61 +4,40 @@ import { useParams } from "react-router-dom";
 import { dataArtikel } from "../Artikel/dataArtikel";
 import parse from "html-react-parser";
 import { getAllArticle } from "../../service/article";
-import "./DetailArtikel.style.css"
+import "./DetailArtikel.style.css";
+import { useLogin } from "../../hooks/useLogin";
 
 const DetailArtikel = () => {
+  useLogin();
+  const [artikel, setArtikel] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  // buat narik param
   const params = useParams();
   const id = params.id;
 
+  // buat filter data by params
   const selectArtikel = (id) => {
     return artikel.filter((item) => item.id == id);
   };
 
-  const [artikel, setArtikel] = useState([]);
-  // const [select, setSelect] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [artikelApi, setArtikelApi] = useState([]);
-
-  useEffect(() => {
-    setLoading(true);
-    setArtikel(dataArtikel);
-    setLoading(false);
-  }, []);
-
+// buat parsing html tag to content
   const parseData = (dataParam) => {
     const data = dataParam;
     return parse(String(data));
   };
 
-  // useEffect(() => {
-  //   setLoading(true);
-  //   getAllArticle((res) => {
-  //     setArtikel(res.data);
-  //   });
-  //   setLoading(false);
-  // }, []);
-
-  // useEffect(() => {
-  //   const selectedArtikel = artikel.filter(
-  //     (item) => item.id === parseInt(params.id)
-  //   );
-  //   setSelect(selectedArtikel);
-  // }, []);
-
-  // useEffect(() => {
-  //   setLoading(true);
-  //   setSelect(artikel.filter(
-  //     (item) => item.id === parseInt(params.id)
-  //   ))
-  //   setLoading(false)
-  // }, [])
+  useEffect(() => {
+    setLoading(true);
+    getAllArticle((res) => {
+      setArtikel(res.data);
+    });
+    setLoading(false);
+  }, []);
 
   const selectedArtikel = (id) => {
     return artikel.filter((d) => d.id == id);
   };
-  // setLoading(false);
-
-  console.log(selectedArtikel(id));
 
   const YoutubeEmbed = ({ embedUrl }) => {
     return (
@@ -76,7 +55,6 @@ const DetailArtikel = () => {
     );
   };
 
-  const youtubeLink = ""
 
   return (
     <Layouts>
@@ -116,7 +94,11 @@ const DetailArtikel = () => {
                 {parseData(selectedArtikel(id)[0].content)}
               </div>
               <div>
-                <YoutubeEmbed embedUrl={"https://www.youtube.com/embed/DxIDKZHW3-E?si=6sy-iwJDpqIBHGLA"}/>
+                <YoutubeEmbed
+                  embedUrl={
+                    "https://www.youtube.com/embed/DxIDKZHW3-E?si=6sy-iwJDpqIBHGLA"
+                  }
+                />
               </div>
             </div>
           ) : (

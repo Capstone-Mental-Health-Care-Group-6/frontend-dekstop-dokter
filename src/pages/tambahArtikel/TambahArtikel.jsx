@@ -10,17 +10,42 @@ import Button from "../../components/elements/Button/Button";
 import toast, { Toaster } from "react-hot-toast";
 import { createArticle, getAllArticleCategories } from "../../service/article";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useLogin } from "../../hooks/useLogin";
+import ModalAlertEditArtikel from "../../components/fragments/ModalAlert/ModalAlertEditArtikel";
 
 const TambahArtikel = () => {
+  useLogin();
   const dataArtikel = [];
   const [categories, setCategories] = useState([]);
   const [statusChecked, setStatusChecked] = useState("Publik");
   const [loading, setLoading] = useState(false);
+  const [checkedIndex, setCheckedIndex] = useState(null);
+  const [errorMsg, setErrorMsg] = useState({
+    form: "",
+    title: "",
+    content: "",
+    thumbnail: "",
+  });
+  const [artikel, setArtikel] = useState({
+    category_id: "",
+    user_name: "",
+    title: "",
+    content: "",
+    thumbnail: "",
+    status: "pending",
+  });
 
-  const dataLogin = useSelector((state) => state.user.dataLogin);
-  const storedDataLogin = JSON.parse(localStorage.getItem('dataLogin'));
+  const [thumbnail, setThumbnail] = useState({
+    gambar: "",
+  });
 
 
+  // ini buat narik data dari redux
+  // const dataLogin = useSelector((state) => state.user.dataLogin);
+
+  const storedDataLogin = JSON.parse(localStorage.getItem("dataLogin"));
+  const navigate = useNavigate();
 
   useEffect(() => {
     setLoading(true);
@@ -30,42 +55,17 @@ const TambahArtikel = () => {
     setLoading(false);
   }, []);
 
-  // console.log(categories[0].id)
-
-  const [checkedIndex, setCheckedIndex] = useState(null);
 
   const handleCheckboxChange = (id) => {
     setCheckedIndex(id === checkedIndex ? null : id);
     setArtikel((old) => {
       return {
         ...old,
-        category_name: id,
+        category_id: id,
       };
     });
   };
 
-
-  const [errorMsg, setErrorMsg] = useState({
-    form: "",
-    title: "",
-    content: "",
-    thumbnail: "",
-  });
-  const [artikel, setArtikel] = useState({
-    category_name: "",
-    user_name: "",
-    title: "",
-    content: "",
-    thumbnail: "",
-    status: "pending",
-  });
-
-  console.log(artikel)
-
-
-  const [thumbnail, setThumbnail] = useState({
-    gambar: "",
-  });
 
   const handleNull = () => {
     if (
@@ -74,7 +74,6 @@ const TambahArtikel = () => {
       artikel.thumbnail === "" ||
       artikel.category_id === ""
     ) {
-      console.log(artikel);
       nullToast();
       setErrorMsg((old) => {
         return {
@@ -92,35 +91,31 @@ const TambahArtikel = () => {
     }
   };
 
+  const formDataKeys = [
+    "category_id",
+    "title",
+    "content",
+    "thumbnail",
+    "status",
+  ];
+  const apiData = new FormData();
+  formDataKeys.forEach((key) => {
+    apiData.append(key, artikel[key]);
+  });
+
   const handleCreateArtikel = async (e) => {
-    e.preventDefault()
-    await createArticle(artikel, (status, res) => {
+    e.preventDefault();
+    setLoading(true);
+    await createArticle(apiData, (status, res) => {
       if (status) {
-        console.log(res)
+        setLoading(false);
+        sendArtikelToast();
+        navigate("/dokter/artikel");
       } else {
-        console.log("ada kesalahan")
-      } 
-    })
-  }
-
-
-
-
-  // const handleCreateBundle = async (e) => {
-  //   e.preventDefault()
-  //   await createBundle(apiData, (status, res) => {
-  //     if (status) {
-  //       console.log(res);
-  //       deleteState()
-  //       getAllBundle((res) => {
-  //         setBundle(res.data)
-  //       })
-  //       addKonseling()
-  //     } else {
-  //       rejectKonseling()
-  //     }
-  //   })
-  // }
+        // console.log(res);
+      }
+    });
+  };
 
   const nullToast = () =>
     toast.error("Form tidak boleh ada yang kosong!", {
@@ -138,8 +133,8 @@ const TambahArtikel = () => {
       },
     });
 
-    const sendArtikelToast = () =>
-    toast.success("Artikel berhasil diupload! Silakan tunggu admin untuk memverifikasi artikel", {
+  const errorToast = () =>
+    toast.error("Tambah artikel gagal! Silakan coba lagi atau login ulang", {
       duration: 4000,
       position: "top-center",
       style: {
@@ -154,9 +149,87 @@ const TambahArtikel = () => {
       },
     });
 
+  const sendArtikelToast = () =>
+    toast.success(
+      "Artikel berhasil diupload! Silakan tunggu admin untuk memverifikasi artikel",
+      {
+        duration: 4000,
+        position: "top-center",
+        style: {
+          maxWidth: "700px",
+          marginBottom: "5%",
+        },
+
+        // Aria
+        ariaProps: {
+          role: "status",
+          "aria-live": "polite",
+        },
+      }
+    );
+
   return (
     <Layouts>
       <h2 className="py-3 fw-bold">Tambah Artikel</h2>
+      <ModalAlertEditArtikel id={"button-upload-artikel-modal"}>
+        <div className="modal-content p-3">
+          <div className="modal-body ">
+            <div className="d-block">
+              <button
+                type="button"
+                className="btn-close float-end"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <p className="fw-bold">
+              Apakah anda yakin untuk upload artikel ini?
+            </p>
+            <div className="d-flex mb-3 mt-4">
+              <Button
+                text={
+                  !loading ? (
+                    "Unggah"
+                  ) : (
+                    <div class="d-flex justify-content-center">
+                      <div class="spinner-border" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                      </div>
+                    </div>
+                  )
+                }
+                type={"button"}
+                className={"btn btn-primary fw-semibold"}
+                bsDismiss={"modal"}
+                onClick={(e) => {
+                  try {
+                    handleNull();
+                    setArtikel((old) => {
+                      return {
+                        ...old,
+                        user_name: storedDataLogin,
+                        status: "Pending",
+                      };
+                    });
+                    if (errorMsg.form == "") {
+                      dataArtikel.push(artikel);
+                      handleCreateArtikel(e);
+                    }
+                  } catch {
+                    errorToast();
+                  }
+                }}
+              />
+              <Button
+                text={"Batal"}
+                className={"btn btn-danger mx-3 fw-semibold"}
+                bsDismiss={"modal"}
+                ariaLabel={"Close"}
+              />
+            </div>
+          </div>
+        </div>
+      </ModalAlertEditArtikel>
       <div className="container">
         <div className="row">
           <div className="col-9 px-3">
@@ -195,7 +268,6 @@ const TambahArtikel = () => {
                         title: e.target.value,
                       };
                     });
-                    // console.log(artikel)
                   }}
                 />
                 <div className="text-danger mb-0 my-2">
@@ -232,7 +304,6 @@ const TambahArtikel = () => {
                           content: value,
                         };
                       });
-                      // console.log(artikel)
                     }}
                   />
                 </div>
@@ -257,7 +328,11 @@ const TambahArtikel = () => {
                     });
                   }}
                 />
-                <img src={thumbnail.gambar} width={100} className="mt-4" />
+                <img
+                  src={thumbnail.gambar}
+                  width={100}
+                  className="mt-4 d-block"
+                />
                 <Label htmlFor={"thumbnail-artikel"}>
                   <p className="fw-bold mt-4 mb-0">Thumbnail Artikel</p>
                 </Label>
@@ -287,7 +362,7 @@ const TambahArtikel = () => {
                       setArtikel((old) => {
                         return {
                           ...old,
-                          thumbnail: URL.createObjectURL(selectedFile),
+                          thumbnail: selectedFile,
                         };
                       });
                       setThumbnail((old) => {
@@ -305,9 +380,9 @@ const TambahArtikel = () => {
                         };
                       });
                       // Menampilkan pesan kesalahan jika format tidak diizinkan
-                      console.error(
-                        "Format file tidak diizinkan. Pilih file dengan format jpg, jpeg, atau png"
-                      );
+                      // console.error(
+                      //   "Format file tidak diizinkan. Pilih file dengan format jpg, jpeg, atau png"
+                      // );
                     }
                   }}
                 />
@@ -317,22 +392,27 @@ const TambahArtikel = () => {
                 </p>
                 <p className="text-danger">{errorMsg.thumbnail}</p>
               </div>
+
               <div className="d-flex m-3 button-form-artikel">
                 <div>
                   <Button
                     type={"button"}
                     onClick={(e) => {
-                      handleNull();
-                      setArtikel((old) => {
-                        return {
-                          ...old,
-                          user_name: storedDataLogin,
-                          status: "pending",
-                        };
-                      });
-                      if (errorMsg.form == "") {
-                        dataArtikel.push(artikel);
-                        handleCreateArtikel()
+                      try {
+                        // handleNull();
+                        setArtikel((old) => {
+                          return {
+                            ...old,
+                            user_name: storedDataLogin,
+                            status: "Pending",
+                          };
+                        });
+                        if (errorMsg.form == "") {
+                          dataArtikel.push(artikel);
+                          // handleCreateArtikel(e);
+                        }
+                      } catch {
+                        errorToast();
                       }
                     }}
                     className={
@@ -340,25 +420,34 @@ const TambahArtikel = () => {
                     }
                     id={"button-upload-artikel"}
                     text={"Unggah Artikel"}
+                    bsTogle={"modal"}
+                    bsTarget={"#button-upload-artikel-modal"}
                   />
                 </div>
                 <div>
-                  <Button
+                  {/* <Button
                     type={"button"}
                     style={{ backgroundColor: "white" }}
                     className={"btn me-3 btn-draft-artikel fw-semibold"}
                     text={"Simpan sebagai Draft"}
                     onClick={(e) => {
-
-                      setArtikel((old) => {
-                        return {
-                          ...old,
-                          user_name: storedDataLogin,
-                          status: "draft",
-                        };
-                      });
+                      try {
+                        setArtikel((old) => {
+                          return {
+                            ...old,
+                            user_name: storedDataLogin,
+                            status: "Draft",
+                          };
+                        });
+                        if (errorMsg.form == "") {
+                          dataArtikel.push(artikel);
+                          handleCreateArtikel(e);
+                        }
+                      } catch {
+                        errorToast();
+                      }
                     }}
-                  />
+                  /> */}
                 </div>
               </div>
             </form>
@@ -479,7 +568,7 @@ const TambahArtikel = () => {
                   <div className="row justify-content-center align-items-center g-2">
                     <div className="col text-status">Author</div>
                     <div className="col text-status text-end pe-2">
-                      Dr. Helen
+                      {storedDataLogin}
                     </div>
                   </div>
                 </div>
@@ -496,20 +585,22 @@ const TambahArtikel = () => {
                 {!loading ? (
                   categories.length > 0 ? (
                     <div>
-                       {categories.map((item) => (
-                  <Checkbox
-                  key={item.id}
-                    index={item.id}
-                    text={item.name}
-                    id={"checkBox-artikel"}
-                    checked={item.id == checkedIndex}
-                    onChange={() => handleCheckboxChange(item.name)}
-                    // index + 1 karena index ini dimulai dari 0. jadi supaya sesuai sama erd kategori di erd, harus ditambah 1
-                    value={item.id}
-                    classNameLabel={"fw-semibold label-artikel-text"}
-                    disabled={checkedIndex !== null && (item.name) !== checkedIndex}
-                  />
-                ))}
+                      {categories.map((item) => (
+                        <Checkbox
+                          key={item.id}
+                          index={item.id}
+                          text={item.name}
+                          id={"checkBox-artikel"}
+                          checked={item.id == checkedIndex}
+                          onChange={() => handleCheckboxChange(item.id)}
+                          // index + 1 karena index ini dimulai dari 0. jadi supaya sesuai sama erd kategori di erd, harus ditambah 1
+                          value={item.id}
+                          classNameLabel={"fw-semibold label-artikel-text"}
+                          disabled={
+                            checkedIndex !== null && item.id !== checkedIndex
+                          }
+                        />
+                      ))}
                     </div>
                   ) : (
                     <div>
@@ -519,7 +610,6 @@ const TambahArtikel = () => {
                 ) : (
                   <div>spinner</div>
                 )}
-               
               </div>
               <p style={{ fontSize: "10px" }} className="text-muted">
                 <span className="text-danger">*</span>Kategori hanya dapat
