@@ -61,19 +61,6 @@ const Dokumen = () => {
     setShowProfileModal(false);
   };
 
-  useEffect(() => {
-    DetailDoctor((res) => {
-      const dataDoctor = res.data;
-      console.log("Doctor Data :", dataDoctor)
-      setFormData({
-        doctor_cv: dataDoctor.doctor_cv,
-        doctor_sipp_file: dataDoctor.doctor_sipp_file,
-        doctor_ijazah: dataDoctor.doctor_ijazah,
-        doctor_str_file: dataDoctor.doctor_str_file
-      });
-    });
-}, []);
-
   return (
     <Layouts>
       <div className="dokumen">

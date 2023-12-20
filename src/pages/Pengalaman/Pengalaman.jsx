@@ -96,20 +96,6 @@ const Pengalaman = () => {
     setShowProfileModal(false);
   };
 
-  useEffect(() => {
-    DetailDoctor((res) => {
-      const dataDoctor = res.data;
-      console.log("Doctor Data :", dataDoctor)
-      setFormData({
-        doctor_company: dataDoctor.doctor_company,
-        doctor_title: dataDoctor.doctor_study_program,
-        doctor_start_date: dataDoctor.doctor_start_date,
-        doctor_end_date: dataDoctor.doctor_end_date,
-        doctor_company_address: dataDoctor.doctor_company_address,
-      });
-    });
-}, []);
-
   return (
     <Layouts>
       <div className="pengalaman">

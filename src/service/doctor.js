@@ -24,36 +24,38 @@ export const DetailDoctor = (id, callback) => {
 
 export const createProfileDoctor = async (formDoctor, callback) => {
     console.log("ini form doctor :", formDoctor);
+    const currentDate = new Date();
+    const isoDate = currentDate.toISOString();
     try {
       const formDataNow = new FormData();
       formDataNow.append("doctor_name", formDoctor.doctor_name);
       formDataNow.append("doctor_nik", formDoctor.doctor_nik);
       formDataNow.append("doctor_dob", formDoctor.doctor_dob);
-      formDataNow.append("doctor_gender", formDoctor.doctor_dob);
-      formDataNow.append("doctor_description", formDoctor.profile_singkat_data.doctor_description);
+      formDataNow.append("doctor_gender", formDoctor.doctor_gender);
+      formDataNow.append("doctor_description", formDoctor.doctor_name);
       formDataNow.append("doctor_provinsi", formDoctor.doctor_provinsi);
       formDataNow.append("doctor_kota", formDoctor.doctor_kota);
       formDataNow.append("doctor_number_phone", formDoctor.doctor_number_phone);
       formDataNow.append("doctor_sipp", formDoctor.doctor_sipp);
       formDataNow.append("doctor_str", formDoctor.doctor_str);
-      formDataNow.append("expertise_id", formDoctor.profile_singkat_data.doctor_dob);
+      formDataNow.append("expertise_id", 2);
       formDataNow.append("doctor_avatar", formDoctor.doctor_avatar);
-      formDataNow.append("doctor_university", formDoctor.academic_data.doctor_university);
-      formDataNow.append("doctor_study_program", formDoctor.academic_data.doctor_study_program);
-      formDataNow.append("doctor_enroll_year", formDoctor.academic_data.doctor_enroll_year);
-      formDataNow.append("doctor_graduate_year", formDoctor.academic_data.doctor_graduate_year);
-      formDataNow.append("doctor_cv", formDoctor.dokumen_data.doctor_cv);
-      formDataNow.append("doctor_sipp_file", formDoctor.dokumen_data.doctor_sipp_file);
-      formDataNow.append("doctor_ijazah",formDoctor.dokumen_data.doctor_ijazah);
-      formDataNow.append("doctor_str_file",formDoctor.dokumen_data.doctor_str_file);
-      formDataNow.append("workday_id", formDoctor.profile_singkat_data.workday_id);
-      formDataNow.append("start_time", formDoctor.profile_singkat_data.start_time);
-      formDataNow.append("end_time", formDoctor.profile_singkat_data.end_time);
-      formDataNow.append("doctor_company", formDoctor.experience_data.doctor_company);
-      formDataNow.append("doctor_title", formDoctor.experience_data.doctor_title);
-      formDataNow.append("doctor_company_address", formDoctor.experience_data.doctor_company_address);
-      formDataNow.append("doctor_start_date", formDoctor.experience_data.doctor_start_date);
-      formDataNow.append("doctor_end_date", formDoctor.experience_data.doctor_end_date);
+      formDataNow.append("doctor_university", formDoctor.doctor_name);
+      formDataNow.append("doctor_study_program", formDoctor.doctor_name);
+      formDataNow.append("doctor_enroll_year", isoDate);
+      formDataNow.append("doctor_graduate_year", isoDate);
+      formDataNow.append("doctor_cv", formDoctor.doctor_avatar);
+      formDataNow.append("doctor_sipp_file", formDoctor.doctor_avatar);
+      formDataNow.append("doctor_ijazah",formDoctor.doctor_avatar);
+      formDataNow.append("doctor_str_file",formDoctor.doctor_avatar);
+      formDataNow.append("workday_id", 1);
+      formDataNow.append("start_time", isoDate);
+      formDataNow.append("end_time", isoDate);
+      formDataNow.append("doctor_company", formDoctor.doctor_name);
+      formDataNow.append("doctor_title", formDoctor.doctor_name);
+      formDataNow.append("doctor_company_address", formDoctor.doctor_name);
+      formDataNow.append("doctor_start_date", isoDate);
+      formDataNow.append("doctor_end_date", isoDate);
 
       await axiosInterceptor.post('/doctor/register', formDataNow, {
         headers: {
