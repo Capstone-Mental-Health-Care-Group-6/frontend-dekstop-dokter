@@ -1,18 +1,53 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Layouts from "../../components/layouts/Layouts";
 import "./PencairanSaldo.css";
-import { iconCardTarikSaldo } from "../../../image";
+import {
+  iconCardTarikSaldo,
+  iconCardSaldoAktif,
+  iconCardProsesPenarikan,
+} from "../../../image";
 import ModalTarikSaldo from "../../components/fragments/Modal/ModalTarikSaldo";
 import CardSaldo from "../../components/fragments/Card/CardSaldo";
 import TablePencairanSaldo from "../../components/fragments/TablePencairanSaldo/TablePencairanSaldo";
-import {
-  dataPencairanSaldo,
-  dataTablePencairanSaldo,
-} from "../../components/DataComponents/dataComponents";
+import { saldoTarik } from "../../service/transaction";
+import { withdrawDoctor } from "../../service/transaction";
 import { useLogin } from "../../hooks/useLogin";
+import Skeleton from "react-loading-skeleton";
 
 const PencairanSaldo = () => {
   useLogin();
+  const [saldoDokter, setSaldoDokter] = useState({});
+  const [saldoPenarikan, setSaldoPenarikan] = useState({});
+  const [loading, setLoading] = useState(false);
+  const storedId = JSON.parse(localStorage.getItem("id"));
+
+  useEffect(() => {
+    setLoading(true);
+    saldoTarik(storedId, (responseData) => {
+      setSaldoDokter(responseData.data);
+
+      withdrawDoctor((responseData) => {
+        const length = responseData.length;
+        setSaldoPenarikan(responseData[length - 1]);
+      });
+      setLoading(false);
+    });
+  }, []);
+
+  const updatedDataPencairanSaldo = [
+    {
+      className: "card__saldo__aktif",
+      imgSrc: iconCardSaldoAktif,
+      title: "Saldo Aktif",
+      subTitle: `Rp ${saldoDokter.doctor_balance || 0}`,
+    },
+    {
+      className: "card__proses__penarikan",
+      imgSrc: iconCardProsesPenarikan,
+      title: "Proses Penarikan",
+      subTitle: `Rp ${saldoPenarikan.balance_req || 0}`,
+    },
+  ];
 
   return (
     <Layouts>
@@ -35,7 +70,7 @@ const PencairanSaldo = () => {
               </div>
             </div>
           </div>
-          {dataPencairanSaldo.map((item, index) => (
+          {updatedDataPencairanSaldo.map((item, index) => (
             <div className="col" key={index}>
               <CardSaldo
                 className={item.className}
@@ -46,11 +81,18 @@ const PencairanSaldo = () => {
             </div>
           ))}
         </div>
-
-        <TablePencairanSaldo data={dataTablePencairanSaldo} />
+        {!loading ? (
+          <TablePencairanSaldo data={saldoDokter} />
+        ) : (
+          <Skeleton className="mt-2" height={60} count={6} />
+        )}
       </div>
 
-      <ModalTarikSaldo id={"modal-tarik-saldo"} size={"modal-md"} />
+      <ModalTarikSaldo
+        id={"modal-tarik-saldo"}
+        size={"modal-md"}
+        storedSaldo={saldoDokter.doctor_balance || "0"}
+      />
     </Layouts>
   );
 };

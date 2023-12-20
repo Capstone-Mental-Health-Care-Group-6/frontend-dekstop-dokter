@@ -17,6 +17,7 @@ const InputSelect = ({
         value={value}
         onChange={onChange}
         className={`${className} form-select`}
+        required
       >
         <option value="">{title}</option>
         {options.map((option) => (
