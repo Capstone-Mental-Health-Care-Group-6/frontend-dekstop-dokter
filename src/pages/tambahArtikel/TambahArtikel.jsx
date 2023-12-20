@@ -13,6 +13,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useLogin } from "../../hooks/useLogin";
 import ModalAlertEditArtikel from "../../components/fragments/ModalAlert/ModalAlertEditArtikel";
+import { getAllDoctors } from "../../service/doctor";
 
 const TambahArtikel = () => {
   useLogin();
@@ -21,12 +22,17 @@ const TambahArtikel = () => {
   const [statusChecked, setStatusChecked] = useState("Publik");
   const [loading, setLoading] = useState(false);
   const [checkedIndex, setCheckedIndex] = useState(null);
+  const [dokter, setDokter] = useState([])
+  const [namaDokter, setNamaDokter] = useState(null)
+  
   const [errorMsg, setErrorMsg] = useState({
     form: "",
     title: "",
     content: "",
     thumbnail: "",
   });
+
+
   const [artikel, setArtikel] = useState({
     category_id: "",
     user_name: "",
@@ -40,6 +46,21 @@ const TambahArtikel = () => {
     gambar: "",
   });
 
+  useEffect(() => {
+    const idLogin = JSON.parse(localStorage.getItem("id"));
+    getAllDoctors((res) => {
+      const filteredDoctor = res.data.filter(
+        (item) => item.user_id === idLogin
+      );
+      console.log(filteredDoctor)
+      const namaDokter = filteredDoctor[0].doctor_name
+      console.log(namaDokter)
+      setNamaDokter(namaDokter)
+      setDokter(filteredDoctor)
+    })
+  }, [])
+
+  console.log(namaDokter)
 
   // ini buat narik data dari redux
   // const dataLogin = useSelector((state) => state.user.dataLogin);
@@ -97,6 +118,7 @@ const TambahArtikel = () => {
     "content",
     "thumbnail",
     "status",
+    'user_name'
   ];
   const apiData = new FormData();
   formDataKeys.forEach((key) => {
@@ -108,6 +130,7 @@ const TambahArtikel = () => {
     setLoading(true);
     await createArticle(apiData, (status, res) => {
       if (status) {
+        console.log(res.data)
         setLoading(false);
         sendArtikelToast();
         navigate("/dokter/artikel");
@@ -207,7 +230,7 @@ const TambahArtikel = () => {
                     setArtikel((old) => {
                       return {
                         ...old,
-                        user_name: storedDataLogin,
+                        user_name: namaDokter,
                         status: "Pending",
                       };
                     });
@@ -403,7 +426,7 @@ const TambahArtikel = () => {
                         setArtikel((old) => {
                           return {
                             ...old,
-                            user_name: storedDataLogin,
+                            user_name: namaDokter,
                             status: "Pending",
                           };
                         });
@@ -568,7 +591,7 @@ const TambahArtikel = () => {
                   <div className="row justify-content-center align-items-center g-2">
                     <div className="col text-status">Author</div>
                     <div className="col text-status text-end pe-2">
-                      {storedDataLogin}
+                      {namaDokter}
                     </div>
                   </div>
                 </div>

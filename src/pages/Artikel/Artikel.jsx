@@ -16,6 +16,7 @@ import { useSelector } from "react-redux";
 import toast from "react-hot-toast";
 import Skeleton from "react-loading-skeleton";
 import { useLogin } from "../../hooks/useLogin";
+import { getAllDoctors } from "../../service/doctor";
 
 const Artikel = () => {
   useLogin();
@@ -25,6 +26,7 @@ const Artikel = () => {
   const [artikel, setArtikel] = useState([]);
   const [selected, setSelected] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [dokter, setDokter] = useState([])
 
   useEffect(() => {
     setLoading(true);
@@ -38,6 +40,12 @@ const Artikel = () => {
       setLoading(false);
     });
   }, []);
+
+  
+
+
+
+  console.log(dokter)
 
   const idNullToast = () =>
     toast.error("Id tidak ditemukan. Harap klik baris artikel dahulu", {

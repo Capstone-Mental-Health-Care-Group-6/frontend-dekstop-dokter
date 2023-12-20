@@ -4,7 +4,7 @@ const url = process.env.BASE_API
 
 
 export const getAllDoctors = (callback) => {
-    axiosInterceptor.get(`${url}/patients`)
+    axiosInterceptor.get(`${url}/doctor`)
         .then((res) => {
             callback(res.data);
             console.log(res.data);
