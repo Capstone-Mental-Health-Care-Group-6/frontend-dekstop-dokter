@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Layouts from "../../components/layouts/Layouts";
 import Input from "../../components/elements/Input/Input";
 import Label from "../../components/elements/Input/Label";
@@ -10,82 +10,66 @@ import { useLogin } from "../../hooks/useLogin";
 
 const DataAkademik = () => {
   useLogin();
-  const [formData, setFormData] = useState([
-    {
-      asalUniversitas: "",
-      jenjangPendidikan: "",
-      tahunMasuk: "",
-      tahunTamat: "",
-    },
-  ]);
+  const [formData, setFormData] = useState({
+    doctor_university: "",
+    doctor_study_program: "",
+    doctor_enroll_year: "",
+    doctor_graduate_year: "",
+  });
 
-  const handleInputChange = (index, event) => {
+  const handleInputChange = (event) => {
     const { name, value } = event.target;
 
-    if (name === "tahunMasuk" || name === "tahunTamat") {
+    if (name === 'doctor_enroll_year' || name === 'doctor_graduate_year') {
       const isNumeric = /^\d+$/.test(value);
 
       setErrorMessages((prevErrors) => ({
         ...prevErrors,
-        [name]: isNumeric
-          ? ""
-          : `Tahun ${
-              name === "tahunMasuk" ? "Masuk" : "Tamat"
-            } harus berupa angka`,
+        [name]: isNumeric ? '' : `Tahun ${name === 'doctor_enroll_year' ? 'Masuk' : 'Tamat'} harus berupa angka`,
       }));
     }
 
-    const updatedFormData = [...formData];
-    updatedFormData[index][name] = value;
-    setFormData(updatedFormData);
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
 
   const handleAddData = () => {
-    setFormData([
-      ...formData,
-      {
-        asalUniversitas: "",
-        jenjangPendidikan: "",
-        tahunMasuk: "",
-        tahunTamat: "",
-      },
-    ]);
+    // Set opsi untuk menutup modal profil jika dibuka
+    setShowProfileModal(false);
+
+    if (formData.length < 5) {
+      setFormData({
+        ...formData,
+        doctor_university: "",
+        doctor_study_program: "",
+        doctor_enroll_year: "",
+        doctor_graduate_year: "",
+      });
+    }
   };
 
   const [showProfileModal, setShowProfileModal] = useState(false);
 
   const [errorMessages, setErrorMessages] = useState({
-    asalUniversitas: "",
-    jenjangPendidikan: "",
-    tahunMasuk: "",
-    tahunTamat: "",
+    doctor_university: "",
+    doctor_study_program: "",
+    doctor_enroll_year: "",
+    doctor_graduate_year: "",
   });
 
   const handleSubmitClick = () => {
-    const newErrorMessages = formData.map((data, index) => ({
-      asalUniversitas: !data.asalUniversitas
-        ? `Asal Universitas wajib diisi (${index + 1})`
-        : "",
-      jenjangPendidikan: !data.jenjangPendidikan
-        ? `Jenjang Pendidikan wajib diisi (${index + 1})`
-        : "",
-      tahunMasuk: !data.tahunMasuk
-        ? `Tahun Masuk wajib diisi (${index + 1})`
-        : "",
-      tahunTamat: !data.tahunTamat
-        ? `Tahun Tamat wajib diisi (${index + 1})`
-        : "",
-    }));
+    const newErrorMessages = {
+      doctor_university: !formData.doctor_university ? "Asal Universitas wajib diisi" : "",
+      doctor_study_program: !formData.doctor_study_program ? "Jenjang Pendidikan wajib diisi" : "",
+      doctor_enroll_year: !formData.doctor_enroll_year ? "Tahun Masuk wajib diisi" : "",
+      doctor_graduate_year: !formData.doctor_graduate_year ? "Tahun Tamat wajib diisi" : "",
+    };
 
-    setErrorMessages(
-      newErrorMessages.reduce((acc, curr) => ({ ...acc, ...curr }), {})
-    );
+    setErrorMessages(newErrorMessages);
 
-    if (
-      newErrorMessages.some((error) =>
-        Object.values(error).some((value) => value !== "")
-      )
-    ) {
+    if (Object.values(newErrorMessages).some((value) => value !== "")) {
       return;
     }
 
@@ -100,108 +84,96 @@ const DataAkademik = () => {
     setShowProfileModal(false);
   };
 
+  useEffect(() => {
+    const hardcodedData = {
+      doctor_university: "Universitas Indonesia",
+      doctor_study_program: "S1 Psikolog",
+      doctor_enroll_year: "2005-01-01",
+      doctor_graduate_year: "2009-01-01",
+    };
+
+    console.log("Hardcoded Data:", hardcodedData);
+
+    setFormData(hardcodedData);
+  }, []);
+
   return (
     <Layouts>
       <div className="data-akademik">
         <div className="container">
           <BackButton location={"/dokter/profile"} />
-          {formData.map((data, index) => (
-            <form className="data-akademik-form" key={index}>
-              <h4 className="data-akademik-title">Data Akademik</h4>
-              <div className="row mb-3">
-                <div className="col-md-6">
-                  <Label htmlFor={`asalUniversitas ${index}`}>
-                    Asal Universitas
-                  </Label>
-                  <Input
-                    type="text"
-                    className={`form-control mb-2 ${
-                      errorMessages.asalUniversitas ? "is-invalid" : ""
-                    }`}
-                    id={`asalUniversitas${index}`}
-                    name="asalUniversitas"
-                    placeholder="Universitas"
-                    value={data.asalUniversitas}
-                    onChange={(e) => handleInputChange(index, e)}
-                  />
-                  {errorMessages.asalUniversitas && (
-                    <div className="invalid-feedback">
-                      {errorMessages.asalUniversitas}
-                    </div>
-                  )}
-                </div>
 
-                <div className="col-md-6">
-                  <Label htmlFor={`jenjangPendidikan ${index}`}>
-                    Jenjang Pendidikan
-                  </Label>
-                  <Input
-                    type="text"
-                    className={`form-control mb-2 ${
-                      errorMessages.jenjangPendidikan ? "is-invalid" : ""
-                    }`}
-                    id={`jenjangPendidikan${index}`}
-                    name="jenjangPendidikan"
-                    placeholder="Jenjang"
-                    value={data.jenjangPendidikan}
-                    onChange={(e) => handleInputChange(index, e)}
-                  />
-                  {errorMessages.jenjangPendidikan && (
-                    <div className="invalid-feedback">
-                      {errorMessages.jenjangPendidikan}
-                    </div>
-                  )}
-                </div>
+          <form className="data-akademik-form">
+            <h4 className="data-akademik-title">Data Akademik</h4>
+            <div className="row mb-3">
+              <div className="col-md-6">
+                <Label htmlFor="doctor_university">Asal Universitas</Label>
+                <Input
+                  type="text"
+                  className={`form-control mb-2 ${errorMessages.doctor_university ? "is-invalid" : ""}`}
+                  id="doctor_university"
+                  name="doctor_university"
+                  placeholder="Universitas"
+                  value={formData.doctor_university}
+                  onChange={handleInputChange}
+                />
+                {errorMessages.doctor_university && (
+                  <div className="invalid-feedback">{errorMessages.doctor_university}</div>
+                )}
               </div>
 
-              <div className="row mb-3">
-                <div className="col-md-6">
-                  <Label htmlFor={`tahunMasuk ${index}`}>
-                    Tahun Masuk Universitas
-                  </Label>
-                  <Input
-                    type="text"
-                    className={`form-control mb-2 ${
-                      errorMessages.tahunMasuk ? "is-invalid" : ""
-                    }`}
-                    id={`tahunMasuk${index}`}
-                    name="tahunMasuk"
-                    placeholder="Tahun Masuk"
-                    value={data.tahunMasuk}
-                    onChange={(e) => handleInputChange(index, e)}
-                  />
-                  {errorMessages.tahunMasuk && (
-                    <div className="invalid-feedback">
-                      {errorMessages.tahunMasuk}
-                    </div>
-                  )}
-                </div>
-
-                <div className="col-md-6">
-                  <Label htmlFor={`tahunTamat ${index}`}>
-                    Tahun Tamat Universitas
-                  </Label>
-                  <Input
-                    type="text"
-                    className={`form-control mb-2 ${
-                      errorMessages.tahunTamat ? "is-invalid" : ""
-                    }`}
-                    id={`tahunTamat${index}`}
-                    name="tahunTamat"
-                    placeholder="Tahun Tamat"
-                    value={data.tahunTamat}
-                    onChange={(e) => handleInputChange(index, e)}
-                  />
-                  {errorMessages.tahunTamat && (
-                    <div className="invalid-feedback">
-                      {errorMessages.tahunTamat}
-                    </div>
-                  )}
-                </div>
+              <div className="col-md-6">
+                <Label htmlFor="doctor_study_program">Jenjang Pendidikan</Label>
+                <Input
+                  type="text"
+                  className={`form-control mb-2 ${errorMessages.doctor_study_program ? "is-invalid" : ""}`}
+                  id="doctor_study_program"
+                  name="doctor_study_program"
+                  placeholder="Jenjang"
+                  value={formData.doctor_study_program}
+                  onChange={handleInputChange}
+                />
+                {errorMessages.doctor_study_program && (
+                  <div className="invalid-feedback">{errorMessages.doctor_study_program}</div>
+                )}
               </div>
-              <br />
-            </form>
-          ))}
+            </div>
+
+            <div className="row mb-3">
+              <div className="col-md-6">
+                <Label htmlFor="doctor_enroll_year">Tahun Masuk Universitas</Label>
+                <Input
+                  type="text"
+                  className={`form-control mb-2 ${errorMessages.doctor_enroll_year ? "is-invalid" : ""}`}
+                  id="doctor_enroll_year"
+                  name="doctor_enroll_year"
+                  placeholder="Tahun Masuk"
+                  value={formData.doctor_enroll_year}
+                  onChange={handleInputChange}
+                />
+                {errorMessages.doctor_enroll_year && (
+                  <div className="invalid-feedback">{errorMessages.doctor_enroll_year}</div>
+                )}
+              </div>
+
+              <div className="col-md-6">
+                <Label htmlFor="doctor_graduate_year">Tahun Tamat Universitas</Label>
+                <Input
+                  type="text"
+                  className={`form-control mb-2 ${errorMessages.doctor_graduate_year ? "is-invalid" : ""}`}
+                  id="doctor_graduate_year"
+                  name="doctor_graduate_year"
+                  placeholder="Tahun Tamat"
+                  value={formData.doctor_graduate_year}
+                  onChange={handleInputChange}
+                />
+                {errorMessages.doctor_graduate_year && (
+                  <div className="invalid-feedback">{errorMessages.doctor_graduate_year}</div>
+                )}
+              </div>
+            </div>
+            <br />
+          </form>
 
           <div className="buttons-container d-flex justify-content-end mb-3">
             {/* Add Data Button */}

@@ -1,110 +1,114 @@
-import { useState, useEffect } from "react";
-import Button from "../../components/elements/Button/Button";
-import LogoEmphati from "../../assets/logoEmphati.png";
-import Welcome from "../../assets/Welcome.png";
-import { BsEye, BsEyeSlash } from "react-icons/bs";
-import { useNavigate, Link } from "react-router-dom";
-import { FaUser, FaLock } from "react-icons/fa";
-import "./Login.style.css";
-import { BsExclamationCircle } from "react-icons/bs";
-import { IoMdMail } from "react-icons/io";
+import { useState, useEffect } from "react"
+import Button from "../../components/elements/Button/Button"
+import LogoEmphati from "../../assets/logoEmphati.png"
+import Welcome from "../../assets/Welcome.png"
+import { BsEye, BsEyeSlash } from "react-icons/bs"
+import { useNavigate, Link } from "react-router-dom"
+import { FaUser, FaLock } from "react-icons/fa"
+import { jwtDecode } from "jwt-decode"
+import "./Login.style.css"
+import { BsExclamationCircle } from "react-icons/bs"
+import { IoMdMail } from "react-icons/io"
 import {
   passwordChecker,
   passworLogindHandler,
   emailHandler,
   emailChecker,
-} from "../../utils/handler/input";
-import { login } from "../../service/authentication";
-import { useDispatch, useSelector } from "react-redux";
-import { setDataLogin } from "../../service/userSlice";
+} from "../../utils/handler/input"
+import { login } from "../../service/authentication"
+import { useDispatch, useSelector } from "react-redux"
+import { setDataLogin } from "../../service/userSlice"
 
 const LoginForm = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    const storedDataLogin = JSON.parse(localStorage.getItem('dataLogin'));
+    const storedDataLogin = JSON.parse(localStorage.getItem("dataLogin"))
     if (storedDataLogin) {
-      dispatch(setDataLogin(storedDataLogin));
+      dispatch(setDataLogin(storedDataLogin))
     }
-  }, [dispatch]);
+  }, [dispatch])
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  const [activeInput, setActiveInput] = useState(null);
-  const [isSubmitButtonDisabled, setIsSubmitButtonDisabled] = useState(true);
-  const [alertLogin, setAlertLogin] = useState("d-none");
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [showPassword, setShowPassword] = useState(false)
+  const [activeInput, setActiveInput] = useState(null)
+  const [isSubmitButtonDisabled, setIsSubmitButtonDisabled] = useState(true)
+  const [alertLogin, setAlertLogin] = useState("d-none")
   const [errorMessages, setErrorMessages] = useState({
     email: "",
     password: "",
-  });
-  const navigate = useNavigate();
+  })
+  const navigate = useNavigate()
 
   const handleEmailChange = (e) => {
-    emailHandler(e.target.value, setErrorMessages);
-    setEmail(e.target.value);
-    setActiveInput("email");
-  };
+    emailHandler(e.target.value, setErrorMessages)
+    setEmail(e.target.value)
+    setActiveInput("email")
+  }
 
   const handlePasswordChange = (e) => {
-    passworLogindHandler(e.target.value, setErrorMessages);
-    setPassword(e.target.value);
-    setActiveInput("password");
-  };
+    passworLogindHandler(e.target.value, setErrorMessages)
+    setPassword(e.target.value)
+    setActiveInput("password")
+  }
 
   const handleTogglePassword = () => {
-    setShowPassword(!showPassword);
-  };
+    setShowPassword(!showPassword)
+  }
   const handleInputFocus = (inputName) => {
-    setActiveInput(inputName);
-  };
+    setActiveInput(inputName)
+  }
 
   const handleInputBlur = () => {
-    setActiveInput(null);
-  };
+    setActiveInput(null)
+  }
 
   const validateInputs = () => {
-    let isValid = true;
+    let isValid = true
 
     if (!emailChecker(email) || !passwordChecker(password)) {
-      emailHandler(email, setErrorMessages);
-      passworLogindHandler(password, setErrorMessages);
-      isValid = false;
+      emailHandler(email, setErrorMessages)
+      passworLogindHandler(password, setErrorMessages)
+      isValid = false
     }
 
-    return isValid;
-  };
+    return isValid
+  }
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
     const formLogin = {
       email,
       password,
-    };
+    }
 
     if (validateInputs()) {
       login(formLogin, (status, res) => {
         if (status) {
-          navigate("/dokter/dashboard");
-          localStorage.setItem("token", res.data.token.access_token);
-          console.log("berhasil login", res);
-          dispatch(setDataLogin(res.data));
-          const dataLogin = res.data;
-          localStorage.setItem('dataLogin', JSON.stringify(dataLogin.name));
+          navigate("/dokter/dashboard")
+          localStorage.setItem("token", res.data.token.access_token)
+          const decoded = jwtDecode(res.data.token.access_token)
+          localStorage.setItem("id", JSON.stringify(decoded.id))
+          console.log("berhasil login", res)
+          dispatch(setDataLogin(res.data))
+          const dataLogin = res.data
+          console.log("ini datalogin", dataLogin)
+          localStorage.setItem("dataLogin", JSON.stringify(dataLogin.name))
         } else {
-          setAlertLogin("d-block");
-          console.log(res);
+          setAlertLogin("d-block")
+          console.log(res)
         }
-      });
+      })
     }
-  };
+  }
 
-  const isPlaceholderShown = (inputValue) => inputValue === "";
+  const isPlaceholderShown = (inputValue) => inputValue === ""
 
   useEffect(() => {
-    setIsSubmitButtonDisabled(!(email.trim() !== "" && password.trim() !== ""));
-  }, [email, password]);
+    setIsSubmitButtonDisabled(!(email.trim() !== "" && password.trim() !== ""))
+  }, [email, password])
 
   return (
     <div className="content">
@@ -255,7 +259,7 @@ const LoginForm = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default LoginForm;
+export default LoginForm

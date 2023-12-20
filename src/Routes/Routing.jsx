@@ -29,6 +29,7 @@ import ProfilSingkat from "../pages/ProfilSingkat/ProfilSingkat";
 import PrivacyPolicy from "../pages/PricacyPolicy/PrivacyPolicy";
 import DetailArtikel from "../pages/DetailArtikel/DetailArtikel";
 import EditArtikel from "../pages/EditArtikel/EditArtikel";
+import RegistrationForm from "../pages/RegistrationForm/RegistrationForm"
 
 const Routing = () => {
   return (
@@ -80,6 +81,7 @@ const Routing = () => {
         path="/dokter/pengalaman/privacy-policy"
         element={<PrivacyPolicy />}
       />
+      <Route path="/dokter/registration-form" element={<RegistrationForm />} />
 
       {/* route ketika url tidak sesuai */}
       <Route element={<NotFound404 />} path="*" />

@@ -17,11 +17,12 @@ const InputSelect = ({
         value={value}
         onChange={onChange}
         className={`${className} form-select`}
+        required
       >
         <option value="">{title}</option>
         {options.map((option) => (
-          <option key={option} value={option}>
-            {option}
+          <option key={option.value} value={option.value}>
+            {option.label}
           </option>
         ))}
       </select>
