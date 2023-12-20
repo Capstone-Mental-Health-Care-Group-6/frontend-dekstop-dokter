@@ -10,6 +10,7 @@ const RegistrationForm = () => {
   // const [step, setStep] = useState(1);
   // const [formData, setFormData] = useState({});
 
+<<<<<<< HEAD
   // const handleSubmit = async (e) => {
   //   e.preventDefault();
   
@@ -39,6 +40,37 @@ const RegistrationForm = () => {
   // const handleInputChange = (key, value) => {
   //   setFormData((prevData) => ({ ...prevData, [key]: value }));
   // };
+=======
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const apiData = new FormData();
+
+    formDataArray.forEach((data) => {
+      for (const key in data) {
+        if (key !== 'email') {
+          apiData.append(key, data[key]);
+        }
+      }
+    });
+
+    await createProfileDoctor(apiData, (status, res) => {
+      if (status) {
+        console.log(res);
+        getAllDoctors((res) => {
+          console.log(formDataArray);
+          setStep(6);
+        });
+      } else {
+        console.error('Error creating profile:', res);
+      }
+    });
+  };
+
+  const handleInputChange = (key, value) => {
+    setFormData((prevData) => ({ ...prevData, [key]: value }));
+  };
+>>>>>>> 6b7caf6ed7286359f5bb3996a95cab84d85f52da
 
   return (
     // <MyContextProvider>
