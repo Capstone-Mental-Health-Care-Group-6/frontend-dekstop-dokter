@@ -17,8 +17,8 @@ import {
   avatar4,
   avatar5,
   BuktiTransaksi,
-} from "../../../image";
-import Button from "../elements/Button/Button";
+} from "../../../image"
+import Button from "../elements/Button/Button"
 
 export const dataPasien = [
   {
@@ -98,7 +98,7 @@ export const dataPasien = [
     keluhan: "Sering Cemas",
     viaLayanan: "Video Call",
   },
-];
+]
 
 export const dataNotification = [
   {
@@ -147,7 +147,7 @@ export const dataNotification = [
       </div>
     ),
   },
-];
+]
 
 export const dataChatUser = [
   {
@@ -186,7 +186,7 @@ export const dataChatUser = [
     image: personChat3,
     status: "berakhir",
   },
-];
+]
 
 const sesi1Premium = () => (
   <div className="sesi1-premium">
@@ -211,7 +211,7 @@ const sesi1Premium = () => (
       </button>
     </div>
   </div>
-);
+)
 const sesi2Premium = () => (
   <div className="sesi2-premium">
     <div className="d-flex justify-content-between">
@@ -235,7 +235,7 @@ const sesi2Premium = () => (
       </button>
     </div>
   </div>
-);
+)
 
 export const dataChat = [
   {
@@ -289,7 +289,7 @@ export const dataChat = [
     content: sesi2Premium(),
     timestamp: "13:49:00",
   },
-];
+]
 
 export const transaksiUsers = [
   {
@@ -367,7 +367,7 @@ export const transaksiUsers = [
     jenisTransaksi: "manual",
     buktiTransaksi: BuktiTransaksi,
   },
-];
+]
 
 export const dataPencairanSaldo = [
   {
@@ -382,7 +382,7 @@ export const dataPencairanSaldo = [
     title: "Proses Penarikan",
     subTitle: "Rp 50.000",
   },
-];
+]
 
 export const dataTablePencairanSaldo = [
   {
@@ -430,7 +430,7 @@ export const dataTablePencairanSaldo = [
     harga: "Rp 200.000",
     status: "Pending",
   },
-];
+]
 
 export const buttonChatBot1 = [
   {
@@ -449,7 +449,7 @@ export const buttonChatBot1 = [
     text: "Mengatasi Kegilaan",
     content: "mengatasi kegilaan",
   },
-];
+]
 
 export const buttonChatBot2 = [
   {
@@ -460,4 +460,4 @@ export const buttonChatBot2 = [
     text: "Belum",
     content: "belum",
   },
-];
+]

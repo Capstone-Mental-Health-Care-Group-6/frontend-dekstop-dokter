@@ -12,42 +12,15 @@ import { createArticle, getAllArticleCategories } from "../../service/article";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useLogin } from "../../hooks/useLogin";
+import ModalAlertEditArtikel from "../../components/fragments/ModalAlert/ModalAlertEditArtikel";
 
 const TambahArtikel = () => {
   useLogin();
-
   const dataArtikel = [];
   const [categories, setCategories] = useState([]);
   const [statusChecked, setStatusChecked] = useState("Publik");
   const [loading, setLoading] = useState(false);
-
-  const dataLogin = useSelector((state) => state.user.dataLogin);
-  const storedDataLogin = JSON.parse(localStorage.getItem("dataLogin"));
-
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    setLoading(true);
-    getAllArticleCategories((res) => {
-      setCategories(res.data);
-    });
-    setLoading(false);
-  }, []);
-
-  // console.log(categories[0].id)
-
   const [checkedIndex, setCheckedIndex] = useState(null);
-
-  const handleCheckboxChange = (id) => {
-    setCheckedIndex(id === checkedIndex ? null : id);
-    setArtikel((old) => {
-      return {
-        ...old,
-        category_id: id,
-      };
-    });
-  };
-
   const [errorMsg, setErrorMsg] = useState({
     form: "",
     title: "",
@@ -63,11 +36,36 @@ const TambahArtikel = () => {
     status: "pending",
   });
 
-  // console.log(artikel)
-
   const [thumbnail, setThumbnail] = useState({
     gambar: "",
   });
+
+
+  // ini buat narik data dari redux
+  // const dataLogin = useSelector((state) => state.user.dataLogin);
+
+  const storedDataLogin = JSON.parse(localStorage.getItem("dataLogin"));
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    setLoading(true);
+    getAllArticleCategories((res) => {
+      setCategories(res.data);
+    });
+    setLoading(false);
+  }, []);
+
+
+  const handleCheckboxChange = (id) => {
+    setCheckedIndex(id === checkedIndex ? null : id);
+    setArtikel((old) => {
+      return {
+        ...old,
+        category_id: id,
+      };
+    });
+  };
+
 
   const handleNull = () => {
     if (
@@ -76,7 +74,6 @@ const TambahArtikel = () => {
       artikel.thumbnail === "" ||
       artikel.category_id === ""
     ) {
-      console.log(artikel);
       nullToast();
       setErrorMsg((old) => {
         return {
@@ -94,8 +91,6 @@ const TambahArtikel = () => {
     }
   };
 
-  console.log(artikel);
-
   const formDataKeys = [
     "category_id",
     "title",
@@ -105,19 +100,19 @@ const TambahArtikel = () => {
   ];
   const apiData = new FormData();
   formDataKeys.forEach((key) => {
-    // console.log(artikel[key])
     apiData.append(key, artikel[key]);
   });
 
   const handleCreateArtikel = async (e) => {
     e.preventDefault();
+    setLoading(true);
     await createArticle(apiData, (status, res) => {
       if (status) {
-        console.log(res);
+        setLoading(false);
         sendArtikelToast();
         navigate("/dokter/artikel");
       } else {
-        console.log(res);
+        // console.log(res);
       }
     });
   };
@@ -176,6 +171,65 @@ const TambahArtikel = () => {
   return (
     <Layouts>
       <h2 className="py-3 fw-bold">Tambah Artikel</h2>
+      <ModalAlertEditArtikel id={"button-upload-artikel-modal"}>
+        <div className="modal-content p-3">
+          <div className="modal-body ">
+            <div className="d-block">
+              <button
+                type="button"
+                className="btn-close float-end"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <p className="fw-bold">
+              Apakah anda yakin untuk upload artikel ini?
+            </p>
+            <div className="d-flex mb-3 mt-4">
+              <Button
+                text={
+                  !loading ? (
+                    "Unggah"
+                  ) : (
+                    <div class="d-flex justify-content-center">
+                      <div class="spinner-border" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                      </div>
+                    </div>
+                  )
+                }
+                type={"button"}
+                className={"btn btn-primary fw-semibold"}
+                bsDismiss={"modal"}
+                onClick={(e) => {
+                  try {
+                    handleNull();
+                    setArtikel((old) => {
+                      return {
+                        ...old,
+                        user_name: storedDataLogin,
+                        status: "Pending",
+                      };
+                    });
+                    if (errorMsg.form == "") {
+                      dataArtikel.push(artikel);
+                      handleCreateArtikel(e);
+                    }
+                  } catch {
+                    errorToast();
+                  }
+                }}
+              />
+              <Button
+                text={"Batal"}
+                className={"btn btn-danger mx-3 fw-semibold"}
+                bsDismiss={"modal"}
+                ariaLabel={"Close"}
+              />
+            </div>
+          </div>
+        </div>
+      </ModalAlertEditArtikel>
       <div className="container">
         <div className="row">
           <div className="col-9 px-3">
@@ -214,7 +268,6 @@ const TambahArtikel = () => {
                         title: e.target.value,
                       };
                     });
-                    // console.log(artikel)
                   }}
                 />
                 <div className="text-danger mb-0 my-2">
@@ -251,7 +304,6 @@ const TambahArtikel = () => {
                           content: value,
                         };
                       });
-                      // console.log(artikel)
                     }}
                   />
                 </div>
@@ -308,7 +360,6 @@ const TambahArtikel = () => {
                         };
                       });
                       setArtikel((old) => {
-                        console.log(selectedFile);
                         return {
                           ...old,
                           thumbnail: selectedFile,
@@ -329,9 +380,9 @@ const TambahArtikel = () => {
                         };
                       });
                       // Menampilkan pesan kesalahan jika format tidak diizinkan
-                      console.error(
-                        "Format file tidak diizinkan. Pilih file dengan format jpg, jpeg, atau png"
-                      );
+                      // console.error(
+                      //   "Format file tidak diizinkan. Pilih file dengan format jpg, jpeg, atau png"
+                      // );
                     }
                   }}
                 />
@@ -341,13 +392,14 @@ const TambahArtikel = () => {
                 </p>
                 <p className="text-danger">{errorMsg.thumbnail}</p>
               </div>
+
               <div className="d-flex m-3 button-form-artikel">
                 <div>
                   <Button
                     type={"button"}
                     onClick={(e) => {
                       try {
-                        handleNull();
+                        // handleNull();
                         setArtikel((old) => {
                           return {
                             ...old,
@@ -357,7 +409,7 @@ const TambahArtikel = () => {
                         });
                         if (errorMsg.form == "") {
                           dataArtikel.push(artikel);
-                          handleCreateArtikel(e);
+                          // handleCreateArtikel(e);
                         }
                       } catch {
                         errorToast();
@@ -368,10 +420,12 @@ const TambahArtikel = () => {
                     }
                     id={"button-upload-artikel"}
                     text={"Unggah Artikel"}
+                    bsTogle={"modal"}
+                    bsTarget={"#button-upload-artikel-modal"}
                   />
                 </div>
                 <div>
-                  <Button
+                  {/* <Button
                     type={"button"}
                     style={{ backgroundColor: "white" }}
                     className={"btn me-3 btn-draft-artikel fw-semibold"}
@@ -393,7 +447,7 @@ const TambahArtikel = () => {
                         errorToast();
                       }
                     }}
-                  />
+                  /> */}
                 </div>
               </div>
             </form>
